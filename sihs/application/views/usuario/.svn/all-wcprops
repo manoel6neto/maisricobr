@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/phisis/!svn/ver/4/application/views/usuario
+END
+listar_programas.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/phisis/!svn/ver/4/application/views/usuario/listar_programas.php
+END
+gerencia_proposta_usuario.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/phisis/!svn/ver/4/application/views/usuario/gerencia_proposta_usuario.php
+END
+programas.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/phisis/!svn/ver/4/application/views/usuario/programas.php
+END
+visualiza_proposta.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/phisis/!svn/ver/4/application/views/usuario/visualiza_proposta.php
+END
+relatorio.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/phisis/!svn/ver/4/application/views/usuario/relatorio.php
+END
+visualiza_propostas.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/phisis/!svn/ver/4/application/views/usuario/visualiza_propostas.php
+END
+login.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/phisis/!svn/ver/4/application/views/usuario/login.php
+END

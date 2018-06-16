@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/phisis/!svn/ver/16/application/views/gestor
+END
+finaliza_trabalho.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/phisis/!svn/ver/4/application/views/gestor/finaliza_trabalho.php
+END
+gerencia_proposta_usuario.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/phisis/!svn/ver/4/application/views/gestor/gerencia_proposta_usuario.php
+END
+incluir_proposta.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/phisis/!svn/ver/4/application/views/gestor/incluir_proposta.php
+END
+escolher_proponente.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/phisis/!svn/ver/4/application/views/gestor/escolher_proponente.php
+END
+login_usuario.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/phisis/!svn/ver/4/application/views/gestor/login_usuario.php
+END
+selecionar_programas.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/phisis/!svn/ver/4/application/views/gestor/selecionar_programas.php
+END
+escolher_proponente_edicao.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/phisis/!svn/ver/4/application/views/gestor/escolher_proponente_edicao.php
+END
+visualiza_propostas.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/phisis/!svn/ver/4/application/views/gestor/visualiza_propostas.php
+END
+exporta_siconv.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/phisis/!svn/ver/4/application/views/gestor/exporta_siconv.php
+END
+login_usuario_edicao.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/phisis/!svn/ver/4/application/views/gestor/login_usuario_edicao.php
+END
+endereco.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/phisis/!svn/ver/4/application/views/gestor/endereco.php
+END
+gerencia_proposta.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/phisis/!svn/ver/16/application/views/gestor/gerencia_proposta.php
+END
+alterar_senha.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/phisis/!svn/ver/4/application/views/gestor/alterar_senha.php
+END
+atribui_permissoes.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/phisis/!svn/ver/16/application/views/gestor/atribui_permissoes.php
+END

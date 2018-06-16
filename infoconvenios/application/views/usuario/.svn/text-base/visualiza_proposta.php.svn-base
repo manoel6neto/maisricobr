@@ -1,0 +1,329 @@
+<link rel="stylesheet" type="text/css" media="screen" href="<?= base_url();?>configuracoes/css/style.css">
+
+<script type="text/javascript" language="Javascript1.1" src="<?= base_url();?>configuracoes/js/dimmingdiv.js"></script>
+<script type="text/javascript" language="Javascript1.1" src="<?= base_url();?>configuracoes/js/layout-common.js"></script>
+<script type="text/javascript" language="Javascript1.1" src="<?= base_url();?>configuracoes/js/key-events.js"></script>
+<script type="text/javascript" language="Javascript1.1" src="<?= base_url();?>configuracoes/js/scripts.js"></script>
+<script type="text/javascript" language="Javascript1.1" src="<?= base_url();?>configuracoes/js/cpf.js"></script>
+<script type="text/javascript" language="Javascript1.1" src="<?= base_url();?>configuracoes/js/moeda.js"></script>
+<script type="text/javascript" language="Javascript1.1" src="<?= base_url();?>configuracoes/js/textCounter.js"></script>
+<script type="text/javascript" language="Javascript1.1" src="<?= base_url();?>configuracoes/js/calculaValor.js"></script>
+<script type="text/javascript" src="<?= base_url();?>configuracoes/js/thumbnailviewer.js"></script>
+	
+<script type="text/javascript" src="<?= base_url();?>configuracoes/js/jquery-1.8.2.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="<?= base_url();?>configuracoes/js/jquery-ui-1.9.0.custom.min.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="<?= base_url();?>configuracoes/css/jquery-ui-1.9.0.custom.min.css">
+
+        <script type="text/javascript" language="Javascript1.1" src="<?= base_url();?>configuracoes/js/form-validation.js"></script>
+        <script type="text/javascript" language="Javascript1.1"> 
+
+<!-- Begin 
+
+     var bCancel = false; 
+
+    function validateValoresDoProgramaSalvarForm(form) {                                                                   
+        if (bCancel) 
+      return true; 
+        else 
+ var formValidationResult;
+       formValidationResult = cptValidateRequired(form); 
+     return (formValidationResult == 1);
+   } 
+
+    function manterProgramaPropostaValoresDoProgramaSalvarForm_required () { 
+     this.a0 = new Array("qualificacaoProponente", "O campo Regra de Contrapartida é obrigatório.", new Function ("varName", " return this[varName];"));
+     this.a1 = new Array("valorContrapartida", "O campo Total de Contrapartida (R$) é obrigatório.", new Function ("varName", " return this[varName];"));
+     this.a2 = new Array("objetos", "O campo Objetos é obrigatório.", new Function ("varName", " return this[varName];"));
+     this.a3 = new Array("valorContrapartidaFinanceira", "O campo Contrapartida Financeira (R$) é obrigatório.", new Function ("varName", " return this[varName];"));
+     this.a4 = new Array("valorGlobal", "O campo Valor Global do(s) Objeto(s) (R$) é obrigatório.", new Function ("varName", " return this[varName];"));
+     this.a5 = new Array("valorRepasse", "O campo Valor de Repasse (R$) é obrigatório.", new Function ("varName", " return this[varName];"));
+    } 
+
+//End --> 
+</script>
+
+    	<script type="text/javascript" language="Javascript1.1">
+            var HINTS_ITEMS = {
+                'manter.programa.proposta.valores.do.programa.salvar.param.id.programa.title':'idPrograma',
+                'manter.programa.proposta.valores.do.programa.salvar.param.id.proposta.programa.title':'idPropostaPrograma',
+                'manter.programa.proposta.valores.do.programa.salvar.param.codigo.programa.title':'codigoPrograma',
+                'manter.programa.proposta.valores.do.programa.salvar.param.nome.programa.title':'nomePrograma',
+                'manter.programa.proposta.valores.do.programa.salvar.param.qualificacao.proponente.title':'qualificacaoProponente is required',
+                'manter.programa.proposta.valores.do.programa.salvar.param.valor.global.title':'valorGlobal is required',
+                'manter.programa.proposta.valores.do.programa.salvar.param.valor.repasse.title':'valorRepasse is required',
+                'manter.programa.proposta.valores.do.programa.salvar.param.valor.contrapartida.title':'valorContrapartida is required',
+                'manter.programa.proposta.valores.do.programa.salvar.param.valor.contrapartida.financeira.title':'valorContrapartidaFinanceira is required',
+                'manter.programa.proposta.valores.do.programa.salvar.param.valor.contrapartida.bens.servicos.title':'valorContrapartidaBensServicos',
+                'manter.programa.proposta.valores.do.programa.salvar.param.objetos.title':'objetos is required',
+                'manter.programa.proposta.valores.do.programa.salvar.param.aceita.despesa.administrativa.title':'aceitaDespesaAdministrativa',
+                'manter.programa.proposta.valores.do.programa.salvar.param.percentual.maximo.contrapartida.bens.title':'percentualMaximoContrapartidaBens',
+                'manter.programa.proposta.valores.do.programa.salvar.param.percentual.minimo.contrapartida.title':'percentualMinimoContrapartida',
+                'manter.programa.proposta.valores.do.programa.salvar.param.valor.max.repasse.title':'valorMaxRepasse',
+                'manter.programa.proposta.valores.do.programa.salvar.param.valor.maximo.repasse.title':'valorMaximoRepasse',
+                'manter.programa.proposta.valores.do.programa.salvar.param.id.title':'id',
+                'salvar':'Salvar',
+                'salvar_no':'You are not allowed to call this action',
+                'salvar_reset':'Reset',
+                'salvar_noreset':'You are not allowed to reset',
+                'cancelar':'Cancelar',
+                'cancelar_no':'You are not allowed to call this action',
+                'cancelar_reset':'Reset',
+                'cancelar_noreset':'You are not allowed to reset',
+                'calendar.popup':'Clique aqui para abrir um calend\u00E1rio e escolher uma data'
+            };
+            
+            var HINTS_COMBO_ITEMS = {            
+
+            }
+            
+            var hints = new THints (HINTS_CFG, HINTS_ITEMS);
+            
+            var HINTS_COMBO_CFG = {
+		'top'        : 5,	'left'       : 30,	'css'        : 'hintsClass',
+		'show_delay' : 400,	'hide_delay' : 3000,	'wise'       : false,
+		'follow'     : false,	'z-index'    : 110
+            };
+
+	    var combohints = new THints (HINTS_COMBO_CFG, HINTS_COMBO_ITEMS);
+
+            function getComboHintTitle(combo, title) {
+            	return title + combo.selectedIndex;
+            }
+
+            var comboTimerDelay = 10;
+
+            function handleComboMouseOut(event) {
+            	if (event.target.type == 'select-one')
+            		window.setTimeout('combohints.hide()', comboTimerDelay);
+            }	    
+        //-->
+    	</script>
+<script type="text/javascript">
+function UpdateDoubleSelect(combo, valor) {
+  eval('combo = document.' + 
+    combo + ';');
+  for(index = 0; 
+    index < combo.length; 
+    index++) {
+   if(combo[index].value == valor)
+     combo.selectedIndex = index;
+   }
+}
+  
+function descriptionDestination(key , componenteNome){
+	var HINTS_DESTINATION  = {
+	} 
+	var componenteDestino = document.getElementsByName(componenteNome);
+	if(componenteDestino[0] != null)
+	{
+		componenteDestino[0].value = HINTS_DESTINATION[key];
+	}
+}
+</script>
+
+    	<div id="container">
+<script type="text/javascript" src="<?= base_url();?>configuracoes/js/jquery-1.8.2.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="<?= base_url();?>configuracoes/js/jquery-ui-1.9.0.custom.min.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="<?= base_url();?>configuracoes/css/jquery-ui-1.9.0.custom.min.css">
+<script type="text/javascript">
+function getPath() {
+	return "/siconv"; 
+}
+</script>
+
+<script type="text/javascript">
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+	eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+	if (restore) selObj.selectedIndex=0;
+}
+//-->
+</script>
+<script language="JavaScript" type="text/javascript">
+   function mascaraData(campoData){
+              var data = campoData.value;
+              if (data.length == 2){
+                  data = data + '/';
+                  campoData.value = data;
+      return true;              
+              }
+              if (data.length == 5){
+                  data = data + '/';
+                  campoData.value = data;
+                  return true;
+              }
+         }
+</script>
+
+<div id="ConteudoDiv">
+	<div id="salvar" class="action">
+		<div class="trigger">
+			<form name="proposta" method="post" onSubmit="return enviardados();">
+				<table>
+				<tbody>
+					<tr class="nomePrograma" id="tr-salvarNomePrograma">
+						<td class="label">
+							Nome do Programa
+						</td>
+						<td class="field">
+							<?php if (isset($proposta) !== false) echo $proposta->nome_programa;?>
+						</td>
+					</tr>
+					<tr class="nomePrograma" id="tr-salvarNomePrograma">
+						<td class="label">
+							Link do Programa
+						</td>
+						<td class="field">
+							<?php if (isset($proposta) !== false) echo "<a target='_blank' href='".$proposta->programa."'>".$proposta->programa."</a>";?>
+						</td>
+					</tr>
+                    <tr class="valorGlobal" id="tr-salvarValorGlobal">
+						<td class="label">
+							<nobr>Nome da proposta <div class="important">*</div></nobr>
+						</td>
+						<td class="field">
+							<table>
+								<tbody><tr>
+									<td>
+										<?php if (isset($proposta) !== false) echo $proposta->nome;?>
+									</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+					<tr class="valorGlobal" id="tr-salvarValorGlobal">
+						<td class="label">
+							<nobr>Percentual da contrapartida
+						</td>
+						<td class="field">
+							<table>
+								<tbody><tr>
+									<td>
+										<?php if (isset($proposta) !== false) echo number_format($proposta->percentual,2,",",".");?>
+									</td>
+									<td id="mensagemValorGlobal" class="mensagemAuxilioPreenchimentoCampo"></td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+					<tr class="valorGlobal" id="tr-salvarValorGlobal">
+						<td class="label">
+							<nobr>Valor Global do(s) Objeto(s) (R$) <div class="important">*</div></nobr>
+						</td>
+						<td class="field">
+							<table>
+								<tbody><tr>
+									<td>
+										<?php if (isset($proposta) !== false) echo number_format($proposta->valor_global,2,",",".");?>
+									</td>
+									<td id="mensagemValorGlobal" class="mensagemAuxilioPreenchimentoCampo"></td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+						<tr class="valorContrapartida" id="tr-salvarValorContrapartida">
+							<td class="label">
+								<nobr>Total de Contrapartida (R$)</nobr>
+							</td>
+							<td class="field">
+								<table>
+									<tbody><tr>
+										<td>
+											<?php if (isset($proposta) !== false) echo number_format($proposta->total_contrapartida,2,",",".");?>
+										</td>
+										<td id="mensagemContrapartida" class="mensagemAuxilioPreenchimentoCampo"></td>
+									</tr>
+								</tbody></table>
+							</td>
+						</tr>
+						<tr class="valorContrapartidaFinanceira" id="tr-salvarValorContrapartidaFinanceira">
+							<td class="label">
+								<nobr>&nbsp;&nbsp;&nbsp;&nbsp;Contrapartida Financeira (R$) <div class="important">*</div></nobr>
+							</td>
+							<td class="field">
+								<table>
+									<tbody><tr>
+										<td>
+											<?php if (isset($proposta) !== false) echo number_format($proposta->contrapartida_financeira,2,",",".");?>
+										</td>
+										<td id="mensagemContrapartidaFinanceira" class="mensagemAuxilioPreenchimentoCampo"></td>
+									</tr>
+								</tbody></table>
+							</td>
+						</tr>
+						<tr class="valorContrapartidaBensServicos" id="tr-salvarValorContrapartidaBensServicos">
+							<td class="label">
+								<nobr>
+									&nbsp;&nbsp;&nbsp;&nbsp;Contrapartida em Bens e Serviços (R$)
+								</nobr>
+							</td>
+                			<td class="field">
+                				<table>
+		            				<tbody><tr>
+		            					<td>
+											<?php if (isset($proposta) !== false) echo number_format($proposta->contrapartida_bens,2,",",".");?>
+						    			</td>
+						    			<td id="mensagemContrapartidaBensServicos" class="mensagemAuxilioPreenchimentoCampo"></td>
+				            		</tr>
+		                		</tbody></table>
+							</td>
+						</tr>
+
+						<tr class="valorRepasse" id="tr-salvarValorRepasse">
+							<td class="label">
+								<nobr>Valor de Repasse (R$) </nobr>
+							</td>
+	                        <td class="field">
+								<table>
+									<tbody><tr>
+										<td>
+											<?php if (isset($proposta) !== false) echo number_format($proposta->repasse,2,",",".");?>
+										</td>
+										<td id="mensagemRepasse" class="mensagemAuxilioPreenchimentoCampo"></td></tr>
+								</tbody></table>
+                           </td>
+						</tr>
+						<tr class="valorRepasse" id="tr-salvarValorRepasse">
+							<td class="label">
+								<nobr>&nbsp;&nbsp;&nbsp;&nbsp;Valor Repasse Voluntário (R$)</nobr>
+							</td>
+							<td class="field">
+								<table>
+									<tbody><tr>
+										<td>
+											<?php if (isset($proposta) !== false) echo number_format($proposta->repasse_voluntario,2,",",".");?>
+										</td>
+										<td id="mensagemRepassevoluntario" class="mensagemAuxilioPreenchimentoCampo"></td>
+									</tr>
+								</tbody></table>
+	                        </td>
+						</tr>	
+						<tr>
+				<td class="subtitulo" colspan="3"><br>
+				Datas</td>
+			</tr>
+				<tr class="data" id="tr-inserirPropostaData">
+					<td class="label">Data
+					</td>
+					<?php if (isset($proposta) !== false) echo implode("/",array_reverse(explode("-",$proposta->data))); else echo date("d/m/Y");?>
+				</tr>
+				<tr>
+					<td class="label"><nobr>Data Início Vigência
+					<div class="important">*</div>
+					</nobr><br>
+					<nobr>
+					<?php if (isset($proposta) !== false) echo implode("/",array_reverse(explode("-",$proposta->data_inicio)));?>
+
+				<td class="label" colspan="2"><nobr>Data Término Vigência
+				<div class="important">*</div>
+				</nobr><br>
+				<?php if (isset($proposta) !== false) echo implode("/",array_reverse(explode("-",$proposta->data_termino)));?>
+				</tr>
+				</tbody>
+			</table>
+		</form>
+		<br /><input class="buttonLink" type="button" value="Voltar" onclick="javascript:history.back()">
+	</div>
+</div>
+<br class="clr">
+

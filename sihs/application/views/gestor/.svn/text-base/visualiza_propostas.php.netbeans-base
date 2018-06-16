@@ -1,0 +1,166 @@
+<link rel="stylesheet" type="text/css" media="screen" href="<?= base_url();?>configuracoes/css/style.css">
+    	<div id="container">
+<style type="text/css">
+			.carregando{
+				color:#666;
+				display:none;
+			}
+		</style>
+<div id="ConteudoDiv">
+	<div id="salvar" class="action">
+		<div class="trigger">
+			<form method="post">
+				<h1>Gerenciamento de Propostas</h1>
+				<div class="table" id="metas">
+    Filtrar por trabalho: <select id="trabalho" name="trabalho">
+				<option value="0"> - </option>
+				<?php
+				$trabalhos_tipos = $trabalhos->obter_tipos_trabalho();
+					foreach ($trabalhos_tipos as $tipo){
+						echo "<option value=\"".$tipo->idTrabalho."\">".$tipo->nome."</option>";
+					}
+				?>
+			</select>
+	Filtrar por Projeto: <select id="proposta" name="proposta">
+				<option value="0"> - </option>
+				<?php
+				//$propostas_usuario = $propostas->obter_por_usuario($usuario);
+					foreach ($propostas as $proposta){
+						echo "<option value=\"".$proposta->idProposta."\">".$proposta->nome."</option>";
+					}
+				?>
+			</select>
+			<br />
+			<label for="cod_estados">Estado:</label>
+		<select name="cod_estados" id="cod_estados">
+			<option value=""></option>
+			<?php
+				foreach ($cidades as $estado) {
+					echo '<option value="'.$estado['cod_estados'].'">'.$estado['sigla'].'</option>';
+				}
+			?>
+		</select>
+		<label for="cod_cidades">Cidade:</label>
+		<span class="carregando">Aguarde, carregando...</span>
+		<select name="cod_cidades" id="cod_cidades">
+			<option value="">-- Escolha um estado --</option>
+		</select>
+		Filtrar por Programa: <select id="programa" name="programa" style="width:150px">
+				<option value="0"> - </option>
+				<?php
+				//$propostas_usuario = $propostas->obter_por_usuario($usuario);
+					foreach ($programas as $programa){
+						echo "<option value=\"".$programa->codigo_programa ."\">".$programa->nome_programa."</option>";
+					}
+				?>
+			</select>
+		<br />
+			<input type="submit" name="Filtrar" value="Filtrar" class="">
+			</form>
+<table id="row">
+<thead>
+<tr>
+<th class="numero">Id Proposta</th>
+<th class="numero">Cidade</th>
+<th class="numero">Nome Proposta</th>
+<th class="especificacao">Usuário</th>
+<th class="especificacao">Trabalho</th>
+<th class="especificacao">Status</th>
+<th class="especificacao">Data Prevista</th>
+<th></th></tr></thead>
+<tbody id="tbodyrow">
+<?php
+				$usuario = null;
+					foreach ($propostas as $proposta){
+						$trabalhos_gestor = $trabalhos->obter_por_proposta_gestor($proposta->idProposta);
+							if((int)$proposta_id > 0 && (int)$trabalho_id > 0){
+								//$trabalhos_gestor = $trabalhos->obter_por_proposta_gestor($proposta->idProposta);
+								$trabalhos_gestor = $this->trabalho_model->obter_por_trabalho_e_proposta($cod_programa, $cod_cidades, $proposta->idProposta, $gestor, $trabalho_id, $proposta_id);
+							} else if($proposta_id > 0){
+								
+								$trabalhos_gestor = $this->trabalho_model->obter_proposta_por_usuario($cod_programa, $cod_cidades, $proposta->idProposta, $gestor, $proposta_id);
+							} else if((int)$trabalho_id > 0){
+								$trabalhos_gestor = $this->trabalho_model->obter_por_trabalho($cod_programa, $cod_cidades, $proposta->idProposta, $gestor, $trabalho_id);
+							} else if ($cod_cidades !== ''){
+								$trabalhos_gestor = $this->trabalho_model->obter_por_cidade($cod_programa, $cod_cidades, $proposta->idProposta, $gestor);
+							} else if ((int)$cod_programa > 0){
+								$trabalhos_gestor = $this->trabalho_model->obter_por_programa($cod_programa, $proposta->idProposta, $gestor);
+							} 
+
+						foreach ($trabalhos_gestor as $trabalho){
+				?>
+<tr class="odd"
+
+<?php
+	if ($trabalho->Status_idstatus == 0)
+		echo "style=\" background-color: #F05050;\"";
+	else if ($trabalho->Status_idstatus == 1)
+		echo "style=\" background-color: #F0f050;\"";
+	else if ($trabalho->Status_idstatus == 2)
+		echo "style=\" background-color: #80E080;\"";
+	else if ($trabalho->Status_idstatus == 3 || $trabalho->Status_idstatus == 4)
+		echo "style=\" background-color: #A0F0A0;\"";
+	else
+		echo "style=\" background-color: #A0A0A0;\"";
+?>
+>
+		<td>
+            <div class="numero"><?= $proposta->idProposta;?></div>
+        </td>
+        <td>
+            <div class="numero"><?= $proposta->cidade;?></div>
+        </td>
+		<td>
+            <div class="numero"><?= $proposta->nome;?></div>
+        </td>
+		<td>
+            <div class="especificacao"><?= $usuarios->get_by_id($trabalho->Pessoa_idPessoa)->nome;?></div>
+        </td>
+        <td>
+            <div class="especificacao"><?= $trabalhos->obter_tipo_trabalho($trabalho->Tipo_trabalho_idTrabalho);?></div>
+        </td>
+        <td>
+            <div class="especificacao"><?= $trabalhos->obter_status_trabalho($trabalho->Status_idstatus);?></div> 
+        </td>
+		<td>
+            <div class="especificacao"><?= implode("/",array_reverse(explode("-",$trabalho->data)));?></div>
+        </td>
+<td>
+<a class="buttonLink" href="<?= base_url();?>index.php/in/gestor/gerencia_proposta_usuario?idTrabalho=<?= $trabalho->idTrabalho;?>">Acompanhamento</a><br />
+<a class="buttonLink" href="<?= base_url();?>index.php/in/usuario/<?= $trabalhos->obter_nomenclatura_trabalho($trabalho->Tipo_trabalho_idTrabalho);?>?id=<?= $proposta->idProposta;?>&edita_gestor=1">Edição de trabalho</a>
+        </td></tr>
+
+<?php
+	}
+}
+?>
+
+        </tbody></table>
+        </div>
+		</form>
+	</div>
+</div>
+<br class="clr">
+<script type="text/javascript" src="<?= base_url();?>configuracoes/js/jquery-1.8.2.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+		$(function(){
+			$('#cod_estados').change(function(){
+				
+				if( $(this).val() ) {
+					$('#cod_cidades').hide();
+					$('.carregando').show();
+					$.getJSON('cidades_ajax?search=',{cod_estados: $(this).val(), ajax: 'true'}, function(j){
+						var options = '<option value=""></option>';	
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].nome + '">' + j[i].nome + '</option>';
+						}	
+						$('#cod_cidades').html(options).show();
+						$('.carregando').hide();
+					});
+				} else {
+					$('#cod_cidades').html('<option value="">– Escolha um estado –</option>');
+				}
+			});
+		});
+		
+		</script>

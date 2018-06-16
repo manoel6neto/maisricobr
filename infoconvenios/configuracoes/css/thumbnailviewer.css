@@ -1,0 +1,39 @@
+#thumbBox{ /*Outermost DIV for thumbnail viewer*/
+position: absolute;
+left: 0;
+top: 0;
+width: auto;
+padding: 10px;
+padding-bottom: 0;
+background: #5C7EB1;
+visibility: hidden;
+z-index: 10;
+cursor: hand;
+cursor: pointer;
+-moz-border-radius: 8px; /* Para Firefox */
+-webkit-border-radius: 8px; /*Para Safari e Chrome */
+border-radius: 8px; /* Para Opera 10.5+*/
+}
+
+#thumbBox .footerbar{ /*Footer DIV of thumbbox that contains "close" link */
+font: bold 10px Arial,Helvetica,sans-serif;
+letter-spacing: 1px;
+line-height: 1.1em;
+color: white;
+padding: 5px 0;
+text-align: right;
+}
+
+
+#thumbBox #thumbImage{ /*DIV within thumbbox that holds the enlarged image */
+background-color: white;
+}
+
+#thumbLoading{ /*DIV for showing "loading" status while thumbbox is being generated*/
+position: absolute;
+visibility: hidden;
+border: 1px solid black;
+background-color: #EFEFEF;
+padding: 5px;
+z-index: 5;
+}

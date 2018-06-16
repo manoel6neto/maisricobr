@@ -1,0 +1,17 @@
+Instalar o python 2.7
+Adicionar o python no path do windows e reiniciar
+Depois executar: pip install --upgrade pip
+Depois executar: pip install --upgrade ipython
+Depois executar: pip install --upgrade requests
+Depois executar: pip install --upgrade mysql
+
+Reiniciar o windows. Abrir um cmd e digitar: iptyhon
+Dentro do terminal executar: import requests
+
+Em caso de nenhuma mensagem de erro esta configurado com sucesso.
+Basta descompactar agora o arquivo requests_esicar na raiz do sistema: c:\ ou diretório raiz da instalação
+Executar python factory_run.py [id_inicial] [valor_do_incremento]
+
+O valor [id_inicial] vai ser o id inicial da busca que vamos seguir a ordem na tabela
+O [valor_do_incremento] é o valor para o id máximo que vai ser passado para cada thread. O recomendado é usar valores até 4 a depender da conexão e da estabilidade da rede.
+

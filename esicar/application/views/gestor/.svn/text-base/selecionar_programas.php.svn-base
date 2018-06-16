@@ -1,0 +1,30 @@
+<link rel="stylesheet" type="text/css" media="screen" href="<?= base_url();?>configuracoes/css/style.css">
+    	<div id="container">
+
+<div id="ConteudoDiv">
+	<div id="salvar" class="action">
+		<div class="trigger">
+			<form name="" method="post" action="incluir_proposta" enctype="multipart/form-data">
+				<input type="hidden" name="usuario_siconv" value="<?= $usuario_siconv;?>">
+				<input type="hidden" name="senha_siconv" value="<?= $senha_siconv;?>">
+				<input type="hidden" name="cnpjProponente" value="<?= $cnpjProponente;?>">
+				<input type="hidden" name="orgao" value="<?= $orgao;?>">
+				<h1>Selecionar Programas para Proposta</h1>
+				<div class="table" id="metas">
+			<table><?= $tabela;?></table>
+                        </td>
+                    </tr>
+	                       <tr>
+                    <td>&nbsp;</td>
+                        				<td class="FormLinhaBotoes">
+																	                              
+                              <input type="submit" id="form_submit" value="Selecionar">
+                        				</td>
+                    				</tr>
+                		</tbody>
+            		</table>
+        </div>
+		</form>
+	</div>
+</div>
+<br class="clr">

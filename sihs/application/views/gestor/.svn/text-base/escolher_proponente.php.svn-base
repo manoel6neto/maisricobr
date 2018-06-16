@@ -1,0 +1,59 @@
+<link rel="stylesheet" type="text/css" media="screen" href="<?= base_url();?>configuracoes/css/style.css">
+    	<div id="container">
+
+<script type="text/javascript">
+function transferir_orgao() {
+	var valor = document.getElementById('orgao_nome').value;
+	campo = document.getElementById('orgao');
+	campo.value = valor;
+}
+</script>
+<div id="ConteudoDiv">
+	<div id="salvar" class="action">
+		<div class="trigger">
+			<form name="" method="post" action="selecionar_programas" enctype="multipart/form-data">
+				<input type="hidden" name="usuario_siconv" value="<?= $usuario_siconv;?>">
+				<input type="hidden" name="senha_siconv" value="<?= $senha_siconv;?>">
+				<h1>Escolher Proponenete e Órgão</h1>
+				<div class="table" id="metas">
+    
+<table>
+                <tbody>
+    	   
+	                       <tr id="tr-escolherProponenteListaProponentes" class="listaProponentes">
+                        <td class="label">Proponente</td>
+                        <td class="label">
+                           <table>
+                               <tbody>
+                               <?= $tabela;?>
+                               <tr>
+                                   <td style="font-family: Arial; font-size: 14px; font-weight: bold; color: #003399;">
+                                   Órgão
+                                       <input type="text" value="" name="orgao" id="orgao">
+										 <select name="orgao_nome" id="orgao_nome" onchange="transferir_orgao()">
+											<option value=""></option>
+											<?php
+												foreach ($orgaos as $orgao){
+													echo '<option value="'.$orgao->codigo.'">'.$orgao->nome.'</option>';
+												}
+											?>
+										</select>
+                                   </td>
+                               </tr>
+                           </tbody></table>
+                        </td>
+                    </tr>
+	                       <tr>
+                    <td>&nbsp;</td>
+                        				<td class="FormLinhaBotoes">
+																	                              
+                              <input type="submit" id="form_submit" value="Selecionar">
+                        				</td>
+                    				</tr>
+                		</tbody>
+            		</table>
+        </div>
+		</form>
+	</div>
+</div>
+<br class="clr">

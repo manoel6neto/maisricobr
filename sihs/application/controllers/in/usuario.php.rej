@@ -1,0 +1,10 @@
+diff a/application/controllers/in/usuario.php b/application/controllers/in/usuario.php	(rejected hunks)
+@@ -2043,7 +2043,7 @@
+             $data['title'] = "SIHS - Incluir Justificativa";
+             $data['main'] = 'in/incluir_justificativa';
+             $data['login'] = $this->login;
+-            $this->load->view('in/template_projeto', $data);
++            $this->load->view('in/template', $data);
+         } else if ($this->input->get_post('id', TRUE) !== false) {
+             $id = $this->input->get_post('id', TRUE);
+             $proposta = $this->proposta_model->get_by_id($id);

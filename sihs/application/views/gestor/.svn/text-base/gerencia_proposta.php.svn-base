@@ -1,0 +1,79 @@
+<div id="content">
+	<div class="innerAll spacing-x2">
+
+		<div class="widget widget-inverse">
+			<div class="widget-head">
+				<h4 class="heading">Gerenciamento de Propostas</h4>
+			</div>
+			
+		<div class="widget-body center">
+		<a href="<?= base_url();?>index.php/in/gestor/gerencia_proposta">Propostas em aberto</a> 
+		<a href="<?= base_url();?>index.php/in/gestor/gerencia_proposta?enviadas=1">Propostas enviadas</a>
+		</div>
+		</div>
+		<div class="widget widget-inverse">
+			<div class="widget-head">
+				<h4 class="heading">Tabela de Gerenciamento de Propostas</h4>
+			</div>
+		<div class="widget-body center">
+	<div id="ConteudoDiv">
+	<div id="salvar" class="action">
+		<div class="trigger">
+			<form name="manterProgramaPropostaValoresDoProgramaSalvarForm" method="post" action="https://www.convenios.gov.br/siconv/ManterProgramaProposta/ValoresDoProgramaSalvar.do" enctype="multipart/form-data">
+
+				
+				
+				<div class="table" id="metas">
+    
+				<table class="dynamicTable tableTools table table-striped table-bordered table-condensed table-white">
+				<thead>
+				<tr>
+				<th class="numero">Id Proposta</th>
+				<th class="numero">Nome Proposta</th>
+				<th class="numero">Cidade</th>
+				<th class="especificacao">Programa</th>
+				<th></th></tr></thead>
+				<tbody id="tbodyrow">
+				<?php
+					foreach ($propostas as $proposta){
+						//echo $proposta->nome."<br />";
+				?>
+				<tr class="odd">
+				<td>
+							<div class="numero"><?= $proposta->idProposta;?></div>
+						</td>
+				<td>
+							<div class="numero"><?= $proposta->nome;?></div>
+						</td>
+				<td>
+							<div class="numero"><?= $proposta->cidade;?></div>
+						</td>
+				<td>
+							<div class="especificacao"><?= $proposta->nome_programa;?></div>
+						</td>
+				<td>
+            <nobr>
+            <a class="buttonLink" href="<?= base_url();?>index.php/in/gestor/duplica_trabalho?id=<?= $proposta->idProposta;?>">Duplica Projeto</a>
+            <a class="buttonLink" href="<?= base_url();?>index.php/in/gestor/altera_usuario?id=<?= $proposta->idProposta;?>">Alterar usuário e cidade do Projeto</a><br>
+            <a class="buttonLink" href="<?= base_url();?>index.php/in/gestor/endereco?id=<?= $proposta->idProposta;?>">Altera endereço</a>
+            <a class="buttonLink" href="<?= base_url();?>index.php/in/gestor/incluir_proposta?edit=1&id=<?= $proposta->idProposta;?>">Editar Projeto</a>
+            <a onclick="return confirm ('Tem certeza que deseja excluir esse projeto?')" class="buttonLink" href="<?= base_url();?>index.php/in/gestor/gerencia_proposta?delete=1&id=<?= $proposta->idProposta;?>">Excluir Projeto</a><br>
+            <a class="buttonLink" href="<?= base_url();?>index.php/in/gestor/visualiza_propostas?proposta=<?= $proposta->idProposta;?>">Acompanhar Trabalhos</a>
+            <a class="buttonLink" href="<?= base_url();?>index.php/in/gestor/finaliza_trabalho?id=<?= $proposta->idProposta;?>">Finaliza Trabalho</a>
+            </nobr>
+        </td></tr>
+		<?php
+			}
+		?>
+		</tbody>
+		</table>
+ 
+        </div>
+		</form>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

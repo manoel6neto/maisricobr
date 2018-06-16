@@ -1,0 +1,20 @@
+: Serviços : -> : Porta :
+
+===========================
+
+: SSH : -> : 7790 :
+: MySQL : -> : 7706 :
+: FTP : -> : 7721 :
+
+++++++++++++++++++++++++++++
+
+: Serviços/Servidor : -> : Nome Usuário : -> : Senha :
+
+========================================================
+
+: GlassFish Server : -> : admin : -> : 69!241T0mH4()% :
+: MySQL Server : -> : physismysql : -> : 72$2T1mM230%@ :
+: Servidor Dedicado Godaddy Ubuntu 10.04 : -> : physisroot : -> : 51@8h8P7mN310$% :
+: Servidor FTP Godaddy : -> : physisftp : -> : 21%7m9F1mCn772(! :
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

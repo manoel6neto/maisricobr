@@ -1,0 +1,111 @@
+<link rel="stylesheet" type="text/css" media="screen" href="<?= base_url();?>configuracoes/css/style.css">
+    	<div id="container">
+
+<div id="ConteudoDiv">
+	<div id="salvar" class="action">
+		<div class="trigger">
+			<form method="post">
+				<h1>Gerenciamento de Propostas</h1>
+				<div class="table" id="metas">
+    Filtrar por trabalho: <select id="trabalho" name="trabalho">
+				<option value="0"> - </option>
+				<?php
+				$trabalhos_tipos = $trabalhos->obter_tipos_trabalho();
+					foreach ($trabalhos_tipos as $tipo){
+						echo "<option value=\"".$tipo->idTrabalho."\">".$tipo->nome."</option>";
+					}
+				?>
+			</select>
+	Filtrar por Projeto: <select id="proposta" name="proposta">
+				<option value="0"> - </option>
+				<?php
+				$propostas_usuario = $propostas->obter_por_usuario($usuario);
+					foreach ($propostas_usuario as $proposta){
+						$nome = $propostas->get_by_id($proposta->id_correspondente);
+						echo "<option value=\"".$proposta->id_correspondente."\">".$nome->nome."</option>";
+					}
+				?>
+			</select>
+			<input type="submit" name="Filtrar" value="Filtrar" class="">
+			</form>
+<table id="row">
+<thead>
+<tr>
+<th class="numero">Nome Proposta</th>
+<th class="especificacao">Programa</th>
+<th class="especificacao">Trabalho</th>
+<th class="especificacao">Status</th>
+<th class="especificacao">Data Prevista</th>
+<th></th></tr></thead>
+<tbody id="tbodyrow">
+<?php
+
+	foreach ($trabalhos_foreach as $trabalho){
+		//echo $proposta->nome."<br />";
+		$proposta = $propostas->get_by_id($trabalho->id_correspondente);
+?>
+<tr class="odd"
+
+<?php
+	if ($trabalho->Status_idstatus == 0)
+		echo "style=\" background-color: #F05050;\"";
+	else if ($trabalho->Status_idstatus == 1)
+		echo "style=\" background-color: #F0f050;\"";
+	else if ($trabalho->Status_idstatus == 2)
+		echo "style=\" background-color: #80E080;\"";
+	else if ($trabalho->Status_idstatus == 3 || $trabalho->Status_idstatus == 4)
+		echo "style=\" background-color: #A0F0A0;\"";
+	else
+		echo "style=\" background-color: #A0A0A0;\"";
+	
+?>
+>
+<td>
+            <div class="numero"><?= $proposta->nome;?></div>
+        </td>
+		<td>
+            <div class="especificacao"><?= $proposta->nome_programa;?></div>
+        </td>
+        <td>
+            <div class="especificacao"><?= $trabalhos->obter_tipo_trabalho($trabalho->Tipo_trabalho_idTrabalho);?></div>
+        </td>
+        <td>
+            <div class="especificacao"><?= $trabalhos->obter_status_trabalho($trabalho->Status_idstatus);?></div> 
+        </td>
+		<td>
+            <div class="especificacao"><?= implode("/",array_reverse(explode("-",$trabalho->data)));?></div>
+        </td>
+<td>		
+<?php
+	if ($trabalho->Status_idstatus == 1){
+?>
+			<a class="buttonLink" href="<?= base_url();?>index.php/in/usuario/visualiza_proposta?id=<?= $proposta->idProposta;?>">Visualizar Projeto</a>
+            <a class="buttonLink" href="<?= base_url();?>index.php/in/usuario/aceitar_trabalho?idTrabalho=<?= $trabalho->idTrabalho;?>">Aceitar</a> <a class="buttonLink" href="<?= base_url();?>index.php/in/usuario/recusar_trabalho?idTrabalho=<?= $trabalho->idTrabalho;?>">Recusar</a>
+<?php
+	} else if ($trabalho->Status_idstatus == 2){
+?>
+			<div><a class="buttonLink" href="<?= base_url();?>index.php/in/usuario/visualiza_proposta?id=<?= $proposta->idProposta;?>">Visualizar Projeto</a></div>
+            <div><a class="buttonLink" href="<?= base_url();?>index.php/in/usuario/<?= $trabalhos->obter_nomenclatura_trabalho($trabalho->Tipo_trabalho_idTrabalho);?>?id=<?= $proposta->idProposta;?>">Realizar Trabalho</a></div>
+<?php
+	} else if ($trabalho->Status_idstatus == 3 || $trabalho->Status_idstatus == 4){
+?>
+			<a class="buttonLink" href="<?= base_url();?>index.php/in/usuario/visualiza_proposta?id=<?= $proposta->idProposta;?>">Visualizar Projeto</a>
+            <a class="buttonLink" href="<?= base_url();?>index.php/in/usuario/gerencia_proposta_usuario?idTrabalho=<?= $trabalho->idTrabalho;?>">Acompanhamento</a>
+<?php
+	} else {
+?>
+			<a class="buttonLink" href="<?= base_url();?>index.php/in/usuario/visualiza_proposta?id=<?= $proposta->idProposta;?>">Visualizar Projeto</a>
+<?php
+	}
+?>
+        </td></tr>
+<?php
+	}
+?>
+
+        </tbody></table>
+        </div>
+		</form>
+	</div>
+</div>
+<br class="clr">

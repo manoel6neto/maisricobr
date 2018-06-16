@@ -1,0 +1,66 @@
+.link-button {
+    background: #8ca8bb !important;
+    background-color: #8ca8bb !important;
+    color: #ffffff !important;
+    width: 50px !important;
+}
+
+.link-button:hover {
+    background: #181A1C !important;
+    background-color: #181A1C !important;
+    color: #ffffff !important;
+    width: 50px !important;
+}
+
+.input-form {
+    color: #707070;
+    line-height: 1.2;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    background: transparent;
+    height: 30px;
+    padding: 2px 12px 2px 12px;
+    border: solid 1px #707070 !important;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.input-form:hover, .input-form:active, .input-form:focus {
+    color: #181A1C;
+    line-height: 1.2;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    background: #edfcff;
+    height: 30px;
+    padding: 2px 12px 2px 12px;
+    border: solid 1px #707070 !important;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.label-form {
+    color: #707070;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.small-class {
+    color: #707070;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.group-title {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.sistema-group {
+    border: solid 2px #c4c4c4;
+    border-radius: 5px;
+    padding: 20px;
+}

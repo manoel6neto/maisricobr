@@ -1,0 +1,98 @@
+.btn-primary {
+    background-color: #8ca8bb;
+    background: #8ca8bb;
+    border-color: #8ca8bb;
+    color: #ffffff;
+}
+
+a, a:hover {
+    color: #01153B;
+}
+
+#content h1, #content h2, #content h3 {
+    font-family: 'Roboto',sans-serif; 
+    margin: 0;
+    color: #01153B;
+}
+
+element.style {
+    color: #01153B;
+    font-size: 14px;
+}
+
+.label.label-primary {
+    background: #01153B;
+    background-color: #01153B;
+}
+
+.dropdown-menu li.active a, .dropdown-menu li.active:hover a {
+    background-color: #8ca8bb;
+    background: #8ca8bb;
+}
+
+.navbar.main .toggle-button>i {
+    color: #8ca8bb;
+}
+
+.btn-info {
+    background-color: #8ca8bb;
+    background: #8ca8bb;
+    color: #ffffff;
+    border-color: #8ca8bb;
+}
+
+.fa {
+    color: #8ca8bb;
+}
+
+.fa-search {
+    color: #ffffff;
+}
+
+.btnPesquisa:hover {
+    background-color: #01153B;
+    background: #01153B;
+    color: #ffffff;
+    border-color: #01153B;
+}
+
+.btn-primary:hover {
+    background-color: #01153B;
+    background: #01153B;
+    color: #ffffff;
+    border-color: #01153B;
+}
+
+.fa-arrow-up, .fa-arrow-down, .btn-circle {
+    color: #ffffff;    
+}
+
+.select2-results .select2-highlighted {
+    background: #8ca8bb;
+}
+
+#item-busca-menu {
+    color: #8ca8bb;
+}
+
+.fa-refresh {
+    color: #ffffff;
+}
+
+.btn-info:hover {
+    background-color: #01153B;
+    background: #01153B;
+    color: #ffffff;
+    border-color: #01153B;
+}
+
+.tabsbar ul li.active a {
+    background-color: #8ca8bb;
+    background: #8ca8bb;
+    color: #ffffff;
+    border-color: #8ca8bb;
+}
+
+.fa-check-square, .fa-warning {
+    color: #ffffff;
+}
