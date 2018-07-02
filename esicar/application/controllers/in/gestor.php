@@ -3219,6 +3219,8 @@ class Gestor extends BaseController {
         $this->load->model('programa_model');
         $this->load->model('system_logs');
         $this->load->model('emenda_programa_proposta_model', 'eppm');
+        $this->load->model('cidades_model');
+        $this->load->model('cidades_siconv');
 
         if ($this->input->get_post('id', TRUE) !== false) {
             if ($this->trabalho_model->verifica_trabalhos($this->input->get_post('id', TRUE)) != true) {
@@ -3569,7 +3571,7 @@ class Gestor extends BaseController {
                     'dataFim' => $data_termino,
                     'uf' => $uf,
                     'codigoMunicipio' => utf8_decode(str_pad((int) $meta['municipio_sigla'], 4, "0", STR_PAD_LEFT)),
-                    'nomeMunicipio' => utf8_decode($meta['municipio_nome']),
+                    'nomeMunicipio' => utf8_decode($this->cidades_siconv->get_by_codigo($meta['municipio'])->Nome),
                     'endereco' => utf8_decode($meta['endereco']),
                     'cep' => $meta['cep']
                 );
@@ -3629,7 +3631,7 @@ class Gestor extends BaseController {
                         'dataFim' => $data_termino_etapa,
                         'uf' => $uf,
                         'codigoMunicipio' => utf8_decode(str_pad((int) $etapa['municipio_sigla'], 4, "0", STR_PAD_LEFT)),
-                        'nomeMunicipio' => utf8_decode($etapa['municipio_nome']),
+                        'nomeMunicipio' => utf8_decode($this->cidades_siconv->get_by_codigo($etapa['municipio'])->Nome),
                         'endereco' => utf8_decode($etapa['endereco']),
                         'cep' => $etapa['cep']
                     );
@@ -3869,14 +3871,11 @@ class Gestor extends BaseController {
 
                 $pagina = "https://www.convenios.gov.br/siconv/IncluirBensProposta/IncluirBensPropostaIncluirBens.do";
 
-                $this->load->model('cidades_model');
-                $this->load->model('cidades_siconv');
-
                 $uf = $despesa['UF'];
                 if ($uf == 0)
                     $uf = null;
                 else {
-                    $estado = $this->cidades_model->sigla_estado($this->obterEstadoInverso($despesa['UF']));
+                    $estado = $this->cidades_model->sigla_estado($despesa['UF']);
                     $uf = $estado[0]['sigla'];
                 }
                 $valor = $despesa['total'];

@@ -42,6 +42,7 @@
             }
             ?>
             <br><br>
+            <!--<a class="btn btn-lg btn-success" <?php echo $disabled; ?> id="bt" href="<?php echo base_url(); ?>index.php/in/gestor/exporta_siconv?id=<?php echo $proposta->idProposta; ?>"><i class="fa fa-check"></i> Exportar para o siconv</a>-->
             <a class="btn btn-lg btn-success" <?php echo $disabled; ?> id="exporta_siconv"><i class="fa fa-check"></i> Exportar para o siconv</a>
             <img src="<?php echo base_url(); ?>layout/assets/images/loader.gif" style="width: 30px;" id="loader">
         <?php endif; ?>
@@ -113,11 +114,12 @@
             <td>Data Término Vigência</td>
         </tr>
         <tr>
-            <td><?php if (isset($proposta) !== false)
-            echo implode("/", array_reverse(explode("-", $proposta->data)));
-        else
-            echo date("d/m/Y");
-        ?></td>
+            <td><?php
+                if (isset($proposta) !== false)
+                    echo implode("/", array_reverse(explode("-", $proposta->data)));
+                else
+                    echo date("d/m/Y");
+                ?></td>
             <td><?php if (isset($proposta) !== false) echo implode("/", array_reverse(explode("-", $proposta->data_inicio))); ?></td>
             <td><?php if (isset($proposta) !== false) echo implode("/", array_reverse(explode("-", $proposta->data_termino))); ?></td>
         </tr>
@@ -137,28 +139,30 @@
     <table class="table">
         <tr>
             <td>Justificativa</td>
-            <td><?php if (isset($justificativa) !== false AND $justificativa != null AND count($justificativa) > 0)
-        echo $justificativa->Justificativa;
-    else
-        echo "Não cadastrado";
-    ?></td>
+            <td><?php
+                if (isset($justificativa) !== false AND $justificativa != null AND count($justificativa) > 0)
+                    echo $justificativa->Justificativa;
+                else
+                    echo "Não cadastrado";
+                ?></td>
         </tr>
         <tr>
             <td>Objeto</td>
-            <td><?php if (isset($justificativa) !== false AND $justificativa != null AND count($justificativa) > 0)
+            <td><?php
+                if (isset($justificativa) !== false AND $justificativa != null AND count($justificativa) > 0)
                     echo $justificativa->objeto;
                 else
                     echo "Não cadastrado";
-    ?></td>
+                ?></td>
         </tr>
     </table>
 
     <h3 style="color: #428bca;">Crono Fisico</h3>
     <h4 style="color: #428bca;">Metas</h4>
-<?php
-$tela3 = $this->trabalho_model->obter_saida_tela3_online($id);
-foreach ($tela3 as $key => $meta) {
-    ?>
+    <?php
+    $tela3 = $this->trabalho_model->obter_saida_tela3_online($id);
+    foreach ($tela3 as $key => $meta) {
+        ?>
         <table class="table">
             <thead>
                 <tr style="font-size: 14px;">
@@ -172,26 +176,30 @@ foreach ($tela3 as $key => $meta) {
             <tbody>
                 <tr>
                     <td><?php if (isset($key) !== false) echo $key + 1; ?></td>
-                    <td style="width: 50%"><?php if (isset($meta) !== false AND $meta != null AND count($meta) > 0)
-        echo $meta['especificacao'];
-    else
-        echo "Não cadastrado";
-    ?></td>
-                    <td><?php if (isset($meta) !== false AND $meta != null AND count($meta) > 0)
-        echo $meta['total'];
-    else
-        echo "Não cadastrado";
-    ?></td>
-                    <td><?php if (isset($meta) !== false AND $meta != null AND count($meta) > 0)
-        echo implode("/", array_reverse(explode("-", $meta['data_inicio'])));
-    else
-        echo "Não cadastrado";
-    ?></td>
-                    <td><?php if (isset($meta) !== false AND $meta != null AND count($meta) > 0)
-        echo implode("/", array_reverse(explode("-", $meta['data_termino'])));
-    else
-        echo "Não cadastrado";
-    ?></td>
+                    <td style="width: 50%"><?php
+                        if (isset($meta) !== false AND $meta != null AND count($meta) > 0)
+                            echo $meta['especificacao'];
+                        else
+                            echo "Não cadastrado";
+                        ?></td>
+                    <td><?php
+                        if (isset($meta) !== false AND $meta != null AND count($meta) > 0)
+                            echo $meta['total'];
+                        else
+                            echo "Não cadastrado";
+                        ?></td>
+                    <td><?php
+                        if (isset($meta) !== false AND $meta != null AND count($meta) > 0)
+                            echo implode("/", array_reverse(explode("-", $meta['data_inicio'])));
+                        else
+                            echo "Não cadastrado";
+                        ?></td>
+                    <td><?php
+                        if (isset($meta) !== false AND $meta != null AND count($meta) > 0)
+                            echo implode("/", array_reverse(explode("-", $meta['data_termino'])));
+                        else
+                            echo "Não cadastrado";
+                        ?></td>
                 </tr>
             </tbody>
         </table>
@@ -208,43 +216,47 @@ foreach ($tela3 as $key => $meta) {
                 </tr>
             </thead>
             <tbody>
-        <?php
-        $tela3_etapas = $this->trabalho_model->obter_saida_tela3_etapas_online($meta [0]);
-        foreach ($tela3_etapas as $key1 => $etapa) {
-            ?>
+                <?php
+                $tela3_etapas = $this->trabalho_model->obter_saida_tela3_etapas_online($meta [0]);
+                foreach ($tela3_etapas as $key1 => $etapa) {
+                    ?>
                     <tr>
                         <td></td>
                         <td><?php if (isset($key1) !== false) echo $key1 + 1; ?></td>
-                        <td style="width: 47%"><?php if (isset($etapa) !== false AND $etapa != null AND count($etapa) > 0)
-            echo $etapa['especificacao'];
-        else
-            echo "Não cadastrado";
-        ?></td>
-                        <td><?php if (isset($etapa) !== false AND $etapa != null AND count($etapa) > 0)
-            echo $etapa['total'];
-        else
-            echo "Não cadastrado";
-        ?></td>
-                        <td><?php if (isset($etapa) !== false AND $etapa != null AND count($etapa) > 0)
-            echo implode("/", array_reverse(explode("-", $etapa['data_inicio'])));
-        else
-            echo "Não cadastrado";
-        ?></td>
-                        <td><?php if (isset($etapa) !== false AND $etapa != null AND count($etapa) > 0)
-            echo implode("/", array_reverse(explode("-", $etapa['data_termino'])));
-        else
-            echo "Não cadastrado";
-        ?></td>
+                        <td style="width: 47%"><?php
+                            if (isset($etapa) !== false AND $etapa != null AND count($etapa) > 0)
+                                echo $etapa['especificacao'];
+                            else
+                                echo "Não cadastrado";
+                            ?></td>
+                        <td><?php
+                            if (isset($etapa) !== false AND $etapa != null AND count($etapa) > 0)
+                                echo $etapa['total'];
+                            else
+                                echo "Não cadastrado";
+                            ?></td>
+                        <td><?php
+                            if (isset($etapa) !== false AND $etapa != null AND count($etapa) > 0)
+                                echo implode("/", array_reverse(explode("-", $etapa['data_inicio'])));
+                            else
+                                echo "Não cadastrado";
+                            ?></td>
+                        <td><?php
+                            if (isset($etapa) !== false AND $etapa != null AND count($etapa) > 0)
+                                echo implode("/", array_reverse(explode("-", $etapa['data_termino'])));
+                            else
+                                echo "Não cadastrado";
+                            ?></td>
                     </tr>
-    <?php } ?>
+                <?php } ?>
             </tbody>
         </table>
-<?php } ?>
+    <?php } ?>
     <h3 style="color: #428bca;">Crono Desembolso</h3>
-<?php
-$tela4 = $this->trabalho_model->obter_saida_tela4_online($this->input->get_post('id', TRUE));
-foreach ($tela4 as $keyx => $crono) {
-    ?>
+    <?php
+    $tela4 = $this->trabalho_model->obter_saida_tela4_online($this->input->get_post('id', TRUE));
+    foreach ($tela4 as $keyx => $crono) {
+        ?>
         <table class="table bg-white">
             <thead class="">
                 <tr>
@@ -257,26 +269,29 @@ foreach ($tela4 as $keyx => $crono) {
             <tbody>
                 <tr>
                     <td style="width: 25%"><?php if (isset($keyx) !== false) echo $keyx + 1; ?></td>
-                    <td style="width: 25%"><?php if (isset($crono) !== false AND $crono != null AND count($crono) > 0)
-        echo $crono['responsavel'];
-    else
-        echo "Não cadastrado";
-    ?></td>
-                    <td style="width: 25%"><?php if (isset($crono) !== false AND $crono != null AND count($crono) > 0)
-        echo $crono['parcela'];
-    else
-        echo "Não cadastrado";
-    ?></td>
-                    <td><?php if (isset($crono) !== false AND $crono != null AND count($crono) > 0)
-        echo $crono['mes'] . "/" . $crono['ano'];
-    else
-        echo "Não cadastrado";
-    ?></td>
+                    <td style="width: 25%"><?php
+                        if (isset($crono) !== false AND $crono != null AND count($crono) > 0)
+                            echo $crono['responsavel'];
+                        else
+                            echo "Não cadastrado";
+                        ?></td>
+                    <td style="width: 25%"><?php
+                        if (isset($crono) !== false AND $crono != null AND count($crono) > 0)
+                            echo $crono['parcela'];
+                        else
+                            echo "Não cadastrado";
+                        ?></td>
+                    <td><?php
+                        if (isset($crono) !== false AND $crono != null AND count($crono) > 0)
+                            echo $crono['mes'] . "/" . $crono['ano'];
+                        else
+                            echo "Não cadastrado";
+                        ?></td>
                 </tr>
             </tbody>
         </table>
 
-<?php } ?>
+    <?php } ?>
 
     <h3 style="color: #428bca;">Plano Detalhado</h3>
     <table class="table bg-white">
@@ -287,29 +302,31 @@ foreach ($tela4 as $keyx => $crono) {
             </tr>
         </thead>
         <tbody>
-<?php foreach ($bens as $bem): ?>
+            <?php foreach ($bens as $bem): ?>
                 <tr>
-                    <td><?php if (isset($bem) !== false AND $bem != null AND count($bem) > 0)
-        echo $bem->descricao;
-    else
-        echo "Não cadastrado";
-    ?></td>
-                    <td><?php if (isset($bem) !== false AND $bem != null AND count($bem) > 0)
-        echo number_format($bem->total, 2, ",", ".");
-    else
-        echo "Não cadastrado";
-    ?></td>
+                    <td><?php
+                        if (isset($bem) !== false AND $bem != null AND count($bem) > 0)
+                            echo $bem->descricao;
+                        else
+                            echo "Não cadastrado";
+                        ?></td>
+                    <td><?php
+                        if (isset($bem) !== false AND $bem != null AND count($bem) > 0)
+                            echo number_format($bem->total, 2, ",", ".");
+                        else
+                            echo "Não cadastrado";
+                        ?></td>
                 </tr>
-<?php endforeach; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 
 
-<?php if ($proposta->padrao): ?>
+    <?php if ($proposta->padrao): ?>
         <input class="btn btn-primary" type="button" value="Voltar" onclick="location.href = '<?php echo base_url(); ?>index.php/in/gestor/visualiza_banco_propostas';">
-<?php else: ?>
+    <?php else: ?>
         <input class="btn btn-primary" type="button" value="Voltar" onclick="location.href = '<?php echo base_url(); ?>index.php/in/gestor/visualiza_propostas';">
-<?php endif; ?>
+    <?php endif; ?>
 </div>
 <style type="text/css">
     .f-navExp{  /* To fix main menu container */
