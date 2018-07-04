@@ -371,24 +371,32 @@ class get_propostas extends CI_Controller {
                             $txt1 = $this->getTextBetweenTags($documento, '<tr class="percentualMinimoContrapartida" id="tr-alterarPercentualMinimoContrapartida"> <td class="arvoreValores arvoreExibe" colspan="5" > <b>', '<\/b>');
                             if ($txt1 != null && count($txt1) > 0) {
                                 $banco_proposta['valor_global'] = trim($txt1[0]);
+                                $banco_proposta['valor_global'] = explode('&', $banco_proposta['valor_global']);
+                                $banco_proposta['valor_global'] = $banco_proposta['valor_global'][0];
                             }
 
                             //get valor repasse
                             $txt1 = $this->getTextBetweenTags($documento, '<span id="detalhePercentual"> <\/span> <div style="padding-left:100px"><b>', '<\/b> Valor de Repasse <\/div>');
                             if ($txt1 != null && count($txt1) > 0) {
                                 $banco_proposta['valor_repasse'] = trim($txt1[0]);
+                                $banco_proposta['valor_repasse'] = explode('&', $banco_proposta['valor_repasse']);
+                                $banco_proposta['valor_repasse'] = $banco_proposta['valor_repasse'][0];
                             }
 
                             //get valor contrapartida financeira
                             $txt1 = $this->getTextBetweenTags($documento, '<div style="padding-left:200px"><b>', '<\/b> Valor Contrapartida Financeira <\/div>');
                             if ($txt1 != null && count($txt1) > 0) {
                                 $banco_proposta['valor_contrapartida_financeira'] = trim($txt1[0]);
+                                $banco_proposta['valor_contrapartida_financeira'] = explode('&', $banco_proposta['valor_contrapartida_financeira']);
+                                $banco_proposta['valor_contrapartida_financeira'] = $banco_proposta['valor_contrapartida_financeira'][0];
                             }
 
                             //get valor contrapartida bens
                             $txt1 = $this->getTextBetweenTags($documento, '<\/b> Valor Contrapartida Financeira <\/div> <div style="padding-left:200px"><b>', '<\/b> Valor Contrapartida Bens e Serviços <\/div>');
                             if ($txt1 != null && count($txt1) > 0) {
                                 $banco_proposta['valor_contrapartida_bens'] = trim($txt1[0]);
+                                $banco_proposta['valor_contrapartida_bens'] = explode('&', $banco_proposta['valor_contrapartida_bens']);
+                                $banco_proposta['valor_contrapartida_bens'] = $banco_proposta['valor_contrapartida_bens'][0];
                             }
 
                             // ---- Programas ----- //
@@ -3028,7 +3036,7 @@ class get_propostas extends CI_Controller {
             } catch (Exception $e) {
                 continue;
             }
-            
+
 //            try {
 //                $commandLine = 'python /var/www/esicar/python_scripts/atualiza_propostas_proponente.py' . ' ' . $propo->cnpj . ' 2015';
 //                $command = escapeshellcmd($commandLine);
