@@ -22,10 +22,10 @@
                         </tr>
                     <?php endforeach; ?>
                 </table>
-                <label style="font-size: 14px; color: #444;">Assunto:</label><br />
-                <input type="text" id="assunto" name="assunto" style="width: 1170px;" title="Assunto"/><br /><br />
-                <label style="font-size: 14px; color: #444;">Mensagem:</label><br />
-                <textarea rows="5" cols="144" id="mensagem" name="mensagem" draggable="false" maxlength="1000" title="Mensagem"></textarea><br />
+                <label style="padding-bottom: 15px !important;">Assunto:</label><br />
+                <input class="boxsizingBorder" type="text" id="assunto" name="assunto" style="width: 1170px;" title="Assunto"/><br /><br />
+                <label style="padding-bottom: 15px !important;">Mensagem:</label><br />
+                <textarea class="boxsizingBorder" rows="7" cols="140" id="mensagem" name="mensagem" draggable="false" maxlength="1000" title="Mensagem"></textarea><br />
                 <input style="width: 100px; margin-top: 10px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF;" id="login" type="submit" name="login" value="Enviar"/>
             <?php else: ?>
                 <h1>Nenhum usuário cadastrado!!</h1>

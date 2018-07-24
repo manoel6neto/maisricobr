@@ -13,6 +13,10 @@ class capacitare extends CI_Controller {
         echo "<script type='text/javascript'>alert('" . $text . "');</script>";
     }
 
+    function encaminha($url) {
+        echo "<script type='text/javascript'>window.location='" . $url . "';</script>";
+    }
+
     public function index() {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
@@ -40,6 +44,39 @@ class capacitare extends CI_Controller {
         $this->load->view('template_capacitare', $data);
     }
 
+    public function principal() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        if ($this->input->post() != false) {
+            $evento = utf8_decode($this->input->post('eventos', TRUE));
+            $acao = $this->input->post('acao', TRUE);
+
+            if ($acao == 'SMS') {
+                if ($evento == 0) {
+                    $this->encaminha(base_url("index.php/capacitare/sms"));
+                } else {
+                    $this->encaminha(base_url("index.php/capacitare/sms?evento={$evento}"));
+                }
+            } elseif ($acao == 'EMAIL') {
+                if ($evento == 0) {
+                    $this->encaminha(base_url("index.php/capacitare/email"));
+                } else {
+                    $this->encaminha(base_url("index.php/capacitare/email?evento={$evento}"));
+                }
+            } else {
+                $this->alert("Ação inválida!");
+            }
+        }
+
+        $this->load->model('capacitare_model');
+        $data['model'] = $this->capacitare_model;
+        $data['eventos'] = $this->capacitare_model->get_eventos();
+        $data['title'] = "CAPACITARE - PRINCIPAL";
+        $data['main'] = 'capacitare/principal';
+        $this->load->view('template_capacitare', $data);
+    }
+
     public function email() {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
@@ -54,10 +91,9 @@ class capacitare extends CI_Controller {
             $selecionados = array_unique($selecionados);
             if ($mensagem != NULL && $assunto != NULL && $selecionados != NULL) {
                 $from = 'capacitare.escola.seu.futuro@gmail.com';
-                $copia = NULL;
                 if (count($selecionados) > 0) {
                     foreach ($selecionados as $pessoa) {
-                        $this->envia_email($from, $pessoa, $copia, $assunto, $mensagem);
+                        $this->envia_email($from, $pessoa, nl2br($assunto, true), nl2br($mensagem, true));
                     }
 
                     $this->alert("Finalizado o envio dos emails.");
@@ -118,47 +154,16 @@ class capacitare extends CI_Controller {
         return $config;
     }
 
-    public function envia_email($from, $destino, $copia, $assunto, $mensagem) {
+    public function envia_email($from, $destino, $assunto, $mensagem) {
         $this->load->library('email', $this->inicializa_config_email_gmail_capacitare());
         $this->email->set_newline("\r\n");
 
         $this->email->from($from, "CAPACITARE");
         $this->email->to($destino);
-        if ($copia != NULL) {
-            $this->email->cc($copia);
-        }
         $this->email->subject($assunto);
         $this->email->message($mensagem);
         $this->email->send();
     }
-
-//    public function envia_sms($telefones, $mensagem) {
-//        foreach ($telefones as $fone) {
-//            $credencial = URLEncode("218565391A8CE4A44253ABF179EBC1505B7A0A3F"); //**Credencial da Conta 40 caracteres
-//            $principal = URLEncode("ESICAR");  //* SEU CODIGO PARA CONTROLE, não colocar e-mail
-//            $auxuser = URLEncode("USER_ATIVACAO"); //* SEU CODIGO PARA CONTROLE, não colocar e-mail
-//            $mobile = URLEncode("55" . $fone); //* Numero do telefone  FORMATO: PAÍS+DDD(DOIS DÍGITOS)+NÚMERO
-//            $sendproj = URLEncode("N"); //* S = Envia o Remetente do SMS antes da mensagem , N = Não envia o Remetente do SMS
-//            $msg = mb_convert_encoding($mensagem, "UTF-8"); // Converte a mensagem para não ocorrer erros com caracteres semi-gráficos
-//            $msg = URLEncode($msg);
-//            $response = fopen("http://www.mpgateway.com/v_2_00/smspush/enviasms.aspx?CREDENCIAL=" . $credencial . "&PRINCIPAL_USER=" . $principal . "&AUX_USER=" . $auxuser . "&MOBILE=" . $mobile . "&SEND_PROJECT=" . $sendproj . "&MESSAGE=" . $msg, "r");
-//            $status_code = fgets($response, 4);
-//        }
-//    }
-//    public function envia_sms($telefones, $mensagem) {
-//        foreach ($telefones as $fone) {
-//            $credencial = URLEncode("884A92EF53E432265C4F1685F04653186D290E61"); //**Credencial da Conta 40 caracteres
-//            $token = URLEncode("09825f");
-//            $principal_user = URLEncode("CAPACITARE");  //* SEU CODIGO PARA CONTROLE, não colocar e-mail
-//            $aux_user = URLEncode("CAPACITARE"); //* SEU CODIGO PARA CONTROLE, não colocar e-mail
-//            $mobile = URLEncode("55" . $fone); //* Numero do telefone  FORMATO: PAÍS+DDD(DOIS DÍGITOS)+NÚMERO
-//            $sendproj = URLEncode("N"); //* S = Envia o Remetente do SMS antes da mensagem , N = Não envia o Remetente do SMS
-//            $msg = mb_convert_encoding($mensagem, "UTF-8"); // Converte a mensagem para não ocorrer erros com caracteres semi-gráficos
-//            $msg = URLEncode($msg);
-//            $response = fopen("http://www.pw-api.com/v_3_00/sms/smspush/enviasms.aspx?CREDENCIAL=" . $credencial . "&TOKEN=" . $token  ."&PRINCIPAL_USER=" . $principal_user . "&AUX_USER=" . $aux_user . "&MOBILE=" . $mobile . "&SEND_PROJECT=" . $sendproj . "&MESSAGE=" . $msg, "r");
-//            $status_code = fgets($response, 4);
-//        }
-//    }
 
     public function envia_sms($telefones, $mensagem) {
         foreach ($telefones as $fone) {
@@ -174,6 +179,22 @@ class capacitare extends CI_Controller {
             $status_code = fgets($response, 4);
             echo $status_code;
         }
+    }
+
+    function mask($val, $mask) {
+        $maskared = '';
+        $k = 0;
+        for ($i = 0; $i <= strlen($mask) - 1; $i++) {
+            if ($mask[$i] == '#') {
+                if (isset($val[$k]))
+                    $maskared .= $val[$k++];
+            }
+            else {
+                if (isset($mask[$i]))
+                    $maskared .= $mask[$i];
+            }
+        }
+        return $maskared;
     }
 
 }
