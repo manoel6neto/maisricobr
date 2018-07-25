@@ -13,6 +13,18 @@ class capacitare_model extends CI_Model {
         return NULL;
     }
 
+    public function get_all_by_evento($evento_id) {
+        $this->db->flush_cache();
+        $this->db->distinct();
+        $this->db->where('id_evento', $evento_id);
+        $query = $this->db->get('capacitare');
+        if ($query->num_rows > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
     public function get_eventos() {
         $this->db->flush_cache();
         $query = $this->db->get('capacitare_evento');
@@ -35,14 +47,30 @@ class capacitare_model extends CI_Model {
         return NULL;
     }
 
-    public function insert_data($email, $telefone) {
-        $options = array(
-            'email' => $email,
-            'telefone' => $telefone
-        );
+    public function get_evento_ativo() {
+        $this->db->where('ativo', 1);
+        $query = $this->db->get('capacitare_evento');
+        if ($query->num_rows > 0) {
+            return $query->row(0);
+        }
 
-        $this->db->insert('capacitare', $options);
-        return $this->db->affected_rows();
+        return NULL;
+    }
+
+    public function insert_data($email, $telefone) {
+        $evento_ativo = $this->get_evento_ativo();
+        if ($evento_ativo != NULL) {
+            $options = array(
+                'email' => $email,
+                'telefone' => $telefone,
+                'id_evento' => $evento_ativo->id
+            );
+
+            $this->db->insert('capacitare', $options);
+            return $this->db->affected_rows();
+        }
+
+        return NULL;
     }
 
     public function format_data($dataString) {

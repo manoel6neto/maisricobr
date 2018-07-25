@@ -8,11 +8,11 @@
                     <option value="<?php echo $evento->id; ?>"><?php echo $evento->nome . ' - ' . $model->format_data_date($evento->data_evento); ?></option>
                 <?php endforeach; ?>
             </select>
-            <div class="buttons_div" style="float: left; margin-left: 10%;">
-                <input style="width: 250px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF; height: 100px; font-size: 25px; font-weight: 900;" id="acao_email" type="submit" name="acao" value="EMAIL"/>
+            <div class="buttons_div" style="float: left; margin-left: 5%;">
+                <input style="width: 200px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF; height: 100px; font-size: 25px; font-weight: 900;" id="acao_email" type="submit" name="acao" value="EMAIL"/>
             </div>
-            <div class="buttons_div" style="float: right; margin-right: 10%;">
-                <input style="width: 250px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF; height: 100px; font-size: 25px; font-weight: 900;" id="acao_sms" type="submit" name="acao" value="SMS"/>
+            <div class="buttons_div" style="float: right; margin-right: 5%;">
+                <input style="width: 200px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF; height: 100px; font-size: 25px; font-weight: 900;" id="acao_sms" type="submit" name="acao" value="SMS"/>
             </div>
         </form>
     </div>

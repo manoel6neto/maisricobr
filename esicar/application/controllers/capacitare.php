@@ -105,8 +105,13 @@ class capacitare extends CI_Controller {
             }
         }
 
+        $evento = $this->input->get('evento', TRUE);
+        if ($evento != NULL) {
+            $data['capacitare_email'] = $this->capacitare_model->get_all_by_evento($evento);
+        } else {
+            $data['capacitare_email'] = $this->capacitare_model->get_all();
+        }
         $data['model'] = $this->capacitare_model;
-        $data['capacitare_email'] = $this->capacitare_model->get_all();
         $data['title'] = "CAPACITARE - EMAIL";
         $data['main'] = 'capacitare/email';
         $this->load->view('template_capacitare', $data);
@@ -135,6 +140,12 @@ class capacitare extends CI_Controller {
             }
         }
 
+        $evento = $this->input->get('evento', TRUE);
+        if ($evento != NULL) {
+            $data['capacitare_sms'] = $this->capacitare_model->get_all_by_evento($evento);
+        } else {
+            $data['capacitare_sms'] = $this->capacitare_model->get_all();
+        }
         $data['model'] = $this->capacitare_model;
         $data['capacitare_sms'] = $this->capacitare_model->get_all();
         $data['title'] = "CAPACITARE - SMS";
