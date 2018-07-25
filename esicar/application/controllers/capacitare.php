@@ -186,7 +186,7 @@ class capacitare extends CI_Controller {
             $sendproj = URLEncode("N"); //* S = Envia o Remetente do SMS antes da mensagem , N = Não envia o Remetente do SMS
             $msg = mb_convert_encoding($mensagem, "UTF-8"); // Converte a mensagem para não ocorrer erros com caracteres semi-gráficos
             $msg = URLEncode($msg);
-            $response = fopen("http://www.mpgateway.com/v_2_00/smspush/enviasms.aspx?CREDENCIAL=" . $credencial . "&TOKEN=" . $token . "&PRINCIPAL_USER=" . $principal_user . "&AUX_USER=" . $aux_user . "&MOBILE=" . $mobile . "&SEND_PROJECT=" . $sendproj . "&MESSAGE=" . $msg, "r");
+            $response = fopen("http://www.pw-api.com/sms/v_3_00/smspush/enviasms.aspx?CREDENCIAL=" . $credencial . "&TOKEN=" . $token . "&PRINCIPAL_USER=" . $principal_user . "&AUX_USER=" . $aux_user . "&MOBILE=" . $mobile . "&SEND_PROJECT=" . $sendproj . "&MESSAGE=" . $msg, "r");
             $status_code = fgets($response, 4);
             echo $status_code;
         }
