@@ -27,7 +27,7 @@
                 <input style="width: 100px; margin-top: 10px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF; float: left;" id="login" type="submit" name="login" value="Enviar"/>
             </form>
             <form action="<?php echo base_url("index.php/capacitare/principal"); ?>">
-                <input style="width: 100px; margin-left: 10px; margin-top: -6px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF;" id="voltar" type="submit" name="voltar" value="Voltar"/>
+                <input style="width: 100px; margin-left: 10px; margin-top: 10px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF;" id="voltar" type="submit" name="voltar" value="Voltar"/>
             </form>
         <?php else: ?>
             <h1>Nenhum usuário cadastrado!!</h1>
