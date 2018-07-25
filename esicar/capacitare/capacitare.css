@@ -66,7 +66,7 @@ h2 span {
 }
 
 .select_capacitare {
-    border: outset 2px #bec1c6;
+    border: solid 2px #bec1c6;
     width: 100% !important;
     -webkit-box-sizing: border-box !important;
     -moz-box-sizing: border-box !important;
@@ -80,20 +80,19 @@ h2 span {
     background: #FFF;
     color: #024457;
     border-radius: 2px;
-    border: 1px outset #167F92;
+    border: 1px solid #167F92;
 }
 .responstable tr {
-    border: 1px outset #D9E4E6;
+    border: 1px solid #D9E4E6;
 }
 .responstable tr:nth-child(odd) {
     background-color: #EAF3F3;
 }
 .responstable th {
     display: none;
-    border: 1px outset #FFF;
+    border: 1px solid #FFF;
     background-color: #167F92;
     color: #FFF;
-    padding: 1em;
 }
 .responstable th:first-child {
     display: table-cell;
@@ -124,20 +123,19 @@ h2 span {
 .responstable td:first-child {
     display: table-cell;
     text-align: center;
-    border-right: 1px outset #D9E4E6;
 }
 @media (min-width: 480px) {
     .responstable td {
-        border: 1px outset #D9E4E6;
+        border: 1px solid #D9E4E6;
     }
 }
 .responstable th, .responstable td {
     text-align: left;
-    margin: .5em 1em;
+    margin: .4em;
 }
 @media (min-width: 480px) {
     .responstable th, .responstable td {
         display: table-cell;
-        padding: .6em;
+        padding: .4em;
     }
 }
