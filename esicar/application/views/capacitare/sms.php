@@ -24,10 +24,14 @@
                 </table>
                 <label style="padding-bottom: 15px !important;">Mensagem:</label><br />
                 <textarea class="boxsizingBorder" rows="7" cols="140" contenteditable="true" contextmenu="true" id="mensagem" name="mensagem" draggable="false" maxlength="100" title="Mensagem"></textarea><br />
-                <input style="width: 100px; margin-top: 10px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF;" id="login" type="submit" name="login" value="Enviar"/>
-            <?php else: ?>
-                <h1>Nenhum usuário cadastrado!!</h1>
-            <?php endif; ?>
+                <input style="width: 100px; margin-top: 10px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF; float: left;" id="login" type="submit" name="login" value="Enviar"/>
+            </form>
+            <form action="<?php echo base_url("index.php/capacitare/principal"); ?>">
+                <input style="width: 100px; margin-left: 10px; margin-top: -6px; padding: 5px; border-radius: 5px; background: #167F92; color: #FFF;" id="voltar" type="submit" name="voltar" value="Voltar"/>
+            </form>
+        <?php else: ?>
+            <h1>Nenhum usuário cadastrado!!</h1>
+        <?php endif; ?>
         </form>
     </div>
 </div>

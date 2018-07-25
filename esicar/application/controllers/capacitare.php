@@ -4,9 +4,6 @@ class capacitare extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-
-        $this->cookie_file_path = tempnam("/tmp", "CURLCOOKIE" . rand());
-        $this->login = null;
     }
 
     function alert($text) {
@@ -147,7 +144,6 @@ class capacitare extends CI_Controller {
             $data['capacitare_sms'] = $this->capacitare_model->get_all();
         }
         $data['model'] = $this->capacitare_model;
-        $data['capacitare_sms'] = $this->capacitare_model->get_all();
         $data['title'] = "CAPACITARE - SMS";
         $data['main'] = 'capacitare/sms';
         $this->load->view('template_capacitare', $data);
