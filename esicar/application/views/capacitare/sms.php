@@ -17,7 +17,7 @@
                     <?php foreach ($capacitare_sms as $sms): ?>
                         <tr>
                             <td><input type="checkbox" class="checkboxInput" name="celulares[]" value="<?php echo $sms->telefone; ?>"/></td>
-                            <td><?php echo $model->mask($sms->telefone, '(##) ####-####'); ?></td>
+                            <td><?php echo $model->mask($sms->telefone, '(##) #####-####'); ?></td>
                             <td><?php echo $model->format_data($sms->cadastro); ?></td>
                         </tr>
                     <?php endforeach; ?>
