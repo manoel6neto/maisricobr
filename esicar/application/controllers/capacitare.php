@@ -127,8 +127,12 @@ class capacitare extends CI_Controller {
             $selecionados = array_unique($selecionados);
             if ($mensagem != NULL && $selecionados != NULL) {
                 if (count($selecionados) > 0) {
-                    $this->envia_sms($selecionados, $mensagem);
-                    $this->alert("Finalizado o envio dos sms's.");
+                    $retorno = $this->envia_sms($selecionados, $mensagem);
+                    if ($retorno == "000") {
+                        $this->alert("Enviado com sucesso!");
+                    } else {
+                        $this->alert("Erro no envio! Informar o código: {$retorno} para o Administrador!");
+                    }
                 } else {
                     $this->alert("Selecione algum destinatário.");
                 }
@@ -175,8 +179,8 @@ class capacitare extends CI_Controller {
     public function envia_sms($telefones, $mensagem) {
         foreach ($telefones as $fone) {
             $credencial = URLEncode("884A92EF53E432265C4F1685F04653186D290E61"); //**Credencial da Conta 40 caracteres
-            $token = URLEncode("09825f");
-            $principal_user = URLEncode("CAPACITARE");  //* SEU CODIGO PARA CONTROLE, não colocar e-mail
+            $token = URLEncode("0Cd4c7");
+            $principal_user = URLEncode("THOMASMX");  //* SEU CODIGO PARA CONTROLE, não colocar e-mail
             $aux_user = URLEncode("CAPACITARE"); //* SEU CODIGO PARA CONTROLE, não colocar e-mail
             $mobile = URLEncode("55" . $fone); //* Numero do telefone  FORMATO: PAÍS+DDD(DOIS DÍGITOS)+NÚMERO
             $sendproj = URLEncode("N"); //* S = Envia o Remetente do SMS antes da mensagem , N = Não envia o Remetente do SMS
@@ -184,7 +188,7 @@ class capacitare extends CI_Controller {
             $msg = URLEncode($msg);
             $response = fopen("http://www.pw-api.com/sms/v_3_00/smspush/enviasms.aspx?CREDENCIAL=" . $credencial . "&TOKEN=" . $token . "&PRINCIPAL_USER=" . $principal_user . "&AUX_USER=" . $aux_user . "&MOBILE=" . $mobile . "&SEND_PROJECT=" . $sendproj . "&MESSAGE=" . $msg, "r");
             $status_code = fgets($response, 4);
-            echo $status_code;
+            return $status_code;
         }
     }
 
