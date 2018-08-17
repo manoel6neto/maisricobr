@@ -127,12 +127,8 @@ class capacitare extends CI_Controller {
             $selecionados = array_unique($selecionados);
             if ($mensagem != NULL && $selecionados != NULL) {
                 if (count($selecionados) > 0) {
-                    $retorno = $this->envia_sms($selecionados, $mensagem);
-                    if ($retorno == "000") {
-                        $this->alert("Enviado com sucesso!");
-                    } else {
-                        $this->alert("Erro no envio! Informar o código: {$retorno} para o Administrador!");
-                    }
+                    $this->envia_sms($selecionados, $mensagem);
+                    $this->alert("Envio finalizado!");
                 } else {
                     $this->alert("Selecione algum destinatário.");
                 }
@@ -188,7 +184,6 @@ class capacitare extends CI_Controller {
             $msg = URLEncode($msg);
             $response = fopen("http://www.pw-api.com/sms/v_3_00/smspush/enviasms.aspx?CREDENCIAL=" . $credencial . "&TOKEN=" . $token . "&PRINCIPAL_USER=" . $principal_user . "&AUX_USER=" . $aux_user . "&MOBILE=" . $mobile . "&SEND_PROJECT=" . $sendproj . "&MESSAGE=" . $msg, "r");
             $status_code = fgets($response, 4);
-            return $status_code;
         }
     }
 
