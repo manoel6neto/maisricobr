@@ -43,7 +43,7 @@ foreach ($emendas as $em) {
         $dataEmenda = substr($em->data_inicio_parlam, 0, 4);
     }
 
-    echo "<tr style='background-color:#DCDCDC;'><td style='color:red;'>Proponente</td><td style='color:#428bca;' colspan='8'>" . $em->nome . "</td></tr>";
+    echo "<tr style='background-color:#DCDCDC;'><td style='color:red;'>Proponente</td><td style='color:#428bca;' colspan='8'>" . $em->cnpj . " - " . $em->nome . " / " . $em->municipio . " - " . $em->municipio_uf_sigla . " / " . $em->natureza_juridica . "</td></tr>";
     $achouProposta = false;
     foreach ($emendas_propostas as $e) {
         $qtd = 0;
@@ -73,7 +73,7 @@ foreach ($emendas as $em) {
             $valor_repasse = str_replace(",", ".", str_replace(".", "", str_replace("R$ ", "", $e->valor_repasse)));
 
             //Valor a utilizar é pegar todas os programas que usam a proposta e pegar o repasse
-            echo "<tr><td style='color:red;'>Valor a Utilizar</td><td colspan='8'>R$ " . number_format(($valor_emenda - $valor_repasse), 2, ",", ".") . "</td></tr>";
+            echo "<tr><td style='color:red;'>Valor a Utilizar</td><td colspan='8'>R$ " . number_format($programa_model->valida_valor_negativo($valor_emenda - $valor_repasse), 2, ",", ".") . "</td></tr>";
         }
     }
     if (!$achouProposta) {
