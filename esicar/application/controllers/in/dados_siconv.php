@@ -156,24 +156,19 @@ class Dados_siconv extends BaseController {
         $this->load->model('programa_banco_proposta_model');
         $this->load->model('proponente_siconv_model');
 
+        //Validando o submit do formulário
         $data = $this->input->post(NULL, TRUE); // pega todos os post
-
         $data['filtro'] = is_array($data) ? $data : null;
-
         $data['flag_buscou'] = false;
-        if ($data['filtro'] != null) {
-            if ((!isset($data['filtro']['municipio']) || !isset($data['filtro']['esfera']) || !isset($data['filtro']['proponente_nome'])) && $data['filtro']['num_emenda'] == "") {
-                $data['mensagem'] = 'Insira um número de emenda ou selecione o(s) município(s), a(s) esfera(s) e proponete(s).';
-            } else {
-                $data['emendas_propostas'] = $this->programa_model->get_all_emendas_by_usuario($data);
-                $data['emendas'] = $this->programa_model->get_emendas_by_parlamentar_from_beneficiario($data);
-                $data['flag_buscou'] = true;
-            }
+        $data['emendas_propostas'] = $this->programa_model->get_all_emendas_by_usuario($data);
+        $data['emendas'] = $this->programa_model->get_emendas_by_parlamentar_from_beneficiario($data);
+        $data['flag_buscou'] = true;
+
+        //Carregamento default da página
+        if (!isset($data['filtro']['anos'])) {
+            $data['filtro']['anos'] = array(date('Y'));
         }
-        $data['filtro']['anos'] = array('2017');
-
         $this->session->set_userdata('pagAtual', 'busca_emendas');
-
         $data['programa_model'] = $this->programa_model;
         $data['usuariomodel'] = $this->usuariomodel;
         $data['banco_proposta_model'] = $this->banco_proposta_model;

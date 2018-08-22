@@ -60,97 +60,18 @@ $permissoes = $this->permissoes_usuario->get_by_usuario_id($this->session->userd
                         <form class="form-horizontal" role="form" name="carrega_dados"
                               method="post" id="carrega_dados" action="busca_emendas">
                             <div class="row">
-                                <!--								<div class="col-md-4">
-                                
-                                                                                                        <div class="form-group">
-                                                                                                                <div class="col-sm-8">
-                                                                                                                        <div class="checkbox">
-                                                                                                                                <label class="checkbox-custom"> <i
-                                                                                                                                        class="fa fa-fw fa-square-o"></i> <input type="checkbox"
-                                                                                                                                        onclick='ativa1()' <?php if ($filtro == null || isset($filtro['vigencia'])) { ?>checked="checked"<?php } ?> name="vigencia"
-                                                                                                                                        value="vigencia" /> Informar Período
-                                                                                                                                </label>
-                                                                                                                        </div>
-                                                                                                                </div>
-                                
-                                                                                                                <label class="col-sm-8 control-label"
-                                                                                                                        style="text-align: left;">Data de Início</label></br>
-                                                                                                                <div class="col-sm-10">
-                                                                                                                        <input name="data_inicio" id="Data1" maxlength="10" <?php if ($filtro == null || isset($filtro['vigencia'])) { ?>disabled="disabled"<?php } ?> class="form-control campos ie" OnKeyUp="mascaraData(this);" value="<?php
-                                if (isset($filtro['data_inicio'])) {
-                                    echo $filtro['data_inicio'];
-                                }
-                                ?>" />
-                                                                                                                                 type="text"
-                                                                                                                                size="11" name="data_inicio"
-                                                                                                                                title="Entre com a data no formato: DD/MM/AAAA" id="Data1"
-                                                                                                                                maxlength="10" onkeyup="formatar(this,'##/##/####',event)" 
-                                                                                                                </div>
-                                
-                                                                                                                <label class="col-sm-10 control-label"
-                                                                                                                        style="text-align: left;">Data Final</label></br>
-                                                                                                                <div class="col-sm-10">
-                                                                                                                        <input name="data_fim" class="form-control ie campos" maxlength="10" <?php if ($filtro == null || isset($filtro['vigencia'])) { ?>disabled="disabled"<?php } ?> id="Data2" OnKeyUp="mascaraData(this);" value="<?php
-                                if (isset($filtro['data_fim'])) {
-                                    echo $filtro['data_fim'];
-                                }
-                                ?>"/>
-                                                                                                                                 type="text"
-                                                                                                                                size="11" name="data_fim"
-                                                                                                                                title="Entre com a data no formato: DD/MM/AAAA" id="Data2"
-                                                                                                                                maxlength="10" onkeyup="formatar(this,'##/##/####',event)" 
-                                                                                                                </div>
-                                                                                                        </div>
-                                                                                                </div>-->
-
-
-                                <div class="col-md-8">
-                                    <div class="form-group col-md-10">
-                                        <label class="col-sm-10 control-label" style="text-align: left;">Nº Emenda (Sem o ano)</label></br>
-                                        <div class="col-sm-4">
-                                            <input type="text" name="num_emenda" class="form-control campos ie" id="num_emenda" value="<?php
-                                            if (isset($filtro['num_emenda'])) {
-                                                echo $filtro['num_emenda'];
-                                            }
-                                            ?>">
-                                        </div>
-
-
-                                        <!--                                        <label class="col-sm-10 control-label" style="text-align: left;">Nome Proponente</label></br>
-                                                                                <div class="col-sm-8">
-                                                                                    <input type="text" name="proponente_nome" class="form-control campos ie" id="proponente_nome" value="<?php
-                                        if (isset($filtro['proponente_nome'])) {
-                                            echo $filtro['proponente_nome'];
-                                        }
-                                        ?>">
-                                                                                </div>-->
-
-                                        <div class="col-sm-10">
-                                            <?php echo form_label('Município', 'municipio'); ?>
-                                            <?php echo form_dropdown('municipio[]', array("" => "– Escolha um estado –"), '', "id='municipio' class='form-control' multiple='multiple'"); ?>
-                                        </div>
-
-                                        <div class="col-sm-10">
-                                            <?php echo form_label('Esfera Administrativa', 'esfera'); ?>
-                                            <?php echo form_dropdown('esfera', $proponente_siconv_model->getListaEsferas(), '', "id='esfera' class='form-control' multiple='multiple' style='display: none;'"); ?>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <?php echo form_label('Proponente', 'proponente'); ?>
-                                            <?php echo form_dropdown('proponente_nome[]', array("" => "- Escolha uma esfera -"), '', "id='proponente' class='form-control'  multiple='multiple' style='display: none;'"); ?>
-                                        </div>
-
-                                        <label class="col-sm-12 control-label" style="text-align: left;">Selecionar Anos</label></br>
-                                        <div class="col-sm-12">
+                                <div class="col-md-16">
+                                    <div class="form-group col-md-16">
+                                        <div class="col-sm-16">
+                                            <label class="col-sm-16 control-label" style="text-align: left;">Selecionar Anos</label><br>
                                             <input class="selecionarTodos" type="checkbox" name="anos[]" value="TODOS" />&nbsp;<span style="color: #428bca; font-size: 14px; margin-right: 10px;">Todos os anos</span>
                                             <?php foreach ($anos as $ano): ?>
-
                                                 <?php
                                                 if (($ano == date("Y") && $filtro == null) || ($filtro != null && in_array($ano, $filtro['anos'])))
                                                     $selected = "checked";
                                                 else
                                                     $selected = "";
                                                 ?>
-
                                                 <input class="anos" <?php echo $selected; ?> type="checkbox" name="anos[]" value="<?php echo $ano; ?>" />&nbsp;<span style="color: #428bca; font-size: 14px; margin-right: 10px;"><?php echo $ano; ?></span>
                                             <?php endforeach; ?>
                                         </div>
@@ -158,7 +79,7 @@ $permissoes = $this->permissoes_usuario->get_by_usuario_id($this->session->userd
                                     </div>
                                 </div>
                             </div>
-
+                            <br>
                             <div class="" align="center">
                                 <button class="btn btn-primary btnPesquisa" id="busca_dados" 
                                         type="submit" form="carrega_dados">
@@ -175,11 +96,6 @@ $permissoes = $this->permissoes_usuario->get_by_usuario_id($this->session->userd
                    href="#collapse-1-1" id="btnPesqAvancada">
                     <div class="panel-heading">
                         <h4 class="panel-title" style="text-align: center;">
-                            <!--                            <button class="btn btn-circle btn-info">
-                                                            <i class="fa fa-arrow-down" id="icon-pesq-avancada"> </i>
-                                                        </button>
-                                                        <br/><span id="info-pesq-avancada" style="color: red;">Abrir Pesquisa Avançada</span>-->
-
                             <button class="btn btn-circle btn-info">
                                 <i class="fa fa-arrow-up" id="icon-pesq-avancada"> </i>
                             </button>
@@ -190,7 +106,6 @@ $permissoes = $this->permissoes_usuario->get_by_usuario_id($this->session->userd
             </div>
 
             <!-- INICIA A LEITURA DAS EMENDAS -->
-
             <?php if (isset($emendas) && $emendas != null): ?>
                 <?php //if($emendas_propostas != null):?>
                 <form action="rel_emendas_pdf" target="_blank" name="gera_pdf" id="gera_pdf" method="post">
@@ -262,21 +177,15 @@ $permissoes = $this->permissoes_usuario->get_by_usuario_id($this->session->userd
                                 $dataEmenda = substr($em->data_inicio_parlam, 0, 4);
                             }
 
-                            echo "<tr style='background-color:#DCDCDC;'><td style='color:red;'>Proponente</td><td style='color:#428bca;' colspan='8'>" . $em->nome . "</td></tr>";
+                            echo "<tr style='background-color:#DCDCDC;'><td style='color:red;'>Proponente</td><td style='color:#428bca;' colspan='8'>" . $em->cnpj . " - " . $em->nome . " / " . $em->municipio . " - " . $em->municipio_uf_sigla . " / " . $em->natureza_juridica . "</td></tr>";
                             $achouProposta = false;
                             foreach ($emendas_propostas as $e) {
                                 $qtd = 0;
                                 if ($em->emenda == $e->codigo_emenda && $em->codigo_programa == $e->codigo_programa && str_replace("-", "", str_replace("/", "", str_replace(".", "", $em->cnpj))) == $e->proponente) {
                                     $achouProposta = true;
-                                    //if($codigoSiconv == "" || $codigoSiconv != $e->codigo_siconv){
-                                    //$codigoSiconv = $e->codigo_siconv;
-                                    //$programas = $programa_banco_proposta_model->get_programas_by_proposta($e->id_proposta);
-                                    //foreach ($programas as $programa){
                                     echo "<tr>";
                                     echo "<td style='color:red;'>Programa</td><td colspan='7'> <b>" . $e->codigo_programa . "</b> - " . (substr($e->nome_programa, 0, 180) . (strlen($e->nome_programa) > 180 ? "..." : "")) . "</td>";
-                                    //$dadosPrograma = $programa_model->get_dados_programa($programa->codigo_programa);
                                     echo "</tr>";
-                                    //}
 
                                     echo "<tr><td style='color:red;'>Valor da Emenda</td><td colspan='8'>{$em->valor}</td></tr>";
                                     echo "<tr style='color:#428bca;'><td colspan='9'>Proposta Cadastrada</td></tr>";
@@ -292,7 +201,7 @@ $permissoes = $this->permissoes_usuario->get_by_usuario_id($this->session->userd
                                     $valor_repasse = str_replace(",", ".", str_replace(".", "", str_replace("R$ ", "", $e->valor_repasse)));
 
                                     //Valor a utilizar é pegar todas os programas que usam a proposta e pegar o repasse
-                                    echo "<tr><td style='color:red;'>Valor a Utilizar</td><td colspan='8'>R$ " . number_format(($valor_emenda - $valor_repasse), 2, ",", ".") . "</td></tr>";
+                                    echo "<tr><td style='color:red;'>Valor a Utilizar</td><td colspan='8'>R$ " . number_format($programa_model->valida_valor_negativo($valor_emenda - $valor_repasse), 2, ",", ".") . "</td></tr>";
                                 }
                             }
                             if (!$achouProposta) {
@@ -301,7 +210,6 @@ $permissoes = $this->permissoes_usuario->get_by_usuario_id($this->session->userd
                                     foreach ($programas as $programa) {
                                         echo "<tr>";
                                         echo "<td style='color:red;'>Programa</td><td colspan='7'><b>" . $programa->codigo . "</b> - " . (substr($programa->descricao, 0, 180) . (strlen($programa->descricao) > 180 ? "..." : "")) . " </td>";
-                                        //$dadosPrograma = $programa_model->get_dados_programa($programa->codigo_programa);
                                         echo "</tr>";
                                     }
                                 }
@@ -333,6 +241,7 @@ $permissoes = $this->permissoes_usuario->get_by_usuario_id($this->session->userd
                     <?php if ($flag_buscou): ?>
                         <h1 style="text-align: center;">Nenhuma emenda encontrada.</h1>
                     <?php else: ?>
+                        <br>
                         <h1 style="text-align: center;">Preencha os campos de busca.</h1>
                     <?php endif; ?>
                 <?php endif; ?>

@@ -2179,6 +2179,14 @@ class programa_model extends CI_Model {
         return $query->num_rows > 0;
     }
 
+    public function valida_valor_negativo($valor) {
+        if (floatval($valor) < 0) {
+            return floatval(0);
+        } else {
+            return $valor;
+        }
+    }
+
     public function get_emendas_by_parlamentar_from_beneficiario($filtro = null) {
         $numParlamentar = null;
 
@@ -2196,7 +2204,8 @@ class programa_model extends CI_Model {
 
         $this->db->flush_cache();
 
-        $this->db->select('sb.codigo_programa, sb.cnpj, sb.nome, sb.emenda, sb.data_inicio_parlam, sb.valor');
+        $this->db->select('sb.codigo_programa, sb.cnpj, sb.nome, ps.natureza_juridica, ps.municipio, ps.municipio_uf_sigla, sb.emenda, sb.data_inicio_parlam, sb.valor');
+        $this->db->join('proponente_siconv ps', 'ps.cnpj = sb.cnpj');
 
         if (!is_null($filtro)) {
             if (isset($filtro['num_emenda']) && $filtro['num_emenda'] != "") {
