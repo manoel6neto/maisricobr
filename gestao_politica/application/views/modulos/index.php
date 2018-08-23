@@ -94,21 +94,16 @@
                 <?php if (isset($usuario_saude)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <?php if (!isset($usuario_saude->url_cliente) || $usuario_saude->url_cliente == ''): ?>
-                                <a href="https://app.benjimed.com.br/" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_saude.png"); ?>" alt="Saúde Pública"></a>
-                                <a href="https://app.benjimed.com.br/" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DA SAÚDE PÚBLICA</p>
-                                    </div>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php echo $usuario_saude->url_cliente; ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_saude.png"); ?>" alt="Saúde Pública"></a>
-                                <a href="<?php echo $usuario_saude->url_cliente; ?>" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DA SAÚDE PÚBLICA</p>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
+                            <form action="https://app.benjimed.com.br/auth" method="post" target="_blank">
+                                <input hidden="true" name="login" id="login" value="<?php echo $usuario_saude->login; ?>"/>
+                                <input hidden="true" name="password" id="password" value="<?php echo $usuario_saude->senha; ?>"/>
+
+                                <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_saude.png"); ?>" alt="Educação Pública"/>
+                                <div class="card-body card-body-color">
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo para GESTÃO DA"/></p>
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="SAÚDE PÚBLICA"/></p>
+                                </div>
+                            </form>    
                         </div>
                     </div>
                 <?php else: ?>
