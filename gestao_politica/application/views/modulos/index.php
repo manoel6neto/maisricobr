@@ -128,8 +128,8 @@
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
                             <form action="http://186.216.174.121/login" method="post" target="_blank">
-                                <input hidden="true" name="email" id="email" value="aracaju@proesc.com"/>
-                                <input hidden="true" name="password" id="password" value="proesc@2018"/>
+                                <input hidden="true" name="email" id="email" value="<?php echo $usuario_educacao->login; ?>"/>
+                                <input hidden="true" name="password" id="password" value="<?php echo $usuario_educacao->senha; ?>"/>
 
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_educacao.png"); ?>" alt="Educação Pública"/>
                                 <div class="card-body card-body-color">
