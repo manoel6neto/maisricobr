@@ -199,7 +199,7 @@ $ci->load->model('usuariomodel');
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-question"></i> Ajuda <b class="caret"></b></span></a>
                             <ul class="dropdown-menu" style="margin-left: 20px;">
                                 <?php if ($this->session->userdata('nivel') == 2 && $this->session->userdata('tipo_gestor') == 10): ?>
-                                    <!--<li class="<?php echo $activeEmailContato; ?>"><a href="<?= base_url(); ?>index.php/in/usuario/suporte"><span><i class="fa fa-comment"></i> Suporte</span></a></li>-->
+                                                                                        <!--<li class="<?php echo $activeEmailContato; ?>"><a href="<?= base_url(); ?>index.php/in/usuario/suporte"><span><i class="fa fa-comment"></i> Suporte</span></a></li>-->
                                     <li class="<?php echo $activeTutoriais; ?>"><a href="<?= base_url(); ?>index.php/in/usuario/tutoriais"><span><i class="fa fa-book"></i> Tutoriais</span></a></li>
                                     <li class="<?php echo $activeLinks; ?>"><a href="<?= base_url(); ?>index.php/in/usuario/links_uteis"><span><i class="fa fa-external-link"></i> Links Úteis</span></a></li>
                                 <?php else: ?>
@@ -214,7 +214,7 @@ $ci->load->model('usuariomodel');
                             </ul>
                         </li>
                     <?php endif; ?>	
-                        
+
                     <?php if ($this->session->userdata('nivel') == 1 || $this->session->userdata('nivel') == 4): ?>
                         <hr style="border: 1px solid lightgray;">
                         <?php if ($this->session->userdata('nivel') == 4): ?>
@@ -228,15 +228,16 @@ $ci->load->model('usuariomodel');
                             <?php endif; ?>
                         <?php endif; ?>
 
-                    <?php if ($this->session->userdata('nivel') == 4 && $this->session->userdata('id_usuario') != 362): ?>
+                    <?php if ($this->session->userdata('gp') != true): ?>
+                        <?php if ($this->session->userdata('nivel') == 4 && $this->session->userdata('id_usuario') != 362): ?>
                             <li style="margin-top: -10px;" id="ocultaAreaVendedor" class="<?php echo $activeAreaVendedor; ?>"><a href="<?= base_url(); ?>index.php/controle_usuarios/area_vendedor"><span><i class="fa fa-user"></i> Área Representante
-                                    <?php if (!$this->contato_municipio_model->check_contato_status()):?>
-                                    <?php // if ($this->contato_municipio_model->verifica_alerta_retorno() || $this->contato_municipio_model->verifica_alerta_marca_retorno()): ?>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <i title="Existem informações pendentes no seu cadastro de visitas" class="fa fa-warning" style="color: #ffff00; background-color: black; padding: 4px;"></i>
-                                    <?php endif; ?>
-                                </span></a></li>
-
+                                        <?php if (!$this->contato_municipio_model->check_contato_status()): ?>
+                                            <?php // if ($this->contato_municipio_model->verifica_alerta_retorno() || $this->contato_municipio_model->verifica_alerta_marca_retorno()): ?>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <i title="Existem informações pendentes no seu cadastro de visitas" class="fa fa-warning" style="color: #ffff00; background-color: black; padding: 4px;"></i>
+                                        <?php endif; ?>
+                                    </span></a></li>
+                        <?php endif; ?>
                     <?php endif; ?>
 
                     <?php if ($this->session->userdata('nivel') == 1 || $this->session->userdata('nivel') == 4): ?>
@@ -271,12 +272,12 @@ $ci->load->model('usuariomodel');
                     <li class="<?php echo $activeCertificado; ?>"><a href="<?php echo base_url('index.php/certificado_usuario'); ?>"><span><i class="fa fa-certificate"></i> Gerar Certificado</span></a></li>
                 </ul>
             <?php endif; ?>
-            
+
             <ul class="list-unstyled">
                 <li><a href="<?php echo base_url(); ?>index.php/in/login/sair" class="menu-icon"><i class="fa fa-power-off"></i> Sair</a></li>
             </ul>
-              </div>
-</div>
+        </div>
+    </div>
 </div>
 
 
