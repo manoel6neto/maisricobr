@@ -46,33 +46,4 @@ class Modulos extends CI_Controller {
         $this->load->view('modulos/index', $data);
     }
 
-//    public function login_proesc() {
-//        ini_set("max_execution_time", 0);
-//        ini_set("memory_limit", "-1");
-//
-//        $post = [
-//            'email' => "aracaju@proesc.com",
-//            'password' => "proesc@2018"
-//        ];
-//
-//        $this->cookie_file_path = tempnam("/tmp", "CURLCOOKIE" . rand());
-//        $ch = curl_init();
-//        curl_setopt($ch, CURLOPT_URL, "http://186.216.174.121/login");
-//        curl_setopt($ch, CURLOPT_COOKIESESSION, 0);
-//        curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookie_file_path);
-//        curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookie_file_path);
-//        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//        /* Remover esse */
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-//        curl_setopt($ch, CURLOPT_POST, 1);
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
-//
-//        $response = curl_exec($ch);
-//        curl_close($ch);
-//
-//        echo $response;
-//    }
-
 }

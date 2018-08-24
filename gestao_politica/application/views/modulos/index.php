@@ -61,21 +61,12 @@
                 <?php if (isset($usuario_cad_unico)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <?php if (!isset($usuario_cad_unico->url_cliente) || $usuario_cad_unico->url_cliente == ''): ?>
-                                <a href="<?php echo base_url("index.php/CadastroUnico"); ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_unico.png"); ?>" alt="Cadastro Único"></a>
-                                <a href="<?php echo base_url("index.php/CadastroUnico"); ?>" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DO CADASTRO ÚNICO</p>
-                                    </div>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php echo $usuario_cad_unico->url_cliente; ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_unico.png"); ?>" alt="Cadastro Único"></a>
-                                <a href="<?php echo $usuario_cad_unico->url_cliente; ?>" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DO CADASTRO ÚNICO</p>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
+                            <a href="<?php echo base_url("index.php/CadastroUnico"); ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_unico.png"); ?>" alt="Cadastro Único"></a>
+                            <a href="<?php echo base_url("index.php/CadastroUnico"); ?>" target="_blank">
+                                <div class="card-body card-body-color">
+                                    <p class="card-text card-text-color">Módulo para GESTÃO DO CADASTRO ÚNICO</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 <?php else: ?>
@@ -98,7 +89,7 @@
                                 <input hidden="true" name="login" id="login" value="<?php echo $usuario_saude->login; ?>"/>
                                 <input hidden="true" name="password" id="password" value="<?php echo $usuario_saude->senha; ?>"/>
 
-                                <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_saude.png"); ?>" alt="Educação Pública"/>
+                                <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_saude.png"); ?>" alt="Saúde Pública"/>
                                 <div class="card-body card-body-color">
                                     <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo para GESTÃO DA"/></p>
                                     <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="SAÚDE PÚBLICA"/></p>
@@ -132,10 +123,6 @@
                                     <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="EDUCAÇÃO PÚBLICA"/></p>
                                 </div>
                             </form>
-    <!--                            <a href="<?php echo base_url("index.php/modulos/login_proesc"); ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_educacao.png"); ?>" alt="Educação Pública"></a>
-                            <a href="<?php echo base_url("index.php/modulos/login_proesc"); ?>" target="_blank">
-                                <p class="card-text card-text-color">Módulo para GESTÃO DA EDUCAÇÃO PÚBLICA</p>
-                            </a>-->
                         </div>
                     </div>
                 <?php else: ?>
@@ -154,21 +141,18 @@
                 <?php if (isset($usuario_ass_social)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <?php if (!isset($usuario_ass_social->url_cliente) || $usuario_ass_social->url_cliente == ''): ?>
-                                <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_ass_social.png"); ?>" alt="Assistência Social"></a>
-                                <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DA ASSISTÊNCIA SOCIAL</p>
-                                    </div>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php echo $usuario_ass_social->url_cliente; ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_ass_social.png"); ?>" alt="Assistência Social"></a>
-                                <a href="<?php echo $usuario_ass_social->url_cliente; ?>" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DA ASSISTÊNCIA SOCIAL</p>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
+                            <form action="https://caceres.suas.com.br/login_check" method="post" target="_blank">
+                                <input hidden="true" name="_username" id="username" value="<?php echo $usuario_ass_social->login; ?>"/>
+                                <input hidden="true" name="_password" id="password" value="<?php echo $usuario_ass_social->senha; ?>"/>
+                                <input hidden="true" name="_csrf_token" id="csrf_token" value="3HnRMX63Z5jiI3hPzBTIi5rxyLXXKbREsjuFgYeqX68"/>
+                                <input hidden="true" name="_remember_me" id="remember_me" value="on"/>
+
+                                <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_ass_social.png"); ?>" alt="Assistência Social"/>
+                                <div class="card-body card-body-color">
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo para GESTÃO DA"/></p>
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="ASSISTÊNCIA SOCIAL"/></p>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 <?php else: ?>
@@ -220,21 +204,12 @@
                 <?php if (isset($usuario_esicar)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <?php if (!isset($usuario_esicar->url_cliente) || $usuario_esicar->url_cliente == ''): ?>
-                                <a href="http://convenios.physisbrasil.com.br/esicar/index.php/in/login?login=<?php echo base64_encode($usuario_esicar->login); ?>&senha=<?php echo base64_encode($usuario_esicar->senha); ?>&gp=1" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_esicar.png"); ?>" alt="Recursos Federais"></a>
-                                <a href="http://convenios.physisbrasil.com.br/esicar/index.php/in/login?login=<?php echo base64_encode($usuario_esicar->login); ?>&senha=<?php echo base64_encode($usuario_esicar->senha); ?>&gp=1" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DE CAPTAÇÃO DE RECURSOS FEDERAIS</p>
-                                    </div>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php echo $usuario_esicar->url_cliente; ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_esicar.png"); ?>" alt="Recursos Federais"></a>
-                                <a href="<?php echo $usuario_esicar->url_cliente; ?>" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DE CAPTAÇÃO DE RECURSOS FEDERAIS</p>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
+                            <a href="http://convenios.physisbrasil.com.br/esicar/index.php/in/login?login=<?php echo base64_encode($usuario_esicar->login); ?>&senha=<?php echo base64_encode($usuario_esicar->senha); ?>&gp=1" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_esicar.png"); ?>" alt="Recursos Federais"></a>
+                            <a href="http://convenios.physisbrasil.com.br/esicar/index.php/in/login?login=<?php echo base64_encode($usuario_esicar->login); ?>&senha=<?php echo base64_encode($usuario_esicar->senha); ?>&gp=1" target="_blank">
+                                <div class="card-body card-body-color">
+                                    <p class="card-text card-text-color">Módulo para GESTÃO DE CAPTAÇÃO DE RECURSOS FEDERAIS</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 <?php else: ?>
@@ -253,21 +228,18 @@
                 <?php if (isset($usuario_terceiro_setor)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <?php if (!isset($usuario_terceiro_setor->url_cliente) || $usuario_terceiro_setor->url_cliente == ''): ?>
-                                <a href="https://hyb.com.br/web/index.php" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_terceiro_setor.png"); ?>" alt="Terceiro Setor e Projetos Sociais"></a>
-                                <a href="https://hyb.com.br/web/index.php" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DO TERCEIRO SETOR e PROJETOS SOCIAIS</p>
-                                    </div>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php echo $usuario_terceiro_setor->url_cliente; ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_terceiro_setor.png"); ?>" alt="Terceiro Setor e Projetos Sociais"></a>
-                                <a href="<?php echo $usuario_terceiro_setor->url_cliente; ?>" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DO TERCEIRO SETOR e PROJETOS SOCIAIS</p>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
+                            <form action="https://hyb.com.br/web/index.php" method="post" target="_blank">
+                                <input hidden="true" name="login" id="login" value="<?php echo $usuario_terceiro_setor->login; ?>"/>
+                                <input hidden="true" name="senha" value="<?php echo $usuario_terceiro_setor->senha; ?>"/>
+                                <input hidden="true" name="logar" value="Login"/>
+
+                                <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_terceiro_setor.png"); ?>" alt="Terceiro Setor e Projetos Sociais"/>
+                                <div class="card-body card-body-color">
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo para GESTÃO DO"/></p>
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="TERCEIRO SETOR"/></p>
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="e PROJETOS SOCIAIS"/></p>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 <?php else: ?>
@@ -343,21 +315,12 @@
                 <?php if (isset($usuario_politicas_publicas)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <?php if (!isset($usuario_politicas_publicas->url_cliente) || $usuario_politicas_publicas->url_cliente == ''): ?>
-                                <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_politicas_publicas.png"); ?>" alt="Gestão Integrada Políticas Públicas"></a>
-                                <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO INTEGRADA DAS POLÍTICAS PÚBLICAS</p>
-                                    </div>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php echo $usuario_politicas_publicas->url_cliente; ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_politicas_publicas.png"); ?>" alt="Gestão Integrada Políticas Públicas"></a>
-                                <a href="<?php echo $usuario_politicas_publicas->url_cliente; ?>" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO INTEGRADA DAS POLÍTICAS PÚBLICAS</p>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
+                            <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_politicas_publicas.png"); ?>" alt="Gestão Integrada Políticas Públicas"></a>
+                            <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank">
+                                <div class="card-body card-body-color">
+                                    <p class="card-text card-text-color">Módulo para GESTÃO INTEGRADA DAS POLÍTICAS PÚBLICAS</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 <?php else: ?>
