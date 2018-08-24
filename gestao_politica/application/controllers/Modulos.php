@@ -46,4 +46,20 @@ class Modulos extends CI_Controller {
         $this->load->view('modulos/index', $data);
     }
 
+    public function openPage($url) {
+        $cookie = tempnam("/tmp", "CURLCOOKIE" . rand());
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_COOKIESESSION, 0);
+        curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie);
+        curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $page = curl_exec($ch);
+        curl_close($ch);
+
+        return $page;
+    }
+
 }

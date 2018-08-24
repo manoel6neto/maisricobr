@@ -282,21 +282,20 @@
                 <?php if (isset($usuario_aplicativo_cidadao)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <?php if (!isset($usuario_aplicativo_cidadao->url_cliente) || $usuario_aplicativo_cidadao->url_cliente == ''): ?>
-                                <a href="http://radarcidadao.com.br/cascavel/PR" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"></a>
-                                <a href="http://radarcidadao.com.br/cascavel/PR" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo APLICATIVO CIDADÃO</p>
-                                    </div>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php echo $usuario_aplicativo_cidadao->url_cliente; ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"></a>
-                                <a href="<?php echo $usuario_aplicativo_cidadao->url_cliente; ?>" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo APLICATIVO CIDADÃO</p>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
+                            <form action="http://radarcidadao.com.br/administrator/index.php" method="post" target="_blank">
+                                <input hidden="true" name="username" id="mod-login-username" value="<?php echo $usuario_aplicativo_cidadao->login; ?>"/>
+                                <input hidden="true" name="passwd" id="mod-login-password" value="<?php echo $usuario_aplicativo_cidadao->senha; ?>"/>
+                                <input hidden="true" name="task" value="login"/>
+                                <input hidden="true" name="lang" value="pt-BR"/>
+                                <input hidden="true" name="option" value="com_login"/>
+                                <input hidden="true" name="return" value="aW5kZXgucGhw"/>
+                                <input hidden="true" name="12399787882816329863893asdu98723" value="1"/>
+
+                                <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"/>
+                                <div class="card-body card-body-color">
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo APLICATIVO CIDADÃO"/></p>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 <?php else: ?>
