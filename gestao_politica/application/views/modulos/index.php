@@ -363,7 +363,7 @@
         <!-- Bootstrap core JavaScript -->
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
-        <script type="text/javascript">
+<!--        <script type="text/javascript">
             $(document).ready(function () {
                 $.ajax({
                     url: 'http://radarcidadao.com.br/administrator/index.php',
@@ -376,6 +376,6 @@
                     }
                 });
             });
-        </script>
+        </script>-->
     </body>
 </html>
