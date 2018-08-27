@@ -9,6 +9,8 @@ class Modulos extends CI_Controller {
         if ($this->session->userdata('sessao') == FALSE) {
             redirect('/login');
         }
+
+        $this->cookie_file_path = tempnam("/tmp", "CURLCOOKIE" . rand());
     }
 
     function encaminha($url) {
@@ -46,20 +48,14 @@ class Modulos extends CI_Controller {
         $this->load->view('modulos/index', $data);
     }
 
-    public function openPage($url) {
-        $cookie = tempnam("/tmp", "CURLCOOKIE" . rand());
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_COOKIESESSION, 0);
-        curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie);
-        curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $page = curl_exec($ch);
-        curl_close($ch);
+    function removeSpaceSurplus($str) {
+        return preg_replace("/\s+/", ' ', trim($str));
+    }
 
-        return $page;
+    function getTextBetweenTags($string, $tag1, $tag2) {
+        $pattern = "/$tag1([\w\W]*?)$tag2/";
+        preg_match_all($pattern, $string, $matches);
+        return $matches[1];
     }
 
 }

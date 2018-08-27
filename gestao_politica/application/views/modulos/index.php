@@ -144,7 +144,7 @@
                             <form action="https://caceres.suas.com.br/login_check" method="post" target="_blank">
                                 <input hidden="true" name="_username" id="username" value="<?php echo $usuario_ass_social->login; ?>"/>
                                 <input hidden="true" name="_password" id="password" value="<?php echo $usuario_ass_social->senha; ?>"/>
-                                <input hidden="true" name="_csrf_token" id="csrf_token" value="3HnRMX63Z5jiI3hPzBTIi5rxyLXXKbREsjuFgYeqX68"/>
+                                <input hidden="true" name="_csrf_token" id="csrf_token" value=""/>
                                 <input hidden="true" name="_remember_me" id="remember_me" value="on"/>
 
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_ass_social.png"); ?>" alt="Assistência Social"/>
@@ -287,9 +287,9 @@
                                 <input hidden="true" name="passwd" id="mod-login-password" value="<?php echo $usuario_aplicativo_cidadao->senha; ?>"/>
                                 <input hidden="true" name="task" value="login"/>
                                 <input hidden="true" name="lang" value="pt-BR"/>
-                                <input hidden="true" name="option" value="com_login"/>
+                                <input hidden="true" name="option" value="com_user"/>
                                 <input hidden="true" name="return" value="aW5kZXgucGhw"/>
-                                <input hidden="true" name="12399787882816329863893asdu98723" value="1"/>
+                                <input hidden="true" name="chave" id="chave" value="1"/>
 
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"/>
                                 <div class="card-body card-body-color">
@@ -363,5 +363,19 @@
         <!-- Bootstrap core JavaScript -->
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajax({
+                    url: 'http://radarcidadao.com.br/administrator/index.php',
+                    type: 'get',
+                    dataType: 'html',
+                    success: function (data) {
+                        if (data > 0) {
+                            $("#" + chave).html("<i class='btn-sm btn-success fa fa-check-square'></i>");
+                        }
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
