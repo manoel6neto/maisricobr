@@ -75,7 +75,7 @@
                     if (data > 0)
                         $("#" + msgRetorno).html("<i class='btn-sm btn-success fa fa-check-square' style='background-color:#72af46;'></i>");
                     else
-                        $("#" + msgRetorno).html("<i class='btn-sm btn-primary fa fa-warning' style='background-color:#cb4040; ></i>");
+                        $("#" + msgRetorno).html("<i class='btn-sm btn-primary fa fa-warning' style='background-color:#cb4040;' ></i>");
                 }
             });
         }
