@@ -282,14 +282,14 @@
                 <?php if (isset($usuario_aplicativo_cidadao)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <form action="http://radarcidadao.com.br/administrator/index.php" method="post" target="_blank">
-                                <input hidden="true" name="username" id="mod-login-username" value="<?php echo $usuario_aplicativo_cidadao->login; ?>"/>
-                                <input hidden="true" name="passwd" id="mod-login-password" value="<?php echo $usuario_aplicativo_cidadao->senha; ?>"/>
-                                <input hidden="true" name="task" value="login"/>
-                                <input hidden="true" name="lang" value="pt-BR"/>
-                                <input hidden="true" name="option" value="com_user"/>
-                                <input hidden="true" name="return" value="aW5kZXgucGhw"/>
-                                <input hidden="true" name="a5e1eb72cabbe8673e7575de0459597b" value="1"/>
+                            <form action="modulos/login_radarcidadao" method="post" target="_blank">
+                                <!--<input hidden="true" name="username" id="mod-login-username" value="<?php echo $usuario_aplicativo_cidadao->login; ?>"/>-->
+                                <!--<input hidden="true" name="passwd" id="mod-login-password" value="<?php echo $usuario_aplicativo_cidadao->senha; ?>"/>-->
+                                <!--<input hidden="true" name="task" value="login"/>-->
+                                <!--<input hidden="true" name="lang" value="pt-BR"/>-->
+                                <!--<input hidden="true" name="option" value="com_login"/>-->
+                                <!--<input hidden="true" name="return" value="aW5kZXgucGhw"/>-->
+                                <!--<input hidden="true" name="8180c0b60e684dda8505c6498ae7846b" value="1"/>-->
 
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"/>
                                 <div class="card-body card-body-color">

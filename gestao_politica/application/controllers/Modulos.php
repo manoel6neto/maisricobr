@@ -49,7 +49,12 @@ class Modulos extends CI_Controller {
     public function login_radarcidadao() {
         $uname = "manoel.carvalho.neto@gmail.com";
         $upswd = "manoelcarvalho321";
-        $url_get_key = "http://radarcidadao.com.br/administrator/index.php?option=com_users&lang=pt-BR"; //MOD REWRITE Disabled
+        $lang = "pt-BR";
+        $option = "com_login";
+        $task = "login";
+        $return = "aW5kZXgucGhw";
+
+        $url_get_key = "http://radarcidadao.com.br/administrator/index.php?option=com_users&task=user.login&lang=en"; //MOD REWRITE Disabled
         //GET return & key
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url_get_key);
@@ -62,35 +67,39 @@ class Modulos extends CI_Controller {
         $results = curl_exec($ch);
         preg_match_all("(<input type=\"hidden\" name=\"return\" value=\"(.*)\" />)siU", $results, $matches1);
         preg_match_all("(<input type=\"hidden\" name=\"(.*)\" value=\"1\" />(.*)</fieldset>)iU", $results, $matches2);
-
-        //var_dump($matches1[1][0]);
-        //var_dump($matches2[1][0]);
+        //var_dump($results);
+        var_dump(str_replace('"', '', trim(explode('/', $matches1[1][0])[0])));
+        var_dump(trim($matches2[1][0]));
         // POST
-        $url_post = "http://radarcidadao.com.br/administrator/index.php?option=com_users&task=user.login&lang=pt-BR";
-        $postdata = "username=" . urlencode($uname) . "&password=" . urlencode($upswd) . "&return=" . urlencode($matches1[1][0]) . "&" . urlencode($matches2[1][0]) . "=1";
+        $url_post = "http://radarcidadao.com.br/administrator/index.php?option=com_users&task=user.login&lang=en";
+        $postdata = "username=" . urlencode($uname) . "&password=" . urlencode($upswd) . "&return=" . urlencode(str_replace('"', '', trim(explode('/', $matches1[1][0])[0]))) . "&" . urlencode(trim($matches2[1][0])) . "=1";
         curl_setopt($ch, CURLOPT_URL, $url_post);
         curl_setopt($ch, CURLOPT_POST, TRUE);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
         $results1 = curl_exec($ch);
+        //var_dump($results1);
 
-        $url_data = "http://radarcidadao.com.br/administrator/index.php?option=com_users&lang=pt-BR"; //MOD REWRITE Disabled
+        $url_data = "http://radarcidadao.com.br/administrator/index.php?option=com_users&lang=en"; //MOD REWRITE Disabled
         curl_setopt($ch, CURLOPT_URL, $url_data);
         $results2 = curl_exec($ch);
         $error = curl_error($ch);
         $errno = curl_errno($ch);
-        echo ($error);
+        //var_dump($error);
 
         curl_close($ch);
         //IF incorrect password
-        if (@preg_match('#<div id="system-message">(.*)<p>(.*)</p>#siU', $results2, $matches3)) {
-            @preg_match('#<p>(.*)</p>#i', $matches3[0], $matches4);
-            echo $matches4[0];
-        }
+//        if (@preg_match('#<div id="system-message">(.*)<p>(.*)</p>#siU', $results2, $matches3)) {
+//            @preg_match('#<p>(.*)</p>#i', $matches3[0], $matches4);
+//            //var_dump($matches4[0]);
+//        }
+//
+//        //IF Logged In
+//        if (@preg_match('#<div class="login-greeting">(.*)</div>#siU', $results2, $matches5)) {
+//            //var_dump($matches5[1]);
+//        }
 
-        //IF Logged In
-        if (@preg_match('#<div class="login-greeting">(.*)</div>#siU', $results2, $matches5)) {
-            echo $matches5[1];
-        }
+        redirect('http://radarcidadao.com.br/administrator/index.php?option=com_users&lang=pt-BR');
+        //$this->encaminha('http://radarcidadao.com.br/administrator/index.php?option=com_users&lang=pt-BR');
     }
 
 }
