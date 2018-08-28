@@ -29,7 +29,7 @@
                     &nbsp;&nbsp;<span id="retornoSenha"></span>
                     <input type="password" class="form-control" id="exampleInputPassword1" name="senha" placeholder="Digite a senha" />
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                <button type="submit" class="btn btn-primary btn-block" id="buttonEntrar">Entrar</button>
 
                 <?php echo form_close(); ?>
 
@@ -73,9 +73,9 @@
                 },
                 success: function (data) {
                     if (data > 0)
-                        $("#" + msgRetorno).html("<i class='btn-sm btn-success fa fa-check-square'></i>");
+                        $("#" + msgRetorno).html("<i class='btn-sm btn-success fa fa-check-square' style='background-color:#72af46;'></i>");
                     else
-                        $("#" + msgRetorno).html("<i class='btn-sm btn-primary fa fa-warning'></i>");
+                        $("#" + msgRetorno).html("<i class='btn-sm btn-primary fa fa-warning' style='background-color:#cb4040; ></i>");
                 }
             });
         }

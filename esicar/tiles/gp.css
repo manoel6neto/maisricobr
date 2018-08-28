@@ -69,9 +69,13 @@ element.style {
     color: #ffffff;
 }
 
-/*
-* Início botões diretório busca_programas
-*/
+/* Tela de Login */
+
+#buttonEntrar {
+    color: #01153B;
+}
+
+/* Início botões diretório busca_programas */
 
 #gerarPdf {
     color: #000000;
@@ -89,9 +93,28 @@ element.style {
     color: #FFFFFF;
 }
 
-/*
-* Fim botões diretório busca_programas
-*/
+/* Fim botões diretório busca_programas */
+
+
+/* Início Botões Tela "Selecionar Sistema" */
+
+#cadastrar {
+    color: #000000;
+}
+
+#cadastrar:hover {
+    color: #FFFFFF;
+}
+
+#buttonVoltar {
+    color: #000000;
+}
+
+#buttonVoltar:hover {
+    color: #FFFFFF;
+}
+
+/* Fim Botões Tela "Selecionar Sistema" */
 
 #icon-pesq-avancada {
     color: #466baf;

@@ -23,7 +23,7 @@
 
 <div id="botoes_padrao">
 	<input type="submit" class="btn btn-primary" name="cadastra" value="Continuar" id="cadastrar">
-	<input class="btn btn-primary" type="button" value="Voltar" onclick="location.href='<?php echo base_url(); ?>index.php/in/login/sair';">
+	<input class="btn btn-primary" type="button" value="Voltar" id="buttonVoltar" onclick="location.href='<?php echo base_url(); ?>index.php/in/login/sair';">
 </div>
 
 <?php echo form_close(); ?>
