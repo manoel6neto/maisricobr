@@ -289,7 +289,7 @@
                                 <input hidden="true" name="lang" value="pt-BR"/>
                                 <input hidden="true" name="option" value="com_user"/>
                                 <input hidden="true" name="return" value="aW5kZXgucGhw"/>
-                                <input hidden="true" name="chave" id="chave" value="1"/>
+                                <input hidden="true" name="a5e1eb72cabbe8673e7575de0459597b" value="1"/>
 
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"/>
                                 <div class="card-body card-body-color">

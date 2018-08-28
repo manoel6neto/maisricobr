@@ -9,8 +9,6 @@ class Modulos extends CI_Controller {
         if ($this->session->userdata('sessao') == FALSE) {
             redirect('/login');
         }
-
-        $this->cookie_file_path = tempnam("/tmp", "CURLCOOKIE" . rand());
     }
 
     function encaminha($url) {
@@ -48,14 +46,51 @@ class Modulos extends CI_Controller {
         $this->load->view('modulos/index', $data);
     }
 
-    function removeSpaceSurplus($str) {
-        return preg_replace("/\s+/", ' ', trim($str));
-    }
+    public function login_radarcidadao() {
+        $uname = "manoel.carvalho.neto@gmail.com";
+        $upswd = "manoelcarvalho321";
+        $url_get_key = "http://radarcidadao.com.br/administrator/index.php?option=com_users&lang=pt-BR"; //MOD REWRITE Disabled
+        //GET return & key
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url_get_key);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_COOKIEJAR, dirname(__FILE__) . '/cookie.txt');
+        curl_setopt($ch, CURLOPT_COOKIEFILE, dirname(__FILE__) . '/cookie.txt');
+        curl_setopt($ch, CURLOPT_HEADER, 0);
 
-    function getTextBetweenTags($string, $tag1, $tag2) {
-        $pattern = "/$tag1([\w\W]*?)$tag2/";
-        preg_match_all($pattern, $string, $matches);
-        return $matches[1];
+        $results = curl_exec($ch);
+        preg_match_all("(<input type=\"hidden\" name=\"return\" value=\"(.*)\" />)siU", $results, $matches1);
+        preg_match_all("(<input type=\"hidden\" name=\"(.*)\" value=\"1\" />(.*)</fieldset>)iU", $results, $matches2);
+
+        //var_dump($matches1[1][0]);
+        //var_dump($matches2[1][0]);
+        // POST
+        $url_post = "http://radarcidadao.com.br/administrator/index.php?option=com_users&task=user.login&lang=pt-BR";
+        $postdata = "username=" . urlencode($uname) . "&password=" . urlencode($upswd) . "&return=" . urlencode($matches1[1][0]) . "&" . urlencode($matches2[1][0]) . "=1";
+        curl_setopt($ch, CURLOPT_URL, $url_post);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postdata);
+        $results1 = curl_exec($ch);
+
+        $url_data = "http://radarcidadao.com.br/administrator/index.php?option=com_users&lang=pt-BR"; //MOD REWRITE Disabled
+        curl_setopt($ch, CURLOPT_URL, $url_data);
+        $results2 = curl_exec($ch);
+        $error = curl_error($ch);
+        $errno = curl_errno($ch);
+        echo ($error);
+
+        curl_close($ch);
+        //IF incorrect password
+        if (@preg_match('#<div id="system-message">(.*)<p>(.*)</p>#siU', $results2, $matches3)) {
+            @preg_match('#<p>(.*)</p>#i', $matches3[0], $matches4);
+            echo $matches4[0];
+        }
+
+        //IF Logged In
+        if (@preg_match('#<div class="login-greeting">(.*)</div>#siU', $results2, $matches5)) {
+            echo $matches5[1];
+        }
     }
 
 }
