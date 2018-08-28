@@ -80,6 +80,18 @@
             </fieldset>
         </div>
     <?php endif; ?>
+        
+    <?php if ($this->session->userdata('nivel') == 1) : ?>        
+        <div class="form-group" id="">
+            <input type="checkbox" <?php $gp = (bool) rand(0, 1) ? "1" : "0"; ?> name="acesso_gp" value="on" id="check_gp" />
+            <label>Usuário G&P</label>
+        </div>
+    <?php endif; ?>
+        
+    <div class="form-group" id="senha_gp" style="display: none;">
+        <?php echo form_label('Senha Usuário G&P *', 'insert_senha_gp'); ?>
+        <?php echo form_password(array('name' => 'senha_gp', 'class' => 'form-control'), isset($_GET['id']) && $usuario->senha === 'insert_senha_gp' ? true : false); ?>        
+    </div>
 
     <?php
     $niveis = array("" => "Escolha");
@@ -658,6 +670,19 @@
     <?php $this->session->set_userdata('altera_senha_siconv', ''); ?>
 <?php endif; ?>
     });
+    
+    
+var elem = document.getElementById('check_gp');
+
+elem.addEventListener('click', function() {
+      var divElem = document.getElementById('senha_gp'); 
+    if( this.checked){
+        divElem.style.display = 'block'  ; 
+    }
+    else{
+        divElem.style.display = 'none'  ;
+    }
+});
 </script>
 
 <div id="dialog-message" title="ALERTA">

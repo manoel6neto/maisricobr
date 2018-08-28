@@ -128,7 +128,7 @@ class gestor extends CI_Model {
             'celular' => $this->input->post('celular'),
             'login_siconv' => $this->input->post('login_siconv'),
             'senha_siconv' => $this->input->post('senha_siconv'),
-            'id_nivel' => $this->input->post('id_nivel'),
+            'id_nivel' => $this->input->post('id_nivel')
         );
 
         $this->db->where('login', $data['login']);

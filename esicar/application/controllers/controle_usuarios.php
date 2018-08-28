@@ -392,6 +392,11 @@ class controle_usuarios extends BaseController {
             if ($this->session->userdata('nivel') == 1 && $this->input->post('id_nivel') != 12)
                 $this->form_validation->set_rules('usuario_sistema', 'Acesso ao Sistema', 'required');
 
+
+            if ($this->input->post('acesso_gp') == TRUE) {
+                $this->form_validation->set_rules('senha_gp', 'Senha Usuário G&P', 'required');
+            }
+
             if ($this->input->post('id_nivel') === "2") {
                 $this->form_validation->set_rules('validade', 'Período do contrato', 'required');
                 if ($this->input->post('tipo_gestor', TRUE) != "2")
@@ -419,10 +424,17 @@ class controle_usuarios extends BaseController {
             $this->form_validation->set_message('min_length', '%s deve possuir %s digitos.');
             $this->form_validation->set_message('matches', '%s e %s devem ser iguais');
             $this->form_validation->set_message('max_length', 'O campo %s deve conter %s dígitos.');
+            $this->form_validation->set_message('required', 'O campo %s é obrigatório para Usuários G&P');
 
             if ($this->form_validation->run() === TRUE) {
                 $optionsUsuario = $this->input->post();
-                $optionsUsuario['senha'] = rand(1000, 9999999);
+                if ($this->input->post('senha_gp', TRUE) != FALSE) {
+                    $optionsUsuario['senha'] = $this->input->post('senha_gp', TRUE);
+                } else {
+                    $optionsUsuario['senha'] = rand(1000, 9999999);
+                }
+                unset($optionsUsuario['senha_gp']);
+                unset($optionsUsuario['acesso_gp']);
                 unset($optionsUsuario['confirmar_email']);
 
                 if ($this->input->post('id_nivel') === "2")
@@ -448,7 +460,8 @@ class controle_usuarios extends BaseController {
                             'quantidade_cnpj' => $this->input->post('quantidade_cnpj', TRUE) == "" ? 1000 : $this->input->post('quantidade_cnpj', TRUE),
                             'id_usuario' => $ultimo_usuario,
                             'inicio_vigencia' => date("Y-m-d"),
-                            'tipo_gestor' => $this->input->post('tipo_gestor', TRUE)
+                            'tipo_gestor' => $this->input->post('tipo_gestor', TRUE),
+                            'acesso_gp' => $this->input->post('senha_gp', TRUE) != FALSE ? 1 : 0
                         );
 
                         $ultimo_gestor = $this->gestor->insere_gestor($optionsGestor);
@@ -551,7 +564,7 @@ class controle_usuarios extends BaseController {
                             }
                         }
 
-                        $this->envia_sms($this->usuariomodel->get_by_id($ultimo_usuario)->nome);
+//                        $this->envia_sms($this->usuariomodel->get_by_id($ultimo_usuario)->nome);
                     } else if ($this->input->post('id_nivel') === "3" || $this->input->post('id_nivel') === "5") {
                         $this->load->model('usuario_gestor');
 
@@ -774,9 +787,13 @@ class controle_usuarios extends BaseController {
 
                 $temUsuarioSiconv = true;
 
-                $this->usuariomodel->envia_email_confirma_cadastro($optionsUsuario['email'], $optionsUsuario['nome'], $optionsUsuario['login'], $temUsuarioSiconv, $optionsUsuario['senha']);
+                if ($this->input->post('senha_gp', TRUE) == FALSE) {
+                    $this->usuariomodel->envia_email_confirma_cadastro($optionsUsuario['email'], $optionsUsuario['nome'], $optionsUsuario['login'], $temUsuarioSiconv, $optionsUsuario['senha']);
+                    $this->alert("Usuário cadastrado com sucesso. Uma mensagem foi enviada para o email cadastrado para a confirmação.");
+                } else {
+                    $this->alert("Usuário cadastrado com sucesso.");
+                }
 
-                $this->alert("Usuário cadastrado com sucesso. Uma mensagem foi enviada para o email cadastrado para a confirmação.");
                 $this->encaminha(base_url('index.php/controle_usuarios'));
             } else
                 $data['dados_post'] = $dados_post;
@@ -1101,7 +1118,11 @@ class controle_usuarios extends BaseController {
             }
         }
         //Ordem alfabética
-        asort($data['municipios']);
+        if (array_key_exists('municipios', $data)) {
+            if (is_array($data['municipios'])) {
+                asort($data['municipios']);
+            }
+        }
 
         $data['esferas_block'] = $this->esfadm_direito_vendedor_model->get_lista_esferas_bloqueadas($_GET['id']);
         if ($this->session->userdata('nivel') != 12 && $this->session->userdata('nivel') != 13 && $this->session->userdata('nivel') != 14)
@@ -1566,21 +1587,25 @@ class controle_usuarios extends BaseController {
                     if ($dados_usuario->usuario_novo == 'S') {
                         $this->load->model('confirma_cadastro');
                         $this->load->model('programa_model');
+                        $this->load->model('gestor');
 
-                        $dados_cadastro = $this->confirma_cadastro->busca_dados_validar($dados_usuario->email, $dados_usuario->login);
+                        $gestor = $this->gestor->get_by_usuario($dados_usuario->id_usuario);
 
-                        $senha_gerada = rand(1000, 9999999);
-                        $array_senha_id = array(
-                            'id_usuario' => $this->input->get('id', TRUE),
-                            'senha' => $senha_gerada
-                        );
+                        if ($gestor->acesso_gp == 0) {
+                            $dados_cadastro = $this->confirma_cadastro->busca_dados_validar($dados_usuario->email, $dados_usuario->login);
 
-                        $this->usuariomodel->atualiza_senha($array_senha_id);
+                            $senha_gerada = rand(1000, 9999999);
+                            $array_senha_id = array(
+                                'id_usuario' => $this->input->get('id', TRUE),
+                                'senha' => $senha_gerada
+                            );
 
-                        $this->usuariomodel->envia_email_usuario_cadastrado($dados_cadastro->email_usuario, $dados_cadastro->nome_usuario, $dados_cadastro->cpf_usuario, $dados_cadastro->tem_login_siconv, $senha_gerada);
+                            $this->usuariomodel->atualiza_senha($array_senha_id);
 
-                        $this->usuariomodel->notifica_vendedor_user_ativado($this->input->get('id', TRUE));
+                            $this->usuariomodel->envia_email_usuario_cadastrado($dados_cadastro->email_usuario, $dados_cadastro->nome_usuario, $dados_cadastro->cpf_usuario, $dados_cadastro->tem_login_siconv, $senha_gerada);
 
+                            $this->usuariomodel->notifica_vendedor_user_ativado($this->input->get('id', TRUE));
+                        }
                         $this->usuariomodel->marca_usuario_nao_novo($this->input->get('id', TRUE));
 
                         $this->programa_model->programas_abertos(true, $this->input->get('id', TRUE));
