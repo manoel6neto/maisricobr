@@ -45,8 +45,60 @@ element.style {
     color: #8ca8bb;
 }
 
+.fa-unlock:hover {
+    color: #000000;
+}
+
+.btn-success {
+    background-color: #e7e7e7;
+}
+
+.btn-success:hover {
+    background-color: #72af46;
+}
+
+.btn-info {
+    background-color: #e7e7e7;
+}
+
+.btn-primary {
+    background-color: #e7e7e7;
+}
+
 .fa-search {
     color: #ffffff;
+}
+
+/*
+* Início botões diretório busca_programas
+*/
+
+#gerarPdf {
+    color: #000000;
+}
+
+#gerarPdf:hover {
+    color: #FFFFFF;
+}
+
+#enviaPdf {
+    color: #000000;
+}
+
+#enviaPdf:hover {
+    color: #FFFFFF;
+}
+
+/*
+* Fim botões diretório busca_programas
+*/
+
+#icon-pesq-avancada {
+    color: #466baf;
+}
+
+#icon-pesq-avancada:hover {
+    color: #FFFFFF;
 }
 
 .btnPesquisa:hover {
@@ -61,6 +113,16 @@ element.style {
     background: #01153B;
     color: #ffffff;
     border-color: #01153B;
+}
+
+.btn-primary:active {
+    color: #01153B !important;
+    border-color: #01153B !important;
+}
+
+.btn-primary:focus {
+    color: #01153B !important;
+    border-color: #01153B !important;
 }
 
 .fa-arrow-up, .fa-arrow-down, .btn-circle {

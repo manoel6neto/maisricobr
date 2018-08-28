@@ -142,7 +142,7 @@ class Login extends CI_Controller {
                             }
 
                             if ($query->primeiro_acesso === "S") {
-                                if ($gestor->tipo_gestor == 10) {
+                                if ($gestor->tipo_gestor == 10 || $gestor->acesso_gp == 1) {
                                     redirect('controle_usuarios/primeiro_acesso');
                                 } else {
                                     if ($query->id_nivel !== "4" && $query->id_nivel !== "15") {
