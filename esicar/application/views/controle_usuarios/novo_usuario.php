@@ -80,18 +80,25 @@
             </fieldset>
         </div>
     <?php endif; ?>
-        
+
     <?php if ($this->session->userdata('nivel') == 1) : ?>        
         <div class="form-group" id="">
             <input type="checkbox" <?php $gp = (bool) rand(0, 1) ? "1" : "0"; ?> name="acesso_gp" value="on" id="check_gp" />
             <label>Usuário G&P</label>
         </div>
     <?php endif; ?>
-        
-    <div class="form-group" id="senha_gp" style="display: none;">
-        <?php echo form_label('Senha Usuário G&P *', 'insert_senha_gp'); ?>
-        <?php echo form_password(array('name' => 'senha_gp', 'class' => 'form-control'), isset($_GET['id']) && $usuario->senha === 'insert_senha_gp' ? true : false); ?>        
-    </div>
+
+    <?php if ($this->session->userdata('gp') == TRUE && !isset($_GET['id'])): ?>
+        <div class="form-group" id="senha_gp">
+            <?php echo form_label('Senha Usuário G&P *', 'insert_senha_gp'); ?>
+            <?php echo form_password(array('name' => 'senha_gp', 'class' => 'form-control'), isset($_GET['id']) && $usuario->senha === 'insert_senha_gp' ? true : false); ?>        
+        </div>
+    <?php else: ?>
+        <div class="form-group" id="senha_gp" style="display: none;">
+            <?php echo form_label('Senha Usuário G&P *', 'insert_senha_gp'); ?>
+            <?php echo form_password(array('name' => 'senha_gp', 'class' => 'form-control'), isset($_GET['id']) && $usuario->senha === 'insert_senha_gp' ? true : false); ?>        
+        </div>
+    <?php endif; ?>
 
     <?php
     $niveis = array("" => "Escolha");
@@ -109,8 +116,14 @@
         unset($niveis[1]);
         unset($niveis[2]);
         unset($niveis[4]);
+        unset($niveis[6]);
         unset($niveis[7]);
         unset($niveis[8]);
+        unset($niveis[12]);
+        unset($niveis[13]);
+        unset($niveis[14]);
+        unset($niveis[15]);
+        
         if (isset($_GET['id'])) {
             unset($niveis[3]);
             unset($niveis[5]);
@@ -670,19 +683,18 @@
     <?php $this->session->set_userdata('altera_senha_siconv', ''); ?>
 <?php endif; ?>
     });
-    
-    
-var elem = document.getElementById('check_gp');
 
-elem.addEventListener('click', function() {
-      var divElem = document.getElementById('senha_gp'); 
-    if( this.checked){
-        divElem.style.display = 'block'  ; 
-    }
-    else{
-        divElem.style.display = 'none'  ;
-    }
-});
+
+    var elem = document.getElementById('check_gp');
+
+    elem.addEventListener('click', function () {
+        var divElem = document.getElementById('senha_gp');
+        if (this.checked) {
+            divElem.style.display = 'block';
+        } else {
+            divElem.style.display = 'none';
+        }
+    });
 </script>
 
 <div id="dialog-message" title="ALERTA">

@@ -393,7 +393,7 @@ class controle_usuarios extends BaseController {
                 $this->form_validation->set_rules('usuario_sistema', 'Acesso ao Sistema', 'required');
 
 
-            if ($this->input->post('acesso_gp') == TRUE) {
+            if ($this->input->post('acesso_gp') == TRUE || $this->session->userdata('gp') == TRUE) {
                 $this->form_validation->set_rules('senha_gp', 'Senha Usuário G&P', 'required');
             }
 
@@ -787,7 +787,7 @@ class controle_usuarios extends BaseController {
 
                 $temUsuarioSiconv = true;
 
-                if ($this->input->post('senha_gp', TRUE) == FALSE) {
+                if ($this->input->post('senha_gp', TRUE) == FALSE && $this->session->userdata('gp') != TRUE) {
                     $this->usuariomodel->envia_email_confirma_cadastro($optionsUsuario['email'], $optionsUsuario['nome'], $optionsUsuario['login'], $temUsuarioSiconv, $optionsUsuario['senha']);
                     $this->alert("Usuário cadastrado com sucesso. Uma mensagem foi enviada para o email cadastrado para a confirmação.");
                 } else {
