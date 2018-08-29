@@ -2,7 +2,7 @@
 
 class Beneficio_Model extends CI_Model {
 
-    //Beneficio
+    // ------------ Beneficio -----------------
     public function get_all_beneficio() {
         $query = $this->db->get('beneficio');
         if (count($query->result()) > 0) {
@@ -53,6 +53,7 @@ class Beneficio_Model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    // ------------- Publico Alvo -------------------
     public function get_all_publico_alvo() {
         $query = $this->db->get('publico_alvo');
         if (count($query->result()) > 0) {
@@ -60,6 +61,81 @@ class Beneficio_Model extends CI_Model {
         }
 
         return NULL;
+    }
+
+    public function get_publico_alvo_by_id($id_publico_alvo) {
+        $this->db->where('id', $id_publico_alvo);
+        $query = $this->db->get('publico_alvo');
+        if (count($query->result()) > 0) {
+            return $query->row(0);
+        }
+
+        return NULL;
+    }
+
+    // ----------- Orgão Gestor -------------
+    public function get_all_orgao_gestor() {
+        $query = $this->db->get('orgao_gestor');
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function get_orgao_gestor_by_id($id_orgao_gestor) {
+        $this->db->where('id', $id_orgao_gestor);
+        $query = $this->db->get('orgao_gestor');
+        if (count($query->result()) > 0) {
+            return $query->row(0);
+        }
+
+        return NULL;
+    }
+
+    // ------------- Tipo Benefício ---------------
+    public function get_all_tipo_beneficio() {
+        $query = $this->db->get('tipo_beneficio');
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function get_tipo_beneficio_by_id($id_tipo_beneficio) {
+        $this->db->where('id', $id_tipo_beneficio);
+        $query = $this->db->get('tipo_beneficio');
+        if (count($query->result()) > 0) {
+            return $query->row(0);
+        }
+
+        return NULL;
+    }
+
+    // -------------- Parâmetro Benefício --------------------
+    public function get_all_parametro_beneficio_by_id_beneficio($id_beneficio) {
+        $this->db->where('id_beneficio', $id_beneficio);
+        $query = $this->db->get('parametro_beneficio');
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function insert_parametro_beneficio($options) {
+        $this->db->insert('parametro_beneficio', $options);
+        $return_id = $this->db->insert_id();
+
+        return $return_id;
+    }
+
+    public function delete_parametro_beneficio_by_id_beneficio($id_beneficio) {
+        $this->db->where('id_beneficio', $id_beneficio);
+        $this->db->delete('parametro_beneficio');
+
+        return $this->db->affected_rows();
     }
 
 }
