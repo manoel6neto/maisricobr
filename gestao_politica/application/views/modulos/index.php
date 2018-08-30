@@ -357,6 +357,17 @@
                     </div>
                 <?php endif; ?>
                 <!-- FIM MODULO MONITORAMENTO SATISFAÇÃO E PESQUISA -->
+
+                <div class="col-lg-3 col-sm-4 portfolio-item">
+                    <div class="card h-100 card-body-color">
+                        <a href="<?php echo base_url("index.php/gppi"); ?>"  alt="">
+                            <div class="card-body card-body-color">
+                                <p class="card-text card-text-color-disabled">TESTE</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
 
