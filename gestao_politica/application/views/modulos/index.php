@@ -282,15 +282,7 @@
                 <?php if (isset($usuario_aplicativo_cidadao)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <form action="modulos/login_radarcidadao" method="post" target="_blank">
-                                <!--<input hidden="true" name="username" id="mod-login-username" value="<?php echo $usuario_aplicativo_cidadao->login; ?>"/>-->
-                                <!--<input hidden="true" name="passwd" id="mod-login-password" value="<?php echo $usuario_aplicativo_cidadao->senha; ?>"/>-->
-                                <!--<input hidden="true" name="task" value="login"/>-->
-                                <!--<input hidden="true" name="lang" value="pt-BR"/>-->
-                                <!--<input hidden="true" name="option" value="com_login"/>-->
-                                <!--<input hidden="true" name="return" value="aW5kZXgucGhw"/>-->
-                                <!--<input hidden="true" name="8180c0b60e684dda8505c6498ae7846b" value="1"/>-->
-
+                            <form action="http://radarcidadao.com.br/administrator/index.php" method="post" target="_blank">
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"/>
                                 <div class="card-body card-body-color">
                                     <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo APLICATIVO CIDADÃO"/></p>
@@ -374,19 +366,5 @@
         <!-- Bootstrap core JavaScript -->
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
-<!--        <script type="text/javascript">
-            $(document).ready(function () {
-                $.ajax({
-                    url: 'http://radarcidadao.com.br/administrator/index.php',
-                    type: 'get',
-                    dataType: 'html',
-                    success: function (data) {
-                        if (data > 0) {
-                            $("#" + chave).html("<i class='btn-sm btn-success fa fa-check-square'></i>");
-                        }
-                    }
-                });
-            });
-        </script>-->
     </body>
 </html>
