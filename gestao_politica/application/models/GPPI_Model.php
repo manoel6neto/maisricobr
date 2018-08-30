@@ -73,8 +73,6 @@ class GPPI_Model extends CI_Model {
                 }
 
                 return $array_resultado;
-            } else {
-                return NULL;
             }
         }
 
@@ -131,8 +129,6 @@ class GPPI_Model extends CI_Model {
                 }
 
                 return $array_resultado;
-            } else {
-                return NULL;
             }
         }
 
@@ -148,13 +144,12 @@ class GPPI_Model extends CI_Model {
 
         if (count($query_pessoas_renda->result()) > 0) {
             $pessoas = $query_pessoas_renda->result();
-
             $array_ids_pessoas = array();
+            $array_ids_familias = array();
             foreach ($pessoas as $pessoa) {
                 $this->db->where_in('id_pessoa', $pessoa->id);
                 $query_pessoa_familia = $this->db->get('familia_pessoa');
 
-                $array_ids_familias = array();
                 foreach ($query_pessoa_familia->result() as $pessoa_familia) {
                     if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
                         array_push($array_ids_familias, $pessoa_familia->id_familia);
@@ -289,13 +284,12 @@ class GPPI_Model extends CI_Model {
 
         if (count($query_pessoas_sexo->result()) > 0) {
             $pessoas = $query_pessoas_sexo->result();
-
             $array_ids_pessoas = array();
+            $array_ids_familias = array();
             foreach ($pessoas as $pessoa) {
                 $this->db->where_in('id_pessoa', $pessoa->id);
                 $query_pessoa_familia = $this->db->get('familia_pessoa');
 
-                $array_ids_familias = array();
                 foreach ($query_pessoa_familia->result() as $pessoa_familia) {
                     if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
                         array_push($array_ids_familias, $pessoa_familia->id_familia);
@@ -345,13 +339,12 @@ class GPPI_Model extends CI_Model {
 
         if (count($query_pessoas_cor->result()) > 0) {
             $pessoas = $query_pessoas_cor->result();
-
             $array_ids_pessoas = array();
+            $array_ids_familias = array();
             foreach ($pessoas as $pessoa) {
                 $this->db->where_in('id_pessoa', $pessoa->id);
                 $query_pessoa_familia = $this->db->get('familia_pessoa');
 
-                $array_ids_familias = array();
                 foreach ($query_pessoa_familia->result() as $pessoa_familia) {
                     if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
                         array_push($array_ids_familias, $pessoa_familia->id_familia);
@@ -440,11 +433,11 @@ class GPPI_Model extends CI_Model {
 
             if (count($pessoas) > 0) {
                 $array_ids_pessoas = array();
+                $array_ids_familias = array();
                 foreach ($pessoas as $pessoa) {
                     $this->db->where_in('id_pessoa', $pessoa->id);
                     $query_pessoa_familia = $this->db->get('familia_pessoa');
 
-                    $array_ids_familias = array();
                     foreach ($query_pessoa_familia->result() as $pessoa_familia) {
                         if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
                             array_push($array_ids_familias, $pessoa_familia->id_familia);
@@ -507,11 +500,11 @@ class GPPI_Model extends CI_Model {
 
         if (count($pessoas) > 0) {
             $array_ids_pessoas = array();
+            $array_ids_familias = array();
             foreach ($pessoas as $pessoa) {
                 $this->db->where_in('id_pessoa', $pessoa->id);
                 $query_pessoa_familia = $this->db->get('familia_pessoa');
 
-                $array_ids_familias = array();
                 foreach ($query_pessoa_familia->result() as $pessoa_familia) {
                     if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
                         array_push($array_ids_familias, $pessoa_familia->id_familia);
@@ -573,11 +566,11 @@ class GPPI_Model extends CI_Model {
 
         if (count($pessoas) > 0) {
             $array_ids_pessoas = array();
+            $array_ids_familias = array();
             foreach ($pessoas as $pessoa) {
-                $this->db->where_in('id_pessoa', $pessoa->id);
+                $this->db->where('id_pessoa', $pessoa->id);
                 $query_pessoa_familia = $this->db->get('familia_pessoa');
 
-                $array_ids_familias = array();
                 foreach ($query_pessoa_familia->result() as $pessoa_familia) {
                     if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
                         array_push($array_ids_familias, $pessoa_familia->id_familia);
@@ -588,7 +581,6 @@ class GPPI_Model extends CI_Model {
 
             if (count($array_ids_familias) > 0) {
                 //carregando as familias
-                $this->db->distinct();
                 $this->db->where_in('id', $array_ids_familias);
                 $query_familias = $this->db->get('familia');
                 $familias = $query_familias->result();
