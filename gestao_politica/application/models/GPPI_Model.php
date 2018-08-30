@@ -83,7 +83,7 @@ class GPPI_Model extends CI_Model {
 
     //Pegar familias e pessoas por cep
     public function get_beneficiarios_por_cep($id_estado, $id_cidade, $cep) {
-        //Carregando o id do endereço com o bairro: 
+        //Carregando o id do endereço com o cep: 
         $this->db->distinct();
         $this->db->select('id');
         $this->db->where('id_estado', $id_estado);
@@ -146,7 +146,7 @@ class GPPI_Model extends CI_Model {
         $this->db->where("renda {$filtro} {$renda}");
         $query_pessoas_renda = $this->db->get('pessoa');
 
-        if ($query_pessoas_renda->result() > 0) {
+        if (count($query_pessoas_renda->result()) > 0) {
             $pessoas = $query_pessoas_renda->result();
 
             $array_ids_pessoas = array();
@@ -162,32 +162,34 @@ class GPPI_Model extends CI_Model {
                 }
             }
 
-            //carregando as familias
-            $this->db->distinct();
-            $this->db->where_in('id', $array_ids_familias);
-            $query_familias = $this->db->get('familia');
-            $familias = $query_familias->result();
+            if (count($array_ids_familias) > 0) {
+                //carregando as familias
+                $this->db->distinct();
+                $this->db->where_in('id', $array_ids_familias);
+                $query_familias = $this->db->get('familia');
+                $familias = $query_familias->result();
 
-            $array_resultado = array(
-                'familias' => array(),
-                'pessoas' => array()
-            );
+                $array_resultado = array(
+                    'familias' => array(),
+                    'pessoas' => array()
+                );
 
-            foreach ($familias as $fam) {
-                array_push($array_resultado['familias'], $fam);
-            }
-
-            foreach ($pessoas as $pess) {
-                if (!in_array($this->get_id_familia_por_pessoa($pess->id), $array_resultado['pessoas'])) {
-                    $array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)] = array();
+                foreach ($familias as $fam) {
+                    array_push($array_resultado['familias'], $fam);
                 }
-            }
 
-            foreach ($pessoas as $pess) {
-                array_push($array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)], $pess);
-            }
+                foreach ($pessoas as $pess) {
+                    if (!in_array($this->get_id_familia_por_pessoa($pess->id), $array_resultado['pessoas'])) {
+                        $array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)] = array();
+                    }
+                }
 
-            return $array_resultado;
+                foreach ($pessoas as $pess) {
+                    array_push($array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)], $pess);
+                }
+
+                return $array_resultado;
+            }
         }
 
         return NULL;
@@ -280,7 +282,407 @@ class GPPI_Model extends CI_Model {
 
     //Pegar familias e pessoas por sexo
     public function get_beneficiarios_por_sexo($id_sexo) {
-        
+        //Carregando pessoas pelo sexo
+        $this->db->distinct();
+        $this->db->where('id_sexo', $id_sexo);
+        $query_pessoas_sexo = $this->db->get('pessoa');
+
+        if (count($query_pessoas_sexo->result()) > 0) {
+            $pessoas = $query_pessoas_sexo->result();
+
+            $array_ids_pessoas = array();
+            foreach ($pessoas as $pessoa) {
+                $this->db->where_in('id_pessoa', $pessoa->id);
+                $query_pessoa_familia = $this->db->get('familia_pessoa');
+
+                $array_ids_familias = array();
+                foreach ($query_pessoa_familia->result() as $pessoa_familia) {
+                    if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
+                        array_push($array_ids_familias, $pessoa_familia->id_familia);
+                    }
+                }
+            }
+
+            if (count($array_ids_familias) > 0) {
+                //carregando as familias
+                $this->db->distinct();
+                $this->db->where_in('id', $array_ids_familias);
+                $query_familias = $this->db->get('familia');
+                $familias = $query_familias->result();
+
+                $array_resultado = array(
+                    'familias' => array(),
+                    'pessoas' => array()
+                );
+
+                foreach ($familias as $fam) {
+                    array_push($array_resultado['familias'], $fam);
+                }
+
+                foreach ($pessoas as $pess) {
+                    if (!in_array($this->get_id_familia_por_pessoa($pess->id), $array_resultado['pessoas'])) {
+                        $array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)] = array();
+                    }
+                }
+
+                foreach ($pessoas as $pess) {
+                    array_push($array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)], $pess);
+                }
+
+                return $array_resultado;
+            }
+        }
+
+        return NULL;
+    }
+
+    //Pegar familias e pessoas por raça
+    public function get_beneficiarios_por_raca($id_cor) {
+        //Carregando pessoas pela raca
+        $this->db->distinct();
+        $this->db->where('id_cor', $id_cor);
+        $query_pessoas_cor = $this->db->get('pessoa');
+
+        if (count($query_pessoas_cor->result()) > 0) {
+            $pessoas = $query_pessoas_cor->result();
+
+            $array_ids_pessoas = array();
+            foreach ($pessoas as $pessoa) {
+                $this->db->where_in('id_pessoa', $pessoa->id);
+                $query_pessoa_familia = $this->db->get('familia_pessoa');
+
+                $array_ids_familias = array();
+                foreach ($query_pessoa_familia->result() as $pessoa_familia) {
+                    if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
+                        array_push($array_ids_familias, $pessoa_familia->id_familia);
+                    }
+                }
+            }
+
+            if (count($array_ids_familias) > 0) {
+                //carregando as familias
+                $this->db->distinct();
+                $this->db->where_in('id', $array_ids_familias);
+                $query_familias = $this->db->get('familia');
+                $familias = $query_familias->result();
+
+                $array_resultado = array(
+                    'familias' => array(),
+                    'pessoas' => array()
+                );
+
+                foreach ($familias as $fam) {
+                    array_push($array_resultado['familias'], $fam);
+                }
+
+                foreach ($pessoas as $pess) {
+                    if (!in_array($this->get_id_familia_por_pessoa($pess->id), $array_resultado['pessoas'])) {
+                        $array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)] = array();
+                    }
+                }
+
+                foreach ($pessoas as $pess) {
+                    array_push($array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)], $pess);
+                }
+
+                return $array_resultado;
+            }
+        }
+
+        return NULL;
+    }
+
+    //Pegar pessoas e familias por idade da pessoa
+    public function get_beneficiarios_por_idade_pessoa($idade, $filtro) {
+        //Carregando pessoas pela idade
+        $this->db->distinct();
+        $this->db->select('pessoa.*, TIMESTAMPDIFF(YEAR, pessoa.data_nascimento, NOW()) AS idade');
+        $query_pessoas_idade = $this->db->get('pessoa');
+
+        if (count($query_pessoas_idade->result()) > 0) {
+            $temp_pessoas = $query_pessoas_idade->result();
+            $pessoas = array();
+
+            foreach ($temp_pessoas as $tpess) {
+                switch ($filtro) {
+                    case '=':
+                        if ($tpess->idade == $idade) {
+                            array_push($pessoas, $tpess);
+                        }
+                        break;
+                    case '!=':
+                        if ($tpess->idade != $idade) {
+                            array_push($pessoas, $tpess);
+                        }
+                        break;
+                    case '>':
+                        if ($tpess->idade > $idade) {
+                            array_push($pessoas, $tpess);
+                        }
+                        break;
+                    case '>=':
+                        if ($tpess->idade >= $idade) {
+                            array_push($pessoas, $tpess);
+                        }
+                        break;
+                    case '<':
+                        if ($tpess->idade < $idade) {
+                            array_push($pessoas, $tpess);
+                        }
+                        break;
+                    case '<=':
+                        if ($tpess->idade <= $idade) {
+                            array_push($pessoas, $tpess);
+                        }
+                        break;
+                }
+            }
+
+            if (count($pessoas) > 0) {
+                $array_ids_pessoas = array();
+                foreach ($pessoas as $pessoa) {
+                    $this->db->where_in('id_pessoa', $pessoa->id);
+                    $query_pessoa_familia = $this->db->get('familia_pessoa');
+
+                    $array_ids_familias = array();
+                    foreach ($query_pessoa_familia->result() as $pessoa_familia) {
+                        if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
+                            array_push($array_ids_familias, $pessoa_familia->id_familia);
+                        }
+                    }
+                }
+
+
+                if (count($array_ids_familias) > 0) {
+                    //carregando as familias
+                    $this->db->distinct();
+                    $this->db->where_in('id', $array_ids_familias);
+                    $query_familias = $this->db->get('familia');
+                    $familias = $query_familias->result();
+
+                    $array_resultado = array(
+                        'familias' => array(),
+                        'pessoas' => array()
+                    );
+
+                    foreach ($familias as $fam) {
+                        array_push($array_resultado['familias'], $fam);
+                    }
+
+                    foreach ($pessoas as $pess) {
+                        if (!in_array($this->get_id_familia_por_pessoa($pess->id), $array_resultado['pessoas'])) {
+                            $array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)] = array();
+                        }
+                    }
+
+                    foreach ($pessoas as $pess) {
+                        array_push($array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)], $pess);
+                    }
+
+                    return $array_resultado;
+                }
+            }
+        }
+
+        return NULL;
+    }
+
+    //Pegar pessoas e familias por faixa etária
+    public function get_beneficiarios_por_faixa_etaria_pessoa($idade_inicial, $idade_final) {
+        //Carregando pessoas pela faixa etaria
+        $this->db->distinct();
+        $this->db->select('pessoa.*, TIMESTAMPDIFF(YEAR, pessoa.data_nascimento, NOW()) AS idade');
+        $query_pessoas_faixa = $this->db->get('pessoa');
+
+        if (count($query_pessoas_faixa->result()) > 0) {
+            $temp_pessoas = $query_pessoas_faixa->result();
+            $pessoas = array();
+
+            foreach ($temp_pessoas as $tpess) {
+                if (($tpess->idade <= $idade_final) && ($tpess->idade >= $idade_inicial)) {
+                    array_push($pessoas, $tpess);
+                }
+            }
+        }
+
+        if (count($pessoas) > 0) {
+            $array_ids_pessoas = array();
+            foreach ($pessoas as $pessoa) {
+                $this->db->where_in('id_pessoa', $pessoa->id);
+                $query_pessoa_familia = $this->db->get('familia_pessoa');
+
+                $array_ids_familias = array();
+                foreach ($query_pessoa_familia->result() as $pessoa_familia) {
+                    if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
+                        array_push($array_ids_familias, $pessoa_familia->id_familia);
+                    }
+                }
+            }
+
+
+            if (count($array_ids_familias) > 0) {
+                //carregando as familias
+                $this->db->distinct();
+                $this->db->where_in('id', $array_ids_familias);
+                $query_familias = $this->db->get('familia');
+                $familias = $query_familias->result();
+
+                $array_resultado = array(
+                    'familias' => array(),
+                    'pessoas' => array()
+                );
+
+                foreach ($familias as $fam) {
+                    array_push($array_resultado['familias'], $fam);
+                }
+
+                foreach ($pessoas as $pess) {
+                    if (!in_array($this->get_id_familia_por_pessoa($pess->id), $array_resultado['pessoas'])) {
+                        $array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)] = array();
+                    }
+                }
+
+                foreach ($pessoas as $pess) {
+                    array_push($array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)], $pess);
+                }
+
+                return $array_resultado;
+            }
+        }
+
+        return NULL;
+    }
+
+    //Pegar pessoas e familias por crianças
+    public function get_beneficiarios_por_crianca() {
+        //Carregando pessoas por crianças
+        $this->db->distinct();
+        $this->db->select('pessoa.*, TIMESTAMPDIFF(YEAR, pessoa.data_nascimento, NOW()) AS idade');
+        $query_pessoas_criancas = $this->db->get('pessoa');
+
+        if (count($query_pessoas_criancas->result()) > 0) {
+            $temp_pessoas = $query_pessoas_criancas->result();
+            $pessoas = array();
+
+            foreach ($temp_pessoas as $tpess) {
+                if ($tpess->idade < 12) {
+                    array_push($pessoas, $tpess);
+                }
+            }
+        }
+
+        if (count($pessoas) > 0) {
+            $array_ids_pessoas = array();
+            foreach ($pessoas as $pessoa) {
+                $this->db->where_in('id_pessoa', $pessoa->id);
+                $query_pessoa_familia = $this->db->get('familia_pessoa');
+
+                $array_ids_familias = array();
+                foreach ($query_pessoa_familia->result() as $pessoa_familia) {
+                    if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
+                        array_push($array_ids_familias, $pessoa_familia->id_familia);
+                    }
+                }
+            }
+
+
+            if (count($array_ids_familias) > 0) {
+                //carregando as familias
+                $this->db->distinct();
+                $this->db->where_in('id', $array_ids_familias);
+                $query_familias = $this->db->get('familia');
+                $familias = $query_familias->result();
+
+                $array_resultado = array(
+                    'familias' => array(),
+                    'pessoas' => array()
+                );
+
+                foreach ($familias as $fam) {
+                    array_push($array_resultado['familias'], $fam);
+                }
+
+                foreach ($pessoas as $pess) {
+                    if (!in_array($this->get_id_familia_por_pessoa($pess->id), $array_resultado['pessoas'])) {
+                        $array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)] = array();
+                    }
+                }
+
+                foreach ($pessoas as $pess) {
+                    array_push($array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)], $pess);
+                }
+
+                return $array_resultado;
+            }
+        }
+
+        return NULL;
+    }
+
+    //Pegar pessoas e familias por idoso
+    public function get_beneficiarios_por_idoso() {
+        //Carregando pessoas por idoso
+        $this->db->distinct();
+        $this->db->select('pessoa.*, TIMESTAMPDIFF(YEAR, pessoa.data_nascimento, NOW()) AS idade');
+        $query_pessoas_idosos = $this->db->get('pessoa');
+
+        if (count($query_pessoas_idosos->result()) > 0) {
+            $temp_pessoas = $query_pessoas_idosos->result();
+            $pessoas = array();
+
+            foreach ($temp_pessoas as $tpess) {
+                if ($tpess->idade >= 60) {
+                    array_push($pessoas, $tpess);
+                }
+            }
+        }
+
+        if (count($pessoas) > 0) {
+            $array_ids_pessoas = array();
+            foreach ($pessoas as $pessoa) {
+                $this->db->where_in('id_pessoa', $pessoa->id);
+                $query_pessoa_familia = $this->db->get('familia_pessoa');
+
+                $array_ids_familias = array();
+                foreach ($query_pessoa_familia->result() as $pessoa_familia) {
+                    if (!in_array($pessoa_familia->id_familia, $array_ids_familias)) {
+                        array_push($array_ids_familias, $pessoa_familia->id_familia);
+                    }
+                }
+            }
+
+
+            if (count($array_ids_familias) > 0) {
+                //carregando as familias
+                $this->db->distinct();
+                $this->db->where_in('id', $array_ids_familias);
+                $query_familias = $this->db->get('familia');
+                $familias = $query_familias->result();
+
+                $array_resultado = array(
+                    'familias' => array(),
+                    'pessoas' => array()
+                );
+
+                foreach ($familias as $fam) {
+                    array_push($array_resultado['familias'], $fam);
+                }
+
+                foreach ($pessoas as $pess) {
+                    if (!in_array($this->get_id_familia_por_pessoa($pess->id), $array_resultado['pessoas'])) {
+                        $array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)] = array();
+                    }
+                }
+
+                foreach ($pessoas as $pess) {
+                    array_push($array_resultado['pessoas'][$this->get_id_familia_por_pessoa($pess->id)], $pess);
+                }
+
+                return $array_resultado;
+            }
+        }
+
+        return NULL;
     }
 
 }
