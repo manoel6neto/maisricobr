@@ -204,6 +204,82 @@ class GPPI_Model extends CI_Model {
 
     //Pega familia e pessoas por renda da familia
     public function get_beneficiarios_por_renda_familia($renda, $filtro) {
+        $query_familias = $this->db->get('familia');
+        $familias = $query_familias->result();
+
+        //filtrando pela renda
+        $array_familias_atendem_filtro = array();
+        foreach ($familias as $familia) {
+            $this->db->select('sum(pessoa.renda) as rendaf');
+            $this->db->join('familia_pessoa', 'familia_pessoa.id_pessoa = pessoa.id');
+            $this->db->where('familia_pessoa.id_familia', $familia->id);
+            $query_soma = $this->db->get('pessoa');
+            $soma = $query_soma->row(0)->rendaf;
+
+            switch ($filtro) {
+                case '>':
+                    if ($soma > $renda) {
+                        array_push($array_familias_atendem_filtro, $familia);
+                    }
+                    break;
+                case '>=':
+                    if ($soma >= $renda) {
+                        array_push($array_familias_atendem_filtro, $familia);
+                    }
+                    break;
+                case '=':
+                    if ($soma == $renda) {
+                        array_push($array_familias_atendem_filtro, $familia);
+                    }
+                    break;
+                case '!=':
+                    if ($soma != $renda) {
+                        array_push($array_familias_atendem_filtro, $familia);
+                    }
+                    break;
+                case '<':
+                    if ($soma < $renda) {
+                        array_push($array_familias_atendem_filtro, $familia);
+                    }
+                    break;
+                case '<=':
+                    if ($soma <= $renda) {
+                        array_push($array_familias_atendem_filtro, $familia);
+                    }
+                    break;
+            }
+        }
+
+        //Salvando o array de resultados
+        $array_resultado = array(
+            'familias' => array(),
+            'pessoas' => array()
+        );
+
+        //Familias
+        foreach ($array_familias_atendem_filtro as $familias_filtradas) {
+            array_push($array_resultado['familias'], $familias_filtradas);
+            //Consultando as pessoas na familia e inserindo o array de pessoas com o id da familia na frente
+            $this->db->distinct();
+            $this->db->select('id_familia, id_pessoa');
+            $this->db->where('id_familia', $familias_filtradas->id);
+            $query_pessoas_familia = $this->db->get('familia_pessoa');
+            //gerando o indice para a familia no array
+            $array_resultado['pessoas'][$familias_filtradas->id] = array();
+            //carregando os objetos para as pessoas
+            foreach ($query_pessoas_familia->result() as $id_pessoa) {
+                //Consultando a pessoa inteira
+                $this->db->where('id', $id_pessoa->id_pessoa);
+                $query_pessoa = $this->db->get('pessoa');
+                array_push($array_resultado['pessoas'][$familias_filtradas->id], $query_pessoa->row(0));
+            }
+        }
+
+        return $array_resultado;
+    }
+
+    //Pegar familias e pessoas por sexo
+    public function get_beneficiarios_por_sexo($id_sexo) {
         
     }
 
