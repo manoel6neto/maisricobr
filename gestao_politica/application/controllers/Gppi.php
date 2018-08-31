@@ -12,15 +12,37 @@ class Gppi extends CI_Controller {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
 
-        $this->load->view('gppi/index');        
+        $this->load->model('Beneficio_Model');
+        $this->load->model('Usuario_Sistema_Model');
+        $this->load->model('Util_Model');
+        $beneficios = $this->Beneficio_Model->get_all_beneficio();
+
+        $data['beneficios'] = $beneficios;
+        $data['beneficio_model'] = $this->Beneficio_Model;
+        $data['usuario_sistema_model'] = $this->Usuario_Sistema_Model;
+        $data['util_model'] = $this->Util_Model;
+
+        $this->load->view('gppi/index', $data);
     }
-    
+
     public function simulacao() {
-        
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
-        
-        $this->load->view('gppi/simulacao');
+
+        $this->load->model('Beneficio_Model');
+        $this->load->model('GPPI_Model');
+        $this->load->model('Criterio_Model');
+        $this->load->model('Util_Model');
+
+        if ($this->input->post() != false) {
+            $post_data = $this->input->post();
+        }
+
+        $data['orgaos'] = $this->Beneficio_Model->get_all_orgao_gestor();
+        $data['tipos_beneficio'] = $this->Beneficio_Model->get_all_tipo_beneficio();
+        $data['publicos_alvo'] = $this->Beneficio_Model->get_all_publico_alvo();
+
+        $this->load->view('gppi/simulacao', $data);
     }
 
     public function teste() {

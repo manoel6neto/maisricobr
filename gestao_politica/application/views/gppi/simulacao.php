@@ -24,7 +24,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top navbars">
             <div class="container">
-                <img style="width: 20%;" src="<?php echo base_url("layout/images/logo_gestao_menu.jpg"); ?>"/>
+                <a id="link-home" style="width: fit-content;" href="<?php echo base_url("index.php/modulos"); ?>"><img style="width: 58%;" src="<?php echo base_url("layout/images/logo_gestao_menu.jpg"); ?>"/></a>
                 <div style="display: inline;">
                     <?php if ($this->session->userdata("sessao") != FALSE): ?>
                         <h5 style="margin-left: -100px;" class="titulo_menu">Olá, <?php echo $this->session->userdata("sessao")['nome_usuario']; ?></h5>      
@@ -72,48 +72,45 @@
                                     <span class="glyphicon glyphicon-info-sign">Campos marcados com * são de preenchimento obrigatório.</span>
                                 </div>
 
-
                                 <ul class="nav nav-tabs" id="tabelaBeneficios" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#dadosIniciais" role="tab" aria-controls="home" aria-selected="true">1 - Dados Iniciais</a>
+                                        <a class="nav-link active" id="iniciais-tab" data-toggle="tab" href="#dadosIniciais" role="tab" aria-controls="home" aria-selected="true">1 - Dados Iniciais</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#limitadores" role="tab" aria-controls="profile" aria-selected="false">2 - Limitadores</a>
+                                        <a class="nav-link" id="limitadores-tab" data-toggle="tab" href="#limitadores" role="tab" aria-controls="profile" aria-selected="false">2 - Limitadores</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#criterioSelecao" role="tab" aria-controls="contact" aria-selected="false">3 - Critérios de Seleção</a>
+                                        <a class="nav-link" id="criterios-tab" data-toggle="tab" href="#criterioSelecao" role="tab" aria-controls="contact" aria-selected="false">3 - Critérios de Seleção</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#parametro" role="tab" aria-controls="contact" aria-selected="false">4 - Parâmetros</a>
+                                        <a class="nav-link" id="parametros-tab" data-toggle="tab" href="#parametro" role="tab" aria-controls="contact" aria-selected="false">4 - Parâmetros</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#resultado" role="tab" aria-controls="contact" aria-selected="false">5 - Resultados</a>
+                                        <a class="nav-link" id="resultado-tab" data-toggle="tab" href="#resultado" role="tab" aria-controls="contact" aria-selected="false">5 - Resultados</a>
                                     </li>
                                 </ul>
 
                                 <!-- Início Formulário -->
 
                                 <div class="tab-content" id="conteudoTabelaBeneficios">                                    
-
-
                                     <!-- Formulário DADOS INICIAIS -->                                    
-
-
                                     <div class="tab-pane fade show active" id="dadosIniciais" role="tabpanel" aria-labelledby="home-tab">
-
                                         <legend class="py-2">Dados Iniciais</legend>
-
                                         <div class="form-group row">
                                             <label for="beneficio" class="col-sm-2 col-form-label">Benefício *</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="beneficio" name="beneficio">
                                             </div>
                                         </div>
-
                                         <div class="form-group row">
                                             <label for="orgaoGestor" class="col-sm-2 col-form-label">Órgão Gestor *</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="orgaoGestor" name="orgaoGestor">
+                                                <select class="form-control" id="orgaoGestor" name="orgaoGestor">
+                                                    <option value="">Selecione uma opção</option>
+                                                    <?php foreach ($orgaos as $orgao): ?>
+                                                        <option value="<?php echo $orgao->id; ?>"><?php echo $orgao->nome_orgao; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -121,7 +118,10 @@
                                             <label for="tipoBeneficio" class="col-sm-2 col-form-label">Tipo do Benefício *</label>
                                             <div class="col-sm-10">
                                                 <select class="form-control" id="tipoBeneficio" name="tipoBeneficio">
-                                                    <option>Selecione uma opção</option>
+                                                    <option value="">Selecione uma opção</option>
+                                                    <?php foreach ($tipos_beneficio as $tipo_beneficio): ?>
+                                                        <option value="<?php echo$tipo_beneficio->id; ?>"><?php echo $tipo_beneficio->descricao; ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -130,59 +130,43 @@
                                             <label for="publicoAlvo" class="col-sm-2 col-form-label">Público Alvo *</label>
                                             <div class="col-sm-10">
                                                 <select class="form-control" id="publicoAlvo" name="publicoAlvo">
-                                                    <option>Selecione uma opção</option>
+                                                    <option value="">Selecione uma opção</option>
+                                                    <?php foreach ($publicos_alvo as $publico_alvo): ?>
+                                                        <option value="<?php echo $publico_alvo->id; ?>"><?php echo $publico_alvo->descricao; ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group row mr-1 mt-5">
-                                            <button type="button" class="btn btn-secondary ml-auto">Anterior</button>
-                                            <button type="button" class="btn btn-primary ml-2">Próximo</button>                                            
+                                            <button type="button" id="next_inicial" class="btn btn-primary ml-auto">Próximo</button>                                            
                                         </div>
-
                                     </div>
 
-
-
                                     <!-- Formulário LIMITADORES -->  
-
-
-
                                     <div class="tab-pane fade" id="limitadores" role="tabpanel" aria-labelledby="profile-tab">
-
                                         <legend class="py-2">Limitadores</legend>
-
                                         <div class="form-group row">
                                             <label for="valorMensal" class="col-sm-2 col-form-label">Valor Mensal *</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="valorMensal" name="valorMensal">
                                             </div>
                                         </div>
-
                                         <div class="form-group row">
                                             <label for="quantidadeBeneficiarios" class="col-sm-2 col-form-label">Quantidade de Beneficiáios *</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="quantidadeBeneficiarios" name="quantidadeBeneficiarios">
                                             </div>
                                         </div>
-
                                         <div class="form-group row mr-1 mt-5">
-                                            <button type="button" class="btn btn-secondary ml-auto">Anterior</button>
-                                            <button type="button" class="btn btn-primary ml-2">Próximo</button>                                            
+                                            <button type="button" id="ant_limitadores" class="btn btn-secondary ml-auto">Anterior</button>
+                                            <button type="button" id="next_limitadores" class="btn btn-primary ml-2">Próximo</button>                                            
                                         </div>
-
                                     </div>                                    
 
-
-
                                     <!-- Formulário CRITÉRIOS DE SELEÇÃO -->
-
-
-
                                     <div class="tab-pane fade" id="criterioSelecao" role="tabpanel" aria-labelledby="contact-tab">
-
                                         <legend class="py-2">Critérios de Seleção</legend>
-
                                         <div id="accordion">
                                             <div class="card">
                                                 <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -192,7 +176,6 @@
                                                         </button>
                                                     </h5>
                                                 </div>
-
                                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                                     <div class="card-body row">
 
@@ -206,13 +189,13 @@
                                                         <div class="card bg-light col-sm ml-1">
                                                             <div class="card-header">Familia</div>
                                                             <div class="card-body">
-                                                                <label><input type="checkbox"> Quantidade de Pessoas</label>                                                               
+                                                                <!--<label><input type="checkbox"> Quantidade de Pessoas</label>-->                                                               
                                                                 <label><input class="my-1" type="checkbox"> Quantidade de crianças</label>
                                                                 <label><input class="my-1" type="checkbox"> Quantidade de idosos</label>
-                                                                <label><input class="my-1" type="checkbox"> Quantidade de jovens</label>
-                                                                <label><input class="my-1" type="checkbox"> Quantidade de deficientes</label>
+                                                                <!--<label><input class="my-1" type="checkbox"> Quantidade de jovens</label>-->
+                                                                <!--<label><input class="my-1" type="checkbox"> Quantidade de deficientes</label>-->
                                                                 <label><input class="my-1" type="checkbox"> Renda familiar</label>
-                                                                <label><input class="my-1" type="checkbox"> Renda per capita</label>
+                                                                <!--<label><input class="my-1" type="checkbox"> Renda per capita</label>-->
                                                             </div>
                                                         </div>
                                                         <div class="card bg-light col-sm ml-1">
@@ -223,28 +206,28 @@
                                                                 <label><input class="my-1" type="checkbox"> Idade</label>
                                                                 <label><input class="my-1" type="checkbox"> Sexo</label>
                                                                 <label><input class="my-1" type="checkbox"> Cor ou raça</label>
-                                                                <label><input class="my-1" type="checkbox"> Tipo de deficiência</label>
-                                                                <label><input class="my-1" type="checkbox"> Sabe ler e escrever</label>
-                                                                <label><input class="my-1" type="checkbox"> Ano/série que frequentou</label>
-                                                                <label><input class="my-1" type="checkbox"> Frequenta escola</label>
-                                                                <label><input class="my-1" type="checkbox"> Situação mercado de trabalho</label>
+                                                                <!--<label><input class="my-1" type="checkbox"> Tipo de deficiência</label>-->
+                                                                <!--<label><input class="my-1" type="checkbox"> Sabe ler e escrever</label>-->
+                                                                <!--<label><input class="my-1" type="checkbox"> Ano/série que frequentou</label>-->
+                                                                <!--<label><input class="my-1" type="checkbox"> Frequenta escola</label>-->
+                                                                <!--<label><input class="my-1" type="checkbox"> Situação mercado de trabalho</label>-->
                                                             </div>
                                                         </div>
-                                                        <div class="card bg-light col-sm ml-1">
-                                                            <div class="card-header">Domicílio</div>
-                                                            <div class="card-body">
-                                                                <label><input class="my-1" type="checkbox"> Local domicílio</label>
-                                                                <label><input class="my-1" type="checkbox"> N° de cômodos</label>
-                                                                <label><input class="my-1" type="checkbox"> Tipo de piso</label>
-                                                                <label><input class="my-1" type="checkbox"> Tipo de construção</label>
-                                                                <label><input class="my-1" type="checkbox"> Possui água canalizada?</label>
-                                                                <label><input class="my-1" type="checkbox"> Tipo abastecimento água</label>
-                                                                <label><input class="my-1" type="checkbox"> Tipo escoamento sanitário</label>
-                                                                <label><input class="my-1" type="checkbox"> Destino do lixo</label>
-                                                                <label><input class="my-1" type="checkbox"> Tipo de iluminação</label>
-                                                                <label><input class="my-1" type="checkbox"> Espécie do domicílio</label>
-                                                            </div>
-                                                        </div>
+                                                        <!--                                                        <div class="card bg-light col-sm ml-1">
+                                                                                                                    <div class="card-header">Domicílio</div>
+                                                                                                                    <div class="card-body">
+                                                                                                                        <label><input class="my-1" type="checkbox"> Local domicílio</label>
+                                                                                                                        <label><input class="my-1" type="checkbox"> N° de cômodos</label>
+                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo de piso</label>
+                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo de construção</label>
+                                                                                                                        <label><input class="my-1" type="checkbox"> Possui água canalizada?</label>
+                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo abastecimento água</label>
+                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo escoamento sanitário</label>
+                                                                                                                        <label><input class="my-1" type="checkbox"> Destino do lixo</label>
+                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo de iluminação</label>
+                                                                                                                        <label><input class="my-1" type="checkbox"> Espécie do domicílio</label>
+                                                                                                                    </div>
+                                                                                                                </div>-->
 
                                                     </div>
                                                 </div>
@@ -280,52 +263,44 @@
 
                                         </div>
                                         <div class="form-group row mr-1 mt-5">
-                                            <button type="button" class="btn btn-secondary ml-auto">Anterior</button>
-                                            <button type="button" class="btn btn-primary ml-2">Próximo</button>                                            
+                                            <button type="button" id="ant_criterios" class="btn btn-secondary ml-auto">Anterior</button>
+                                            <button type="button" id="next_criterios" class="btn btn-primary ml-2">Próximo</button>                                            
                                         </div>
                                     </div>
 
-
-
                                     <!-- Formulário PARÂMETROS -->
-
-
-
                                     <div class="tab-pane fade" id="parametro" role="tabpanel" aria-labelledby="contact-tab">
-
                                         <legend class="py-2">Parâmetros</legend>
-
                                         <div class="form-group row">
-                                            <label for="quantidadeBeneficiarios" class="col-sm-2 col-form-label">Nome do Produto *</label>
+                                            <label for="nomeProduto" class="col-sm-2 col-form-label">Nome do Produto *</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="quantidadeBeneficiarios" name="quantidadeBeneficiarios">
+                                                <input type="text" class="form-control" id="nomeProduto" name="nomeProduto">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="quantidadeBeneficiarios" class="col-sm-2 col-form-label">Valor do Benefício (mês) *</label>
+                                            <label for="valorUnitario" class="col-sm-2 col-form-label">Valor Unitário (mês) *</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="quantidadeBeneficiarios" name="quantidadeBeneficiarios">
+                                                <input type="text" class="form-control" id="valorUnitario" name="valorUnitario">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="quantidadeBeneficiarios" class="col-sm-2 col-form-label">Quantidade *</label>
+                                            <label for="quantProduto" class="col-sm-2 col-form-label">Quantidade *</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="quantidadeBeneficiarios" name="quantidadeBeneficiarios">
+                                                <input type="text" class="form-control" id="quantProduto" name="quantProduto">
                                             </div>
                                         </div>
 
                                         <legend class="py-2">Produtos Adicionais</legend>
 
                                         <div class="navbar-buttons ml-auto pb-4">
-                                            <button type="button" class="btn btn-sm btn-success">Adicionar</button>                                            
+                                            <button type="button" class="btn btn-sm btn-primary">Adicionar</button>                                            
                                         </div>
 
                                         <table id="tabelaSimulacao" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr>
-
                                                     <th class="ui-state-default" rowspan="1" colspan="1">
                                                         <div class="DataTables_sort_wrapper">Produto<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                         </div>
@@ -339,10 +314,14 @@
                                                             </span>
                                                         </div>
                                                     </th>
+                                                    <th class="ui-state-default" rowspan="1" colspan="1">
+                                                        <div class="DataTables_sort_wrapper" style="text-align: center;">-<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s">                                                            
+                                                            </span>
+                                                        </div>
+                                                    </th>
 
                                                 </tr>
                                             </thead>
-
                                             <tbody>
                                                 <tr class="odd">
                                                     <td valign="top" colspan="6" class="dataTables_empty">Nenhum produto adicionado.</td>
@@ -351,23 +330,15 @@
                                         </table>
 
                                         <div class="form-group row mr-1 mt-5">
-                                            <button type="button" class="btn btn-secondary ml-auto">Anterior</button>
-                                            <button type="button" class="btn btn-primary ml-2">Próximo</button>                                            
+                                            <button type="button" id="ant_parametros" class="btn btn-secondary ml-auto">Anterior</button>
+                                            <button type="button" id="next_parametros" class="btn btn-primary ml-2">Próximo</button>                                            
                                         </div>
 
                                     </div>
 
-
-
                                     <!-- Formulário RESULTADOS -->
-
-
-
                                     <div class="tab-pane fade" id="resultado" role="tabpanel" aria-labelledby="contact-tab">
-
                                         <legend class="py-2">Resultados</legend>
-
-
                                         <div id="accordion">
                                             <div class="card">
                                                 <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -377,34 +348,86 @@
                                                         </button>
                                                     </h5>
                                                 </div>
-
                                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                                     <div class="card-body row">
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
-
-                                        </div>
-                                        <div class="form-group row mr-1 mt-5">
-                                            <button type="button" class="btn btn-secondary ml-auto">Anterior</button>
-                                            <button type="button" class="btn btn-primary ml-2">Próximo</button>                                            
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-
-
-
-
             <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
             <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+            <script src="<?php echo base_url("layout/vendor/jquery/jquery.inputmask.bundle.js"); ?>"></script>
+            <script type="text/javascript">
+                $("#valorMensal").inputmask('decimal', {
+                    radixPoint: ",",
+                    groupSeparator: ".",
+                    autoGroup: true,
+                    digits: 2,
+                    digitsOptional: false,
+                    placeholder: '0',
+                    rightAlign: false,
+                    onBeforeMask: function (value, opts) {
+                        return value;
+                    }
+                });
+
+                $("#valorUnitario").inputmask('decimal', {
+                    radixPoint: ",",
+                    groupSeparator: ".",
+                    autoGroup: true,
+                    digits: 2,
+                    digitsOptional: false,
+                    placeholder: '0',
+                    rightAlign: false,
+                    onBeforeMask: function (value, opts) {
+                        return value;
+                    }
+                });
+
+                $("#next_inicial").click(function () {
+                    if ($('#beneficio').val() != '' && $('#orgaoGestor').val() != '' && $('#tipoBeneficio').val() != '' && $('#publicoAlvo').val() != '') {
+                        $('#tabelaBeneficios li:nth-child(2) a').tab('show');
+                    }
+                });
+
+                $("#next_limitadores").click(function () {
+                    if ($('#valorMensal').val() != '' || $('#quantidadeBeneficiarios').val() != '') {
+                        $('#tabelaBeneficios li:nth-child(3) a').tab('show');
+                    }
+                });
+
+                $("#next_criterios").click(function () {
+                    $('#tabelaBeneficios li:nth-child(4) a').tab('show');
+                });
+
+                $("#next_parametros").click(function () {
+                    $('#tabelaBeneficios li:nth-child(5) a').tab('show');
+                });
+
+                $("#ant_limitadores").click(function () {
+                    $('#tabelaBeneficios li:nth-child(1) a').tab('show');
+                });
+
+                $("#ant_criterios").click(function () {
+                    $('#tabelaBeneficios li:nth-child(2) a').tab('show');
+                });
+
+                $("#ant_parametros").click(function () {
+                    $('#tabelaBeneficios li:nth-child(3) a').tab('show');
+                });
+
+                $('#tabelaBeneficios a').on('click', function (e) {
+                    e.preventDefault();
+                    return false;
+                });
+            </script>
     </body>
 </html>

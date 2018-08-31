@@ -13,7 +13,7 @@
 }
 
 body {
-        background: #F1F2F7;
+    background: #F1F2F7;
     font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #707478;
     padding-top: 5.4rem;
@@ -38,4 +38,24 @@ legend {
     color: #348fe2;
     border: 0;
     border-bottom: .1rem dashed #e5e5e5;
+}
+
+.btn-primary {
+    background-color: #8ca8bb;
+    border-color: #8ca8bb;
+}
+
+.btn-primary:hover {
+    background-color: #212529 !important;
+    border-color: #212529 !important;
+}
+
+.btn-primary:active {
+    background-color: #212529 !important;
+    border-color: #212529 !important;
+}
+
+.btn-primary:focus {
+    background-color: #212529 !important;
+    border-color: #212529 !important;
 }

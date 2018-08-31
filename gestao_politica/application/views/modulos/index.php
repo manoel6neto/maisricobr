@@ -23,7 +23,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top navbars">
             <div class="container">
-                <img style="width: 20%;" src="<?php echo base_url("layout/images/logo_gestao_menu.jpg"); ?>"/>
+                <a id="link-home" style="width: fit-content;" href="<?php echo base_url("index.php/modulos"); ?>"><img style="width: 58%;" src="<?php echo base_url("layout/images/logo_gestao_menu.jpg"); ?>"/></a>
                 <div style="display: inline;">
                     <?php if ($this->session->userdata("sessao") != FALSE): ?>
                         <h5 style="margin-left: -100px;" class="titulo_menu">Olá, <?php echo $this->session->userdata("sessao")['nome_usuario']; ?></h5>      
@@ -306,8 +306,8 @@
                 <?php if (isset($usuario_politicas_publicas)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_politicas_publicas.png"); ?>" alt="Gestão Integrada Políticas Públicas"></a>
-                            <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank">
+                            <a href="<?php echo base_url("index.php/gppi"); ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_politicas_publicas.png"); ?>" alt="Gestão Integrada Políticas Públicas"></a>
+                            <a href="<?php echo base_url("index.php/gppi"); ?>" target="_blank">
                                 <div class="card-body card-body-color">
                                     <p class="card-text card-text-color">Módulo para GESTÃO INTEGRADA DAS POLÍTICAS PÚBLICAS</p>
                                 </div>
@@ -349,17 +349,6 @@
                     </div>
                 <?php endif; ?>
                 <!-- FIM MODULO MONITORAMENTO SATISFAÇÃO E PESQUISA -->
-
-                <div class="col-lg-3 col-sm-4 portfolio-item">
-                    <div class="card h-100 card-body-color">
-                        <a href="<?php echo base_url("index.php/gppi"); ?>"  alt="">
-                            <div class="card-body card-body-color">
-                                <p class="card-text card-text-color-disabled">TESTE</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </div>
 

@@ -24,7 +24,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top navbars">
             <div class="container">
-                <img style="width: 20%;" src="<?php echo base_url("layout/images/logo_gestao_menu.jpg"); ?>"/>
+                <a id="link-home" style="width: fit-content;" href="<?php echo base_url("index.php/modulos"); ?>"><img style="width: 58%;" src="<?php echo base_url("layout/images/logo_gestao_menu.jpg"); ?>"/></a>
                 <div style="display: inline;">
                     <?php if ($this->session->userdata("sessao") != FALSE): ?>
                         <h5 style="margin-left: -100px;" class="titulo_menu">Olá, <?php echo $this->session->userdata("sessao")['nome_usuario']; ?></h5>      
@@ -73,7 +73,7 @@
 
                                 <div class="navbar-buttons">
                                     <a href="<?php echo base_url("index.php/gppi/simulacao"); ?>"  alt="">
-                                        <button type="button" class="btn btn-sm btn-success"><b>+</b> Simular Benefício</button>
+                                        <button type="button" class="btn btn-sm btn-primary"><b>+</b> Simular Benefício</button>
                                     </a>
                                 </div>
 
@@ -84,7 +84,7 @@
                                         <i class="fa fa-search"></i>
                                     </button>
                                     <div class="input-group">
-                                        <input type="text" class="form-control input-large" placeholder="Buscar por benefício..." max="70">
+                                        <input type="text" class="form-control input-large" placeholder="Buscar por benefício..." max="70" disabled="true">
                                         <div class="input-group-btn">
                                             <button id="adv-search-btn" class="btn btn-default" type="button" data-original-titel title>
                                                 <span class="caret"></span>
@@ -103,11 +103,6 @@
                                         <table id="tabelaSimulacao" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th class="th-wd-xs ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper">
-                                                            <span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
-                                                        </div>
-                                                    </th>
                                                     <th class="ui-state-default" rowspan="1" colspan="1">
                                                         <div class="DataTables_sort_wrapper">Benefício<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                         </div>
@@ -129,13 +124,30 @@
                                                         <div class="DataTables_sort_wrapper">Data Simulação<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
                                                         </div>
                                                     </th>
+                                                    <th class="th-wd-xs ui-state-default" rowspan="1" colspan="1">
+                                                        <div class="DataTables_sort_wrapper" style="text-align: center;">-<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
+                                                        </div>
+                                                    </th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                <tr class="odd">
-                                                    <td valign="top" colspan="6" class="dataTables_empty">Registro não encontrado.</td>
-                                                </tr>
+                                                <?php if (isset($beneficios) && count($beneficios) > 0): ?>
+                                                    <?php foreach ($beneficios as $beneficio): ?> 
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $beneficio->descricao; ?></td>
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $beneficio_model->get_orgao_gestor_by_id($beneficio->id_orgao_gestor)->nome_orgao; ?></td>
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $beneficio_model->get_publico_alvo_by_id($beneficio->id_publico_alvo)->descricao; ?></td>
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $usuario_sistema_model->get_usuario_sistema_from_id($beneficio->id_usuario_responsavel)->nome; ?></td>
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $util_model->formata_data_padrao_br($beneficio->data_simulacao); ?></td>
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"></td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <tr class="odd">
+                                                        <td valign="top" colspan="6" class="dataTables_empty">Registro não encontrado.</td>
+                                                    </tr>
+                                                <?php endif; ?>
                                             </tbody>
                                         </table>
 
@@ -159,8 +171,8 @@
             </div>
         </div>
 
-                <!-- Bootstrap core JavaScript -->
-                <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
-                <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
-                </body>
-                </html>
+        <!-- Bootstrap core JavaScript -->
+        <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
+        <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+    </body>
+</html>
