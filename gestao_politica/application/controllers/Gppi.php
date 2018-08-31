@@ -12,7 +12,15 @@ class Gppi extends CI_Controller {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
 
-        $this->load->view('gppi/index');
+        $this->load->view('gppi/index');        
+    }
+    
+    public function simulacao() {
+        
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+        
+        $this->load->view('gppi/simulacao');
     }
 
     public function teste() {

@@ -1,0 +1,41 @@
+.panel-heading {
+    background: #FAFAFA;
+    border-bottom: 1px solid #eff2f7;
+    color: #707478;
+    border-color: #eff2f7;
+    padding: 10px 15px;
+    border: none;
+}
+
+.panel-title {
+    line-height: 20px;
+    font-size: 15px;
+}
+
+body {
+        background: #F1F2F7;
+    font: 14px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #707478;
+    padding-top: 5.4rem;
+}
+
+.panel-body {
+    padding: 15px;
+    background-color: #fff;
+}
+
+
+/* CSS simulacao.php */
+
+
+legend {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    font-size: 15px;
+    line-height: inherit;
+    color: #348fe2;
+    border: 0;
+    border-bottom: .1rem dashed #e5e5e5;
+}
