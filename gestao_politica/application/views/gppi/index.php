@@ -140,7 +140,7 @@
                                                             <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $beneficio_model->get_publico_alvo_by_id($beneficio->id_publico_alvo)->descricao; ?></td>
                                                             <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $usuario_sistema_model->get_usuario_sistema_from_id($beneficio->id_usuario_responsavel)->nome; ?></td>
                                                             <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $util_model->formata_data_padrao_br($beneficio->data_simulacao); ?></td>
-                                                            <td valign="top" colspan="1" class="dataTables_wrapper"></td>
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><a href="<?php echo base_url("index.php/gppi/executa_simulacao?id_beneficio={$beneficio->id}"); ?>"><img src="<?php echo base_url('layout/images/simulacao_icon.png'); ?>" alt="Executar Simulação" style="background-color: transparent;"></a></td>
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 <?php else: ?>
@@ -153,12 +153,10 @@
 
                                         <div class="container">
                                             <div class="row">
-                                                <div class="dataTables_info p-0" id="tabelaSimulacao_info">Mostrando de 1 até 10 de 999 registros</div>
+                                                <div class="dataTables_info p-0" id="tabelaSimulacao_info">Mostrando de 1 até 10 de <?php echo count($beneficios); ?> registros</div>
                                                 <div class="btn-group p-0 ml-auto" role="group" aria-label="">
-                                                    <button type="button" class="btn btn-light">Primeiro</button>
                                                     <button type="button" class="btn btn-light">Anterior</button>
                                                     <button type="button" class="btn btn-light">Seguinte</button>
-                                                    <button type="button" class="btn btn-primary">Último</button>
                                                 </div>
                                             </div>
                                         </div>
