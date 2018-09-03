@@ -7,6 +7,14 @@
     border: none;
 }
 
+.odd {
+    background-color: transparent !important;
+}
+
+.odd:hover {
+    background-color: #fcfcfc !important;
+}
+
 .panel-title {
     line-height: 20px;
     font-size: 15px;

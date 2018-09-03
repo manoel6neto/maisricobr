@@ -45,6 +45,128 @@ class Gppi extends CI_Controller {
         $this->load->view('gppi/simulacao', $data);
     }
 
+    public function executa_simulacao() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('Beneficio_Model');
+        $this->load->model('GPPI_Model');
+        $this->load->model('Criterio_Model');
+        $this->load->model('Usuario_Sistema_Model');
+        $this->load->model('Util_Model');
+
+        if ($this->input->get('id_beneficio', TRUE) != FALSE) {
+            $id_beneficio = $this->input->get('id_beneficio', TRUE);
+            $beneficio = $this->Beneficio_Model->get_beneficio_by_id($id_beneficio);
+            $criterios = $this->Criterio_Model->get_criterio_by_beneficio_id($id_beneficio);
+            $parametros = $this->Beneficio_Model->get_all_parametro_beneficio_by_id_beneficio($id_beneficio);
+
+            //Iniciando o processamento - calculando o total de familias e pessoas através dos critérios
+            $array_resultado = array(
+                'familias' => array(),
+                'pessoas' => array()
+            );
+            foreach ($criterios as $criterio) {
+                $array_resultado_temp = array(
+                    'familias' => array(),
+                    'pessoas' => array()
+                );
+                switch ($criterio->id_criterio) {
+                    case 1:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_bairro(1, 1, $criterio->bairro);
+                        break;
+                    case 2:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_cep(1, 1, $criterio->cep);
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_crianca();
+                        break;
+                    case 5:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_idoso();
+                        break;
+                    case 6:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_renda_familia($criterio->valor_filtro, $criterio->tipo_filtro);
+                        break;
+                    case 7:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_renda_pessoa($criterio->valor_filtro, $criterio->tipo_filtro);
+                        break;
+                    case 8:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_faixa_etaria_pessoa($criterio->idade_inicial, $criterio->idade_final);
+                        break;
+                    case 9:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_idade_pessoa($criterio->idade_inicial, $criterio->tipo_filtro);
+                        break;
+                    case 10:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_sexo($criterio->id_sexo);
+                        break;
+                    case 11:
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_raca($criterio->id_raca);
+                        break;
+                }
+
+                if ($array_resultado_temp != NULL && count($array_resultado_temp) > 0) {
+                    if (count($array_resultado) == 0) {
+                        $array_resultado = $array_resultado_temp;
+                    } else {
+                        if ($criterio->tipo_juncao == 'E') {
+                            //Tratar depois
+                        } else if ($criterio->tipo_juncao == 'OU') {
+                            //Tratar depois
+                        }
+                    }
+                }
+            }
+
+            //Filtrando pelo orçamento
+            $contagem_total_atendem_filtros = $this->GPPI_Model->count_familias_pessoas_return_object($array_resultado);
+            $valor_custo_total = floatval(0);
+            $valor_custo_total_aplicado_filtro = floatval(0);
+            foreach ($parametros as $parametro) {
+                $valor_total_parametro = floatval(floatval($parametro->valor_unitario) * $parametro->quantidade);
+                $valor_custo_total = floatval($valor_custo_total + $valor_total_parametro);
+                if ($beneficio->id_publio_alvo == 1) {
+                    $valor_total_parametro = floatval($valor_total_parametro * $contagem_total_atendem_filtros['total_familias']);
+                } else if ($beneficio->id_publio_alvo == 2) {
+                    $valor_total_parametro = floatval($valor_total_parametro * $contagem_total_atendem_filtros['total_pessoas']);
+                }
+                $valor_custo_total_aplicado_filtro = floatval($valor_custo_total_aplicado_filtro + $valor_total_parametro);
+            }
+
+            //Totais com criterio sem o limitador
+            $data['total_com_criterio_sem_limitador'] = $valor_custo_total_aplicado_filtro;
+            $data['total_familias_com_criterio_sem_limitador'] = $contagem_total_atendem_filtros['total_familias'];
+            $data['total_pessoas_com_criterio_sem_limitador'] = $contagem_total_atendem_filtros['total_pessoas'];
+
+            //Aplicando o limitador
+            if (($contagem_total_atendem_filtros['total_pessoas'] > $beneficio->quantidade_beneficiarios) && ($valor_custo_total_aplicado_filtro > floatval($beneficio->valor_mensal_investido))) {
+                //Limitado pelos dois itens
+            } else if ($contagem_total_atendem_filtros['total_pessoas'] > $beneficio->quantidade_beneficiarios) {
+                //Limitado pelo número de beneficiarios
+                $valor_total_limitado_pela_quantidade_beneficiados = floatval($beneficio->quantidade_beneficiarios * $valor_custo_total);
+                $data['total_com_criterio_com_limitador'] = $valor_total_limitado_pela_quantidade_beneficiados;
+                $data['total_pessoas_com_criterio_com_limitador'] = $beneficio->quantidade_beneficiarios;
+                $data['total_familias_com_criterio_com_limitador'] = $this->GPPI_Model->calcula_total_familias_limitado_por_pessoa($beneficio->quantidade_beneficiarios, $array_resultado);
+            } else if ($valor_custo_total_aplicado_filtro > floatval($beneficio->valor_mensal_investido)) {
+                //Limitado pelo valor financeiro - calculando o multiplicador da entidade
+                $multiplicador = intval($valor_custo_total_aplicado_filtro / $beneficio->valor_mensal_investido);
+                $dados['total_pessoas_com_criterio_com_limitador'] = $this->GPPI_Model->calcula_total_familias_limitado_por_pessoa($multiplicador, $array_resultado);
+                $dados['total_familias_com_criterio_com_limitador'] = $this->GPPI_Model->calcula_total_familias_limitado_por_pessoa($multiplicador, $array_resultado);
+                $data['total_com_criterio_com_limitador'] = floatval($multiplicador * $valor_custo_total);
+            }
+
+            $data['criterios'] = $criterios;
+            $data['parametros'] = $parametros;
+            $data['beneficio_model'] = $this->Beneficio_Model;
+            $data['usuario_sistema_model'] = $this->Usuario_Sistema_Model;
+            $data['beneficio'] = $beneficio;
+            $this->load->view('gppi/simulacao', $data);
+        } else {
+            redirect('simulacao');
+        }
+    }
+
     public function teste() {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
