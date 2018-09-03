@@ -61,7 +61,7 @@ class CadastroUnico extends CI_Controller {
             if ($familia != NULL && $integrantes != NULL && $pessoa_detalhar != NULL) {
                 $renda_familia = $this->Cadastro_Unico_Model->get_renda_familia($familia->id);
                 $consultas_pessoa_detalhar = $this->Cadastro_Unico_Model->get_consultas_pessoa($pessoa_detalhar->id);
-                $zoonoses_pessoa_detalhar = $this->Cadastro_Unico_Model->get_zoonoses_pessoa($pessoa_detalhar->id);
+//                $zoonoses_pessoa_detalhar = $this->Cadastro_Unico_Model->get_zoonoses_pessoa($pessoa_detalhar->id);
                 $integrantes_formatado = array();
                 foreach ($integrantes as $integ) {
                     array_push($integrantes_formatado, array('id' => $integ->id, 'nome' => $integ->nome, 'funcao' => $integ->funcao));
@@ -73,7 +73,7 @@ class CadastroUnico extends CI_Controller {
                 $data['integrantes_familia'] = $integrantes_formatado;
                 $data['pessoa_detalhar'] = $pessoa_detalhar;
                 $data['consultas_pessoa_detalhar'] = $consultas_pessoa_detalhar;
-                $data['zoonoses_pessoa_detalhar'] = $zoonoses_pessoa_detalhar;
+//                $data['zoonoses_pessoa_detalhar'] = $zoonoses_pessoa_detalhar;
                 $data['model_cad_unico'] = $this->Cadastro_Unico_Model;
 
                 $this->load->view('cadu/detalhes', $data);

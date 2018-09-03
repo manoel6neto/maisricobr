@@ -73,7 +73,7 @@
                                 <thead>
                                     <tr class="row100 head" style="margin: 0 !important;">
                                         <th class="cell100 column1" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Cidade:<p style="color: #008080; font-weight: bold; font-size: 18px;"><?php echo $cidade[0]->nome; ?></p></th>
-                                        <th class="cell100 column2" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Total Habitantes:<p style="color: #008080; font-weight: bold; font-size: 18px;"><?php echo number_format($cidade[0]->habitantes, 0, ',', '.'); ?></p></th>
+                                        <th class="cell100 column2" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Total Habitantes:<p style="color: #008080; font-weight: bold; font-size: 18px;"><?php echo number_format($cidade[0]->populacao, 0, ',', '.'); ?></p></th>
                                         <th class="cell100 column3" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">População Atendida:<p style="color: #008080; font-weight: bold; font-size: 18px;">10.000</p></th>
                                         <th class="cell100 column4" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Total Famílias:<p style="color: #008080; font-weight: bold; font-size: 18px;">5.642</p></th>
                                     </tr>
@@ -88,7 +88,7 @@
                 </div>
             <?php else: ?>
                 <h3>Nenhuma família encontrada!</h3>
-            <?php endif; ?>
+            <?php endif; ?> 
         </div>
 
         <!-- Maps API Javascript -->
@@ -106,7 +106,7 @@
                 var markerCluster;
 
                 function initialize() {
-                    var latlng = new google.maps.LatLng(-25.780036, -49.327849);
+                    var latlng = new google.maps.LatLng( <?php echo $cidade[0]->latitude; ?>, <?php echo $cidade[0]->longitude; ?>);
 
                     var options = {
                         zoom: 14,

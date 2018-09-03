@@ -4,12 +4,12 @@ class Cadastro_Unico_Model extends CI_Model {
 
     public function get_dados_cidade($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
-
+        
         $query = $CADUNICO->get('cidade');
         $CADUNICO->close();
         return $query->result();
     }
-
+    
     public function get_familias() {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
@@ -30,18 +30,20 @@ class Cadastro_Unico_Model extends CI_Model {
     public function get_integrantes_familia($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
-        $CADUNICO->where('fk_id_familia', $id);
-        $query = $CADUNICO->get('pessoa');
+        $CADUNICO->where('id_familia', $id);
+        $query = $CADUNICO->get('familia_pessoa');
         $CADUNICO->close();
         return $query->result();
     }
 
     public function get_responsavel_familia($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
-
-        $CADUNICO->where('fk_id_familia', $id);
-        $CADUNICO->where('is_responsavel', 1);
-        $query = $CADUNICO->get('pessoa');
+        
+        $CADUNICO->where('id_familia', $id);
+        $CADUNICO->where('flag_responsavel', 1);
+        $CADUNICO->join('pessoa', 'familia_pessoa.id_pessoa = pessoa.id');
+        $CADUNICO->join('funcao_familiar', 'familia_pessoa.id_funcao = funcao_familiar.id');
+        $query = $CADUNICO->get('familia_pessoa');
         $CADUNICO->close();
         return $query->result();
     }
@@ -64,21 +66,23 @@ class Cadastro_Unico_Model extends CI_Model {
         return $query->result();
     }
 
-    public function get_zoonoses_pessoa($id) {
-        $CADUNICO = $this->load->database('cad_unico', TRUE);
-
-        $CADUNICO->where('fk_id_pessoa', $id);
-        $query = $CADUNICO->get('zoonoses');
-        $CADUNICO->close();
-        return $query->result();
-    }
-
+//    public function get_zoonoses_pessoa($id) {
+//        $CADUNICO = $this->load->database('cad_unico', TRUE);
+//
+//        $CADUNICO->where('fk_id_pessoa', $id);
+//        $query = $CADUNICO->get('zoonoses');
+//        $CADUNICO->close();
+//        return $query->result();
+//    }
+//
     public function get_renda_familia($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
         $CADUNICO->select('SUM(renda) as renda');
-        $CADUNICO->where('fk_id_familia', $id);
-        $query = $CADUNICO->get('pessoa');
+        $CADUNICO->where('id_familia', $id);
+        $CADUNICO->join('pessoa', 'familia_pessoa.id_pessoa = pessoa.id');
+        $CADUNICO->join('funcao_familiar', 'familia_pessoa.id_funcao = funcao_familiar.id');        
+        $query = $CADUNICO->get('familia_pessoa');
         $CADUNICO->close();
         return $query->result();
     }
