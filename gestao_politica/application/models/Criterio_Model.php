@@ -88,10 +88,10 @@ class Criterio_Model extends CI_Model {
     }
 
     public function get_criterio_by_beneficio_id($id_beneficio) {
-        $this->db->select('criterio.*');
-        $this->db->join('criterio_beneficio cb', 'cb.id_criterio = c.id');
-        $this->db->where('cb.id_beneficio', $id_beneficio);
-        $query_criterio = $this->db->get('criterio c');
+        $this->db->select('criterio_beneficio.*, criterio.descricao');
+        $this->db->join('criterio', 'criterio_beneficio.id_criterio = criterio.id');
+        $this->db->where('criterio_beneficio.id_beneficio', $id_beneficio);
+        $query_criterio = $this->db->get('criterio_beneficio');
 
         if (count($query_criterio->result()) > 0) {
             return $query_criterio->result();

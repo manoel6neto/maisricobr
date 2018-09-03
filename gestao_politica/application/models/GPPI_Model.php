@@ -25,7 +25,19 @@ class GPPI_Model extends CI_Model {
 
     //Calcula o total de familias baseado no total de pessoas array
     public function calcula_total_familias_limitado_por_pessoa($quantidade_pessoas, $array_resultado_inicial) {
-        
+        $quantidade_familias = array();
+        foreach ($quantidade_familias as $key => $value) {
+            if ($quantidade_pessoas > 0) {
+                $quantidade_pessoas = $quantidade_pessoas - count($value);
+                if (!in_array($key, $quantidade_familias)) {
+                    array_push($quantidade_familias, $key);
+                }
+            } else {
+                break;
+            }
+        }
+
+        return count($quantidade_familias);
     }
 
     //Pegar familias e pessoas por bairro

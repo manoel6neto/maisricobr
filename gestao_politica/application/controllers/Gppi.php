@@ -126,9 +126,9 @@ class Gppi extends CI_Controller {
             foreach ($parametros as $parametro) {
                 $valor_total_parametro = floatval(floatval($parametro->valor_unitario) * $parametro->quantidade);
                 $valor_custo_total = floatval($valor_custo_total + $valor_total_parametro);
-                if ($beneficio->id_publio_alvo == 1) {
+                if ($beneficio->id_publico_alvo == 1) {
                     $valor_total_parametro = floatval($valor_total_parametro * $contagem_total_atendem_filtros['total_familias']);
-                } else if ($beneficio->id_publio_alvo == 2) {
+                } else if ($beneficio->id_publico_alvo == 2) {
                     $valor_total_parametro = floatval($valor_total_parametro * $contagem_total_atendem_filtros['total_pessoas']);
                 }
                 $valor_custo_total_aplicado_filtro = floatval($valor_custo_total_aplicado_filtro + $valor_total_parametro);
@@ -156,12 +156,14 @@ class Gppi extends CI_Controller {
                 $data['total_com_criterio_com_limitador'] = floatval($multiplicador * $valor_custo_total);
             }
 
+            $data['redirect_resultado'] = TRUE;
             $data['criterios'] = $criterios;
             $data['parametros'] = $parametros;
             $data['beneficio_model'] = $this->Beneficio_Model;
             $data['usuario_sistema_model'] = $this->Usuario_Sistema_Model;
+            $data['util_model'] = $this->Util_Model;
             $data['beneficio'] = $beneficio;
-            $this->load->view('gppi/simulacao', $data);
+            $this->load->view('gppi/resultado_simulacao', $data);
         } else {
             redirect('simulacao');
         }

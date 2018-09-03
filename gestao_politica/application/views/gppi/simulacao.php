@@ -77,16 +77,13 @@
                                         <a class="nav-link active" id="iniciais-tab" data-toggle="tab" href="#dadosIniciais" role="tab" aria-controls="home" aria-selected="true">1 - Dados Iniciais</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="limitadores-tab" data-toggle="tab" href="#limitadores" role="tab" aria-controls="profile" aria-selected="false">2 - Limitadores</a>
+                                        <a class="nav-link" id="limitadores-tab" data-toggle="tab" href="#limitadores" role="tab" aria-controls="limitadores" aria-selected="false">2 - Limitadores</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="criterios-tab" data-toggle="tab" href="#criterioSelecao" role="tab" aria-controls="contact" aria-selected="false">3 - Critérios de Seleção</a>
+                                        <a class="nav-link" id="criterios-tab" data-toggle="tab" href="#criterioSelecao" role="tab" aria-controls="criterios" aria-selected="false">3 - Critérios de Seleção</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="parametros-tab" data-toggle="tab" href="#parametro" role="tab" aria-controls="contact" aria-selected="false">4 - Parâmetros</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="resultado-tab" data-toggle="tab" href="#resultado" role="tab" aria-controls="contact" aria-selected="false">5 - Resultados</a>
+                                        <a class="nav-link" id="parametros-tab" data-toggle="tab" href="#parametro" role="tab" aria-controls="parametros" aria-selected="false">4 - Parâmetros</a>
                                     </li>
                                 </ul>
 
@@ -331,7 +328,7 @@
 
                                         <div class="form-group row mr-1 mt-5">
                                             <button type="button" id="ant_parametros" class="btn btn-secondary ml-auto">Anterior</button>
-                                            <button type="button" id="next_parametros" class="btn btn-primary ml-2">Próximo</button>                                            
+                                            <button type="button" id="next_parametros" class="btn btn-primary ml-2">Simular Benefício</button>                                            
                                         </div>
 
                                     </div>
@@ -406,10 +403,6 @@
 
                 $("#next_criterios").click(function () {
                     $('#tabelaBeneficios li:nth-child(4) a').tab('show');
-                });
-
-                $("#next_parametros").click(function () {
-                    $('#tabelaBeneficios li:nth-child(5) a').tab('show');
                 });
 
                 $("#ant_limitadores").click(function () {
