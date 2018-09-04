@@ -217,6 +217,18 @@
                                                     </div>
                                                 </th>
                                             </tr>
+                                            <?php foreach ($parametros as $parametro): ?>
+                                                <tr class="odd">
+                                                    <?php if ($beneficio->id_publico_alvo == 2): ?>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $parametro->nome_produto . ' (Benefício Concedido a pessoa)'; ?></td>
+                                                    <?php else: ?>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $parametro->nome_produto . ' (Benefício Concedido a família)'; ?></td>
+                                                    <?php endif; ?>
+                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo ($parametro->quantidade * 25); ?></td>
+                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario, 2, ',', '.'); ?></td>
+                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * 25, 2, ',', '.'); ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </thead>
                                     </table>
                                     <legend class="py-2">Resultado Desconsiderando os Limitadores</legend>
@@ -252,6 +264,18 @@
                                                     </div>
                                                 </th>
                                             </tr>
+                                            <?php foreach ($parametros as $parametro): ?>
+                                                <tr class="odd">
+                                                    <?php if ($beneficio->id_publico_alvo == 2): ?>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $parametro->nome_produto . ' (Benefício Concedido a pessoa)'; ?></td>
+                                                    <?php else: ?>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $parametro->nome_produto . ' (Benefício Concedido a família)'; ?></td>
+                                                    <?php endif; ?>
+                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo ($parametro->quantidade * 250); ?></td>
+                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario, 2, ',', '.'); ?></td>
+                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * 250, 2, ',', '.'); ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
                                         </thead>
                                     </table>
                                 </div>
