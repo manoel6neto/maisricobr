@@ -44,36 +44,40 @@ class CadastroUnico extends CI_Controller {
         $this->load->model('Cadastro_Unico_Model');
 
         $familia = $this->input->get_post('id', TRUE);
-        $pessoa_detalhar = $this->input->get_post('idpessoa', TRUE);
-        
+
         if ($familia != NULL) {
             $familia = $this->Cadastro_Unico_Model->get_familia_from_id($familia);
-            $familia = $familia[0];
             $integrantes = $this->Cadastro_Unico_Model->get_integrantes_familia($familia->id);
-            if ($pessoa_detalhar == NULL) {
-                $pessoa_detalhar = $this->Cadastro_Unico_Model->get_responsavel_familia($familia->id);
-                $pessoa_detalhar = $pessoa_detalhar[0];
+            $responsavel_detalhar = $this->Cadastro_Unico_Model->get_responsavel_familia($familia->id);
+
+            if ($this->input->get('idpessoa', TRUE) != FALSE) {
+                $pessoa_detalhar = $this->Cadastro_Unico_Model->get_pessoa_from_id($this->input->get('idpessoa', TRUE));
             } else {
-                $pessoa_detalhar = $this->Cadastro_Unico_Model->get_pessoa_from_id($pessoa_detalhar);
-                $pessoa_detalhar = $pessoa_detalhar[0];
+                $pessoa_detalhar = $responsavel_detalhar;
             }
 
             if ($familia != NULL && $integrantes != NULL && $pessoa_detalhar != NULL) {
-                $renda_familia = $this->Cadastro_Unico_Model->get_renda_familia($familia->id);
-                $consultas_pessoa_detalhar = $this->Cadastro_Unico_Model->get_consultas_pessoa($pessoa_detalhar->id);
-//                $zoonoses_pessoa_detalhar = $this->Cadastro_Unico_Model->get_zoonoses_pessoa($pessoa_detalhar->id);
-                $integrantes_formatado = array();
-                foreach ($integrantes as $integ) {
-                    array_push($integrantes_formatado, array('id' => $integ->id, 'nome' => $integ->nome, 'funcao' => $integ->funcao));
+                $pessoas_familia = $this->Cadastro_Unico_Model->get_pessoas_from_ids($integrantes);
+                $pessoa_detalhar = $this->Cadastro_Unico_Model->get_pessoa_from_id($pessoa_detalhar->id);
+
+                $renda_familia = floatval(0);
+                foreach ($pessoas_familia as $pessoa) {
+                    $renda_familia = $renda_familia + floatval($pessoa->renda);
                 }
+//                $endereco_familia = $this->Cadastro_Unico_Model->get_pessoa_completo_from_id($id);
+                
+                $integrantes_formatado = array();
+                foreach ($integrantes as $integra) {
+                    array_push($integrantes_formatado, array('id' => $integra->id, 'nome' => $integra->nome, 'descricao' => $integra->descricao));
+                }
+                
+//                var_dump($pessoa_detalhar);die();
 
                 //enviando dados para a view
                 $data['familia'] = $familia;
                 $data['renda_familia'] = $renda_familia;
                 $data['integrantes_familia'] = $integrantes_formatado;
                 $data['pessoa_detalhar'] = $pessoa_detalhar;
-                $data['consultas_pessoa_detalhar'] = $consultas_pessoa_detalhar;
-//                $data['zoonoses_pessoa_detalhar'] = $zoonoses_pessoa_detalhar;
                 $data['model_cad_unico'] = $this->Cadastro_Unico_Model;
 
                 $this->load->view('cadu/detalhes', $data);
