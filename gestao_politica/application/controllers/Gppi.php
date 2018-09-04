@@ -54,6 +54,7 @@ class Gppi extends CI_Controller {
         $this->load->model('Criterio_Model');
         $this->load->model('Usuario_Sistema_Model');
         $this->load->model('Util_Model');
+        $this->load->model('Cadastro_Unico_Model');
 
         if ($this->input->get('id_beneficio', TRUE) != FALSE) {
             $id_beneficio = $this->input->get('id_beneficio', TRUE);
@@ -156,6 +157,8 @@ class Gppi extends CI_Controller {
                 $data['total_com_criterio_com_limitador'] = floatval($multiplicador * $valor_custo_total);
             }
 
+            $data['cadastro_unico_model'] = $this->Cadastro_Unico_Model;
+            $data['array_resultado'] = $array_resultado;
             $data['redirect_resultado'] = TRUE;
             $data['criterios'] = $criterios;
             $data['parametros'] = $parametros;

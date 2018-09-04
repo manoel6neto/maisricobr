@@ -15,6 +15,22 @@
     background-color: #fcfcfc !important;
 }
 
+.resultado {
+    color: #8ebdc6 !important;
+    font-weight: 700 !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: #8ebdc6 !important;
+    font-weight: 700 !important;
+}
+
+.nav-pills .nav-link {
+    font-weight: 700 !important;
+    border-radius: 0.2rem !important;
+    margin: 2px !important;
+}
+
 .panel-title {
     line-height: 20px;
     font-size: 15px;
