@@ -61,7 +61,7 @@
             </h1>
 
             <?php if ( isset($integrantes_familia) && isset($pessoa_detalhar)): ?>
-                <div class="wrap-table100">
+                <div class="wrap-table100 ver1 m-b-16">
                     <div class="table100 ver1 m-b-16">
                         <div class="table100-head" style="padding-top: 0 !important;">
                             <table>
@@ -81,6 +81,7 @@
                                         <tr class="row100 body" style="margin: 0 !important;">
                                             <td class="cell100 column1"><?php echo $integra['nome']; ?></td>
                                             <td class="cell100 column4"><?php echo $integra['descricao']; ?></td>
+                                            <td class="cell100 column5"><?php?></td>
                                             <!--<td class="cell100 column5"><a href="<?//php echo base_url("index.php/CadastroUnico/detalhar_familia?id={$familia->id}&idpessoa={$integra['id']}"); ?>">Detalhes</a></td>-->
                                         </tr>
                                     <?php endforeach; ?>
@@ -97,30 +98,30 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="2" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Informações Pessoais </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #dae0e5;">
+                                    <td colspan="2" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> <span style="color: #fff">Informações Pessoais</span> </td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100 column1" rowspan="6"><img src="https://via.placeholder.com/350x350"></td>
+                                    <td class="cell100 column1" rowspan="6"><img style="margin-right: 10px;" src="https://via.placeholder.com/350x350"></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100"><span class="titulo">Nome: </span><?php echo $pessoa_detalhar->nome; ?></td>
+                                    <td class="cell100"><span class="titulo column1">Nome: </span><?php echo $pessoa_detalhar->nome; ?></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <?php if (isset($pessoa_detalhar->rg)): ?>
-                                        <td class="cell100"><span class="titulo">RG: </span><?php echo $pessoa_detalhar->rg; ?></td>
+                                        <td class="cell100"><span class="titulo column1">RG: </span><?php echo $pessoa_detalhar->rg; ?></td>
                                     <?php else: ?>
-                                        <td class="cell100"><span class="titulo">RG: </span>Não Informado</td>
+                                        <td class="cell100"><span class="titulo column1">RG: </span>Não Informado</td>
                                     <?php endif; ?>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100"><span class="titulo">CPF: </span><?php echo $pessoa_detalhar->cpf; ?></td>
+                                    <td class="cell100"><span class="titulo column1">CPF: </span><?php echo $pessoa_detalhar->cpf; ?></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100"><span class="titulo">NIS: </span><?php echo $pessoa_detalhar->nis; ?></td>
+                                    <td class="cell100"><span class="titulo column1">NIS: </span><?php echo $pessoa_detalhar->nis; ?></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100"><span class="titulo">Data Nascimento: </span><?php echo $model_cad_unico->date_format($pessoa_detalhar->data_nascimento); ?></td>
+                                    <td class="cell100"><span class="titulo column1">Data Nascimento: </span><?php echo $model_cad_unico->date_format($pessoa_detalhar->data_nascimento); ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -135,8 +136,8 @@
                                     <td colspan="3" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Informações Gerais </td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100 column1"><span class="titulo">Relação Familiar: </span><?php ?></td>
-                                    <td class="cell100 column1"><span class="titulo">Sexo: </span><?php ?></td>
+                                    <td class="cell100 column1"><span class="titulo">Relação Familiar: </span><?php echo $pessoa_detalhar->descricao;?></td>
+                                    <td class="cell100 column1"><span class="titulo">Sexo: </span><?php?></td>
                                     <td class="cell100 column1"><span class="titulo">Escolaridade: </span><?php ?></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">

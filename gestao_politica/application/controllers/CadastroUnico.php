@@ -71,7 +71,7 @@ class CadastroUnico extends CI_Controller {
                     array_push($integrantes_formatado, array('id' => $integra->id, 'nome' => $integra->nome, 'descricao' => $integra->descricao));
                 }
                 
-//                var_dump($pessoa_detalhar);die();
+//                var_dump($pessoa_detalhar); die();
 
                 //enviando dados para a view
                 $data['familia'] = $familia;
@@ -81,6 +81,7 @@ class CadastroUnico extends CI_Controller {
                 $data['model_cad_unico'] = $this->Cadastro_Unico_Model;
 
                 $this->load->view('cadu/detalhes', $data);
+                
             }
         }
     }

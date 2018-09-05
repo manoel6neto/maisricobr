@@ -182,7 +182,7 @@ th, td {
 
 .column1 {
     width: 33%;
-    padding-left: 40px;
+    padding-left: 20px;
 }
 
 .column2 {
@@ -232,7 +232,7 @@ th, td {
 
 
 /*==================================================================
-[ Ver1 ]*/
+[ Ver1 ] Tela: detalhar_familia*/
 
 .table100.ver1 th {
     font-family: Lato-Bold;
@@ -254,10 +254,11 @@ th, td {
     background-color: #f8f6ff;
 }
 
-/*---------------------------------------------*/
+/*---------------------------------------------
+Tela: detalhar_familia*/
 
 .table100.ver1 {
-    border-radius: 10px;
+    border-radius: 1px;
     overflow: hidden;
     box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
