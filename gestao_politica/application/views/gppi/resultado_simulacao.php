@@ -147,7 +147,7 @@
                                                 </th>
                                             </tr>
                                             <tr class="odd">
-                                                <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo number_format($beneficio->valor_mensal_investido, 2, ',', '.'); ?></td>
+                                                <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo 'R$&nbsp;' . number_format($beneficio->valor_mensal_investido, 2, ',', '.'); ?></td>
                                                 <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $beneficio->quantidade_beneficiarios; ?></td>
                                             </tr>
                                         </thead>
@@ -271,8 +271,11 @@
                                                                     </div>
                                                                 </th>
                                                             </tr>
-                                                            <?php foreach ($parametros as $parametro): ?>
+                                                            <?php foreach ($array_resultado_com_limite['familias'] as $familias): ?>
                                                                 <tr class="odd">
+                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $familias->codigo; ?></td>
+                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo count($cadastro_unico_model->get_integrantes_familia($familias->id)); ?></td>
+                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa_from_id($cadastro_unico_model->get_responsavel_familia($familias->id)->id_pessoa)->nome; ?></td>
                                                                 </tr>
                                                             <?php endforeach; ?>
                                                         </thead>
@@ -283,26 +286,37 @@
                                                     <table class="table table-bordered table-hover">
                                                         <thead>
                                                             <tr>
-                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 46%;">
+                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 15%;">
+                                                                    <div class="DataTables_sort_wrapper" style="text-align: center;">Código Família<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
+                                                                    </div>
+                                                                </th>
+                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 35%;">
                                                                     <div class="DataTables_sort_wrapper" style="text-align: center;">Nome<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                                     </div>
                                                                 </th>
-                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 18%;">
+                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 15%;">
                                                                     <div class="DataTables_sort_wrapper" style="text-align: center;">CPF<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                                     </div>
                                                                 </th>
-                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 16%;">
+                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 15%;">
                                                                     <div class="DataTables_sort_wrapper" style="text-align: center;">RG<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                                     </div>
                                                                 </th>
                                                                 <th class="ui-state-default" rowspan="1" colspan="1" style="width: 20%;">
-                                                                    <div class="DataTables_sort_wrapper" style="text-align: center;">Função Familiar<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
+                                                                    <div class="DataTables_sort_wrapper" style="text-align: center;">Função<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                                     </div>
                                                                 </th>
                                                             </tr>
-                                                            <?php foreach ($parametros as $parametro): ?>
-                                                                <tr class="odd">
-                                                                </tr>
+                                                            <?php foreach ($array_resultado_com_limite['pessoas'] as $pessoas): ?>
+                                                                <?php foreach ($pessoas as $pessoa): ?>
+                                                                    <tr class="odd">
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_familia_from_id($cadastro_unico_model->get_pessoa_from_id($pessoa->id)->id_familia)->codigo; ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->nome; ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->cpf != NULL ? $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->cpf : '-' ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->rg != NULL ? $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->rg : '-' ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->descricao != NULL ? $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->descricao : '-' ?></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
                                                             <?php endforeach; ?>
                                                         </thead>
                                                     </table>
@@ -315,12 +329,12 @@
                                         <thead>
                                             <tr>
                                                 <th class="ui-state-default" rowspan="1" colspan="1">
-                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;"><?php echo $total_pessoas_com_criterio_sem_limitador; ?></span>
+                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;"><?php echo $total_familias_com_criterio_sem_limitador; ?></span>
                                                         <p style="padding-top: 10px !important;">Famílias Selecionadas</p>
                                                     </div>
                                                 </th>
                                                 <th class="ui-state-default" rowspan="1" colspan="3">
-                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;"><?php echo $total_familias_com_criterio_sem_limitador; ?></span>
+                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;"><?php echo $total_pessoas_com_criterio_sem_limitador; ?></span>
                                                         <p style="padding-top: 10px !important;">Pessoas Selecionadas</p>
                                                     </div>
                                                 </th>
@@ -397,8 +411,11 @@
                                                                     </div>
                                                                 </th>
                                                             </tr>
-                                                            <?php foreach ($parametros as $parametro): ?>
+                                                            <?php foreach ($array_resultado_sem_limite['familias'] as $familias): ?>
                                                                 <tr class="odd">
+                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $familias->codigo; ?></td>
+                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo count($cadastro_unico_model->get_integrantes_familia($familias->id)); ?></td>
+                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa_from_id($cadastro_unico_model->get_responsavel_familia($familias->id)->id_pessoa)->nome; ?></td>
                                                                 </tr>
                                                             <?php endforeach; ?>
                                                         </thead>
@@ -409,26 +426,37 @@
                                                     <table class="table table-bordered table-hover">
                                                         <thead>
                                                             <tr>
-                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 46%;">
+                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 15%;">
+                                                                    <div class="DataTables_sort_wrapper" style="text-align: center;">Código Família<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
+                                                                    </div>
+                                                                </th>
+                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 35%;">
                                                                     <div class="DataTables_sort_wrapper" style="text-align: center;">Nome<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                                     </div>
                                                                 </th>
-                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 18%;">
+                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 15%;">
                                                                     <div class="DataTables_sort_wrapper" style="text-align: center;">CPF<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                                     </div>
                                                                 </th>
-                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 16%;">
+                                                                <th class="ui-state-default" rowspan="1" colspan="1" style="width: 15%;">
                                                                     <div class="DataTables_sort_wrapper" style="text-align: center;">RG<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                                     </div>
                                                                 </th>
                                                                 <th class="ui-state-default" rowspan="1" colspan="1" style="width: 20%;">
-                                                                    <div class="DataTables_sort_wrapper" style="text-align: center;">Função Familiar<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
+                                                                    <div class="DataTables_sort_wrapper" style="text-align: center;">Função<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                                     </div>
                                                                 </th>
                                                             </tr>
-                                                            <?php foreach ($parametros as $parametro): ?>
-                                                                <tr class="odd">
-                                                                </tr>
+                                                            <?php foreach ($array_resultado_sem_limite['pessoas'] as $pessoas): ?>
+                                                                <?php foreach ($pessoas as $pessoa): ?>
+                                                                    <tr class="odd">
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_familia_from_id($cadastro_unico_model->get_pessoa_from_id($pessoa->id)->id_familia)->codigo; ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->nome; ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->cpf != NULL ? $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->cpf : '-' ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->rg != NULL ? $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->rg : '-' ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->descricao != NULL ? $cadastro_unico_model->get_pessoa_from_id($pessoa->id)->descricao : '-' ?></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
                                                             <?php endforeach; ?>
                                                         </thead>
                                                     </table>

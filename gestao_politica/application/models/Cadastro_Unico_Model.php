@@ -33,7 +33,7 @@ class Cadastro_Unico_Model extends CI_Model {
         $CADUNICO->where('id_familia', $id);
         $CADUNICO->join('pessoa', 'familia_pessoa.id_pessoa = pessoa.id');
         $CADUNICO->join('sexo', 'pessoa.id_sexo = sexo.id');
-        $CADUNICO->join('funcao_familiar', 'familia_pessoa.id_funcao = funcao_familiar.id');        
+        $CADUNICO->join('funcao_familiar', 'familia_pessoa.id_funcao = funcao_familiar.id');
         $query = $CADUNICO->get('familia_pessoa');
         $CADUNICO->close();
         return $query->result();
@@ -52,6 +52,7 @@ class Cadastro_Unico_Model extends CI_Model {
     public function get_pessoa_from_id($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
+        $CADUNICO->select('pessoa.*, familia_pessoa.*, funcao_familiar.*');
         $CADUNICO->where('pessoa.id', $id);
         $CADUNICO->join('familia_pessoa', 'pessoa.id = familia_pessoa.id_pessoa');
         $CADUNICO->join('funcao_familiar', 'familia_pessoa.id_funcao = funcao_familiar.id');
@@ -60,8 +61,8 @@ class Cadastro_Unico_Model extends CI_Model {
         $CADUNICO->close();
         return $query->row(0);
     }
-    
-        public function get_pessoa_completo_from_id($id) {
+
+    public function get_pessoa_completo_from_id($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
         $CADUNICO->where('id', $id);

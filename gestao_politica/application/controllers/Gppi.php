@@ -66,10 +66,7 @@ class Gppi extends CI_Controller {
             $parametros = $this->Beneficio_Model->get_all_parametro_beneficio_by_id_beneficio($id_beneficio);
 
             //Iniciando o processamento - calculando o total de familias e pessoas através dos critérios
-            $array_resultado = array(
-                'familias' => array(),
-                'pessoas' => array()
-            );
+            $array_resultado = array();
             foreach ($criterios as $criterio) {
                 $array_resultado_temp = array(
                     'familias' => array(),
@@ -91,22 +88,22 @@ class Gppi extends CI_Controller {
                         $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_idoso();
                         break;
                     case 6:
-                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_renda_familia($criterio->valor_filtro, $criterio->tipo_filtro);
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_renda_familia(floatval($criterio->valor_filtro), $criterio->tipo_filtro);
                         break;
                     case 7:
-                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_renda_pessoa($criterio->valor_filtro, $criterio->tipo_filtro);
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_renda_pessoa(floatval($criterio->valor_filtro), $criterio->tipo_filtro);
                         break;
                     case 8:
-                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_faixa_etaria_pessoa($criterio->idade_inicial, $criterio->idade_final);
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_faixa_etaria_pessoa(intval($criterio->idade_inicial), intval($criterio->idade_final));
                         break;
                     case 9:
-                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_idade_pessoa($criterio->idade_inicial, $criterio->tipo_filtro);
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_idade_pessoa(intval($criterio->idade_inicial), intval($criterio->tipo_filtro));
                         break;
                     case 10:
-                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_sexo($criterio->id_sexo);
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_sexo(intval($criterio->id_sexo));
                         break;
                     case 11:
-                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_raca($criterio->id_raca);
+                        $array_resultado_temp = $this->GPPI_Model->get_beneficiarios_por_raca(intval($criterio->id_raca));
                         break;
                 }
 
@@ -139,6 +136,7 @@ class Gppi extends CI_Controller {
             }
 
             //Totais com criterio sem o limitador
+            $data['array_resultado_sem_limite'] = $array_resultado;
             $data['total_com_criterio_sem_limitador'] = $valor_custo_total_aplicado_filtro;
             $data['total_familias_com_criterio_sem_limitador'] = $contagem_total_atendem_filtros['total_familias'];
             $data['total_pessoas_com_criterio_sem_limitador'] = $contagem_total_atendem_filtros['total_pessoas'];
@@ -147,25 +145,27 @@ class Gppi extends CI_Controller {
             if (($contagem_total_atendem_filtros['total_pessoas'] > $beneficio->quantidade_beneficiarios) && ($valor_custo_total_aplicado_filtro > floatval($beneficio->valor_mensal_investido))) {
                 //Limitado pelos dois itens
             } else if ($contagem_total_atendem_filtros['total_pessoas'] > $beneficio->quantidade_beneficiarios) {
+                $data['array_resultado_com_limite'] = $this->GPPI_Model->calcula_total_familias_limitado_por_pessoa($beneficio->quantidade_beneficiarios, $array_resultado, true);
                 //Limitado pelo número de beneficiarios
                 $valor_total_limitado_pela_quantidade_beneficiados = floatval($beneficio->quantidade_beneficiarios * $valor_custo_total);
                 $data['total_com_criterio_com_limitador'] = $valor_total_limitado_pela_quantidade_beneficiados;
                 $data['total_pessoas_com_criterio_com_limitador'] = $beneficio->quantidade_beneficiarios;
                 $data['total_familias_com_criterio_com_limitador'] = $this->GPPI_Model->calcula_total_familias_limitado_por_pessoa($beneficio->quantidade_beneficiarios, $array_resultado);
             } else if ($valor_custo_total_aplicado_filtro > floatval($beneficio->valor_mensal_investido)) {
+                $data['array_resultado_com_limite'] = $array_resultado;
                 //Limitado pelo valor financeiro - calculando o multiplicador da entidade
                 $multiplicador = intval($valor_custo_total_aplicado_filtro / $beneficio->valor_mensal_investido);
                 $dados['total_pessoas_com_criterio_com_limitador'] = $this->GPPI_Model->calcula_total_familias_limitado_por_pessoa($multiplicador, $array_resultado);
                 $dados['total_familias_com_criterio_com_limitador'] = $this->GPPI_Model->calcula_total_familias_limitado_por_pessoa($multiplicador, $array_resultado);
                 $data['total_com_criterio_com_limitador'] = floatval($multiplicador * $valor_custo_total);
             } else {
-                $data['total_com_criterio_com_limitador'] = floatval($beneficio->quantidade_beneficiarios * $valor_custo_total);
+                $data['array_resultado_com_limite'] = $array_resultado;
+                $data['total_com_criterio_com_limitador'] = $valor_custo_total_aplicado_filtro;
                 $data['total_pessoas_com_criterio_com_limitador'] = $this->GPPI_Model->count_familias_pessoas_return_object($array_resultado)['total_pessoas'];
                 $data['total_familias_com_criterio_com_limitador'] = $this->GPPI_Model->count_familias_pessoas_return_object($array_resultado)['total_familias'];
             }
 
             $data['cadastro_unico_model'] = $this->Cadastro_Unico_Model;
-            $data['array_resultado'] = $array_resultado;
             $data['redirect_resultado'] = TRUE;
             $data['criterios'] = $criterios;
             $data['parametros'] = $parametros;
@@ -210,11 +210,11 @@ class Gppi extends CI_Controller {
         echo "<br><br>";
         echo "------ Renda Familia ------";
         var_dump($this->GPPI_Model->get_beneficiarios_por_renda_familia(2400, '>='));
-        var_dump($this->GPPI_Model->count_familias_pessoas_return_object($this->GPPI_Model->get_beneficiarios_por_renda_familia(2400, '>=')));
+        var_dump($this->GPPI_Model->count_familias_pessoas_return_object($this->GPPI_Model->get_beneficiarios_por_renda_familia(2400.00, '>=')));
         echo "<br><br>";
         echo "------ Renda Pessoa ------";
         var_dump($this->GPPI_Model->get_beneficiarios_por_renda_pessoa(1500, '>='));
-        var_dump($this->GPPI_Model->count_familias_pessoas_return_object($this->GPPI_Model->get_beneficiarios_por_renda_pessoa(1500, '>=')));
+        var_dump($this->GPPI_Model->count_familias_pessoas_return_object($this->GPPI_Model->get_beneficiarios_por_renda_pessoa(1500.00, '>=')));
         echo "<br><br>";
         echo "------ Cep ------";
         var_dump($this->GPPI_Model->get_beneficiarios_por_cep(1, 1, '80010130'));
