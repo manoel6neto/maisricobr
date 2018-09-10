@@ -117,4 +117,20 @@ class Cadastro_Unico_Model extends CI_Model {
         return $myFormatForView;
     }
 
+    public function get_sexo_from_id_sexo($id) {
+        $CADUNICO = $this->load->database('cad_unico', TRUE);
+
+        $CADUNICO->where('id', $id);
+        $query_sexo = $CADUNICO->get('sexo');
+        return $query_sexo->row(0)->descricao;
+    }
+
+    public function get_raca_from_id_raca($id) {
+        $CADUNICO = $this->load->database('cad_unico', TRUE);
+
+        $CADUNICO->where('id', $id);
+        $query_sexo = $CADUNICO->get('cor');
+        return $query_sexo->row(0)->descricao;
+    }
+
 }

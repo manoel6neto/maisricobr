@@ -175,9 +175,54 @@
                                                             <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' ' . $util_model->substituir_simbolo_por_texto($criterio->tipo_filtro) . ' R$&nbsp;' . number_format($criterio->valor_filtro, 2, ',', '.'); ?></td>
                                                         </tr>
                                                         <?php break; ?>
+                                                    <?php case 7: ?>
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' ' . $util_model->substituir_simbolo_por_texto($criterio->tipo_filtro) . ' R$&nbsp;' . number_format($criterio->valor_filtro, 2, ',', '.'); ?></td>
+                                                        </tr>
+                                                        <?php break; ?>
                                                     <?php case 1: ?>
                                                         <tr class="odd">
-                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' ' . $util_model->substituir_simbolo_por_texto($criterio->tipo_filtro) . ' '; ?></td>
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' igual a ' . $criterio->bairro; ?></td>
+                                                        </tr>
+                                                        <?php break; ?>
+                                                    <?php case 2: ?>
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' igual a ' . $util_model->formata_cep($criterio->cep); ?></td>
+                                                        </tr>
+                                                        <?php break; ?>
+                                                    <?php case 3: ?>
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' ' . $util_model->substituir_simbolo_por_texto($criterio->tipo_filtro) . ' ' . $criterio->quantidade; ?></td>
+                                                        </tr>
+                                                        <?php break; ?>
+                                                    <?php case 4: ?>
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' ' . $util_model->substituir_simbolo_por_texto($criterio->tipo_filtro) . ' ' . $criterio->quantidade; ?></td>
+                                                        </tr>
+                                                        <?php break; ?>
+                                                    <?php case 5: ?>
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' ' . $util_model->substituir_simbolo_por_texto($criterio->tipo_filtro) . ' ' . $criterio->quantidade; ?></td>
+                                                        </tr>
+                                                        <?php break; ?>
+                                                    <?php case 8: ?>
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' entre ' . $criterio->idade_inicial . ' e ' . $criterio->idade_final . ' anos'; ?></td>
+                                                        </tr>
+                                                        <?php break; ?>
+                                                    <?php case 9: ?>
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ' ' . $util_model->substituir_simbolo_por_texto($criterio->tipo_filtro) . ' ' . $criterio->idade_inicial; ?></td>
+                                                        </tr>
+                                                        <?php break; ?>
+                                                    <?php case 10: ?>
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ': ' . $cadastro_unico_model->get_sexo_from_id_sexo($criterio->id_sexo); ?></td>
+                                                        </tr>
+                                                        <?php break; ?>
+                                                    <?php case 11: ?>
+                                                        <tr class="odd">
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $criterio->descricao . ': ' . $cadastro_unico_model->get_raca_from_id_raca($criterio->id_raca); ?></td>
                                                         </tr>
                                                         <?php break; ?>
                                                 <?php endswitch; ?>

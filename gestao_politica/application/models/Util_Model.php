@@ -32,4 +32,11 @@ class Util_Model extends CI_Model {
         return $resultado;
     }
 
+    public function formata_cep($cep) {
+        $string = ereg_replace("[^0-9]", "", $cep);
+        $string = substr($string, 0, 5) . '-' . substr($string, 5, 3);
+
+        return $string;
+    }
+
 }
