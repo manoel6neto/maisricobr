@@ -514,8 +514,8 @@
                         </div>
                     </div>
                 </div>
-                <br><br><br>
             </div>
+            <br><br><br>
 
             <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
             <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
