@@ -62,13 +62,25 @@ class Cadastro_Unico_Model extends CI_Model {
     public function get_pessoa_from_id($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
-        $CADUNICO->select('pessoa.*, familia_pessoa.*, funcao_familiar.descricao AS funcao_familiar, profissao.descricao AS profissao, escolaridade.descricao AS escolaridade');
+        $CADUNICO->select('pessoa.*, familia_pessoa.*, sexo.*, funcao_familiar.descricao AS funcao_familiar, profissao.descricao AS profissao, escolaridade.descricao AS escolaridade');
         $CADUNICO->where('pessoa.id', $id);
         $CADUNICO->join('familia_pessoa', 'pessoa.id = familia_pessoa.id_pessoa');
         $CADUNICO->join('funcao_familiar', 'familia_pessoa.id_funcao = funcao_familiar.id');
         $CADUNICO->join('profissao', 'pessoa.id_profissao = profissao.id');
         $CADUNICO->join('escolaridade', 'pessoa.id_escolaridade = escolaridade.id');
-//        $CADUNICO->join('sexo', 'pessoa.id_sexo = sexo.id');
+        $CADUNICO->join('sexo', 'pessoa.id_sexo = sexo.id');
+        $query = $CADUNICO->get('pessoa');
+        $CADUNICO->close();
+        return $query->row(0);
+    }
+
+    public function get_pessoa($id) {
+        $CADUNICO = $this->load->database('cad_unico', TRUE);
+
+        $CADUNICO->select('pessoa.*, familia_pessoa.*, funcao_familiar.*');
+        $CADUNICO->where('pessoa.id', $id);
+        $CADUNICO->join('familia_pessoa', 'pessoa.id = familia_pessoa.id_pessoa');
+        $CADUNICO->join('funcao_familiar', 'familia_pessoa.id_funcao = funcao_familiar.id');
         $query = $CADUNICO->get('pessoa');
         $CADUNICO->close();
         return $query->row(0);
