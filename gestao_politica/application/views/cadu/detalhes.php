@@ -80,13 +80,14 @@
                                     <?php foreach ($integrantes_familia as $integra): ?>
                                         <tr class="row100 body" style="margin: 0 !important;">
                                             <td class="cell100 column1"><?php echo $integra['nome']; ?></td>
-                                            <td class="cell100 column4"><?php echo $integra['descricao']; ?></td>
+                                            <td class="cell100 column4"><?php echo $integra['descricao']; ?>
+                                                                        <?php if ($integra['responsavel'] == 1) echo '(Responsável)'; else echo ''; ?></td>
                                             <td class="cell100 column5"><?php?></td>
                                             <!--<td class="cell100 column5"><a href="<?//php echo base_url("index.php/CadastroUnico/detalhar_familia?id={$familia->id}&idpessoa={$integra['id']}"); ?>">Detalhes</a></td>-->
                                         </tr>
                                     <?php endforeach; ?>
                                     <tr class="row100 body" style="margin: 0 !important;" style="background-color: #D0D0D0 !important;">
-                                        <td colspan="3" class="cell100 column1" style="background-color: #D0D0D0 !important; color: #008080;">Renda Total: R$ <?php echo $renda_familia ?></td>
+                                        <td colspan="3" class="cell100 column1" style="background-color: #D0D0D0 !important; color: #008080;">Renda Total: <?php echo 'R$&nbsp;' . number_format($renda_familia, 2, ',', '.'); ?></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -102,7 +103,7 @@
                                     <td colspan="2" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> <span style="color: #fff">Informações Pessoais</span> </td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100 column1" rowspan="6"><img style="margin-right: 10px;" src="https://via.placeholder.com/350x350"></td>
+                                    <td class="cell100 column1" rowspan="8"><img style="margin-right: 10px;" src="https://via.placeholder.com/350x350"></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <td class="cell100"><span class="titulo column1">Nome: </span><?php echo $pessoa_detalhar->nome; ?></td>
@@ -116,6 +117,9 @@
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <td class="cell100"><span class="titulo column1">CPF: </span><?php echo $pessoa_detalhar->cpf; ?></td>
+                                </tr>
+                                <tr class="row100 body" style="margin: 0 !important;">
+                                    <td class="cell100"><span class="titulo column1">CNS: </span><?php echo $pessoa_detalhar->cns; ?> </td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <td class="cell100"><span class="titulo column1">NIS: </span><?php echo $pessoa_detalhar->nis; ?></td>
@@ -136,9 +140,9 @@
                                     <td colspan="3" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Informações Gerais</span></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100 column1"><span class="titulo">Relação Familiar: </span><?php echo $pessoa_detalhar->descricao;?></td>
-                                    <td class="cell100 column1"><span class="titulo">Sexo: </span><?php?></td>
-                                    <td class="cell100 column1"><span class="titulo">Escolaridade: </span><?php ?></td>
+                                    <td class="cell100 column1"><span class="titulo">Relação Familiar: </span><?php echo $pessoa_detalhar->funcao_familiar;?> <?php if ($pessoa_detalhar->flag_responsavel == 1) echo '(Responsável)'; else echo ''; ?></td>
+                                    <td class="cell100 column1"><span class="titulo">Sexo: </span><?php if(isset($pessoa_detalhar->id_sexo) == 1) echo ('Masculino'); else echo('Feminino');?></td>
+                                    <td class="cell100 column1"><span class="titulo">Escolaridade: </span><?php echo $pessoa_detalhar->escolaridade; ?></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <td class="cell100 column1"><span class="titulo">Telefone Celular: </span><?php echo $pessoa_detalhar->celular; ?></td>
@@ -162,7 +166,7 @@
                                     <?php else: ?>
                                         <td colspan="2" class="cell100 column1"><span class="titulo">N° Carteira de Trabalho: </span>Não Informado</td>
                                     <?php endif; ?>
-                                    <td class="cell100 column1"><span class="titulo">Profissão: </span><?php ?></td>
+                                    <td class="cell100 column1"><span class="titulo">Profissão: </span><?php echo $pessoa_detalhar->profissao; ?></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <?php //if($pessoa_detalhar->carteira_assinada == 0): ?>
@@ -170,7 +174,7 @@
                                     <?php //else: ?>
                                         <td colspan="2" class="cell100 column1"><span class="titulo">Trabalho com carteira assinada: </span>Sim</td>
                                     <?php //endif; ?>
-                                    <td class="cell100 column1"><span class="titulo">Renda Atual: </span>R$ <?php echo $pessoa_detalhar->renda; ?></td>
+                                    <td class="cell100 column1"><span class="titulo">Renda Atual: </span><?php echo 'R$&nbsp;' . number_format($pessoa_detalhar->renda, 2, ',', '.'); ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -187,7 +191,7 @@
                                     <td colspan="2" class="cell100 column1"><span class="titulo">Cartão Nacional de Saúde: </span><?php echo $pessoa_detalhar->cns; ?></td>
                                     <td colspan="2" class="cell100 column1"><span class="titulo">Cartão Municipal de Saúde: </span><?php ?></td>
                                     <?php //if ($pessoa_detalhar->vacinacao_em_dia == 1): ?>
-                                        <td  colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span>Sim</td>
+                                        <td  colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span><?php ?></td>
                                     <?//php else: ?>
                                         <!--<td colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span>Não</td>-->
                                     <?//php endif; ?>

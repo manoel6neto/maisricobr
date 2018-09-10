@@ -232,7 +232,7 @@ th, td {
 
 
 /*==================================================================
-[ Ver1 ] Tela: detalhar_familia*/
+[ Ver1 ] Tela: detalhar_familia/Informações Pessoais*/
 
 .table100.ver1 th {
     font-family: Lato-Bold;
@@ -247,7 +247,7 @@ th, td {
     font-family: Lato-Regular;
     font-size: 15px;
     color: #808080;
-    line-height: 1.4;
+    line-height: 1.6;
 }
 
 .table100.ver1 .table100-body tr:nth-child(even) {

@@ -68,8 +68,8 @@ class CadastroUnico extends CI_Controller {
 
                 $integrantes_formatado = array();
                 foreach ($integrantes as $integra) {
-                    array_push($integrantes_formatado, array('id' => $integra->id, 'nome' => $integra->nome, 'descricao' => $integra->descricao));
-                }
+                    array_push($integrantes_formatado, array('id' => $integra->id, 'nome' => $integra->nome, 'descricao' => $integra->descricao , 'responsavel' => $integra->flag_responsavel));
+                } 
 
 //                var_dump($pessoa_detalhar); die();
                 //enviando dados para a view
