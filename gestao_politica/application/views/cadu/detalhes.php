@@ -98,7 +98,7 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #dae0e5;">
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
                                     <td colspan="2" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> <span style="color: #fff">Informações Pessoais</span> </td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
@@ -132,8 +132,8 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="3" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Informações Gerais </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="3" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Informações Gerais</span></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <td class="cell100 column1"><span class="titulo">Relação Familiar: </span><?php echo $pessoa_detalhar->descricao;?></td>
@@ -153,8 +153,8 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="3" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Informações Trabalhistas </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="3" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Informações Trabalhistas</span></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <?php if (isset($pessoa_detalhar->ctps)): ?>
@@ -180,8 +180,8 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Dados Gerais da Saúde </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Dados Gerais da Saúde</span></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <td colspan="2" class="cell100 column1"><span class="titulo">Cartão Nacional de Saúde: </span><?php echo $pessoa_detalhar->cns; ?></td>
@@ -192,8 +192,8 @@
                                         <!--<td colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span>Não</td>-->
                                     <?//php endif; ?>
                                 </tr>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Atendimentos na Saúde </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Atendimentos na Saúde</span></td>
                                 </tr>
                                 <?php //foreach ($consultas_pessoa_detalhar as $consulta): ?> 
                                     <tr class="row100 body" style="margin: 0 !important;">
@@ -204,8 +204,8 @@
                                         <td class="cell100 column2"><span class="titulo">Unidade: </span><?php //echo $consulta->unidade; ?></td>
                                     </tr>
                                 <?//php endforeach; ?>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Controle de Zoonoses </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Controle de Zoonoses</span></td>
                                 </tr>
                                 <?php //foreach ($zoonoses_pessoa_detalhar as $zoo): ?> 
                                     <tr class="row100 body" style="margin: 0 !important;">
@@ -225,8 +225,8 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Dados Aplicativo Cidadão </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Dados Aplicativo Cidadão</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -236,8 +236,8 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Dados Educação </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Dados Educação</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -247,8 +247,8 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Dados Imobiliário </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Dados Imobiliário</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -258,8 +258,8 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Participação em Pesquisas </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Participação em Pesquisas</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -269,8 +269,8 @@
                     <div class="table100-body js-pscroll" style="margin: 0 !important; padding: 0 !important;">
                         <table>
                             <tbody>
-                                <tr class="row100 body" style="margin: 0 !important; background-color: #d3d9df;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"> Participação em Programas Sociais </td>
+                                <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
+                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Participação em Programas Sociais</span></td>
                                 </tr>
                             </tbody>
                         </table>

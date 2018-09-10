@@ -251,7 +251,7 @@ th, td {
 }
 
 .table100.ver1 .table100-body tr:nth-child(even) {
-    background-color: #f8f6ff;
+    background-color: #E9ECEF;
 }
 
 /*---------------------------------------------
@@ -260,11 +260,11 @@ Tela: detalhar_familia*/
 .table100.ver1 {
     border-radius: 1px;
     overflow: hidden;
-    box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
-    -webkit-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
-    -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
-    -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.05);
+    -o-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.05);
+    -ms-box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.05);
 }
 
 .table100.ver1 .ps__rail-y {
