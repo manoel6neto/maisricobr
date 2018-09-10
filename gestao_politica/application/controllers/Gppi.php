@@ -6,6 +6,9 @@ class Gppi extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        if ($this->session->userdata('sessao') == FALSE) {
+            redirect('/login');
+        }
     }
 
     public function index() {
@@ -155,6 +158,10 @@ class Gppi extends CI_Controller {
                 $dados['total_pessoas_com_criterio_com_limitador'] = $this->GPPI_Model->calcula_total_familias_limitado_por_pessoa($multiplicador, $array_resultado);
                 $dados['total_familias_com_criterio_com_limitador'] = $this->GPPI_Model->calcula_total_familias_limitado_por_pessoa($multiplicador, $array_resultado);
                 $data['total_com_criterio_com_limitador'] = floatval($multiplicador * $valor_custo_total);
+            } else {
+                $data['total_com_criterio_com_limitador'] = floatval($beneficio->quantidade_beneficiarios * $valor_custo_total);
+                $data['total_pessoas_com_criterio_com_limitador'] = $this->GPPI_Model->count_familias_pessoas_return_object($array_resultado)['total_pessoas'];
+                $data['total_familias_com_criterio_com_limitador'] = $this->GPPI_Model->count_familias_pessoas_return_object($array_resultado)['total_familias'];
             }
 
             $data['cadastro_unico_model'] = $this->Cadastro_Unico_Model;

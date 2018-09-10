@@ -189,12 +189,12 @@
                                         <thead>
                                             <tr>
                                                 <th class="ui-state-default" rowspan="1" colspan="1">
-                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;">15</span>
+                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;"><?php echo $total_familias_com_criterio_com_limitador; ?></span>
                                                         <p style="padding-top: 10px !important;">Famílias Selecionadas</p>
                                                     </div>
                                                 </th>
                                                 <th class="ui-state-default" rowspan="1" colspan="3">
-                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;">25</span>
+                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;"><?php echo $total_pessoas_com_criterio_com_limitador; ?></span>
                                                         <p style="padding-top: 10px !important;">Pessoas Selecionadas</p>
                                                     </div>
                                                 </th>
@@ -224,14 +224,20 @@
                                                     <?php else: ?>
                                                         <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $parametro->nome_produto . ' (Benefício Concedido a família)'; ?></td>
                                                     <?php endif; ?>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo ($parametro->quantidade * 25); ?></td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario, 2, ',', '.'); ?></td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * 25, 2, ',', '.'); ?></td>
+                                                    <?php if ($beneficio->id_publico_alvo == 2): ?>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo ($total_pessoas_com_criterio_com_limitador); ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario, 2, ',', '.'); ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * $total_pessoas_com_criterio_com_limitador, 2, ',', '.'); ?></td>
+                                                    <?php else: ?>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo ($total_familias_com_criterio_com_limitador); ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario, 2, ',', '.'); ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * $total_familias_com_criterio_com_limitador, 2, ',', '.'); ?></td>
+                                                    <?php endif; ?>
                                                 </tr>
                                                 <tr class="odd">
                                                     <td valign="top" colspan="2" class="dataTables_wrapper" style="text-align: center;"></td>
                                                     <td valign="top" colspan="1" class="dataTables_wrapper" style="font-weight: 900;">Total:</td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * 250, 2, ',', '.'); ?></td>
+                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($total_com_criterio_com_limitador, 2, ',', '.'); ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </thead>
@@ -309,12 +315,12 @@
                                         <thead>
                                             <tr>
                                                 <th class="ui-state-default" rowspan="1" colspan="1">
-                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;">150</span>
+                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;"><?php echo $total_pessoas_com_criterio_sem_limitador; ?></span>
                                                         <p style="padding-top: 10px !important;">Famílias Selecionadas</p>
                                                     </div>
                                                 </th>
                                                 <th class="ui-state-default" rowspan="1" colspan="3">
-                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;">250</span>
+                                                    <div class="DataTables_sort_wrapper" style="text-align: center;"><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n" style="background-color: #8ebdc6; color: #ffffff; padding: 5px; border-radius: 5px;"><?php echo $total_familias_com_criterio_sem_limitador; ?></span>
                                                         <p style="padding-top: 10px !important;">Pessoas Selecionadas</p>
                                                     </div>
                                                 </th>
@@ -344,14 +350,20 @@
                                                     <?php else: ?>
                                                         <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $parametro->nome_produto . ' (Benefício Concedido a família)'; ?></td>
                                                     <?php endif; ?>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo ($parametro->quantidade * 250); ?></td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario, 2, ',', '.'); ?></td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * 250, 2, ',', '.'); ?></td>
+                                                    <?php if ($beneficio->id_publico_alvo == 2): ?>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo ($total_pessoas_com_criterio_sem_limitador); ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario, 2, ',', '.'); ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * $total_pessoas_com_criterio_sem_limitador, 2, ',', '.'); ?></td>
+                                                    <?php else: ?>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo ($total_familias_com_criterio_sem_limitador); ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario, 2, ',', '.'); ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * $total_familias_com_criterio_sem_limitador, 2, ',', '.'); ?></td>
+                                                    <?php endif; ?>
                                                 </tr>
                                                 <tr class="odd">
                                                     <td valign="top" colspan="2" class="dataTables_wrapper" style="text-align: center;"></td>
                                                     <td valign="top" colspan="1" class="dataTables_wrapper" style="font-weight: 900;">Total:</td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * 250, 2, ',', '.'); ?></td>
+                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($total_com_criterio_sem_limitador, 2, ',', '.'); ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </thead>

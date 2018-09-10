@@ -306,8 +306,8 @@
                 <?php if (isset($usuario_politicas_publicas)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <a href="<?php echo base_url("index.php/gppi"); ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_politicas_publicas.png"); ?>" alt="Gestão Integrada Políticas Públicas"></a>
-                            <a href="<?php echo base_url("index.php/gppi"); ?>" target="_blank">
+                            <a href="<?php echo base_url("index.php/Gppi"); ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_politicas_publicas.png"); ?>" alt="Gestão Integrada Políticas Públicas"></a>
+                            <a href="<?php echo base_url("index.php/Gppi"); ?>" target="_blank">
                                 <div class="card-body card-body-color">
                                     <p class="card-text card-text-color">Módulo para GESTÃO INTEGRADA DAS POLÍTICAS PÚBLICAS</p>
                                 </div>
