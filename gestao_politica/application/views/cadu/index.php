@@ -108,119 +108,6 @@
                 function initialize() {
                     var latlng = new google.maps.LatLng(<?php echo $cidade[0]->latitude; ?>, <?php echo $cidade[0]->longitude; ?>);
 
-                    var styledMapType = new google.maps.StyledMapType(
-                            [
-                                {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]},
-                                {elementType: 'labels.text.fill', stylers: [{color: '#523735'}]},
-                                {elementType: 'labels.text.stroke', stylers: [{color: '#f5f1e6'}]},
-                                {
-                                    featureType: 'administrative',
-                                    elementType: 'geometry.stroke',
-                                    stylers: [{color: '#c9b2a6'}]
-                                },
-                                {
-                                    featureType: 'administrative.land_parcel',
-                                    elementType: 'geometry.stroke',
-                                    stylers: [{color: '#dcd2be'}]
-                                },
-                                {
-                                    featureType: 'administrative.land_parcel',
-                                    elementType: 'labels.text.fill',
-                                    stylers: [{color: '#ae9e90'}]
-                                },
-                                {
-                                    featureType: 'landscape.natural',
-                                    elementType: 'geometry',
-                                    stylers: [{color: '#dfd2ae'}]
-                                },
-                                {
-                                    featureType: 'poi',
-                                    elementType: 'geometry',
-                                    stylers: [{color: '#dfd2ae'}]
-                                },
-                                {
-                                    featureType: 'poi',
-                                    elementType: 'labels.text.fill',
-                                    stylers: [{color: '#93817c'}]
-                                },
-                                {
-                                    featureType: 'poi.park',
-                                    elementType: 'geometry.fill',
-                                    stylers: [{color: '#a5b076'}]
-                                },
-                                {
-                                    featureType: 'poi.park',
-                                    elementType: 'labels.text.fill',
-                                    stylers: [{color: '#447530'}]
-                                },
-                                {
-                                    featureType: 'road',
-                                    elementType: 'geometry',
-                                    stylers: [{color: '#f5f1e6'}]
-                                },
-                                {
-                                    featureType: 'road.arterial',
-                                    elementType: 'geometry',
-                                    stylers: [{color: '#fdfcf8'}]
-                                },
-                                {
-                                    featureType: 'road.highway',
-                                    elementType: 'geometry',
-                                    stylers: [{color: '#f8c967'}]
-                                },
-                                {
-                                    featureType: 'road.highway',
-                                    elementType: 'geometry.stroke',
-                                    stylers: [{color: '#e9bc62'}]
-                                },
-                                {
-                                    featureType: 'road.highway.controlled_access',
-                                    elementType: 'geometry',
-                                    stylers: [{color: '#e98d58'}]
-                                },
-                                {
-                                    featureType: 'road.highway.controlled_access',
-                                    elementType: 'geometry.stroke',
-                                    stylers: [{color: '#db8555'}]
-                                },
-                                {
-                                    featureType: 'road.local',
-                                    elementType: 'labels.text.fill',
-                                    stylers: [{color: '#806b63'}]
-                                },
-                                {
-                                    featureType: 'transit.line',
-                                    elementType: 'geometry',
-                                    stylers: [{color: '#dfd2ae'}]
-                                },
-                                {
-                                    featureType: 'transit.line',
-                                    elementType: 'labels.text.fill',
-                                    stylers: [{color: '#8f7d77'}]
-                                },
-                                {
-                                    featureType: 'transit.line',
-                                    elementType: 'labels.text.stroke',
-                                    stylers: [{color: '#ebe3cd'}]
-                                },
-                                {
-                                    featureType: 'transit.station',
-                                    elementType: 'geometry',
-                                    stylers: [{color: '#dfd2ae'}]
-                                },
-                                {
-                                    featureType: 'water',
-                                    elementType: 'geometry.fill',
-                                    stylers: [{color: '#b9d3c2'}]
-                                },
-                                {
-                                    featureType: 'water',
-                                    elementType: 'labels.text.fill',
-                                    stylers: [{color: '#92998d'}]
-                                }
-                            ],
-                            {name: 'Styled Map'});
-
                     var options = {
                         zoom: 11,
                         center: latlng,
@@ -228,15 +115,10 @@
                         rotateControl: false,
                         mapTypeControl: false,
                         scaleControl: false,
-                        mapTypeControlOptions: {
-                            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
-                                'styled_map']},
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
 
                     map = new google.maps.Map(document.getElementById("mapa"), options);
-                    map.mapTypes.set('styled_map', styledMapType);
-                    map.setMapTypeId('styled_map');
                 }
 
                 function bindInfoWindow(marker, map, infoWindow, html) {
@@ -244,6 +126,18 @@
                         infoWindow.setContent(html);
                         infoWindow.open(map, marker);
                     });
+                }
+
+                function formatarCEP(str) {
+                    var re = /^([\d]{2})\.*([\d]{3})-*([\d]{3})/; // Pode usar ? no lugar do *
+
+                    if (re.test(str)) {
+                        return str.replace(re, "$1.$2-$3");
+                    } else {
+                        alert("CEP inválido!");
+                    }
+
+                    return "";
                 }
 
                 function carregarPontos() {
@@ -262,7 +156,7 @@
                             map: map
                         });
 
-                        var html = "<div><h3>" + "<p>Código família: " + ponto.codigo + "</p>" + "<p>Bairro: " + ponto.bairro + "</p>" + "<p>Endereço: " + ponto.logradouro + ", " + ponto.numero + "</p>" + "<p>Cep: " + ponto.cep + "</p>" + "<p><a href='http://localhost/gestao_politica/index.php/CadastroUnico/detalhar_familia?id=" + ponto.id + "' target='_blank'>Detalhes</a></p></h3></div>";
+                        var html = "<div><h3>" + "<p>Código família: " + ponto.codigo + "</p>" + "<p>Bairro: " + ponto.bairro + "</p>" + "<p>Endereço: " + ponto.logradouro + ", " + ponto.numero + "</p>" + "<p>Cep: " + formatarCEP(ponto.cep) + "</p>" + "<p><a href='http://localhost/gestao_politica/index.php/CadastroUnico/detalhar_familia?id=" + ponto.id + "' target='_blank'>Detalhes</a></p></h3></div>";
                         bindInfoWindow(marker, map, infoWindow, html);
 
                         markers.push(marker);
