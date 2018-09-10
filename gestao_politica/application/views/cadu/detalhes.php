@@ -60,7 +60,7 @@
                 <small style="color: #008080;">Código da Família: <?php echo $familia->codigo; ?></small>
             </h1>
 
-            <?php if ( isset($integrantes_familia) && isset($pessoa_detalhar)): ?>
+            <?php if (isset($integrantes_familia) && isset($pessoa_detalhar)): ?>
                 <div class="wrap-table100 ver1 m-b-16">
                     <div class="table100 ver1 m-b-16">
                         <div class="table100-head" style="padding-top: 0 !important;">
@@ -81,8 +81,13 @@
                                         <tr class="row100 body" style="margin: 0 !important;">
                                             <td class="cell100 column1"><?php echo $integra['nome']; ?></td>
                                             <td class="cell100 column4"><?php echo $integra['descricao']; ?>
-                                                                        <?php if ($integra['responsavel'] == 1) echo '(Responsável)'; else echo ''; ?></td>
-                                            <td class="cell100 column5"><?php?></td>
+                                                <?php
+                                                if ($integra['responsavel'] == 1)
+                                                    echo '(Responsável)';
+                                                else
+                                                    echo '';
+                                                ?></td>
+                                            <td class="cell100 column5"><?php ?></td>
                                             <!--<td class="cell100 column5"><a href="<?//php echo base_url("index.php/CadastroUnico/detalhar_familia?id={$familia->id}&idpessoa={$integra['id']}"); ?>">Detalhes</a></td>-->
                                         </tr>
                                     <?php endforeach; ?>
@@ -140,8 +145,18 @@
                                     <td colspan="3" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Informações Gerais</span></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100 column1"><span class="titulo">Relação Familiar: </span><?php echo $pessoa_detalhar->funcao_familiar;?> <?php if ($pessoa_detalhar->flag_responsavel == 1) echo '(Responsável)'; else echo ''; ?></td>
-                                    <td class="cell100 column1"><span class="titulo">Sexo: </span><?php if(isset($pessoa_detalhar->id_sexo) == 1) echo ('Masculino'); else echo('Feminino');?></td>
+                                    <td class="cell100 column1"><span class="titulo">Relação Familiar: </span><?php echo $pessoa_detalhar->funcao_familiar; ?> <?php
+                                        if ($pessoa_detalhar->flag_responsavel == 1)
+                                            echo '(Responsável)';
+                                        else
+                                            echo '';
+                                        ?></td>
+                                    <td class="cell100 column1"><span class="titulo">Sexo: </span><?php
+                                        if (isset($pessoa_detalhar->id_sexo) == 1)
+                                            echo ('Masculino');
+                                        else
+                                            echo('Feminino');
+                                        ?></td>
                                     <td class="cell100 column1"><span class="titulo">Escolaridade: </span><?php echo $pessoa_detalhar->escolaridade; ?></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
@@ -169,11 +184,11 @@
                                     <td class="cell100 column1"><span class="titulo">Profissão: </span><?php echo $pessoa_detalhar->profissao; ?></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <?php //if($pessoa_detalhar->carteira_assinada == 0): ?>
+                                    <?php //if($pessoa_detalhar->carteira_assinada == 0):    ?>
                                         <!--<td colspan="2" class="cell100 column1"><span class="titulo">Trabalho com carteira assinada: </span>Não</td>-->
-                                    <?php //else: ?>
-                                        <td colspan="2" class="cell100 column1"><span class="titulo">Trabalho com carteira assinada: </span>Sim</td>
-                                    <?php //endif; ?>
+                                    <?php //else:    ?>
+                                    <td colspan="2" class="cell100 column1"><span class="titulo">Trabalho com carteira assinada: </span></td>
+                                    <?php //endif;    ?>
                                     <td class="cell100 column1"><span class="titulo">Renda Atual: </span><?php echo 'R$&nbsp;' . number_format($pessoa_detalhar->renda, 2, ',', '.'); ?></td>
                                 </tr>
                             </tbody>
@@ -190,8 +205,8 @@
                                 <tr class="row100 body" style="margin: 0 !important;">
                                     <td colspan="2" class="cell100 column1"><span class="titulo">Cartão Nacional de Saúde: </span><?php echo $pessoa_detalhar->cns; ?></td>
                                     <td colspan="2" class="cell100 column1"><span class="titulo">Cartão Municipal de Saúde: </span><?php ?></td>
-                                    <?php //if ($pessoa_detalhar->vacinacao_em_dia == 1): ?>
-                                        <td  colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span><?php ?></td>
+                                    <?php //if ($pessoa_detalhar->vacinacao_em_dia == 1):   ?>
+                                    <td  colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span><?php ?></td>
                                     <?//php else: ?>
                                         <!--<td colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span>Não</td>-->
                                     <?//php endif; ?>
@@ -199,27 +214,27 @@
                                 <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
                                     <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Atendimentos na Saúde</span></td>
                                 </tr>
-                                <?php //foreach ($consultas_pessoa_detalhar as $consulta): ?> 
-                                    <tr class="row100 body" style="margin: 0 !important;">
-                                        <td class="cell100 column2" style="padding-left: 20px !important;"><span class="titulo">Convenio: </span><?php //echo $consulta->convenio; ?></td>
-                                        <td class="cell100 column2"><span class="titulo">Data: </span><?php //echo $model_cad_unico->date_format($consulta->data); ?></td>
-                                        <td colspan="2" class="cell100 column2"><span class="titulo">Profissional: </span><?php //echo $consulta->profissional; ?></td>
-                                        <td class="cell100 column2"><span class="titulo">Status: </span><?php //echo $consulta->status; ?></td>
-                                        <td class="cell100 column2"><span class="titulo">Unidade: </span><?php //echo $consulta->unidade; ?></td>
-                                    </tr>
+                                <?php //foreach ($consultas_pessoa_detalhar as $consulta):    ?> 
+                                <tr class="row100 body" style="margin: 0 !important;">
+                                    <td class="cell100 column2" style="padding-left: 20px !important;"><span class="titulo">Convenio: </span><?php //echo $consulta->convenio;      ?></td>
+                                    <td class="cell100 column2"><span class="titulo">Data: </span><?php //echo $model_cad_unico->date_format($consulta->data);     ?></td>
+                                    <td colspan="2" class="cell100 column2"><span class="titulo">Profissional: </span><?php //echo $consulta->profissional;      ?></td>
+                                    <td class="cell100 column2"><span class="titulo">Status: </span><?php //echo $consulta->status;      ?></td>
+                                    <td class="cell100 column2"><span class="titulo">Unidade: </span><?php //echo $consulta->unidade;      ?></td>
+                                </tr>
                                 <?//php endforeach; ?>
                                 <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
                                     <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff">Controle de Zoonoses</span></td>
                                 </tr>
-                                <?php //foreach ($zoonoses_pessoa_detalhar as $zoo): ?> 
-                                    <tr class="row100 body" style="margin: 0 !important;">
-                                        <td class="cell100 column3" style="padding-left: 20px !important;"><span class="titulo">Categoria: </span><?php //echo $zoo->categoria; ?></td>
-                                        <td class="cell100 column5"><span class="titulo">Nome: </span><?php //echo $zoo->nome; ?></td>
-                                        <td class="cell100 column3"><span class="titulo">Nascimento: </span><?php //echo $model_cad_unico->date_format($zoo->data_nascimento); ?></td>
-                                        <td class="cell100 column5"><span class="titulo">Raça: </span><?php //echo $zoo->raca; ?></td>
-                                        <td class="cell100 column5"><span class="titulo">Cor: </span><?php //echo $zoo->cor; ?></td>
-                                        <td class="cell100 column3"><span class="titulo">Sexo: </span><?php //echo $zoo->sexo; ?></td>
-                                    </tr>
+                                <?php //foreach ($zoonoses_pessoa_detalhar as $zoo):    ?> 
+                                <tr class="row100 body" style="margin: 0 !important;">
+                                    <td class="cell100 column3" style="padding-left: 20px !important;"><span class="titulo">Categoria: </span><?php //echo $zoo->categoria;      ?></td>
+                                    <td class="cell100 column5"><span class="titulo">Nome: </span><?php //echo $zoo->nome;      ?></td>
+                                    <td class="cell100 column3"><span class="titulo">Nascimento: </span><?php //echo $model_cad_unico->date_format($zoo->data_nascimento);      ?></td>
+                                    <td class="cell100 column5"><span class="titulo">Raça: </span><?php //echo $zoo->raca;      ?></td>
+                                    <td class="cell100 column5"><span class="titulo">Cor: </span><?php //echo $zoo->cor;      ?></td>
+                                    <td class="cell100 column3"><span class="titulo">Sexo: </span><?php //echo $zoo->sexo;      ?></td>
+                                </tr>
                                 <?//php endforeach; ?>
                             </tbody>
                         </table>
