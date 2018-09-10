@@ -29,7 +29,7 @@ class CadastroUnico extends CI_Controller {
 
         //Carregando os dados dos usuários
         $cidade = $this->Cadastro_Unico_Model->get_dados_cidade(1);
-        $familias = $this->Cadastro_Unico_Model->get_familias();
+        $familias = $this->Cadastro_Unico_Model->get_familias_completo();
         $json_mapa = json_encode($familias);
 
         $data['cidade'] = $cidade;

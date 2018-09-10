@@ -106,10 +106,10 @@
                 var markerCluster;
 
                 function initialize() {
-                    var latlng = new google.maps.LatLng( <?php echo $cidade[0]->latitude; ?>, <?php echo $cidade[0]->longitude; ?>);
+                    var latlng = new google.maps.LatLng(<?php echo $cidade[0]->latitude; ?>, <?php echo $cidade[0]->longitude; ?>);
 
                     var options = {
-                        zoom: 14,
+                        zoom: 11,
                         center: latlng,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
@@ -140,7 +140,7 @@
                             map: map
                         });
 
-                        var html = "<div><h3>" + "<p>Código família: " + ponto.codigo + "</p>" + "<p>Bairro: " + ponto.bairro + "</p>" + "<p>Endereço: " + ponto.endereco + "</p>" + "<p>Cep: " + ponto.cep + "</p>" + "<p><a href='http://convenios.physisbrasil.com.br/gestao_politica/index.php/CadastroUnico/detalhar_familia?id=" + ponto.id + "' target='_blank'>Detalhes</a></p></h3></div>";
+                        var html = "<div><h3>" + "<p>Código família: " + ponto.codigo + "</p>" + "<p>Bairro: " + ponto.bairro + "</p>" + "<p>Endereço: " + ponto.logradouro + ", " + ponto.numero + "</p>" + "<p>Cep: " + ponto.cep + "</p>" + "<p><a href='http://convenios.physisbrasil.com.br/gestao_politica/index.php/CadastroUnico/detalhar_familia?id=" + ponto.id + "' target='_blank'>Detalhes</a></p></h3></div>";
                         bindInfoWindow(marker, map, infoWindow, html);
 
                         markers.push(marker);

@@ -18,6 +18,16 @@ class Cadastro_Unico_Model extends CI_Model {
         return $query->result();
     }
 
+    public function get_familias_completo() {
+        $CADUNICO = $this->load->database('cad_unico', TRUE);
+
+        $CADUNICO->select('familia.*, endereco.*');
+        $CADUNICO->join('endereco', 'endereco.id = familia.id_endereco');
+        $query = $CADUNICO->get('familia');
+        $CADUNICO->close();
+        return $query->result();
+    }
+
     public function get_familia_from_id($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
