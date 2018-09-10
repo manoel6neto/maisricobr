@@ -19,6 +19,7 @@
         <link href="<?php echo base_url("layout/css/administracao.css"); ?>" rel="stylesheet" type="text/css">
         <link href="<?php echo base_url("layout/css/table.css"); ?>" rel="stylesheet" type="text/css">
         <link href="<?php echo base_url("layout/css/util.css"); ?>" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url("layout/css/gppi.css"); ?>" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("layout/fonts/font-awesome-4.7.0/css/font-awesome.min.css"); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("layout/vendor/animate/animate.css"); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("layout/vendor/select2/select2.min.css"); ?>">
@@ -55,57 +56,63 @@
         </nav>
 
         <!-- Page Content -->
-        <div class="container" style="padding: 10px;">
-
-            <?php if (isset($erro_editar) !== false) echo "<p style='margin-top: 20px; color: #cc0000; font-size: 14px; font-weight: bold;' class=\"error\">" . $erro_editar . "</p>"; ?>
-            <?php if (isset($sucesso_editar) !== false) echo "<p style='margin-top: 20px; color: #3399ff; font-size: 14px; font-weight: bold;' class=\"error\">" . $sucesso_editar . "</p>"; ?>
-
-            <!-- Page Heading -->
-            <h1 class="my-4">
-                <small>Usuários do sistema</small>
-            </h1>
-
-            <?php if (isset($usuarios)): ?>
-                <div class="wrap-table100">
-                    <div class="table100 ver1 m-b-16">
-                        <div class="table100-head">
-                            <table>
-                                <thead>
-                                    <tr class="row100 head">
-                                        <th class="cell100 column1">Nome</th>
-                                        <th class="cell100 column2">Cpf</th>
-                                        <th class="cell100 column3">Email</th>
-                                        <th class="cell100 column4">Admin</th>
-                                        <th class="cell100 column5"> Ações </th>
-                                    </tr>
-                                </thead>
-                            </table>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Usuários do Sistema</h6>
                         </div>
-                        <div class="table100-body js-pscroll">
-                            <table>
-                                <tbody>
-                                    <?php foreach ($usuarios as $usuario): ?>
-                                        <tr class="row100 body">
-                                            <td class="cell100 column1"><?php echo $usuario->nome; ?></td>
-                                            <td class="cell100 column2"><?php echo $usuario->cpf; ?></td>
-                                            <td class="cell100 column3"><?php echo $usuario->email; ?></td>
-                                            <?php if ($usuario->is_admin == 1): ?>
-                                                <td class="cell100 column4">Sim</td>
-                                            <?php else: ?>
-                                                <td class="cell100 column4">Não</td>
-                                            <?php endif; ?>
-                                            <td class="cell100 column5"><a title="Editar Usuário" style="background: transparent;" href="<?php echo base_url("index.php/administracao/edit?user={$usuario->id}"); ?>"><img src="<?php echo base_url("layout/images/edit_icon.png"); ?>" style="width: 22%; padding: 5px;"/></a>&nbsp;<a title="Apagar Usuário" style="background: transparent;" href="<?php echo base_url("index.php/administracao/delete?user={$usuario->id}"); ?>"><img src="<?php echo base_url("layout/images/delete_icon.png"); ?>" style="width: 22%; padding: 5px;"/></a></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                        <div class="panel-body">                            
+                            <div class="navbar navbar-main">
+                                <?php if (isset($erro_editar) !== false) echo "<p style='margin-top: 20px; color: #cc0000; font-size: 14px; font-weight: bold;' class=\"error\">" . $erro_editar . "</p>"; ?>
+                                <?php if (isset($sucesso_editar) !== false) echo "<p style='margin-top: 20px; color: #3399ff; font-size: 14px; font-weight: bold;' class=\"error\">" . $sucesso_editar . "</p>"; ?>
+                                <?php if (isset($usuarios)): ?>
+                                    <div class="wrap-table100">
+                                        <div class="table100 ver1 m-b-16">
+                                            <div class="table100-head">
+                                                <table>
+                                                    <thead>
+                                                        <tr class="row100 head">
+                                                            <th class="cell100 column1">Nome</th>
+                                                            <th class="cell100 column2">Cpf</th>
+                                                            <th class="cell100 column3">Email</th>
+                                                            <th class="cell100 column4">Admin</th>
+                                                            <th class="cell100 column5"> Ações </th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="table100-body js-pscroll">
+                                                <table>
+                                                    <tbody>
+                                                        <?php foreach ($usuarios as $usuario): ?>
+                                                            <tr class="row100 body">
+                                                                <td class="cell100 column1"><?php echo $usuario->nome; ?></td>
+                                                                <td class="cell100 column2"><?php echo $usuario->cpf; ?></td>
+                                                                <td class="cell100 column3"><?php echo $usuario->email; ?></td>
+                                                                <?php if ($usuario->is_admin == 1): ?>
+                                                                    <td class="cell100 column4">Sim</td>
+                                                                <?php else: ?>
+                                                                    <td class="cell100 column4">Não</td>
+                                                                <?php endif; ?>
+                                                                <td class="cell100 column5"><a title="Editar Usuário" style="background: transparent;" href="<?php echo base_url("index.php/administracao/edit?user={$usuario->id}"); ?>"><img src="<?php echo base_url("layout/images/edit_icon.png"); ?>" style="width: 22%; padding: 5px;"/></a>&nbsp;<a title="Apagar Usuário" style="background: transparent;" href="<?php echo base_url("index.php/administracao/delete?user={$usuario->id}"); ?>"><img src="<?php echo base_url("layout/images/delete_icon.png"); ?>" style="width: 22%; padding: 5px;"/></a></td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <h3>Nenhum usuário encontrado!</h3>
+                                <?php endif; ?>
+                                <a href="<?php echo base_url("index.php/administracao/edit"); ?>" title="Adicionar Usuário" class="login100-form-btn link-button" style="width: 120px !important; height: 40px;">Adicionar</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            <?php else: ?>
-                <h3>Nenhum usuário encontrado!</h3>
-            <?php endif; ?>
-            <a href="<?php echo base_url("index.php/administracao/edit"); ?>" title="Adicionar Usuário" class="login100-form-btn link-button" style="width: 120px !important; height: 40px;">Adicionar</a>
+            </div>
         </div>
 
         <!-- Bootstrap core JavaScript -->

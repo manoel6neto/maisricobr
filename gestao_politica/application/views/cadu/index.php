@@ -19,6 +19,7 @@
         <link href="<?php echo base_url("layout/css/administracao.css"); ?>" rel="stylesheet" type="text/css">
         <link href="<?php echo base_url("layout/css/table.css"); ?>" rel="stylesheet" type="text/css">
         <link href="<?php echo base_url("layout/css/util.css"); ?>" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url("layout/css/gppi.css"); ?>" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("layout/fonts/font-awesome-4.7.0/css/font-awesome.min.css"); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("layout/vendor/animate/animate.css"); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url("layout/vendor/select2/select2.min.css"); ?>">
@@ -55,40 +56,56 @@
         </nav>
 
         <!-- Page Content -->
-        <div class="container" style="padding: 10px;">
-
-            <?php if (isset($erro_editar) !== false) echo "<p style='margin-top: 20px; color: #cc0000; font-size: 14px; font-weight: bold;' class=\"error\">" . $erro_editar . "</p>"; ?>
-            <?php if (isset($sucesso_editar) !== false) echo "<p style='margin-top: 20px; color: #3399ff; font-size: 14px; font-weight: bold;' class=\"error\">" . $sucesso_editar . "</p>"; ?>
-
-            <!-- Page Heading -->
-            <h1 class="my-4">
-                <small style="color: #008080;">CADASTRO CIDADÃO UNIFICADO</small>
-            </h1>
-
-            <?php if (isset($cidade) && isset($familias)): ?>
-                <div class="wrap-table100">
-                    <div class="table100 ver1 m-b-16">
-                        <div class="table100-head" style="padding-top: 0 !important;">
-                            <table>
-                                <thead>
-                                    <tr class="row100 head" style="margin: 0 !important;">
-                                        <th class="cell100 column1" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Cidade:<p style="color: #008080; font-weight: bold; font-size: 18px;"><?php echo $cidade[0]->nome; ?></p></th>
-                                        <th class="cell100 column2" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Total Habitantes:<p style="color: #008080; font-weight: bold; font-size: 18px;"><?php echo number_format($cidade[0]->populacao, 0, ',', '.'); ?></p></th>
-                                        <th class="cell100 column3" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">População Atendida:<p style="color: #008080; font-weight: bold; font-size: 18px;">10.000</p></th>
-                                        <th class="cell100 column4" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Total Famílias:<p style="color: #008080; font-weight: bold; font-size: 18px;">5.642</p></th>
-                                    </tr>
-                                </thead>
-                            </table>
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Cadastro Cidadão Unificado</h6>
                         </div>
-                        <div class="table100-body js-pscroll">
-                            <div id="mapa" style="width: 100%; height: 500px;">
+                        <div class="panel-body">                            
+                            <div class="navbar navbar-main">
+                                <?php if (isset($cidade) && isset($familias)): ?>
+                                    <div class="wrap-table100">
+                                        <div class="table100 ver1 m-b-16">
+                                            <div class="table100-head" style="padding-top: 0 !important;">
+                                                <table>
+                                                    <thead>
+                                                        <tr class="row100 head" style="margin: 0 !important;">
+                                                            <th class="cell100 column1" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Cidade:<p style="color: #008080; font-weight: bold; font-size: 18px;"><?php echo $cidade[0]->nome; ?></p></th>
+                                                            <th class="cell100 column2" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Total Habitantes:<p style="color: #008080; font-weight: bold; font-size: 18px;"><?php echo number_format($cidade[0]->populacao, 0, ',', '.'); ?></p></th>
+                                                            <th class="cell100 column3" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">População Atendida:<p style="color: #008080; font-weight: bold; font-size: 18px;">10.000</p></th>
+                                                            <th class="cell100 column4" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Total Famílias:<p style="color: #008080; font-weight: bold; font-size: 18px;">5.642</p></th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                            <div class="table100-body js-pscroll">
+                                                <div id="mapa" style="width: 100%; height: 500px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="wrap-table100">
+                                        <div class="table100 ver1 m-b-16">
+                                            <div class="table100-head" style="padding-top: 0 !important;">
+                                                <table>
+                                                    <thead>
+                                                        <tr class="row100 head" style="margin: 0 !important;">
+                                                            <th class="cell100 column1" style="padding-top: 0 !important; text-align: center !important; margin: 0 !important;">Cidade:<p style="color: #008080; font-weight: bold; font-size: 18px;">Nenhum cadastro encontrado!</p></th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?> 
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php else: ?>
-                <h3>Nenhuma família encontrada!</h3>
-            <?php endif; ?> 
+            </div>
         </div>
 
         <!-- Maps API Javascript -->

@@ -33,7 +33,9 @@
 
 .panel-title {
     line-height: 20px;
-    font-size: 15px;
+    font-size: 18px;
+    font-weight: 700 !important;
+    color: #8ebdc6 !important;
 }
 
 body {
