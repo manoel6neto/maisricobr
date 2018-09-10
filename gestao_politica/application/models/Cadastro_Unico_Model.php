@@ -147,4 +147,12 @@ class Cadastro_Unico_Model extends CI_Model {
         return $query_sexo->row(0)->descricao;
     }
 
+    public function get_foto_from_id($id) {
+        $CADUNICO = $this->load->database('cad_unico', TRUE);
+
+        $CADUNICO->where('id', $id);
+        $query_sexo = $CADUNICO->get('foto_pessoa');
+        return $query_sexo->row(0)->data;
+    }
+
 }
