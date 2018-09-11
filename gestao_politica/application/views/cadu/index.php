@@ -173,7 +173,7 @@
                             map: map
                         });
 
-                        var html = "<div><h3>" + "<p>Código família: " + ponto.codigo + "</p>" + "<p>Bairro: " + ponto.bairro + "</p>" + "<p>Endereço: " + ponto.logradouro + ", " + ponto.numero + "</p>" + "<p>Cep: " + formatarCEP(ponto.cep) + "</p>" + "<p><a href='http://localhost/gestao_politica/index.php/CadastroUnico/detalhar_familia?id=" + ponto.id + "' target='_blank'>Detalhes</a></p></h3></div>";
+                        var html = "<div><h3>" + "<p>Código família: " + ponto.codigo + "</p>" + "<p>Bairro: " + ponto.bairro + "</p>" + "<p>Endereço: " + ponto.logradouro + ", " + ponto.numero + "</p>" + "<p>Cep: " + formatarCEP(ponto.cep) + "</p>" + "<p><a style='background-color: transparent !important;' href='http://localhost/gestao_politica/index.php/CadastroUnico/detalhar_familia?id=" + ponto.id + "' target='_blank'>Detalhes</a></p></h3></div>";
                         bindInfoWindow(marker, map, infoWindow, html);
 
                         markers.push(marker);

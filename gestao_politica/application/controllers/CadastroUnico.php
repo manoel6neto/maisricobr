@@ -51,14 +51,14 @@ class CadastroUnico extends CI_Controller {
             $responsavel_detalhar = $this->Cadastro_Unico_Model->get_responsavel_familia($familia->id);
 
             if ($this->input->get('idpessoa', TRUE) != FALSE) {
-                $pessoa_detalhar = $this->Cadastro_Unico_Model->get_pessoa_from_id($this->input->get('idpessoa', TRUE));
+                $pessoa_detalhar = $this->Cadastro_Unico_Model->get_pessoa_from_id($this->input->get('idpessoa', TRUE))->id;
             } else {
-                $pessoa_detalhar = $responsavel_detalhar;
+                $pessoa_detalhar = $responsavel_detalhar->id_pessoa;
             }
 
             if ($familia != NULL && $integrantes != NULL && $pessoa_detalhar != NULL) {
                 $pessoas_familia = $this->Cadastro_Unico_Model->get_pessoas_from_ids($integrantes);
-                $pessoa_detalhar = $this->Cadastro_Unico_Model->get_pessoa_from_id($pessoa_detalhar->id);
+                $pessoa_detalhar = $this->Cadastro_Unico_Model->get_pessoa_from_id($pessoa_detalhar);
 
                 $renda_familia = floatval(0);
                 foreach ($pessoas_familia as $pessoa) {
@@ -68,10 +68,9 @@ class CadastroUnico extends CI_Controller {
 
                 $integrantes_formatado = array();
                 foreach ($integrantes as $integra) {
-                    array_push($integrantes_formatado, array('id' => $integra->id, 'nome' => $integra->nome, 'descricao' => $integra->descricao , 'responsavel' => $integra->flag_responsavel));
-                } 
+                    array_push($integrantes_formatado, array('id' => $integra->id_pessoa, 'nome' => $integra->nome, 'descricao' => $integra->descricao, 'responsavel' => $integra->flag_responsavel));
+                }
 
-//                var_dump($pessoa_detalhar); die();
                 //enviando dados para a view
                 $data['familia'] = $familia;
                 $data['renda_familia'] = $renda_familia;

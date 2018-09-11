@@ -62,13 +62,9 @@ class Cadastro_Unico_Model extends CI_Model {
     public function get_pessoa_from_id($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
-        $CADUNICO->select('pessoa.*, familia_pessoa.*, sexo.*, funcao_familiar.descricao AS funcao_familiar, profissao.descricao AS profissao, escolaridade.descricao AS escolaridade');
+        $CADUNICO->select('pessoa.*, familia_pessoa.*');
         $CADUNICO->where('pessoa.id', $id);
         $CADUNICO->join('familia_pessoa', 'pessoa.id = familia_pessoa.id_pessoa');
-        $CADUNICO->join('funcao_familiar', 'familia_pessoa.id_funcao = funcao_familiar.id');
-        $CADUNICO->join('profissao', 'pessoa.id_profissao = profissao.id');
-        $CADUNICO->join('escolaridade', 'pessoa.id_escolaridade = escolaridade.id');
-        $CADUNICO->join('sexo', 'pessoa.id_sexo = sexo.id');
         $query = $CADUNICO->get('pessoa');
         $CADUNICO->close();
         return $query->row(0);
@@ -138,7 +134,31 @@ class Cadastro_Unico_Model extends CI_Model {
         $query_sexo = $CADUNICO->get('sexo');
         return $query_sexo->row(0)->descricao;
     }
+    
+    public function get_escolaridade_from_id_escolaridade($id) {
+        $CADUNICO = $this->load->database('cad_unico', TRUE);
 
+        $CADUNICO->where('id', $id);
+        $query_sexo = $CADUNICO->get('escolaridade');
+        return $query_sexo->row(0)->descricao;
+    }
+    
+    public function get_profissao_from_id_profissao($id) {
+        $CADUNICO = $this->load->database('cad_unico', TRUE);
+
+        $CADUNICO->where('id', $id);
+        $query_sexo = $CADUNICO->get('profissao');
+        return $query_sexo->row(0)->descricao;
+    }
+    
+    public function get_funcao_from_id_funcao($id) {
+        $CADUNICO = $this->load->database('cad_unico', TRUE);
+
+        $CADUNICO->where('id', $id);
+        $query_sexo = $CADUNICO->get('funcao_familiar');
+        return $query_sexo->row(0)->descricao;
+    }
+    
     public function get_raca_from_id_raca($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 

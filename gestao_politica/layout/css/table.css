@@ -234,6 +234,22 @@ th, td {
 /*==================================================================
 [ Ver1 ] Tela: detalhar_familia/Informações Pessoais*/
 
+.panel-title {
+    line-height: 20px;
+    font-size: 22px;
+    font-weight: 700 !important;
+    color: #8ebdc6 !important;
+}
+
+.panel-heading {
+    background: #FAFAFA;
+    border-bottom: 1px solid #eff2f7;
+    color: #707478;
+    border-color: #eff2f7;
+    padding: 10px 15px;
+    border: none;
+}
+
 .table100.ver1 th {
     font-family: Lato-Bold;
     font-size: 18px;
