@@ -109,7 +109,7 @@
         </div>
 
         <!-- Maps API Javascript -->
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAYb-pdADJlCklVP1BuJAouviuEBjCzZxw&amp;sensor=false"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDVEnbCxTVJXm0PC6RnuhGwOFr6Pke8J2o&amp;"></script>
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <!-- Bootstrap core JavaScript -->
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
