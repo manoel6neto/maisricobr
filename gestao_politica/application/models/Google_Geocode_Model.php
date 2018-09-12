@@ -1,6 +1,6 @@
 <?php
 
-class GPPI_Model extends CI_Model {
+class Google_Geocode_Model extends CI_Model {
 
     public function geocode($address) {
 

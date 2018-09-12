@@ -161,8 +161,8 @@ class Gppi extends CI_Controller {
             } else {
                 $data['array_resultado_com_limite'] = $array_resultado;
                 $data['total_com_criterio_com_limitador'] = $valor_custo_total_aplicado_filtro;
-                $data['total_pessoas_com_criterio_com_limitador'] = $this->GPPI_Model->count_familias_pessoas_return_object($array_resultado)['total_pessoas'];
-                $data['total_familias_com_criterio_com_limitador'] = $this->GPPI_Model->count_familias_pessoas_return_object($array_resultado)['total_familias'];
+                $data['total_pessoas_com_criterio_com_limitador'] = $contagem_total_atendem_filtros['total_pessoas'];
+                $data['total_familias_com_criterio_com_limitador'] = $contagem_total_atendem_filtros['total_familias'];
             }
 
             $data['cadastro_unico_model'] = $this->Cadastro_Unico_Model;
