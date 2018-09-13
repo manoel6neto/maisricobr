@@ -179,30 +179,30 @@
                                                         <div class="card bg-light col-sm">
                                                             <div class="card-header" style="width: 219px;">Localidade</div>
                                                             <div class="card-body">
-                                                                <label><input class="my-1" type="checkbox"> Bairro</label>                                                              
-                                                                <label><input class="my-1" type="checkbox"> CEP</label>
+                                                                <label><input class="my-1" name="chk1" type="checkbox" id="chk1" value=""> Bairro</label>                                                              
+                                                                <label><input class="my-1" name="chk2" type="checkbox" id="chk2" value=""> CEP</label>
                                                             </div>
                                                         </div>
                                                         <div class="card bg-light col-sm ml-1">
                                                             <div class="card-header">Familia</div>
                                                             <div class="card-body">
                                                                 <!--<label><input type="checkbox"> Quantidade de Pessoas</label>-->                                                               
-                                                                <label><input class="my-1" type="checkbox"> Quantidade de crianças</label>
-                                                                <label><input class="my-1" type="checkbox"> Quantidade de idosos</label>
+                                                                <label><input class="my-1" name="chk3" type="checkbox" id="chk3" value=""> Quantidade de crianças</label>
+                                                                <label><input class="my-1" name="chk4" type="checkbox" id="chk4" value=""> Quantidade de idosos</label>
                                                                 <!--<label><input class="my-1" type="checkbox"> Quantidade de jovens</label>-->
                                                                 <!--<label><input class="my-1" type="checkbox"> Quantidade de deficientes</label>-->
-                                                                <label><input class="my-1" type="checkbox"> Renda familiar</label>
+                                                                <label><input class="my-1" name="chk5" type="checkbox" id="chk5" value=""> Renda familiar</label><br><br>
                                                                 <!--<label><input class="my-1" type="checkbox"> Renda per capita</label>-->
                                                             </div>
                                                         </div>
                                                         <div class="card bg-light col-sm ml-1">
                                                             <div class="card-header">Pessoa</div>
                                                             <div class="card-body">
-                                                                <label><input class="my-1" type="checkbox"> Renda</label>
-                                                                <label><input class="my-1" type="checkbox"> Faixa etária</label>
-                                                                <label><input class="my-1" type="checkbox"> Idade</label>
-                                                                <label><input class="my-1" type="checkbox"> Sexo</label>
-                                                                <label><input class="my-1" type="checkbox"> Cor ou raça</label>
+                                                                <label><input class="my-1" name="chk6" type="checkbox" id="chk6" value=""> Renda</label>
+                                                                <label><input class="my-1" name="chk7" type="checkbox" id="chk7" value=""> Faixa etária</label>
+                                                                <label><input class="my-1" name="chk8" type="checkbox" id="chk8" value=""> Idade</label>
+                                                                <label><input class="my-1" name="chk9" type="checkbox" id="chk9" value=""> Sexo</label>
+                                                                <label><input class="my-1" name="chk10" type="checkbox" id="chk10" value=""> Cor ou raça</label><br><br>
                                                                 <!--<label><input class="my-1" type="checkbox"> Tipo de deficiência</label>-->
                                                                 <!--<label><input class="my-1" type="checkbox"> Sabe ler e escrever</label>-->
                                                                 <!--<label><input class="my-1" type="checkbox"> Ano/série que frequentou</label>-->
@@ -210,21 +210,21 @@
                                                                 <!--<label><input class="my-1" type="checkbox"> Situação mercado de trabalho</label>-->
                                                             </div>
                                                         </div>
-                                                        <!--                                                        <div class="card bg-light col-sm ml-1">
-                                                                                                                    <div class="card-header">Domicílio</div>
-                                                                                                                    <div class="card-body">
-                                                                                                                        <label><input class="my-1" type="checkbox"> Local domicílio</label>
-                                                                                                                        <label><input class="my-1" type="checkbox"> N° de cômodos</label>
-                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo de piso</label>
-                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo de construção</label>
-                                                                                                                        <label><input class="my-1" type="checkbox"> Possui água canalizada?</label>
-                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo abastecimento água</label>
-                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo escoamento sanitário</label>
-                                                                                                                        <label><input class="my-1" type="checkbox"> Destino do lixo</label>
-                                                                                                                        <label><input class="my-1" type="checkbox"> Tipo de iluminação</label>
-                                                                                                                        <label><input class="my-1" type="checkbox"> Espécie do domicílio</label>
-                                                                                                                    </div>
-                                                                                                                </div>-->
+                                                        <!-- <div class="card bg-light col-sm ml-1">
+                                                                <div class="card-header">Domicílio</div>
+                                                                <div class="card-body">
+                                                                    <label><input class="my-1" type="checkbox"> Local domicílio</label>
+                                                                    <label><input class="my-1" type="checkbox"> N° de cômodos</label>
+                                                                    <label><input class="my-1" type="checkbox"> Tipo de piso</label>
+                                                                    <label><input class="my-1" type="checkbox"> Tipo de construção</label>
+                                                                    <label><input class="my-1" type="checkbox"> Possui água canalizada?</label>
+                                                                    <label><input class="my-1" type="checkbox"> Tipo abastecimento água</label>
+                                                                    <label><input class="my-1" type="checkbox"> Tipo escoamento sanitário</label>
+                                                                    <label><input class="my-1" type="checkbox"> Destino do lixo</label>
+                                                                    <label><input class="my-1" type="checkbox"> Tipo de iluminação</label>
+                                                                    <label><input class="my-1" type="checkbox"> Espécie do domicílio</label>
+                                                                </div>
+                                                            </div>-->
 
                                                     </div>
                                                 </div>
@@ -238,7 +238,189 @@
                                                     </div>
                                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                                         <div class="card-body">
-                                                            Ordem dos Critérios
+
+                                                            <!--Bairro-->
+
+                                                            <div id="sb1" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">Bairro</span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--CEP-->
+
+                                                            <div id="sb2" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">CEP</span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--Quantidade de crianças-->
+
+                                                            <div id="sb3" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">Quantidade de crianças</span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--Quantidade de idosos-->
+
+                                                            <div id="sb4" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">Quantidade de idosos</span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--Renda Familiar-->
+
+                                                            <div id="sb5" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">Renda familiar</span>
+                                                                    </div>
+                                                                    <select class="custom-select" id="inputGroupSelect01">
+                                                                      <option selected>Escolha uma opção...</option>
+                                                                      <option value="1">Maior que</option>
+                                                                      <option value="2">Menor que</option>
+                                                                      <option value="3">Maior ou igual a</option>
+                                                                      <option value="4">Menor ou igual a</option>
+                                                                      <option value="5">Igual a</option>
+                                                                      <option value="6">Diferente de</option>
+                                                                    </select>
+                                                                  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div>                                                               
+                                                            </div>
+
+                                                            <!--Renda-->
+
+                                                            <div id="sb6" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">Renda pessoal</span>
+                                                                    </div>
+                                                                    <select class="custom-select" id="inputGroupSelect01">
+                                                                      <option selected>Escolha uma opção...</option>
+                                                                      <option value="1">Maior que</option>
+                                                                      <option value="2">Menor que</option>
+                                                                      <option value="3">Maior ou igual a</option>
+                                                                      <option value="4">Menor ou igual a</option>
+                                                                      <option value="5">Igual a</option>
+                                                                      <option value="6">Diferente de</option>
+                                                                    </select>
+                                                                  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--Faixa Etária-->
+
+                                                            <div id="sb7" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">Faixa etária entre</span>
+                                                                    </div>
+                                                                        <input type="text" class="form-control">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">até</span>
+                                                                    </div>
+                                                                        <input type="text" class="form-control">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div> 
+                                                            </div>
+
+                                                            <!--Idade-->
+
+                                                            <div id="sb8" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">Idade</span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div> 
+                                                            </div>
+
+                                                            <!--Sexo-->
+
+                                                            <div id="sb9" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">Sexo</span>
+                                                                    </div>
+                                                                    <select class="custom-select" id="inputGroupSelect01">
+                                                                      <option selected>Escolha uma opção...</option>
+                                                                      <option value="1">Masculino</option>
+                                                                      <option value="2">Femino</option>
+                                                                    </select>
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--Cor ou Raça-->
+
+                                                            <div id="sb10" style="display:none">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text" id="basic-addon3">Cor ou raça</span>
+                                                                    </div>
+                                                                    <select class="custom-select" id="inputGroupSelect01">
+                                                                      <option selected>Escolha uma opção...</option>
+                                                                      <option value="1">Opção 1</option>
+                                                                      <option value="2">Opção 2</option>
+                                                                      <option value="2">Opção 3</option>
+                                                                      <option value="2">Opção 4</option>
+                                                                    </select>
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <button type="button" class="btn btn-outline-danger">X</button>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -420,6 +602,24 @@
                 $('#tabelaBeneficios a').on('click', function (e) {
                     e.preventDefault();
                     return false;
+                });
+
+                $(document).ready(function ()
+                {
+                    //hide all contents
+                    $('p[id^=sb]').hide();
+
+                    $('input[id^=chk]').change(function () {
+
+                        // get checkbox index
+                        var index = $(this).attr('id').replace('chk', '');
+                        //show respective contents
+                        if ($(this).is(':checked'))
+                            $('#sb' + index).show();
+                        else
+                            $('#sb' + index).hide();
+                    });
+
                 });
             </script>
     </body>
