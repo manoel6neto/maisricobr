@@ -261,7 +261,7 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">CEP</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <input type="text" class="form-control" id="cep" name="cep" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-outline-secondary" type="button">Confirmar</button>
                                                                         <input type="button" id="chk2" name="chk2" value="X" class="btn02 btn btn-outline-danger">
@@ -308,14 +308,14 @@
                                                                     </div>
                                                                     <select class="custom-select" id="inputGroupSelect01">
                                                                         <option selected>Escolha uma opção...</option>
-                                                                        <option value="1">Maior que</option>
-                                                                        <option value="2">Menor que</option>
-                                                                        <option value="3">Maior ou igual a</option>
-                                                                        <option value="4">Menor ou igual a</option>
-                                                                        <option value="5">Igual a</option>
-                                                                        <option value="6">Diferente de</option>
+                                                                        <option value="1">></option>
+                                                                        <option value="2">>=</option>
+                                                                        <option value="3">=</option>
+                                                                        <option value="4">!=</option>
+                                                                        <option value="5"><</option>
+                                                                        <option value="6"><=</option>
                                                                     </select>
-                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <input type="text" class="form-control" id="rendaFamiliar" name="rendaFamiliar" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-outline-secondary" type="button">Confirmar</button>
                                                                         <input type="button" id="chk5" name="chk5" value="X" class="btn05 btn btn-outline-danger">
@@ -332,14 +332,14 @@
                                                                     </div>
                                                                     <select class="custom-select" id="inputGroupSelect01">
                                                                         <option selected>Escolha uma opção...</option>
-                                                                        <option value="1">Maior que</option>
-                                                                        <option value="2">Menor que</option>
-                                                                        <option value="3">Maior ou igual a</option>
-                                                                        <option value="4">Menor ou igual a</option>
-                                                                        <option value="5">Igual a</option>
-                                                                        <option value="6">Diferente de</option>
+                                                                        <option value="1">></option>
+                                                                        <option value="2">>=</option>
+                                                                        <option value="3">=</option>
+                                                                        <option value="4">!=</option>
+                                                                        <option value="5"><</option>
+                                                                        <option value="6"><=</option>
                                                                     </select>
-                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <input type="text" class="form-control" id="renda" name="renda" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-outline-secondary" type="button">Confirmar</button>
                                                                         <input type="button" id="chk6" name="chk6" value="X" class="btn06 btn btn-outline-danger">
@@ -354,11 +354,11 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Faixa etária entre</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="text" class="form-control" id="faixaEntre" name="faixaEntre">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">até</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control">
+                                                                    <input type="text" class="form-control" id="faixaAte" name="faixaAte" >
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-outline-secondary" type="button">Confirmar</button>
                                                                         <input type="button" id="chk7" name="chk7" value="X" class="btn07 btn btn-outline-danger">
@@ -373,7 +373,7 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Idade</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <input type="text" class="form-control" id="idade" name="idade" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
                                                                         <button class="btn btn-outline-secondary" type="button">Confirmar</button>
                                                                         <input type="button" id="chk8" name="chk8" value="X" class="btn08 btn btn-outline-danger">
@@ -569,6 +569,39 @@
                     onBeforeMask: function (value, opts) {
                         return value;
                     }
+                });
+
+                $("#renda").inputmask('decimal', {
+                    radixPoint: ",",
+                    groupSeparator: ".",
+                    autoGroup: true,
+                    digits: 2,
+                    digitsOptional: false,
+                    placeholder: '0',
+                    rightAlign: false,
+                    onBeforeMask: function (value, opts) {
+                        return value;
+                    }
+                });
+
+                $("#rendaFamiliar").inputmask('decimal', {
+                    radixPoint: ",",
+                    groupSeparator: ".",
+                    autoGroup: true,
+                    digits: 2,
+                    digitsOptional: false,
+                    placeholder: '0',
+                    rightAlign: false,
+                    onBeforeMask: function (value, opts) {
+                        return value;
+                    }
+                });
+
+                $(document).ready(function () {
+                    $("#cep").inputmask("99999-999");
+                    $("#idade").inputmask("999");
+                    $("#faixaEntre").inputmask("999");
+                    $("#faixaAte").inputmask("999");
                 });
 
                 $("#next_inicial").click(function () {
