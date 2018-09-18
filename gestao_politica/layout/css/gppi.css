@@ -6,6 +6,9 @@
     padding: 10px 15px;
     border: none;
 }
+.noresize {
+    resize: none; 
+}
 
 .gppi-nav {
     background-color: transparent !important;

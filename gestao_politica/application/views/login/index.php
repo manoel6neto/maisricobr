@@ -47,7 +47,7 @@
                         </button>
                     </div>
 
-                    <?php echo form_close(); ?></form>
+                    <?php echo form_close(); ?>
                 </div>
             </div>
         </div>

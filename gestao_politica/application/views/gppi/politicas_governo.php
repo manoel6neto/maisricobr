@@ -83,9 +83,9 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <?php if (isset($projeto)): ?>
-                                <h6 class="panel-title">Editar Projeto: <?php echo $projeto->nome . ' (Dados Institucionais)'; ?></h6>
+                                <h6 class="panel-title">Editar Projeto: <?php echo $projeto->nome . ' (Política de Governo)'; ?></h6>
                             <?php else: ?>
-                                <h6 class="panel-title">Novo Projeto (Dados Institucionais)</h6>
+                                <h6 class="panel-title">Novo Projeto (Política de Governo)</h6>
                             <?php endif; ?>
                         </div>
 
@@ -95,48 +95,59 @@
                                     <span class="glyphicon glyphicon-info-sign">Campos marcados com * são de preenchimento obrigatório.</span>
                                 </div>
 
-
-                                <!-- Formulário DADOS INICIAIS -->   
-                                <form id="form_projeto_inicial" name="form_projeto_inicial" action="novo_projeto" method="post">
-                                    <legend class="py-2">Dados da instituição</legend>
+                                <!-- Formulário politicas de governo -->   
+                                <form id="form_projeto_politicas" name="form_projeto_politicas" action="politicas_governo" method="post">
+                                    <legend class="py-2">Dados do programa</legend>
                                     <div class="form-row">
-                                        <div class="form-group col-sm-8">
-                                            <label for="instituicao">Instituição *</label>
-                                            <select class="form-control" id="instituicao" name="instituicao">
-                                                <option value="">Selecione uma opção</option>
-                                            </select>
+                                        <div class="form-group col">
+                                            <label for="nome">Nome *</label>
+                                            <input type="text" class="form-control" id="nome" name="nome">
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="endereco">Endereço *</label>
+                                            <input type="text" class="form-control" id="endereco" name="endereco">
                                         </div>
                                     </div>
-                                    <legend class="py-2">Dados do orgão</legend>
+                                    <div class="form-row">
+                                        <div class="form-group col">
+                                            <label for="site">Site</label>
+                                            <input type="text" class="form-control" id="site" name="site">
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="midia">Rede Social</label>
+                                            <input type="text" class="form-control" id="midia" name="midia">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col">
+                                            <label for="unidade">Unidade *</label>
+                                            <input type="text" class="form-control" id="unidade" name="unidade">
+                                        </div>
+                                        <div class="form-group col">
+                                            <label for="responsavel">Responsável *</label>
+                                            <input type="text" class="form-control" id="responsavel" name="responsavel">
+                                        </div>
+                                    </div>
                                     <div class="form-row">
                                         <div class="form-group col-sm-8">
-                                            <label for="orgao">Órgão *</label>
-                                            <select class="form-control" id="orgao" name="orgao">
-                                                <option value="">Selecione uma opção</option>
-                                            </select>
+                                            <label for="qdd">QDD *</label>
+                                            <textarea type="text" class="form-control noresize" id="qdd" name="qdd" rows="5"></textarea>
                                         </div>
-                                        <div class="form-group col-md-3 ml-auto my-1" style="margin-left: 50px !important;">
-                                            <label for="qualificacao">Qualificação *</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioFuncao" value="funcao" checked>
-                                                <label class="form-check-label" for="inlineRadioFuncao">Função</label>
+                                        <div class="form-group col" style="margin-left: 20px !important;">
+                                            <label for="qdd">Vigência *</label>
+                                            <div class="form-group" style="padding: 10px !important;">
+                                                <div class="form-group form-row col-sm-8">
+                                                    <label for="data_inicio">Data inicial</label>
+                                                    <input type="text" class="form-control" id="data_inicio" name="data_inicio">
+                                                </div>
+                                                <div class="form-group form-row col-sm-8">
+                                                    <label for="data_final">Data final</label>
+                                                    <input type="text" class="form-control" id="data_final" name="data_final">
+                                                </div>
                                             </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioSubFuncao" value="subfuncao">
-                                                <label class="form-check-label" for="inlineRadioSubFuncao">Sub. Função</label>
-                                            </div>
                                         </div>
                                     </div>
-                                    <legend class="py-2">Sub. Função</legend>
-                                    <div class="form-row">
-                                        <div class="form-group col-sm-8">
-                                            <label for="subfunc">Sub. Função</label>
-                                            <select class="form-control" id="subfunc" name="subfunc">
-                                                <option value="">Selecione uma opção</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-row mr-1 mt-5">
+                                    <div class="form-group form-row mr-1 mt-5" style="margin-top: 20px !important;">
                                         <button type="submit" id="avancar" class="btn btn-primary ml-auto">&nbsp;Avançar&nbsp;</button>                                            
                                     </div>
                                 </form>
