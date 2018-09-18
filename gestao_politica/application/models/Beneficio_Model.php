@@ -139,8 +139,25 @@ class Beneficio_Model extends CI_Model {
     }
 
     // -------------- Critério de Seleção - Sexo --------------------
-    public function get_all_sexo2($a) {
-        return null;
+    public function get_all_selecao_sexo() {
+        $query = $this->db->get('sexo');
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+        
+        return NULL;
     }
-
+    
+    // -------------- Critério de Seleção - Cor ou Raça --------------------
+    public function get_all_selecao_cor_raca() {
+        $query = $this->db->get('cor');
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+        
+        return NULL;
+    }
+    
+    // -------------- Insert - Critérios de Seleção --------------------
+    
 }

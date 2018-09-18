@@ -432,9 +432,10 @@
                                                                         <span class="input-group-text" id="basic-addon3">Sexo</span>
                                                                     </div>
                                                                     <select class="custom-select" id="sexo" name="sexo">
-                                                                        <option selected>Escolha uma opção...</option>
-                                                                        <option value="0">Masculino</option>
-                                                                        <option value="1">Femino</option>
+                                                                        <option selected>Selecione uma opção</option>                                                                            
+                                                                        <?php foreach ($sexo as $sex): ?>
+                                                                            <option value="<?php echo $sex->id; ?>"><?php echo $sex->descricao; ?></option>
+                                                                        <?php endforeach; ?>
                                                                     </select>
                                                                     <div class="input-group-append">
                                                                         <select class="custom-select" id="selectCondicional" name="selectCondicional">
@@ -454,11 +455,10 @@
                                                                         <span class="input-group-text" id="basic-addon3">Cor ou raça</span>
                                                                     </div>
                                                                     <select class="custom-select" id="corRaca" name="corRaca">
-                                                                        <option selected>Escolha uma opção...</option>
-                                                                        <option value="0">Opção 1</option>
-                                                                        <option value="1">Opção 2</option>
-                                                                        <option value="2">Opção 3</option>
-                                                                        <option value="3">Opção 4</option>
+                                                                        <option selected>Selecione uma opção</option>
+                                                                        <?php foreach ($cor as $cor_raca): ?>
+                                                                            <option value="<?php echo $cor_raca->id; ?>"><?php echo $cor_raca->descricao; ?></option>
+                                                                        <?php endforeach; ?>
                                                                     </select>
                                                                     <div class="input-group-append">
                                                                         <select class="custom-select" id="selectCondicional" name="selectCondicional">
@@ -595,148 +595,148 @@
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.inputmask.bundle.js"); ?>"></script>
         <script type="text/javascript">
-        $("#valorMensal").inputmask('decimal', {
-            radixPoint: ",",
-            groupSeparator: ".",
-            autoGroup: true,
-            digits: 2,
-            digitsOptional: false,
-            placeholder: '0',
-            rightAlign: false,
-            onBeforeMask: function (value, opts) {
-                return value;
-            }
-        });
+                                                                $("#valorMensal").inputmask('decimal', {
+                                                                    radixPoint: ",",
+                                                                    groupSeparator: ".",
+                                                                    autoGroup: true,
+                                                                    digits: 2,
+                                                                    digitsOptional: false,
+                                                                    placeholder: '0',
+                                                                    rightAlign: false,
+                                                                    onBeforeMask: function (value, opts) {
+                                                                        return value;
+                                                                    }
+                                                                });
 
-        $("#valorUnitario").inputmask('decimal', {
-            radixPoint: ",",
-            groupSeparator: ".",
-            autoGroup: true,
-            digits: 2,
-            digitsOptional: false,
-            placeholder: '0',
-            rightAlign: false,
-            onBeforeMask: function (value, opts) {
-                return value;
-            }
-        });
+                                                                $("#valorUnitario").inputmask('decimal', {
+                                                                    radixPoint: ",",
+                                                                    groupSeparator: ".",
+                                                                    autoGroup: true,
+                                                                    digits: 2,
+                                                                    digitsOptional: false,
+                                                                    placeholder: '0',
+                                                                    rightAlign: false,
+                                                                    onBeforeMask: function (value, opts) {
+                                                                        return value;
+                                                                    }
+                                                                });
 
-        $("#rendaPessoal").inputmask('decimal', {
-            radixPoint: ",",
-            groupSeparator: ".",
-            autoGroup: true,
-            digits: 2,
-            digitsOptional: false,
-            placeholder: '0',
-            rightAlign: false,
-            onBeforeMask: function (value, opts) {
-                return value;
-            }
-        });
+                                                                $("#rendaPessoal").inputmask('decimal', {
+                                                                    radixPoint: ",",
+                                                                    groupSeparator: ".",
+                                                                    autoGroup: true,
+                                                                    digits: 2,
+                                                                    digitsOptional: false,
+                                                                    placeholder: '0',
+                                                                    rightAlign: false,
+                                                                    onBeforeMask: function (value, opts) {
+                                                                        return value;
+                                                                    }
+                                                                });
 
-        $("#rendaFamiliar").inputmask('decimal', {
-            radixPoint: ",",
-            groupSeparator: ".",
-            autoGroup: true,
-            digits: 2,
-            digitsOptional: false,
-            placeholder: '0',
-            rightAlign: false,
-            onBeforeMask: function (value, opts) {
-                return value;
-            }
-        });
+                                                                $("#rendaFamiliar").inputmask('decimal', {
+                                                                    radixPoint: ",",
+                                                                    groupSeparator: ".",
+                                                                    autoGroup: true,
+                                                                    digits: 2,
+                                                                    digitsOptional: false,
+                                                                    placeholder: '0',
+                                                                    rightAlign: false,
+                                                                    onBeforeMask: function (value, opts) {
+                                                                        return value;
+                                                                    }
+                                                                });
 
-        $(document).ready(function () {
-            $("#cep").inputmask("99999-999");
-            $("#idade").inputmask("999");
-            $("#faixaEtariaInicial").inputmask("999");
-            $("#faixaEtariaFinal").inputmask("999");
-        });
+                                                                $(document).ready(function () {
+                                                                    $("#cep").inputmask("99999-999");
+                                                                    $("#idade").inputmask("999");
+                                                                    $("#faixaEtariaInicial").inputmask("999");
+                                                                    $("#faixaEtariaFinal").inputmask("999");
+                                                                });
 
-        $("#next_inicial").click(function () {
-            if ($('#beneficio').val() != '' && $('#orgaoGestor').val() != '' && $('#tipoBeneficio').val() != '' && $('#publicoAlvo').val() != '') {
-                $('#tabelaBeneficios li:nth-child(2) a').tab('show');
-            }
-        });
+                                                                $("#next_inicial").click(function () {
+                                                                    if ($('#beneficio').val() != '' && $('#orgaoGestor').val() != '' && $('#tipoBeneficio').val() != '' && $('#publicoAlvo').val() != '') {
+                                                                        $('#tabelaBeneficios li:nth-child(2) a').tab('show');
+                                                                    }
+                                                                });
 
-        $("#next_limitadores").click(function () {
-            if ($('#valorMensal').val() != '' || $('#quantidadeBeneficiarios').val() != '') {
-                $('#tabelaBeneficios li:nth-child(3) a').tab('show');
-            }
-        });
+                                                                $("#next_limitadores").click(function () {
+                                                                    if ($('#valorMensal').val() != '' || $('#quantidadeBeneficiarios').val() != '') {
+                                                                        $('#tabelaBeneficios li:nth-child(3) a').tab('show');
+                                                                    }
+                                                                });
 
-        $("#next_criterios").click(function () {
-            $('#tabelaBeneficios li:nth-child(4) a').tab('show');
-        });
+                                                                $("#next_criterios").click(function () {
+                                                                    $('#tabelaBeneficios li:nth-child(4) a').tab('show');
+                                                                });
 
-        $("#ant_limitadores").click(function () {
-            $('#tabelaBeneficios li:nth-child(1) a').tab('show');
-        });
+                                                                $("#ant_limitadores").click(function () {
+                                                                    $('#tabelaBeneficios li:nth-child(1) a').tab('show');
+                                                                });
 
-        $("#ant_criterios").click(function () {
-            $('#tabelaBeneficios li:nth-child(2) a').tab('show');
-        });
+                                                                $("#ant_criterios").click(function () {
+                                                                    $('#tabelaBeneficios li:nth-child(2) a').tab('show');
+                                                                });
 
-        $("#ant_parametros").click(function () {
-            $('#tabelaBeneficios li:nth-child(3) a').tab('show');
-        });
+                                                                $("#ant_parametros").click(function () {
+                                                                    $('#tabelaBeneficios li:nth-child(3) a').tab('show');
+                                                                });
 
-        $('#tabelaBeneficios a').on('click', function (e) {
-            e.preventDefault();
-            return false;
-        });
+                                                                $('#tabelaBeneficios a').on('click', function (e) {
+                                                                    e.preventDefault();
+                                                                    return false;
+                                                                });
 
-        //Função checkbox para seleção dos campos de Critério de Seleção
+                                                                //Função checkbox para seleção dos campos de Critério de Seleção
 
-        $(document).ready(function ()
-        {
-            //hide all contents
-            $('p[id^=sb]').hide();
+                                                                $(document).ready(function ()
+                                                                {
+                                                                    //hide all contents
+                                                                    $('p[id^=sb]').hide();
 
-            $('input[id^=chk]').click(function () {
+                                                                    $('input[id^=chk]').click(function () {
 
-                // get checkbox index
-                var index = $(this).attr('id').replace('chk', '');
-                //show respective contents
-                if ($(this).is(':checked'))
-                    $('#sb' + index).show();
-                else
-                    $('#sb' + index).hide();
-            });
+                                                                        // get checkbox index
+                                                                        var index = $(this).attr('id').replace('chk', '');
+                                                                        //show respective contents
+                                                                        if ($(this).is(':checked'))
+                                                                            $('#sb' + index).show();
+                                                                        else
+                                                                            $('#sb' + index).hide();
+                                                                    });
 
-        });
+                                                                });
 
-        $(".btn01").click(function () {
-            $(".chk01").prop("click", $(this).prop("click"));
-        });
-        $(".btn02").click(function () {
-            $(".chk02").prop("click", $(this).prop("click"));
-        });
-        $(".btn03").click(function () {
-            $(".chk03").prop("click", $(this).prop("click"));
-        });
-        $(".btn04").click(function () {
-            $(".chk04").prop("click", $(this).prop("click"));
-        });
-        $(".btn05").click(function () {
-            $(".chk05").prop("click", $(this).prop("click"));
-        });
-        $(".btn06").click(function () {
-            $(".chk06").prop("click", $(this).prop("click"));
-        });
-        $(".btn07").click(function () {
-            $(".chk07").prop("click", $(this).prop("click"));
-        });
-        $(".btn08").click(function () {
-            $(".chk08").prop("click", $(this).prop("click"));
-        });
-        $(".btn09").click(function () {
-            $(".chk09").prop("click", $(this).prop("click"));
-        });
-        $(".btn10").click(function () {
-            $(".chk10").prop("click", $(this).prop("click"));
-        });
+                                                                $(".btn01").click(function () {
+                                                                    $(".chk01").prop("click", $(this).prop("click"));
+                                                                });
+                                                                $(".btn02").click(function () {
+                                                                    $(".chk02").prop("click", $(this).prop("click"));
+                                                                });
+                                                                $(".btn03").click(function () {
+                                                                    $(".chk03").prop("click", $(this).prop("click"));
+                                                                });
+                                                                $(".btn04").click(function () {
+                                                                    $(".chk04").prop("click", $(this).prop("click"));
+                                                                });
+                                                                $(".btn05").click(function () {
+                                                                    $(".chk05").prop("click", $(this).prop("click"));
+                                                                });
+                                                                $(".btn06").click(function () {
+                                                                    $(".chk06").prop("click", $(this).prop("click"));
+                                                                });
+                                                                $(".btn07").click(function () {
+                                                                    $(".chk07").prop("click", $(this).prop("click"));
+                                                                });
+                                                                $(".btn08").click(function () {
+                                                                    $(".chk08").prop("click", $(this).prop("click"));
+                                                                });
+                                                                $(".btn09").click(function () {
+                                                                    $(".chk09").prop("click", $(this).prop("click"));
+                                                                });
+                                                                $(".btn10").click(function () {
+                                                                    $(".chk10").prop("click", $(this).prop("click"));
+                                                                });
         </script>
     </body>
 </html>

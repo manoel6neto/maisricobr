@@ -91,7 +91,7 @@ class Gppi extends CI_Controller {
 
         $this->load->view('gppi/beneficios', $data);
     }
-
+    
     public function simulacao() {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
@@ -104,7 +104,8 @@ class Gppi extends CI_Controller {
         if ($this->input->post() != false) {
             $post_data = $this->input->post();
         }
-
+        $data['sexo'] = $this->Beneficio_Model->get_all_selecao_sexo();
+        $data['cor'] = $this->Beneficio_Model->get_all_selecao_cor_raca();
         $data['orgaos'] = $this->Beneficio_Model->get_all_orgao_gestor();
         $data['tipos_beneficio'] = $this->Beneficio_Model->get_all_tipo_beneficio();
         $data['publicos_alvo'] = $this->Beneficio_Model->get_all_publico_alvo();
