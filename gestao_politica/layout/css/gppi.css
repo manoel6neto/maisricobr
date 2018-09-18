@@ -10,6 +10,24 @@
     resize: none; 
 }
 
+label {
+    padding-bottom: 5px !important;
+}
+
+.form-control:focus {
+    border-color: #8ebdc6 !important;
+    outline: 0 !important;
+    -webkit-box-shadow: 1px 1px 1px #8ebdc6 !important;
+    box-shadow: 1px 1px 1px #8ebdc6 !important;
+}
+
+.btn:focus {
+    border-color: #8ebdc6 !important;
+    outline: 0 !important;
+    -webkit-box-shadow: 1px 1px 1px #8ebdc6 !important;
+    box-shadow: 1px 1px 1px #8ebdc6 !important;
+}
+
 .gppi-nav {
     background-color: transparent !important;
     font-weight: 600 !important;
