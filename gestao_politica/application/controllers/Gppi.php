@@ -32,7 +32,7 @@ class Gppi extends CI_Controller {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
 
-        $this->load->model('Gppi_Model');
+        $this->load->model('GPPI_Model');
         $this->load->model('Util_Model');
 
         $data['gppi_model'] = $this->Gppi_Model;
@@ -45,7 +45,7 @@ class Gppi extends CI_Controller {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
 
-        $this->load->model('Gppi_Model');
+        $this->load->model('GPPI_Model');
         $this->load->model('Util_Model');
 
         if ($this->input->post() != false) {
@@ -62,7 +62,7 @@ class Gppi extends CI_Controller {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
 
-        $this->load->model('Gppi_Model');
+        $this->load->model('GPPI_Model');
         $this->load->model('Util_Model');
 
         if ($this->input->post() != false) {
