@@ -28,6 +28,49 @@ class Gppi extends CI_Controller {
         $this->load->view('gppi/index', $data);
     }
 
+    public function processos() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('Gppi_Model');
+        $this->load->model('Util_Model');
+
+        $data['gppi_model'] = $this->Gppi_Model;
+        $data['util_model'] = $this->Util_Model;
+
+        $this->load->view('gppi/processos', $data);
+    }
+
+    public function novo_projeto() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('Gppi_Model');
+        $this->load->model('Util_Model');
+
+        $data['gppi_model'] = $this->Gppi_Model;
+        $data['util_model'] = $this->Util_Model;
+
+        $this->load->view('gppi/novo_projeto', $data);
+    }
+
+    public function beneficios() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('Beneficio_Model');
+        $this->load->model('Usuario_Sistema_Model');
+        $this->load->model('Util_Model');
+        $beneficios = $this->Beneficio_Model->get_all_beneficio();
+
+        $data['beneficios'] = $beneficios;
+        $data['beneficio_model'] = $this->Beneficio_Model;
+        $data['usuario_sistema_model'] = $this->Usuario_Sistema_Model;
+        $data['util_model'] = $this->Util_Model;
+
+        $this->load->view('gppi/beneficios', $data);
+    }
+
     public function simulacao() {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");

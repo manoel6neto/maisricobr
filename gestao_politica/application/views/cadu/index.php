@@ -7,7 +7,7 @@
         <meta name="description" content="Gestao_e_politica_administracao">
         <meta name="author" content="Manoel Carvalho Neto">
 
-        <title>Gestão & Política - Administração</title>
+        <title>Gestão & Política - Localização de Famílias (CADU)</title>
         <link rel="icon" href="<?php echo base_url("layout/images/favicon.png"); ?>"/>
 
         <!-- Bootstrap core CSS -->

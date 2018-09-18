@@ -7,7 +7,7 @@
         <meta name="description" content="Gestao_e_politica_modulos">
         <meta name="author" content="Manoel Carvalho Neto">
 
-        <title>Gestão & Política - Módulos</title>
+        <title>Gestão & Política - GPPI</title>
         <link rel="icon" href="<?php echo base_url("layout/images/favicon.png"); ?>"/>
 
         <!-- Bootstrap core CSS -->
@@ -50,116 +50,52 @@
         </nav>
 
         <!-- Page Content - Limita o espaço lateral-->
-        <div class="container py-5" > 
+        <div class="container py-5" style="margin-top: -30px;"> 
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav gppi-nav">
+                        <li class="nav-item gppi-nav active">
+                            <a class="nav-link gppi-nav" href="<?php echo base_url('index.php/Gppi'); ?>">DashBoard <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item gppi-nav">
+                            <a class="nav-link gppi-nav" href="<?php echo base_url('index.php/Gppi/processos'); ?>">Gestão de Processos</a>
+                        </li>
+                        <li class="nav-item gppi-nav">
+                            <a class="nav-link gppi-nav" href="<?php echo base_url('index.php/Gppi/beneficios'); ?>">Simulação de Benefícios</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
 
-            <!-- Page Heading -->
             <h1 class="my-4">
                 <small></small>
             </h1>
 
             <!-- Início Tabela de Simulação de Benefícios -->            
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h6 class="panel-title">Simulação de Benefícios</h6>
+                            <h6 class="panel-title">DashBoard GPPI</h6>
                         </div>
-
-                        <div class="panel-body">                            
-                            <div class="navbar navbar-main">
-
-                                <!-- Botão Simular Benefícios -->
-
-                                <div class="navbar-buttons">
-                                    <a href="<?php echo base_url("index.php/gppi/simulacao"); ?>"  alt="">
-                                        <button type="button" class="btn btn-sm btn-primary"><b>+</b> Simular Benefício</button>
-                                    </a>
-                                </div>
-
-                                <!-- Input Buscar por benefício -->
-
-                                <div class="form-group nav-busca clearfix">
-                                    <button type="button" class="btn btn-default btn-search">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control input-large" placeholder="Buscar por benefício..." max="70" disabled="true">
-                                        <div class="input-group-btn">
-                                            <button id="adv-search-btn" class="btn btn-default" type="button" data-original-titel title>
-                                                <span class="caret"></span>
-                                            </button>
-                                        </div>
+                        <div class="panel-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <!--Div that will hold the pie chart-->
+                                        <div id="chart_div1"></div>
                                     </div>
-                                </div>                                
-
-                                <!-- Tabela com os resultados da Silmulação -->
-
-                                <div class="table-responsive">
-                                    <div class="dataTables_wrapper" id="tabelaSimulacao_wrapper">
-                                        <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix">
-
-                                        </div>
-                                        <table id="tabelaSimulacao" class="table table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th class="ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper">Benefício<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
-                                                        </div>
-                                                    </th>
-                                                    <th class="ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper">Órgão Gestor<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
-                                                        </div>
-                                                    </th>
-                                                    <th class="ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper">Público Alvo<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s">                                                            
-                                                            </span>
-                                                        </div>
-                                                    </th>
-                                                    <th class="ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper">Usuário<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
-                                                        </div>
-                                                    </th>
-                                                    <th class="ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper">Data Simulação<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
-                                                        </div>
-                                                    </th>
-                                                    <th class="th-wd-xs ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper" style="text-align: center;">-<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
-                                                        </div>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-
-                                            <tbody>
-                                                <?php if (isset($beneficios) && count($beneficios) > 0): ?>
-                                                    <?php foreach ($beneficios as $beneficio): ?> 
-                                                        <tr class="odd">
-                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $beneficio->descricao; ?></td>
-                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $beneficio_model->get_orgao_gestor_by_id($beneficio->id_orgao_gestor)->nome_orgao; ?></td>
-                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $beneficio_model->get_publico_alvo_by_id($beneficio->id_publico_alvo)->descricao; ?></td>
-                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $usuario_sistema_model->get_usuario_sistema_from_id($beneficio->id_usuario_responsavel)->nome; ?></td>
-                                                            <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $util_model->formata_data_padrao_br($beneficio->data_simulacao); ?></td>
-                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><a style="background: transparent !important; background-color: transparent !important; outline: none;" title="Executar Simulação" href="<?php echo base_url("index.php/gppi/executa_simulacao?id_beneficio={$beneficio->id}"); ?>" target="_blank"><img src="<?php echo base_url('layout/images/simulacao_icon.png'); ?>" alt="Executar Simulação" style="background-color: transparent;"></a></td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                <?php else: ?>
-                                                    <tr class="odd">
-                                                        <td valign="top" colspan="6" class="dataTables_empty">Registro não encontrado.</td>
-                                                    </tr>
-                                                <?php endif; ?>
-                                            </tbody>
-                                        </table>
-
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="dataTables_info p-0" id="tabelaSimulacao_info">Mostrando de 1 até 10 de <?php echo count($beneficios); ?> registros</div>
-                                                <div class="btn-group p-0 ml-auto" role="group" aria-label="">
-                                                    <button type="button" class="btn btn-light">Anterior</button>
-                                                    <button type="button" class="btn btn-light">Seguinte</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col">
+                                        <!--Div that will hold the pie chart-->
+                                        <div id="chart_div2"></div>
+                                    </div>
+                                    <div class="col">
+                                        <!--Div that will hold the pie chart-->
+                                        <div id="chart_div3"></div>
+                                    </div>
+                                    <div class="col">
+                                        <!--Div that will hold the pie chart-->
+                                        <div id="chart_div4"></div>
                                     </div>
                                 </div>
                             </div>
@@ -168,6 +104,112 @@
                 </div>
             </div>
         </div>
+
+        <!-- Google Charts Core -->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <!-- Chart 1 -->
+        <script type="text/javascript">
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Secretaria');
+                data.addColumn('number', 'Total');
+                data.addRows([
+                    ['Esporte', 3],
+                    ['Saúde', 1],
+                    ['Educação', 1],
+                    ['Assistência Social', 1],
+                    ['Planejamento', 2]
+                ]);
+
+                var options = {'title': 'Programas por secretaria',
+                    'width': 510,
+                    'height': 400};
+
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
+                chart.draw(data, options);
+            }
+        </script>
+
+        <!-- Chart 2 -->
+        <script type="text/javascript">
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Secretaria');
+                data.addColumn('number', 'Total');
+                data.addRows([
+                    ['Esporte', 3],
+                    ['Saúde', 1],
+                    ['Educação', 1],
+                    ['Assistência Social', 1],
+                    ['Planejamento', 2]
+                ]);
+
+                var options = {'title': 'Programas por secretaria',
+                    'width': 510,
+                    'height': 400};
+
+                var chart = new google.visualization.BarChart(document.getElementById('chart_div2'));
+                chart.draw(data, options);
+            }
+        </script>
+
+        <!-- Chart 3 -->
+        <script type="text/javascript">
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Secretaria');
+                data.addColumn('number', 'Total');
+                data.addRows([
+                    ['Esporte', 3],
+                    ['Saúde', 1],
+                    ['Educação', 1],
+                    ['Assistência Social', 1],
+                    ['Planejamento', 2]
+                ]);
+
+                var options = {'title': 'Programas por secretaria',
+                    'width': 510,
+                    'height': 400};
+
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div3'));
+                chart.draw(data, options);
+            }
+        </script>
+
+        <!-- Chart 4 -->
+        <script type="text/javascript">
+            google.charts.load('current', {'packages': ['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Secretaria');
+                data.addColumn('number', 'Total');
+                data.addRows([
+                    ['Esporte', 3],
+                    ['Saúde', 1],
+                    ['Educação', 1],
+                    ['Assistência Social', 1],
+                    ['Planejamento', 2]
+                ]);
+
+                var options = {'title': 'Programas por secretaria',
+                    'width': 510,
+                    'height': 400};
+
+                var chart = new google.visualization.BarChart(document.getElementById('chart_div4'));
+                chart.draw(data, options);
+            }
+        </script>
 
         <!-- Bootstrap core JavaScript -->
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>

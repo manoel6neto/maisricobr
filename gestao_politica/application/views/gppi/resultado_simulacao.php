@@ -7,7 +7,7 @@
         <meta name="description" content="Gestao_e_politica_resultado_simulacao_beneficio">
         <meta name="author" content="Manoel Carvalho Neto">
 
-        <title>Gestão & Política - Módulos</title>
+        <title>Gestão & Política - Resultado Simulação de Benefícios (GPPI)</title>
         <link rel="icon" href="<?php echo base_url("layout/images/favicon.png"); ?>"/>
 
         <!-- Bootstrap core CSS -->
@@ -50,7 +50,22 @@
         </nav>
 
         <!-- Page Content -->
-        <div class="container" style="padding-top: 10px;">
+        <div class="container py-5" style="margin-top: -30px;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav gppi-nav">
+                        <li class="nav-item gppi-nav">
+                            <a class="nav-link gppi-nav" href="<?php echo base_url('index.php/Gppi'); ?>">DashBoard </a>
+                        </li>
+                        <li class="nav-item gppi-nav">
+                            <a class="nav-link gppi-nav" href="<?php echo base_url('index.php/Gppi/processos'); ?>">Gestão de Processos</a>
+                        </li>
+                        <li class="nav-item gppi-nav active">
+                            <a class="nav-link gppi-nav" href="<?php echo base_url('index.php/Gppi/beneficios'); ?>">Gestão de Benefícios <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
             <!-- Page Heading -->
             <h1 class="my-4">
                 <small></small>
@@ -515,9 +530,10 @@
                     </div>
                 </div>
             </div>
-            <br><br><br>
+        </div>
+        <br>
 
-            <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
-            <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+        <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
+        <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
     </body>
 </html>

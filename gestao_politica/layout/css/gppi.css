@@ -7,6 +7,15 @@
     border: none;
 }
 
+.gppi-nav {
+    background-color: transparent !important;
+    font-weight: 600 !important;
+}
+
+.gppi-nav:hover {
+    font-weight: 900 !important;
+}
+
 .odd {
     background-color: transparent !important;
 }
