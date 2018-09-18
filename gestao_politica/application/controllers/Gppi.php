@@ -35,7 +35,7 @@ class Gppi extends CI_Controller {
         $this->load->model('GPPI_Model');
         $this->load->model('Util_Model');
 
-        $data['gppi_model'] = $this->Gppi_Model;
+        $data['gppi_model'] = $this->GPPI_Model;
         $data['util_model'] = $this->Util_Model;
 
         $this->load->view('gppi/processos', $data);
@@ -52,7 +52,7 @@ class Gppi extends CI_Controller {
             redirect('Gppi/politicas_governo');
         }
 
-        $data['gppi_model'] = $this->Gppi_Model;
+        $data['gppi_model'] = $this->GPPI_Model;
         $data['util_model'] = $this->Util_Model;
 
         $this->load->view('gppi/novo_projeto', $data);
@@ -69,7 +69,7 @@ class Gppi extends CI_Controller {
             redirect('Gppi/politicas_governo');
         }
 
-        $data['gppi_model'] = $this->Gppi_Model;
+        $data['gppi_model'] = $this->GPPI_Model;
         $data['util_model'] = $this->Util_Model;
 
         $this->load->view('gppi/politicas_governo', $data);
