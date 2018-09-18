@@ -138,4 +138,9 @@ class Beneficio_Model extends CI_Model {
         return $this->db->affected_rows();
     }
 
+    // -------------- Critério de Seleção - Sexo --------------------
+    public function get_all_sexo2($a) {
+        return null;
+    }
+
 }

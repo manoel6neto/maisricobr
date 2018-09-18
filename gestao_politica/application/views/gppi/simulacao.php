@@ -111,7 +111,9 @@
                                         <div class="form-group row">
                                             <label for="beneficio" class="col-sm-2 col-form-label">Benefício *</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="beneficio" name="beneficio">
+                                                <input type="text" class="form-control" id="beneficio" name="beneficio" value="Digite o benefício..." onfocus="if (this.value == 'Digite o benefício...')
+                                                            this.value = '';" onblur="if (this.value == '')
+                                                                        this.value = 'Digite o benefício...'">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -167,7 +169,9 @@
                                         <div class="form-group row">
                                             <label for="quantidadeBeneficiarios" class="col-sm-2 col-form-label">Quantidade de Beneficiáios *</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="quantidadeBeneficiarios" name="quantidadeBeneficiarios">
+                                                <input type="text" class="form-control" id="quantidadeBeneficiarios" name="quantidadeBeneficiarios" value="Digite a quantidade..." onfocus="if (this.value == 'Digite a quantidade...')
+                                                            this.value = '';" onblur="if (this.value == '')
+                                                                        this.value = 'Digite a quantidade...'">
                                             </div>
                                         </div>
                                         <div class="form-group row mr-1 mt-5">
@@ -188,17 +192,17 @@
                                                         </button>
                                                     </h5>
                                                 </div>
-                                                <div id="collapseOne" class="collapse show" data-toggle="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div id="collapseOne" class="collapse show" id="camposDisponiveis" name="camposDisponiveis" data-toggle="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                                     <div class="card-body row">
 
-                                                        <div class="card bg-light col-sm">
+                                                        <div class="card bg-light col-sm" id="checkLocalidade" name="checkLocalidade">
                                                             <div class="card-header" style="width: 219px;">Localidade</div>
                                                             <div class="card-body">
-                                                                <label><input class="chk01 my-1" name="chk1" type="checkbox" id="chk1" value=""> Bairro</label>                                                              
-                                                                <label><input class="chk02 my-1" name="chk2" type="checkbox" id="chk2" value=""> CEP</label>
+                                                                <label><input class="chk01 my-1" id="chk1" name="chk1" type="checkbox" value=""> Bairro</label>                                                              
+                                                                <label><input class="chk02 my-1" id="chk2" name="chk2" type="checkbox" value=""> CEP</label>
                                                             </div>
                                                         </div>
-                                                        <div class="card bg-light col-sm ml-1">
+                                                        <div class="card bg-light col-sm ml-1" id="checkFamilia" name="checkFamilia">
                                                             <div class="card-header">Familia</div>
                                                             <div class="card-body">
                                                                 <!--<label><input type="checkbox"> Quantidade de Pessoas</label>-->                                                               
@@ -210,7 +214,7 @@
                                                                 <!--<label><input class="my-1" type="checkbox"> Renda per capita</label>-->
                                                             </div>
                                                         </div>
-                                                        <div class="card bg-light col-sm ml-1">
+                                                        <div class="card bg-light col-sm ml-1" id="checkPessoa" name="checkPessoa">
                                                             <div class="card-header">Pessoa</div>
                                                             <div class="card-body">
                                                                 <label><input class="chk06 my-1" name="chk6" type="checkbox" id="chk6" value=""> Renda</label>
@@ -243,7 +247,7 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="card">
+                                                <div class="card" id="camposSelecionados" name="camposSelecionados">
                                                     <div class="card-header" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-light collapsed">
@@ -261,9 +265,12 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Bairro</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <input type="text" class="form-control" id="bairro" name="bairro" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk1" name="chk1" value="X" class="btn01 btn btn-outline-danger">
                                                                     </div>
                                                                 </div>
@@ -278,7 +285,10 @@
                                                                     </div>
                                                                     <input type="text" class="form-control" id="cep" name="cep" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk2" name="chk2" value="X" class="btn02 btn btn-outline-danger">
                                                                     </div>
                                                                 </div>
@@ -291,9 +301,12 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Quantidade de crianças</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <input type="text" class="form-control" id="quantidadeCriancas" name="quantidadeCriancas" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk3" name="chk3" value="X" class="btn03 btn btn-outline-danger">
                                                                     </div>
                                                                 </div>
@@ -306,9 +319,12 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Quantidade de idosos</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                                    <input type="text" class="form-control" id="quantidadeIdosos" name="quantidadeIdosos" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk4" name="chk4" value="X" class="btn04 btn btn-outline-danger">
                                                                     </div>
                                                                 </div>
@@ -321,42 +337,48 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Renda familiar</span>
                                                                     </div>
-                                                                    <select class="custom-select" id="inputGroupSelect01">
+                                                                    <select class="custom-select" id="selectRendaFamiliar">
                                                                         <option selected>Escolha uma opção...</option>
-                                                                        <option value="1">></option>
-                                                                        <option value="2">>=</option>
-                                                                        <option value="3">=</option>
-                                                                        <option value="4">!=</option>
-                                                                        <option value="5"><</option>
-                                                                        <option value="6"><=</option>
+                                                                        <option value="0">>(maior que)</option>
+                                                                        <option value="1">>=(maior ou igual)</option>
+                                                                        <option value="2">=(igual)</option>
+                                                                        <option value="3">!=(diferente de)</option>
+                                                                        <option value="4"><(menor que)</option>
+                                                                        <option value="5"><=(menor ou igual)</option>
                                                                     </select>
                                                                     <input type="text" class="form-control" id="rendaFamiliar" name="rendaFamiliar" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk5" name="chk5" value="X" class="btn05 btn btn-outline-danger">
                                                                     </div>
                                                                 </div>                                                               
                                                             </div>
 
-                                                            <!--Renda-->
+                                                            <!--Renda Pessoal-->
 
                                                             <div id="sb6" style="display:none">
                                                                 <div class="input-group mb-3">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Renda pessoal</span>
                                                                     </div>
-                                                                    <select class="custom-select" id="inputGroupSelect01">
+                                                                    <select class="custom-select" id="selectRendaPessoal">
                                                                         <option selected>Escolha uma opção...</option>
-                                                                        <option value="1">></option>
-                                                                        <option value="2">>=</option>
-                                                                        <option value="3">=</option>
-                                                                        <option value="4">!=</option>
-                                                                        <option value="5"><</option>
-                                                                        <option value="6"><=</option>
+                                                                        <option value="1">>(maior que)</option>
+                                                                        <option value="2">>=(maior ou igual)</option>
+                                                                        <option value="3">=(igual)</option>
+                                                                        <option value="4">!=(diferente de)</option>
+                                                                        <option value="5"><(menor que)</option>
+                                                                        <option value="6"><=(menor ou igual)</option>
                                                                     </select>
-                                                                    <input type="text" class="form-control" id="renda" name="renda" aria-describedby="basic-addon3">
+                                                                    <input type="text" class="form-control" id="rendaPessoal" name="rendaPessoal" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk6" name="chk6" value="X" class="btn06 btn btn-outline-danger">
                                                                     </div>
                                                                 </div>
@@ -369,13 +391,16 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Faixa etária entre</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" id="faixaEntre" name="faixaEntre">
+                                                                    <input type="text" class="form-control" id="faixaEtariaInicial" name="faixaEtariaInicial">
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">até</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" id="faixaAte" name="faixaAte" >
+                                                                    <input type="text" class="form-control" id="faixaEtariaFinal" name="faixaEtariaFinal" >
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk7" name="chk7" value="X" class="btn07 btn btn-outline-danger">
                                                                     </div>
                                                                 </div> 
@@ -390,7 +415,10 @@
                                                                     </div>
                                                                     <input type="text" class="form-control" id="idade" name="idade" aria-describedby="basic-addon3">
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk8" name="chk8" value="X" class="btn08 btn btn-outline-danger">
                                                                     </div>
                                                                 </div> 
@@ -403,13 +431,16 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Sexo</span>
                                                                     </div>
-                                                                    <select class="custom-select" id="inputGroupSelect01">
+                                                                    <select class="custom-select" id="sexo" name="sexo">
                                                                         <option selected>Escolha uma opção...</option>
-                                                                        <option value="1">Masculino</option>
-                                                                        <option value="2">Femino</option>
+                                                                        <option value="0">Masculino</option>
+                                                                        <option value="1">Femino</option>
                                                                     </select>
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk9" name="chk9" value="X" class="btn09 btn btn-outline-danger">
                                                                     </div>
                                                                 </div>
@@ -422,15 +453,18 @@
                                                                     <div class="input-group-prepend">
                                                                         <span class="input-group-text" id="basic-addon3">Cor ou raça</span>
                                                                     </div>
-                                                                    <select class="custom-select" id="inputGroupSelect01">
+                                                                    <select class="custom-select" id="corRaca" name="corRaca">
                                                                         <option selected>Escolha uma opção...</option>
-                                                                        <option value="1">Opção 1</option>
-                                                                        <option value="2">Opção 2</option>
+                                                                        <option value="0">Opção 1</option>
+                                                                        <option value="1">Opção 2</option>
                                                                         <option value="2">Opção 3</option>
-                                                                        <option value="2">Opção 4</option>
+                                                                        <option value="3">Opção 4</option>
                                                                     </select>
                                                                     <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary" type="button">Confirmar</button>
+                                                                        <select class="custom-select" id="selectCondicional" name="selectCondicional">
+                                                                            <option selected value="0">e</option>
+                                                                            <option value="1">ou</option>
+                                                                        </select>
                                                                         <input type="button" id="chk10" name="chk10" value="X" class="btn10 btn btn-outline-danger">
                                                                     </div>
                                                                 </div>
@@ -439,20 +473,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card">
-                                                    <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                                        <h5 class="mb-0">
-                                                            <button class="btn btn-light collapsed">
-                                                                Área de Definição de Critérios
-                                                            </button>
-                                                        </h5>
-                                                    </div>
-                                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                                        <div class="card-body">
-                                                            Nada selecionado no momento.
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <!--                                                <div class="card">
+                                                                                                    <div class="card-header" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                                                                                        <h5 class="mb-0">
+                                                                                                            <button class="btn btn-light collapsed">
+                                                                                                                Área de Definição de Critérios
+                                                                                                            </button>
+                                                                                                        </h5>
+                                                                                                    </div>
+                                                                                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                                                                                        <div class="card-body">
+                                                                                                            Nada selecionado no momento.
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>-->
                                             </div>
 
                                         </div>
@@ -561,149 +595,148 @@
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.inputmask.bundle.js"); ?>"></script>
         <script type="text/javascript">
-            $("#valorMensal").inputmask('decimal', {
-                radixPoint: ",",
-                groupSeparator: ".",
-                autoGroup: true,
-                digits: 2,
-                digitsOptional: false,
-                placeholder: '0',
-                rightAlign: false,
-                onBeforeMask: function (value, opts) {
-                    return value;
-                }
-            });
+        $("#valorMensal").inputmask('decimal', {
+            radixPoint: ",",
+            groupSeparator: ".",
+            autoGroup: true,
+            digits: 2,
+            digitsOptional: false,
+            placeholder: '0',
+            rightAlign: false,
+            onBeforeMask: function (value, opts) {
+                return value;
+            }
+        });
 
-            $("#valorUnitario").inputmask('decimal', {
-                radixPoint: ",",
-                groupSeparator: ".",
-                autoGroup: true,
-                digits: 2,
-                digitsOptional: false,
-                placeholder: '0',
-                rightAlign: false,
-                onBeforeMask: function (value, opts) {
-                    return value;
-                }
-            });
+        $("#valorUnitario").inputmask('decimal', {
+            radixPoint: ",",
+            groupSeparator: ".",
+            autoGroup: true,
+            digits: 2,
+            digitsOptional: false,
+            placeholder: '0',
+            rightAlign: false,
+            onBeforeMask: function (value, opts) {
+                return value;
+            }
+        });
 
-            $("#renda").inputmask('decimal', {
-                radixPoint: ",",
-                groupSeparator: ".",
-                autoGroup: true,
-                digits: 2,
-                digitsOptional: false,
-                placeholder: '0',
-                rightAlign: false,
-                onBeforeMask: function (value, opts) {
-                    return value;
-                }
-            });
+        $("#rendaPessoal").inputmask('decimal', {
+            radixPoint: ",",
+            groupSeparator: ".",
+            autoGroup: true,
+            digits: 2,
+            digitsOptional: false,
+            placeholder: '0',
+            rightAlign: false,
+            onBeforeMask: function (value, opts) {
+                return value;
+            }
+        });
 
-            $("#rendaFamiliar").inputmask('decimal', {
-                radixPoint: ",",
-                groupSeparator: ".",
-                autoGroup: true,
-                digits: 2,
-                digitsOptional: false,
-                placeholder: '0',
-                rightAlign: false,
-                onBeforeMask: function (value, opts) {
-                    return value;
-                }
-            });
+        $("#rendaFamiliar").inputmask('decimal', {
+            radixPoint: ",",
+            groupSeparator: ".",
+            autoGroup: true,
+            digits: 2,
+            digitsOptional: false,
+            placeholder: '0',
+            rightAlign: false,
+            onBeforeMask: function (value, opts) {
+                return value;
+            }
+        });
 
-            $(document).ready(function () {
-                $("#cep").inputmask("99999-999");
-                $("#idade").inputmask("999");
-                $("#faixaEntre").inputmask("999");
-                $("#faixaAte").inputmask("999");
-            });
+        $(document).ready(function () {
+            $("#cep").inputmask("99999-999");
+            $("#idade").inputmask("999");
+            $("#faixaEtariaInicial").inputmask("999");
+            $("#faixaEtariaFinal").inputmask("999");
+        });
 
-            $("#next_inicial").click(function () {
-                if ($('#beneficio').val() != '' && $('#orgaoGestor').val() != '' && $('#tipoBeneficio').val() != '' && $('#publicoAlvo').val() != '') {
-                    $('#tabelaBeneficios li:nth-child(2) a').tab('show');
-                }
-            });
-
-            $("#next_limitadores").click(function () {
-                if ($('#valorMensal').val() != '' || $('#quantidadeBeneficiarios').val() != '') {
-                    $('#tabelaBeneficios li:nth-child(3) a').tab('show');
-                }
-            });
-
-            $("#next_criterios").click(function () {
-                $('#tabelaBeneficios li:nth-child(4) a').tab('show');
-            });
-
-            $("#ant_limitadores").click(function () {
-                $('#tabelaBeneficios li:nth-child(1) a').tab('show');
-            });
-
-            $("#ant_criterios").click(function () {
+        $("#next_inicial").click(function () {
+            if ($('#beneficio').val() != '' && $('#orgaoGestor').val() != '' && $('#tipoBeneficio').val() != '' && $('#publicoAlvo').val() != '') {
                 $('#tabelaBeneficios li:nth-child(2) a').tab('show');
-            });
+            }
+        });
 
-            $("#ant_parametros").click(function () {
+        $("#next_limitadores").click(function () {
+            if ($('#valorMensal').val() != '' || $('#quantidadeBeneficiarios').val() != '') {
                 $('#tabelaBeneficios li:nth-child(3) a').tab('show');
+            }
+        });
+
+        $("#next_criterios").click(function () {
+            $('#tabelaBeneficios li:nth-child(4) a').tab('show');
+        });
+
+        $("#ant_limitadores").click(function () {
+            $('#tabelaBeneficios li:nth-child(1) a').tab('show');
+        });
+
+        $("#ant_criterios").click(function () {
+            $('#tabelaBeneficios li:nth-child(2) a').tab('show');
+        });
+
+        $("#ant_parametros").click(function () {
+            $('#tabelaBeneficios li:nth-child(3) a').tab('show');
+        });
+
+        $('#tabelaBeneficios a').on('click', function (e) {
+            e.preventDefault();
+            return false;
+        });
+
+        //Função checkbox para seleção dos campos de Critério de Seleção
+
+        $(document).ready(function ()
+        {
+            //hide all contents
+            $('p[id^=sb]').hide();
+
+            $('input[id^=chk]').click(function () {
+
+                // get checkbox index
+                var index = $(this).attr('id').replace('chk', '');
+                //show respective contents
+                if ($(this).is(':checked'))
+                    $('#sb' + index).show();
+                else
+                    $('#sb' + index).hide();
             });
 
-            $('#tabelaBeneficios a').on('click', function (e) {
-                e.preventDefault();
-                return false;
-            });
+        });
 
-            //Função checkbox para seleção dos campos de Critério de Seleção
-
-            $(document).ready(function ()
-            {
-                //hide all contents
-                $('p[id^=sb]').hide();
-
-                $('input[id^=chk]').click(function () {
-
-                    // get checkbox index
-                    var index = $(this).attr('id').replace('chk', '');
-                    //show respective contents
-                    if ($(this).is(':checked'))
-                        $('#sb' + index).show();
-                    else
-                        $('#sb' + index).hide();
-                });
-
-            });
-
-            $(".btn01").click(function () {
-                $(".chk01").prop("click", $(this).prop("click"));
-            });
-            $(".btn02").click(function () {
-                $(".chk02").prop("click", $(this).prop("click"));
-            });
-            $(".btn03").click(function () {
-                $(".chk03").prop("click", $(this).prop("click"));
-            });
-            $(".btn04").click(function () {
-                $(".chk04").prop("click", $(this).prop("click"));
-            });
-            $(".btn05").click(function () {
-                $(".chk05").prop("click", $(this).prop("click"));
-            });
-            $(".btn06").click(function () {
-                $(".chk06").prop("click", $(this).prop("click"));
-            });
-            $(".btn07").click(function () {
-                $(".chk07").prop("click", $(this).prop("click"));
-            });
-            $(".btn08").click(function () {
-                $(".chk08").prop("click", $(this).prop("click"));
-            });
-            $(".btn09").click(function () {
-                $(".chk09").prop("click", $(this).prop("click"));
-            });
-            $(".btn10").click(function () {
-                $(".chk10").prop("click", $(this).prop("click"));
-            });
-
+        $(".btn01").click(function () {
+            $(".chk01").prop("click", $(this).prop("click"));
+        });
+        $(".btn02").click(function () {
+            $(".chk02").prop("click", $(this).prop("click"));
+        });
+        $(".btn03").click(function () {
+            $(".chk03").prop("click", $(this).prop("click"));
+        });
+        $(".btn04").click(function () {
+            $(".chk04").prop("click", $(this).prop("click"));
+        });
+        $(".btn05").click(function () {
+            $(".chk05").prop("click", $(this).prop("click"));
+        });
+        $(".btn06").click(function () {
+            $(".chk06").prop("click", $(this).prop("click"));
+        });
+        $(".btn07").click(function () {
+            $(".chk07").prop("click", $(this).prop("click"));
+        });
+        $(".btn08").click(function () {
+            $(".chk08").prop("click", $(this).prop("click"));
+        });
+        $(".btn09").click(function () {
+            $(".chk09").prop("click", $(this).prop("click"));
+        });
+        $(".btn10").click(function () {
+            $(".chk10").prop("click", $(this).prop("click"));
+        });
         </script>
     </body>
 </html>
