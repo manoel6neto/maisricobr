@@ -227,7 +227,10 @@ class Dados_siconv extends BaseController {
     }
 
     public function busca_emendas_municipio($offSet = 0) {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
         header('Content-Type: text/html; charset=utf-8');
+
         $this->load->model('programa_model'); // carregando model do programa
         $this->load->model('cnpj_siconv');
         $this->load->model('banco_proposta_model');

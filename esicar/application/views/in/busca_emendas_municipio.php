@@ -179,7 +179,7 @@ unset($filtro['filtro_cnpj']);
                                             <b>Governo Municipal</b>
                                         </label> 
 
-                                        <?php if ($this->session->userdata('nivel') == 9 || ($this->session->userdata('sistema') != "M" || ($this->session->userdata('nivel') == 1 || $this->session->userdata('nivel') == 4))): ?>
+                                        <?php if ($this->session->userdata('nivel') == 9 || ($this->session->userdata('sistema') != "P" || ($this->session->userdata('nivel') == 1 || $this->session->userdata('nivel') == 4))): ?>
                                             <label class="checkbox"> <input type="checkbox"
                                                                             class="obrigaAtende" id="prop1estadual" name="atende[]" <?php if (($usuario_parlamentar && !isset($filtro['atende'])) || (isset($lista_entidades) && $lista_entidades['estadual'] && !isset($filtro['atende'])) || (isset($filtro['atende']) && in_array("Administração Pública Estadual ou do Distrito Federal", $filtro['atende']))) { ?>checked="checked"<?php } ?>
                                                                             value="Administração Pública Estadual ou do Distrito Federal" > 
