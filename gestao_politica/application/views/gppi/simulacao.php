@@ -111,9 +111,7 @@
                                         <div class="form-group row">
                                             <label for="beneficio" class="col-sm-2 col-form-label">Benefício *</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="beneficio" name="beneficio" value="Digite o benefício..." onfocus="if (this.value == 'Digite o benefício...')
-                                                            this.value = '';" onblur="if (this.value == '')
-                                                                        this.value = 'Digite o benefício...'">
+                                                <input type="text" class="form-control" id="beneficio" name="beneficio">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -169,9 +167,7 @@
                                         <div class="form-group row">
                                             <label for="quantidadeBeneficiarios" class="col-sm-2 col-form-label">Quantidade de Beneficiáios *</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="quantidadeBeneficiarios" name="quantidadeBeneficiarios" value="Digite a quantidade..." onfocus="if (this.value == 'Digite a quantidade...')
-                                                            this.value = '';" onblur="if (this.value == '')
-                                                                        this.value = 'Digite a quantidade...'">
+                                                <input type="text" class="form-control" id="quantidadeBeneficiarios" name="quantidadeBeneficiarios">
                                             </div>
                                         </div>
                                         <div class="form-group row mr-1 mt-5">
@@ -499,42 +495,46 @@
                                     <!-- Formulário PARÂMETROS -->
                                     <div class="tab-pane fade" id="parametro" role="tabpanel" aria-labelledby="contact-tab">
                                         <legend class="py-2">Parâmetros</legend>
-                                        <div class="form-group row">
-                                            <label for="nomeProduto" class="col-sm-2 col-form-label">Nome do Produto *</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="nomeProduto" name="nomeProduto">
+                                        <div id="adicionarParametros">
+                                            <div  class="form-group row">
+                                                <label for="valorUnitario" class="col-sm-2 col-form-label">Valor Unitário (mês) *</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="valorUnitario" name="valorUnitario">
+                                                </div>
+                                            </div>
+
+
+                                            <div id="2" class="produtoQuantidade">
+                                                <div class="produtoQuantidade form-group row" style="display: none">
+                                                    <label for="nomeProduto" class="col-sm-2 col-form-label">Nome do Produto *</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="nomeProduto" name="nomeProduto">
+                                                    </div>
+                                                </div>
+
+                                                <div  class="produtoQuantidade form-group row" style="display: none">
+                                                    <label for="quantProduto" class="col-sm-2 col-form-label">Quantidade *</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="quantProduto" name="quantProduto">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div class="form-group row">
-                                            <label for="valorUnitario" class="col-sm-2 col-form-label">Valor Unitário (mês) *</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="valorUnitario" name="valorUnitario">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="quantProduto" class="col-sm-2 col-form-label">Quantidade *</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="quantProduto" name="quantProduto">
-                                            </div>
-                                        </div>
-
                                         <legend class="py-2">Produtos Adicionais</legend>
 
                                         <div class="navbar-buttons ml-auto pb-4">
-                                            <button type="button" class="btn btn-sm btn-primary">Adicionar</button>                                            
+                                            <button id="adicionarParametros" type="button" class="btn btn-sm btn-primary" onclick="adicionarParametros();">Adicionar</button>                                            
                                         </div>
 
                                         <table id="tabelaSimulacao" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th class="ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper">Produto<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
+                                                        <div class="DataTables_sort_wrapper">Valor<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                         </div>
                                                     </th>
                                                     <th class="ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper">Valor<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
+                                                        <div class="DataTables_sort_wrapper">Produto<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
                                                         </div>
                                                     </th>
                                                     <th class="ui-state-default" rowspan="1" colspan="1">
@@ -542,20 +542,25 @@
                                                             </span>
                                                         </div>
                                                     </th>
-                                                    <th class="ui-state-default" rowspan="1" colspan="1">
+<!--                                                    <th class="ui-state-default" rowspan="1" colspan="1">
                                                         <div class="DataTables_sort_wrapper" style="text-align: center;">-<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s">                                                            
                                                             </span>
                                                         </div>
-                                                    </th>
+                                                    </th>-->
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr class="odd">
-                                                    <td valign="top" colspan="6" class="dataTables_empty">Nenhum produto adicionado.</td>
-                                                </tr>
-                                            </tbody>
+<!--                                            <tr class="odd">
+                                                    <td valign="top" colspan="6" class="dataTables_empty"></td>
+                                                </tr>-->                                            
+                                            </tbody>                                            
                                         </table>
+                                        <div  class="form-group row" style="display:">
+                                            <div class="col-sm-10">
+                                                <button type="button" class="btn btn-sm btn-primary ml-auto mt-2" data-toggle="tooltip" data-placement="top" title="Para excluir um benefício, clique na linha onde estão os dados e depois no botão 'Remover Benefício'" onclick="removerParametros();">Remover Benefício</button>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group row mr-1 mt-5">
                                             <button type="button" id="ant_parametros" class="btn btn-secondary ml-auto">Anterior</button>
@@ -595,148 +600,247 @@
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.inputmask.bundle.js"); ?>"></script>
         <script type="text/javascript">
-                                                                $("#valorMensal").inputmask('decimal', {
-                                                                    radixPoint: ",",
-                                                                    groupSeparator: ".",
-                                                                    autoGroup: true,
-                                                                    digits: 2,
-                                                                    digitsOptional: false,
-                                                                    placeholder: '0',
-                                                                    rightAlign: false,
-                                                                    onBeforeMask: function (value, opts) {
-                                                                        return value;
-                                                                    }
-                                                                });
+                                                $("#valorMensal").inputmask('decimal', {
+                                                    radixPoint: ",",
+                                                    groupSeparator: ".",
+                                                    autoGroup: true,
+                                                    digits: 2,
+                                                    digitsOptional: false,
+                                                    placeholder: '0',
+                                                    rightAlign: false,
+                                                    onBeforeMask: function (value, opts) {
+                                                        return value;
+                                                    }
+                                                });
 
-                                                                $("#valorUnitario").inputmask('decimal', {
-                                                                    radixPoint: ",",
-                                                                    groupSeparator: ".",
-                                                                    autoGroup: true,
-                                                                    digits: 2,
-                                                                    digitsOptional: false,
-                                                                    placeholder: '0',
-                                                                    rightAlign: false,
-                                                                    onBeforeMask: function (value, opts) {
-                                                                        return value;
-                                                                    }
-                                                                });
+                                                $("#valorUnitario").inputmask('decimal', {
+                                                    radixPoint: ",",
+                                                    groupSeparator: ".",
+                                                    autoGroup: true,
+                                                    digits: 2,
+                                                    digitsOptional: false,
+                                                    placeholder: '0',
+                                                    rightAlign: false,
+                                                    onBeforeMask: function (value, opts) {
+                                                        return value;
+                                                    }
+                                                });
 
-                                                                $("#rendaPessoal").inputmask('decimal', {
-                                                                    radixPoint: ",",
-                                                                    groupSeparator: ".",
-                                                                    autoGroup: true,
-                                                                    digits: 2,
-                                                                    digitsOptional: false,
-                                                                    placeholder: '0',
-                                                                    rightAlign: false,
-                                                                    onBeforeMask: function (value, opts) {
-                                                                        return value;
-                                                                    }
-                                                                });
+                                                $("#rendaPessoal").inputmask('decimal', {
+                                                    radixPoint: ",",
+                                                    groupSeparator: ".",
+                                                    autoGroup: true,
+                                                    digits: 2,
+                                                    digitsOptional: false,
+                                                    placeholder: '0',
+                                                    rightAlign: false,
+                                                    onBeforeMask: function (value, opts) {
+                                                        return value;
+                                                    }
+                                                });
 
-                                                                $("#rendaFamiliar").inputmask('decimal', {
-                                                                    radixPoint: ",",
-                                                                    groupSeparator: ".",
-                                                                    autoGroup: true,
-                                                                    digits: 2,
-                                                                    digitsOptional: false,
-                                                                    placeholder: '0',
-                                                                    rightAlign: false,
-                                                                    onBeforeMask: function (value, opts) {
-                                                                        return value;
-                                                                    }
-                                                                });
+                                                $("#rendaFamiliar").inputmask('decimal', {
+                                                    radixPoint: ",",
+                                                    groupSeparator: ".",
+                                                    autoGroup: true,
+                                                    digits: 2,
+                                                    digitsOptional: false,
+                                                    placeholder: '0',
+                                                    rightAlign: false,
+                                                    onBeforeMask: function (value, opts) {
+                                                        return value;
+                                                    }
+                                                });
 
-                                                                $(document).ready(function () {
-                                                                    $("#cep").inputmask("99999-999");
-                                                                    $("#idade").inputmask("999");
-                                                                    $("#faixaEtariaInicial").inputmask("999");
-                                                                    $("#faixaEtariaFinal").inputmask("999");
-                                                                });
+                                                $(document).ready(function () {
+                                                    $("#cep").inputmask("99999-999");
+                                                    $("#idade").inputmask("999");
+                                                    $("#faixaEtariaInicial").inputmask("999");
+                                                    $("#faixaEtariaFinal").inputmask("999");
+                                                });
 
-                                                                $("#next_inicial").click(function () {
-                                                                    if ($('#beneficio').val() != '' && $('#orgaoGestor').val() != '' && $('#tipoBeneficio').val() != '' && $('#publicoAlvo').val() != '') {
-                                                                        $('#tabelaBeneficios li:nth-child(2) a').tab('show');
-                                                                    }
-                                                                });
+                                                //Função oculta os inputs na aba parâmetros
+                                                $(function () {
+                                                    $('#tipoBeneficio').change(function () {
+                                                        $('.produtoQuantidade').show();
+                                                        $('#' + $(this).val()).hide();
+                                                    });
+                                                });
 
-                                                                $("#next_limitadores").click(function () {
-                                                                    if ($('#valorMensal').val() != '' || $('#quantidadeBeneficiarios').val() != '') {
-                                                                        $('#tabelaBeneficios li:nth-child(3) a').tab('show');
-                                                                    }
-                                                                });
+                                                $("#next_inicial").click(function () {
+                                                    if ($('#beneficio').val() != '' && $('#orgaoGestor').val() != '' && $('#tipoBeneficio').val() != '' && $('#publicoAlvo').val() != '') {
+                                                        $('#tabelaBeneficios li:nth-child(2) a').tab('show');
+                                                    }
+                                                });
 
-                                                                $("#next_criterios").click(function () {
-                                                                    $('#tabelaBeneficios li:nth-child(4) a').tab('show');
-                                                                });
+                                                $("#next_limitadores").click(function () {
+                                                    if ($('#valorMensal').val() != '' || $('#quantidadeBeneficiarios').val() != '') {
+                                                        $('#tabelaBeneficios li:nth-child(3) a').tab('show');
+                                                    }
+                                                });
 
-                                                                $("#ant_limitadores").click(function () {
-                                                                    $('#tabelaBeneficios li:nth-child(1) a').tab('show');
-                                                                });
+                                                $("#next_criterios").click(function () {
+                                                    $('#tabelaBeneficios li:nth-child(4) a').tab('show');
+                                                });
 
-                                                                $("#ant_criterios").click(function () {
-                                                                    $('#tabelaBeneficios li:nth-child(2) a').tab('show');
-                                                                });
+                                                $("#ant_limitadores").click(function () {
+                                                    $('#tabelaBeneficios li:nth-child(1) a').tab('show');
+                                                });
 
-                                                                $("#ant_parametros").click(function () {
-                                                                    $('#tabelaBeneficios li:nth-child(3) a').tab('show');
-                                                                });
+                                                $("#ant_criterios").click(function () {
+                                                    $('#tabelaBeneficios li:nth-child(2) a').tab('show');
+                                                });
 
-                                                                $('#tabelaBeneficios a').on('click', function (e) {
-                                                                    e.preventDefault();
-                                                                    return false;
-                                                                });
+                                                $("#ant_parametros").click(function () {
+                                                    $('#tabelaBeneficios li:nth-child(3) a').tab('show');
+                                                });
 
-                                                                //Função checkbox para seleção dos campos de Critério de Seleção
+                                                $('#tabelaBeneficios a').on('click', function (e) {
+                                                    e.preventDefault();
+                                                    return false;
+                                                });
 
-                                                                $(document).ready(function ()
-                                                                {
-                                                                    //hide all contents
-                                                                    $('p[id^=sb]').hide();
+                                                //Função checkbox para seleção dos campos de Critério de Seleção
 
-                                                                    $('input[id^=chk]').click(function () {
+                                                $(document).ready(function ()
+                                                {
+                                                    //esconde todo o conteúdo
+                                                    $('p[id^=sb]').hide();
 
-                                                                        // get checkbox index
-                                                                        var index = $(this).attr('id').replace('chk', '');
-                                                                        //show respective contents
-                                                                        if ($(this).is(':checked'))
-                                                                            $('#sb' + index).show();
-                                                                        else
-                                                                            $('#sb' + index).hide();
-                                                                    });
+                                                    $('input[id^=chk]').click(function () {
 
-                                                                });
+                                                        // recebe checkbox index
+                                                        var index = $(this).attr('id').replace('chk', '');
+                                                        // mostra o conteúdo de cada checkbox
+                                                        if ($(this).is(':checked'))
+                                                            $('#sb' + index).show();
+                                                        else
+                                                            $('#sb' + index).hide();
+                                                    });
 
-                                                                $(".btn01").click(function () {
-                                                                    $(".chk01").prop("click", $(this).prop("click"));
-                                                                });
-                                                                $(".btn02").click(function () {
-                                                                    $(".chk02").prop("click", $(this).prop("click"));
-                                                                });
-                                                                $(".btn03").click(function () {
-                                                                    $(".chk03").prop("click", $(this).prop("click"));
-                                                                });
-                                                                $(".btn04").click(function () {
-                                                                    $(".chk04").prop("click", $(this).prop("click"));
-                                                                });
-                                                                $(".btn05").click(function () {
-                                                                    $(".chk05").prop("click", $(this).prop("click"));
-                                                                });
-                                                                $(".btn06").click(function () {
-                                                                    $(".chk06").prop("click", $(this).prop("click"));
-                                                                });
-                                                                $(".btn07").click(function () {
-                                                                    $(".chk07").prop("click", $(this).prop("click"));
-                                                                });
-                                                                $(".btn08").click(function () {
-                                                                    $(".chk08").prop("click", $(this).prop("click"));
-                                                                });
-                                                                $(".btn09").click(function () {
-                                                                    $(".chk09").prop("click", $(this).prop("click"));
-                                                                });
-                                                                $(".btn10").click(function () {
-                                                                    $(".chk10").prop("click", $(this).prop("click"));
-                                                                });
+                                                });
+
+                                                $(".btn01").click(function () {
+                                                    $(".chk01").prop("click", $(this).prop("click"));
+                                                });
+                                                $(".btn02").click(function () {
+                                                    $(".chk02").prop("click", $(this).prop("click"));
+                                                });
+                                                $(".btn03").click(function () {
+                                                    $(".chk03").prop("click", $(this).prop("click"));
+                                                });
+                                                $(".btn04").click(function () {
+                                                    $(".chk04").prop("click", $(this).prop("click"));
+                                                });
+                                                $(".btn05").click(function () {
+                                                    $(".chk05").prop("click", $(this).prop("click"));
+                                                });
+                                                $(".btn06").click(function () {
+                                                    $(".chk06").prop("click", $(this).prop("click"));
+                                                });
+                                                $(".btn07").click(function () {
+                                                    $(".chk07").prop("click", $(this).prop("click"));
+                                                });
+                                                $(".btn08").click(function () {
+                                                    $(".chk08").prop("click", $(this).prop("click"));
+                                                });
+                                                $(".btn09").click(function () {
+                                                    $(".chk09").prop("click", $(this).prop("click"));
+                                                });
+                                                $(".btn10").click(function () {
+                                                    $(".chk10").prop("click", $(this).prop("click"));
+                                                });
+
+                                                var addLinha,
+                                                table = document.getElementById("tabelaSimulacao");
+
+                                                // função verificando se há campos vazios ou incorretos
+                                                function verificarCampoVazio()
+                                                {
+                                                    var campoVazio = false,
+                                                            valorUnitario = document.getElementById("valorUnitario").value,
+                                                            nomeProduto = document.getElementById("nomeProduto").value,
+                                                            quantProduto = document.getElementById("quantProduto").value;
+
+                                                    if (valorUnitario === "") {
+                                                        alert("O campo VALOR não foi preenchido ou está incorreto. Por favor, verifique.");
+                                                        campoVazio = true;
+                                                    } else if (nomeProduto === "zzz") {
+                                                        alert("O campo PRODUTO não foi preenchido ou está incorreto. Por favor, verifique.");
+                                                        campoVazio = true;
+                                                    } else if (quantProduto === "zzz") {
+                                                        alert("O campo QUANTIDADE não foi preenchido ou está incorreto. Por favor, verifique.");
+                                                        campoVazio = true;
+                                                    }
+                                                    return campoVazio;
+                                                }
+
+                                                // função para add nova linha
+                                                function adicionarParametros()
+                                                {
+                                                    // capturando a tabela pelo ID
+                                                    // criando nova linha e células
+                                                    // capturando valor do campo input
+                                                    // imprimindo valores nas células e linhas
+                                                    if (!verificarCampoVazio()) {
+                                                        var novaLinha = table.insertRow(table.length),
+                                                                campo1 = novaLinha.insertCell(0),
+                                                                campo2 = novaLinha.insertCell(1),
+                                                                campo3 = novaLinha.insertCell(2),
+                                                                valorUnitario = document.getElementById("valorUnitario").value,
+                                                                nomeProduto = document.getElementById("nomeProduto").value,
+                                                                quantProduto = document.getElementById("quantProduto").value;
+
+                                                        campo1.innerHTML = valorUnitario;
+                                                        campo2.innerHTML = nomeProduto;
+                                                        campo3.innerHTML = quantProduto;
+                                                        // chamando função para inserir campo na nova linha
+                                                        linhaSelecionadaAdd();
+                                                    }
+                                                }
+
+                                                // exibir dados da linha selecionada
+                                                function linhaSelecionadaAdd()
+                                                {
+
+                                                    for (var i = 1; i < table.rows.length; i++)
+                                                    {
+                                                        table.rows[i].onclick = function ()
+                                                        {
+                                                            // indice da linha selecionada
+                                                            addLinha = this.rowIndex;
+                                                            document.getElementById("valorUnitario").value = this.cells[0].innerHTML;
+                                                            document.getElementById("nomeProduto").value = this.cells[1].innerHTML;
+                                                            document.getElementById("quantProduto").value = this.cells[2].innerHTML;
+                                                        };
+                                                    }
+                                                }
+                                                linhaSelecionadaAdd();
+
+                                                function editarParametros()
+                                                {
+                                                    var valorUnitario = document.getElementById("valorUnitario").value,
+                                                            nomeProduto = document.getElementById("nomeProduto").value,
+                                                            quantProduto = document.getElementById("quantProduto").value;
+                                                    if (!verificarCampoVazio()) {
+                                                        table.rows[addLinha].cells[0].innerHTML = valorUnitario;
+                                                        table.rows[addLinha].cells[1].innerHTML = nomeProduto;
+                                                        table.rows[addLinha].cells[2].innerHTML = quantProduto;
+                                                    }
+                                                }
+
+                                                function removerParametros()
+                                                {
+                                                    table.deleteRow(addLinha);
+                                                    // remover linha
+                                                    document.getElementById("valorUnitario").value = "";
+                                                    document.getElementById("nomeProduto").value = "";
+                                                    document.getElementById("quantProduto").value = "";
+                                                }
+
+                                                $('.table tbody').on('click', '.btn', function () {
+                                                    $(this).closest('tr').remove();
+                                                });
         </script>
     </body>
 </html>

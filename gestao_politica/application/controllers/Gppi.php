@@ -32,10 +32,10 @@ class Gppi extends CI_Controller {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
 
-        $this->load->model('GPPI_Model');
+        $this->load->model('Gppi_Model');
         $this->load->model('Util_Model');
 
-        $data['gppi_model'] = $this->GPPI_Model;
+        $data['gppi_model'] = $this->Gppi_Model;
         $data['util_model'] = $this->Util_Model;
 
         $this->load->view('gppi/processos', $data);
@@ -45,34 +45,13 @@ class Gppi extends CI_Controller {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
 
-        $this->load->model('GPPI_Model');
+        $this->load->model('Gppi_Model');
         $this->load->model('Util_Model');
 
-        if ($this->input->post() != false) {
-            redirect('Gppi/politicas_governo');
-        }
-
-        $data['gppi_model'] = $this->GPPI_Model;
+        $data['gppi_model'] = $this->Gppi_Model;
         $data['util_model'] = $this->Util_Model;
 
         $this->load->view('gppi/novo_projeto', $data);
-    }
-
-    public function politicas_governo() {
-        ini_set("max_execution_time", 0);
-        ini_set("memory_limit", "-1");
-
-        $this->load->model('GPPI_Model');
-        $this->load->model('Util_Model');
-
-        if ($this->input->post() != false) {
-            redirect('Gppi/politicas_governo');
-        }
-
-        $data['gppi_model'] = $this->GPPI_Model;
-        $data['util_model'] = $this->Util_Model;
-
-        $this->load->view('gppi/politicas_governo', $data);
     }
 
     public function beneficios() {
@@ -104,6 +83,7 @@ class Gppi extends CI_Controller {
         if ($this->input->post() != false) {
             $post_data = $this->input->post();
         }
+        
         $data['sexo'] = $this->Beneficio_Model->get_all_selecao_sexo();
         $data['cor'] = $this->Beneficio_Model->get_all_selecao_cor_raca();
         $data['orgaos'] = $this->Beneficio_Model->get_all_orgao_gestor();
