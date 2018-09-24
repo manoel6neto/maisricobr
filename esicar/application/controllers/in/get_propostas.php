@@ -2644,6 +2644,7 @@ class get_propostas extends CI_Controller {
         $propostas_banco_propostas = array();
         if ($proponente != null) {
             $propostas_banco_propostas = $this->banco_proposta_model->get_by_proponente_anos($proponente, $anos);
+            //$propostas_banco_propostas = $this->banco_proposta_model->get_by_proponente_anos_debug($proponente, $anos);
         }
 
         $propostas_banco_proposta_atualizadas = array();

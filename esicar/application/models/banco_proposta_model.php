@@ -39,6 +39,22 @@ class banco_proposta_model extends CI_Model {
         }
     }
 
+    function get_by_proponente_anos_debug($proponente, $anos) {
+        $ids = array(964789, 895646);
+        $this->db->where('proponente', $proponente);
+        $this->db->where_in('ano', $anos);
+        $this->db->where_in('id_proposta', $ids);
+        $this->db->order_by('codigo_siconv', 'desc');
+
+        $query = $this->db->get('banco_proposta');
+
+        if ($query->num_rows > 0) {
+            return $query->result();
+        } else {
+            return null;
+        }
+    }
+
     function get_by_anos($proponente, $anos) {
         $this->db->where_in('ano', $anos);
         $this->db->order_by('codigo_siconv', 'desc');
@@ -175,7 +191,6 @@ class banco_proposta_model extends CI_Model {
             $this->db->insert('banco_proposta', $options);
             return $this->db->insert_id();
         }
-
         return 0;
     }
 
