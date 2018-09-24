@@ -70,7 +70,7 @@ class Gppi extends CI_Controller {
 
         $this->load->view('gppi/beneficios', $data);
     }
-    
+
     public function simulacao() {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");
@@ -80,10 +80,145 @@ class Gppi extends CI_Controller {
         $this->load->model('Criterio_Model');
         $this->load->model('Util_Model');
 
+
         if ($this->input->post() != false) {
             $post_data = $this->input->post();
+
+            // Salvando dados do Benefício
+            $options_beneficio = array(
+                'id_publico_alvo' => intval($post_data['publicoAlvo']),
+                'id_orgao_gestor' => intval($post_data['orgaoGestor']),
+                'id_tipo_beneficio' => intval($post_data['tipoBeneficio']),
+                'id_usuario_responsavel' => intval($this->session->userdata("sessao")['id_usuario_sistema']),
+                'descricao' => $post_data['beneficio'],
+                'valor_mensal_investido' => str_replace(',', '.', str_replace('.', '', $post_data['valorMensal'])),
+                'quantidade_beneficiarios' => intval($post_data['quantidadeBeneficiarios'])
+            );
+            $id_insert = $this->Beneficio_Model->insert_beneficio($options_beneficio);
+
+            // Salvando dados do Critério
+            //chk1 - bairro
+            if (array_key_exists('chk1', $post_data)) {
+                $options = array(
+                    'id_criterio' => 1,
+                    'tipo_juncao' => $post_data['selectBairro'],
+                    'bairro' => $post_data['bairro'],
+                    'id_beneficio' => $id_insert
+                );
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+            if (array_key_exists('chk2', $post_data)) {
+                //chk2 - cep
+                $options = array(
+                    'id_criterio' => 2,
+                    'tipo_juncao' => $post_data['selectCep'],
+                    'cep' => $post_data['cep'],
+                    'id_beneficio' => $id_insert
+                );
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+            if (array_key_exists('chk3', $post_data)) {
+                //chk3 - Quantidade de Crianças
+                $options = array(
+                    'id_criterio' => 4,
+                    'tipo_juncao' => $post_data['selectCriancas'],
+                    'quantidade' => $post_data['quantidadeCriancas'],
+                    'id_beneficio' => $id_insert
+                );
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+            if (array_key_exists('chk4', $post_data)) {
+                //chk4 - Quantidade de idosos
+                $options = array(
+                    'id_criterio' => 5,
+                    'tipo_juncao' => $post_data['selectIdosos'],
+                    'quantidade' => $post_data['quantidadeIdosos'],
+                    'id_beneficio' => $id_insert
+                );
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+            if (array_key_exists('chk5', $post_data)) {
+                //chk5 - Renda Familiar
+                $options = array(
+                    'id_criterio' => 6,
+                    'tipo_filtro' => $post_data['selectRendaFamiliar'],
+                    'tipo_juncao' => $post_data['selectCondicionalRendaFamiliar'],
+                    'valor_filtro' => str_replace(',', '.', str_replace('.', '', $post_data['rendaFamiliar'])),
+                    'id_beneficio' => $id_insert
+                );
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+            if (array_key_exists('chk6', $post_data)) {
+                //chk6 - Renda Pessoal
+                $options = array(
+                    'id_criterio' => 7,
+                    'tipo_filtro' => $post_data['selectRendaPessoal'],
+                    'tipo_juncao' => $post_data['selectCondicionalRendaPessoal'],
+                    'valor_filtro' => str_replace(',', '.', str_replace('.', '', $post_data['rendaPessoal'])),
+                    'id_beneficio' => $id_insert
+                );
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+            if (array_key_exists('chk7', $post_data)) {
+                //chk7 - Faixa Etária
+                $options = array(
+                    'id_criterio' => 8,
+                    'tipo_juncao' => $post_data['selectFaixaEtaria'],
+                    'idade_inicial' => $post_data['faixaEtariaInicial'],
+                    'idade_final' => $post_data['faixaEtariaFinal'],
+                    'id_beneficio' => $id_insert
+                );
+
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+            if (array_key_exists('chk8', $post_data)) {
+                //chk8 - Idade
+                $options = array(
+                    'id_criterio' => 9,
+                    'tipo_juncao' => $post_data['selectIdade'],
+                    'idade_inicial' => $post_data['idade'],
+                    'id_beneficio' => $id_insert
+                );
+
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+            if (array_key_exists('chk9', $post_data)) {
+                //chk9 - Sexo
+                $options = array(
+                    'id_criterio' => 10,
+                    'tipo_juncao' => $post_data['selectSexo'],
+                    'id_sexo' => intval($post_data['sexo']),
+                    'id_beneficio' => $id_insert
+                );
+
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+            if (array_key_exists('chk10', $post_data)) {
+                //chk10 - Idade
+                $options = array(
+                    'id_criterio' => 11,
+                    'tipo_juncao' => $post_data['selectCorRaca'],
+                    'id_raca' => intval($post_data['corRaca']),
+                    'id_beneficio' => $id_insert
+                );
+
+
+                $this->Beneficio_Model->insert_criterio_beneficio($options);
+            }
+
+            redirect('Gppi/beneficios');
+            //$this->encaminha(base_url("index.php/Gppi/executa_simulacao?id_beneficio={$id_insert}"));
         }
-        
+
         $data['sexo'] = $this->Beneficio_Model->get_all_selecao_sexo();
         $data['cor'] = $this->Beneficio_Model->get_all_selecao_cor_raca();
         $data['orgaos'] = $this->Beneficio_Model->get_all_orgao_gestor();
@@ -269,6 +404,11 @@ class Gppi extends CI_Controller {
         var_dump($this->GPPI_Model->get_beneficiarios_por_bairro(1, 1, 'Bigorrilho'));
         var_dump($this->GPPI_Model->count_familias_pessoas_return_object($this->GPPI_Model->get_beneficiarios_por_bairro(1, 1, 'Bigorrilho')));
         echo "<br><br>";
+    }
+
+    function encaminha($url) {
+        echo "<script type='text/javascript'>window.location='" . $url . "';</script>";
+        exit();
     }
 
 }

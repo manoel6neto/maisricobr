@@ -144,20 +144,28 @@ class Beneficio_Model extends CI_Model {
         if (count($query->result()) > 0) {
             return $query->result();
         }
-        
+
         return NULL;
     }
-    
+
     // -------------- Critério de Seleção - Cor ou Raça --------------------
     public function get_all_selecao_cor_raca() {
         $query = $this->db->get('cor');
         if (count($query->result()) > 0) {
             return $query->result();
         }
-        
+
         return NULL;
     }
-    
+
     // -------------- Insert - Critérios de Seleção --------------------
-    
+
+    public function insert_criterio_beneficio($options) {
+        $this->db->flush_cache();
+        $this->db->insert('criterio_beneficio', $options);
+        $return_id = $this->db->insert_id();
+
+        return $return_id;
+    }
+
 }
