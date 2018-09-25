@@ -22,7 +22,7 @@
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100 p-t-50 p-b-90">
-                    <img style="margin-top: -100px; margin-bottom: 40px; width: 60%; margin-left: 18%; padding: 0px !important;" class="wrap-login100 p-t-50 p-b-90" title="Logo Gestão e Política" alt="Logo Gestão e Política" src="<?php echo base_url("layout/images/logo_gestao.png"); ?>"/>
+                    <img style="margin-top: -100px; margin-bottom: 40px; width: 60%; margin-left: 22%; padding: 0px !important;" class="wrap-login100 p-t-50 p-b-90" title="Logo Gestão e Política" alt="Logo Gestão e Política" src="<?php echo base_url("layout/images/logo_gestao.png"); ?>"/>
                     <span class="login100-form-title p-b-51 title-color" style="margin-bottom: -20px;">
                         Login
                     </span>
