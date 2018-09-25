@@ -80,7 +80,6 @@ class Gppi extends CI_Controller {
         $this->load->model('Criterio_Model');
         $this->load->model('Util_Model');
 
-
         if ($this->input->post() != false) {
             $post_data = $this->input->post();
 
@@ -213,17 +212,29 @@ class Gppi extends CI_Controller {
 
                 $this->Beneficio_Model->insert_criterio_beneficio($options);
             }
-            
-            // Salvando dados da tabela Parâmetros
-            $options_parametro_beneficio = array(
-                'nome_produto' => $post_data['nomeProduto'],
-                'valor_unitario' => str_replace(',', '.', str_replace('.', '', $post_data['valorUnitario'])),
-                'quantidade' => intval($post_data['quantProduto']),
-                'id_beneficio' => $id_insert
-            );
-            
-            $this->Beneficio_Model->insert_parametro_beneficio($options_parametro_beneficio);
-            
+
+            //PROCESSANDO OS PARAMETROS
+            //ADICIONAR ADIÇÃO NO BANCO DE DADOS
+            $parametros_array = $post_data['textHidden'];
+            $temp_array = explode(';', $parametros_array);
+            $parametros_array = array();
+            foreach ($temp_array as $param) {
+                $temp = explode(':', $param);
+                if (count($temp) == 1) {
+                    $inner_array = array(
+                        'valor' => $temp[0]
+                    );
+                } else {
+                    $inner_array = array(
+                        'valor' => $temp[0],
+                        'produto' => $temp[1],
+                        'quantidade' => $temp[2]
+                    );
+                }
+
+                array_push($parametros_array, $inner_array);
+            }
+
             redirect('Gppi/beneficios');
             //$this->encaminha(base_url("index.php/Gppi/executa_simulacao?id_beneficio={$id_insert}"));
         }

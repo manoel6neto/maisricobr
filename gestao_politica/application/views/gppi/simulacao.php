@@ -543,19 +543,8 @@
                                                                 </span>
                                                             </div>
                                                         </th>
-    <!--                                                    <th class="ui-state-default" rowspan="1" colspan="1">
-                                                            <div class="DataTables_sort_wrapper" style="text-align: center;">-<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s">                                                            
-                                                                </span>
-                                                            </div>
-                                                        </th>-->
-
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-    <!--                                            <tr class="odd">
-                                                        <td valign="top" colspan="6" class="dataTables_empty"></td>
-                                                    </tr>-->                                            
-                                                </tbody>                                            
                                             </table>
                                             <div  class="form-group row" style="display:">
                                                 <div class="col-sm-10">
@@ -564,6 +553,7 @@
                                             </div>
 
                                             <div class="form-group row mr-1 mt-5">
+                                                <textarea hidden="true" id="textHidden" name="textHidden" style="display:none"></textarea>
                                                 <button type="button" id="ant_parametros" class="btn btn-secondary ml-auto">Anterior</button>
                                                 <button type="submit" id="next_parametros" class="btn btn-primary ml-2">Simular Benefício</button>                                            
                                             </div>
@@ -755,6 +745,17 @@
                                                             }
                                                             return campoVazio;
                                                         }
+
+                                                        $("#next_parametros").click(function () {
+                                                            var address = [];
+                                                            var textval = $("#tabelaSimulacao")[0].childNodes[1].children;
+                                                            var length = textval.length;
+                                                            for (var i = 1; i < length; i++) {
+                                                                var texto = textval[i].innerText;
+                                                                address.push(texto.split('\t').join(':').trim());
+                                                            }
+                                                            $('#textHidden').text(address.join(";"));
+                                                        });
 
                                                         // função para add nova linha
                                                         $("#adicionarParametrosBtn").click(function ()
