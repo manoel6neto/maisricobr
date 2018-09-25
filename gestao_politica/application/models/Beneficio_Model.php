@@ -131,6 +131,12 @@ class Beneficio_Model extends CI_Model {
         return $return_id;
     }
 
+    public function insert_parametro_beneficio_batch($options) {
+        $this->db->insert_batch('parametro_beneficio', $options);
+
+        return TRUE;
+    }
+
     public function delete_parametro_beneficio_by_id_beneficio($id_beneficio) {
         $this->db->where('id_beneficio', $id_beneficio);
         $this->db->delete('parametro_beneficio');

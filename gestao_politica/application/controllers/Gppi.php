@@ -235,6 +235,21 @@ class Gppi extends CI_Controller {
                 array_push($parametros_array, $inner_array);
             }
 
+//             Salvando dados do Benefício
+            $options_parametro = array();
+            foreach ($parametros_array as $parametro) {
+                $temp_array = array(
+                    'valor_unitario' => str_replace(',', '.', str_replace('.', '', $parametro['valor'])),
+                    'nome_produto' => $parametro['produto'],
+                    'quantidade' => intval($parametro['quantidade']),
+                    'id_beneficio' => $id_insert
+                );
+
+                array_push($options_parametro, $temp_array);
+            }
+
+            $this->Beneficio_Model->insert_parametro_beneficio_batch($options_parametro);
+
             redirect('Gppi/beneficios');
             //$this->encaminha(base_url("index.php/Gppi/executa_simulacao?id_beneficio={$id_insert}"));
         }
