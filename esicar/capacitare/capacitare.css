@@ -19,9 +19,9 @@
 .btn-capacitare {
     background: #167F92 !important;
     color: #FFF !important;
-    font-size: 24px !important;
-    font-weight: 900 !important;
-    padding: 30px 80px 30px 80px !important;
+    font-size: 20px !important;
+    font-weight: 800 !important;
+    padding: 20px 60px 20px 60px !important;
 }
 
 .btn-capacitare:hover {
@@ -88,7 +88,7 @@ h2 span {
 
 .select_capacitare {
     border: solid 2px #bec1c6;
-    width: 100% !important;
+    width: 70% !important;
     padding: 10px;
     border-radius: 5px;
     -webkit-box-sizing: border-box !important;
