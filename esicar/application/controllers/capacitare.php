@@ -61,6 +61,8 @@ class capacitare extends CI_Controller {
                 } else {
                     $this->encaminha(base_url("index.php/capacitare/email?evento={$evento}"));
                 }
+            } else if ($acao == 'EVENTOS') {
+                $this->encaminha(base_url("index.php/capacitare/eventos"));
             } else {
                 $this->alert("Ação inválida!");
             }
@@ -71,6 +73,23 @@ class capacitare extends CI_Controller {
         $data['eventos'] = $this->capacitare_model->get_eventos();
         $data['title'] = "CAPACITARE - PRINCIPAL";
         $data['main'] = 'capacitare/principal';
+        $this->load->view('template_capacitare', $data);
+    }
+
+    public function eventos() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('capacitare_model');
+
+        if ($this->input->post() != false) {
+            $post_data = $this->input->post();
+        }
+
+        $data['model'] = $this->capacitare_model;
+        $data['eventos'] = $this->capacitare_model->get_eventos();
+        $data['title'] = "CAPACITARE - EVENTOS";
+        $data['main'] = 'capacitare/eventos';
         $this->load->view('template_capacitare', $data);
     }
 

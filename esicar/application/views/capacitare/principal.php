@@ -12,9 +12,9 @@
             </div>
             <div class="form-row centralizar" style="padding: 4% 0 4% 0;">
                 <div class="btn-group btn-group-lg" role="group" aria-label="Módulos">
-                    <button id="acao_evento" type="submit" name="acao_evento" class="btn btn-secondary btn-capacitare">EVENTOS</button>
-                    <button id="acao_sms" type="submit" name="acao_sms" class="btn btn-secondary btn-capacitare">SMS</button>
-                    <button id="acao_email" type="submit" name="acao_email" class="btn btn-secondary btn-capacitare">E-MAIL</button>
+                    <button id="acao_evento" type="submit" name="acao" class="btn btn-secondary btn-capacitare" value="EVENTOS">EVENTOS</button>
+                    <button id="acao_sms" type="submit" name="acao" class="btn btn-secondary btn-capacitare" value="SMS">SMS</button>
+                    <button id="acao_email" type="submit" name="acao" class="btn btn-secondary btn-capacitare" value="EMAIL">E-MAIL</button>
                 </div>
             </div>
         </form>

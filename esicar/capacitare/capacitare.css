@@ -24,6 +24,11 @@
     padding: 20px 60px 20px 60px !important;
 }
 
+.btcap:hover {
+    background: #333333 !important;
+    color: #FFF !important;
+}
+
 .btn-capacitare:hover {
     background: #333333 !important;
     color: #FFF !important;
@@ -96,6 +101,10 @@ h2 span {
     box-sizing: border-box !important;
     font-size: 16px;
     font-weight: 600;
+}
+
+.noresize {
+    resize: none;
 }
 
 .responstable {
