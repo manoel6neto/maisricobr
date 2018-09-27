@@ -98,7 +98,12 @@ class capacitare_model extends CI_Model {
 
     public function insert_evento($options) {
         $this->db->insert('capacitare_evento', $options);
-        return $this->db->affected_rows();
+        return $this->db->insert_id();
+    }
+
+    public function remove_evento($id_evento) {
+        $this->db->where('id', $id_evento);
+        $this->db->delete('capacitare_evento');
     }
 
     public function insert_data($email, $telefone) {
@@ -111,7 +116,7 @@ class capacitare_model extends CI_Model {
             );
 
             $this->db->insert('capacitare', $options);
-            return $this->db->affected_rows();
+            return $this->db->insert_id();
         }
 
         return NULL;
@@ -120,6 +125,13 @@ class capacitare_model extends CI_Model {
     public function format_data($dataString) {
         $phpdate = strtotime($dataString);
         $myFormatForView = date("d/m/Y - H:i", $phpdate);
+
+        return $myFormatForView;
+    }
+
+    public function format_data_only($dataString) {
+        $phpdate = strtotime($dataString);
+        $myFormatForView = date("d/m/Y", $phpdate);
 
         return $myFormatForView;
     }

@@ -84,6 +84,11 @@ class capacitare extends CI_Controller {
 
         if ($this->input->post() != false) {
             $post_data = $this->input->post();
+
+            $nome_evento = $post_data['nome'];
+            $data_evento = strval(explode('/', $post_data['data'])[2] . '-' . explode('/', $post_data['data'])[1] . '-' . explode('/', $post_data['data'])[0]);
+            $retorno = $this->capacitare_model->insert_evento(array('nome' => $nome_evento, 'data_evento' => $data_evento));
+            redirect('capacitare/eventos');
         }
 
         $data['model'] = $this->capacitare_model;
@@ -91,6 +96,28 @@ class capacitare extends CI_Controller {
         $data['title'] = "CAPACITARE - EVENTOS";
         $data['main'] = 'capacitare/eventos';
         $this->load->view('template_capacitare', $data);
+    }
+
+    public function remove_evento() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('capacitare_model');
+
+        $id_evento = $this->input->get('id');
+        $this->capacitare_model->remove_evento($id_evento);
+        redirect('capacitare/eventos');
+    }
+
+    public function set_evento_ativo() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('capacitare_model');
+
+        $id_evento = $this->input->get('id');
+        $this->capacitare_model->set_evento_ativo($id_evento);
+        redirect('capacitare/eventos');
     }
 
     public function email() {

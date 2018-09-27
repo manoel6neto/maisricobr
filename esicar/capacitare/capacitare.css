@@ -8,6 +8,21 @@
     align-self: center;
 }
 
+.btn-group {  
+    white-space: nowrap;              
+}
+.btn-group .btn {  
+    float: none;
+    display: inline-block;
+}
+.btn + .dropdown-toggle { 
+    margin-left: -4px;
+}
+
+.table-responsive {
+    overflow-y: visible !important;
+}
+
 .centralizar {
     display: flex;
     flex-direction: row;
