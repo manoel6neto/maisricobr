@@ -258,8 +258,10 @@
                 <?php if (isset($usuario_comunicacao_social)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <a href="javascript:window.open('http://convenios.physisbrasil.com.br/gestao_politica/layout/images/autland_full.png','window','location=false, toolbar=no, menubar=no, resizable=yes');" title="Autland" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_comunicacao_social.png"); ?>" alt="Comunicação Social"></a>
-                            <a href="javascript:window.open('http://convenios.physisbrasil.com.br/gestao_politica/layout/images/autland_full.png','window','location=false, toolbar=no, menubar=no, resizable=yes');" title="Autland" target="_blank">
+                            <a href="https://start.teamviewer.com/device/1068428758/authorization/password/mode/control" title="Autland" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_comunicacao_social.png"); ?>" alt="Comunicação Social"></a>
+                            <a href="https://start.teamviewer.com/device/1068428758/authorization/password/mode/control" title="Autland" target="_blank">
+<!--                            <a href="javascript:window.open('http://convenios.physisbrasil.com.br/gestao_politica/layout/images/autland_full.png','window','location=false, toolbar=no, menubar=no, resizable=yes');" title="Autland" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_comunicacao_social.png"); ?>" alt="Comunicação Social"></a>
+                            <a href="javascript:window.open('http://convenios.physisbrasil.com.br/gestao_politica/layout/images/autland_full.png','window','location=false, toolbar=no, menubar=no, resizable=yes');" title="Autland" target="_blank">-->
                                 <div class="card-body card-body-color">
                                     <p class="card-text card-text-color">Módulo para GESTÃO DA COMUNICAÇÃO SOCIAL</p>
                                 </div>
