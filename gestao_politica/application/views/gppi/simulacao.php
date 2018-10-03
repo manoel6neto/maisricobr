@@ -555,7 +555,7 @@
                                             <div class="form-group row mr-1 mt-5">
                                                 <textarea hidden="true" id="textHidden" name="textHidden" style="display:none"></textarea>
                                                 <button type="button" id="ant_parametros" class="btn btn-secondary ml-auto">Anterior</button>
-                                                <button type="submit" id="next_parametros" class="btn btn-primary ml-2">Simular Benefício</button>                                            
+                                                <button type="submit" id="next_parametros" class="btn btn-primary ml-2">Criar Benefício</button>                                            
                                             </div>
                                         </div>
                                     </div>

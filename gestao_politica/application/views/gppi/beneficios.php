@@ -139,7 +139,7 @@
                                                         <div class="DataTables_sort_wrapper">Data Simulação<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
                                                         </div>
                                                     </th>
-                                                    <th class="th-wd-xs ui-state-default" rowspan="1" colspan="1">
+                                                    <th class="th-wd-xs ui-state-default" rowspan="1" colspan="2">
                                                         <div class="DataTables_sort_wrapper" style="text-align: center;">-<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
                                                         </div>
                                                     </th>
@@ -155,7 +155,8 @@
                                                             <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $beneficio_model->get_publico_alvo_by_id($beneficio->id_publico_alvo)->descricao; ?></td>
                                                             <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $usuario_sistema_model->get_usuario_sistema_from_id($beneficio->id_usuario_responsavel)->nome; ?></td>
                                                             <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo $util_model->formata_data_padrao_br($beneficio->data_simulacao); ?></td>
-                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><a style="background: transparent !important; background-color: transparent !important; outline: none;" title="Executar Simulação" href="<?php echo base_url("index.php/gppi/executa_simulacao?id_beneficio={$beneficio->id}"); ?>" target="_blank"><img src="<?php echo base_url('layout/images/simulacao_icon.png'); ?>" alt="Executar Simulação" style="background-color: transparent;"></a></td>
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center; border-right: none !important;"><a style="background: transparent !important; background-color: transparent !important; outline: none;" title="Executar Simulação" href="<?php echo base_url("index.php/gppi/executa_simulacao?id_beneficio={$beneficio->id}"); ?>" target="_blank"><img src="<?php echo base_url('layout/images/simulacao_icon.png'); ?>" alt="Executar Simulação" style="background-color: transparent;"></a></td>
+                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center; border-left: none !important;"><a style="background: transparent !important; background-color: transparent !important; outline: none;" title="Excluir Benefício" href="<?php echo base_url("index.php/gppi/excluir_beneficio?id_beneficio={$beneficio->id}"); ?>"><img src="<?php echo base_url('layout/images/delete_vazado_icon.png'); ?>" alt="Excluir Benefício" style="background-color: transparent;"></a></td>
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 <?php else: ?>

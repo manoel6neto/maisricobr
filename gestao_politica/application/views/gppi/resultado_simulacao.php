@@ -137,13 +137,14 @@
                                         <table class="table table-bordered table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th class="ui-state-default" rowspan="1" colspan="1">
-                                                        <div class="DataTables_sort_wrapper">Valor do Benefício (Mês)<span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
+                                                    <th class="ui-state-default" rowspan="1" colspan="2">
+                                                        <div class="DataTables_sort_wrapper"><?= $parametro->nome_produto == NULL ? 'Valor do Benefício (Mês)' : $parametro->nome_produto ?><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span>
                                                         </div>
                                                     </th>
                                                 </tr>
                                                 <tr class="odd">
                                                     <td valign="top" colspan="1" class="dataTables_wrapper"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario, 2, ',', '.'); ?></td>
+                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="width: 5%; text-align: center;"><?php echo $parametro->quantidade; ?></td>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -294,12 +295,12 @@
                                                         <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * $total_familias_com_criterio_com_limitador, 2, ',', '.'); ?></td>
                                                     <?php endif; ?>
                                                 </tr>
-                                                <tr class="odd">
-                                                    <td valign="top" colspan="2" class="dataTables_wrapper" style="text-align: center;"></td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="font-weight: 900;">Total:</td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($total_com_criterio_com_limitador, 2, ',', '.'); ?></td>
-                                                </tr>
                                             <?php endforeach; ?>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="2" class="dataTables_wrapper" style="text-align: center;"></td>
+                                                <td valign="top" colspan="1" class="dataTables_wrapper" style="font-weight: 900;">Total:</td>
+                                                <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($total_com_criterio_com_limitador, 2, ',', '.'); ?></td>
+                                            </tr>
                                         </thead>
                                     </table>
                                     <div class="panel-body">                            
@@ -331,13 +332,15 @@
                                                                     </div>
                                                                 </th>
                                                             </tr>
-                                                            <?php foreach ($array_resultado_com_limite['familias'] as $familias): ?>
-                                                                <tr class="odd">
-                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $familias->codigo; ?></td>
-                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo count($cadastro_unico_model->get_integrantes_familia($familias->id)); ?></td>
-                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa_from_id($cadastro_unico_model->get_responsavel_familia($familias->id)->id_pessoa)->nome; ?></td>
-                                                                </tr>
-                                                            <?php endforeach; ?>
+                                                            <?php if ($array_resultado_com_limite != NULL && count($array_resultado_com_limite) > 0 && array_key_exists('familias', $array_resultado_com_limite)): ?>
+                                                                <?php foreach ($array_resultado_com_limite['familias'] as $familias): ?>
+                                                                    <tr class="odd">
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $familias->codigo; ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo count($cadastro_unico_model->get_integrantes_familia($familias->id)); ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa_from_id($cadastro_unico_model->get_responsavel_familia($familias->id)->id_pessoa)->nome; ?></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
                                                         </thead>
                                                     </table>
                                                 </div>
@@ -367,17 +370,19 @@
                                                                     </div>
                                                                 </th>
                                                             </tr>
-                                                            <?php foreach ($array_resultado_com_limite['pessoas'] as $pessoas): ?>
-                                                                <?php foreach ($pessoas as $pessoa): ?>
-                                                                    <tr class="odd">
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_familia_from_id($cadastro_unico_model->get_pessoa($pessoa->id)->id_familia)->codigo; ?></td>
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa($pessoa->id)->nome; ?></td>
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->cpf != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->cpf : '-' ?></td>
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->rg != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->rg : '-' ?></td>
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->descricao != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->descricao : '-' ?></td>
-                                                                    </tr>
+                                                            <?php if ($array_resultado_com_limite != NULL && count($array_resultado_com_limite) > 0 && array_key_exists('pessoas', $array_resultado_com_limite)): ?>
+                                                                <?php foreach ($array_resultado_com_limite['pessoas'] as $pessoas): ?>
+                                                                    <?php foreach ($pessoas as $pessoa): ?>
+                                                                        <tr class="odd">
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_familia_from_id($cadastro_unico_model->get_pessoa($pessoa->id)->id_familia)->codigo; ?></td>
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa($pessoa->id)->nome; ?></td>
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->cpf != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->cpf : '-' ?></td>
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->rg != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->rg : '-' ?></td>
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->descricao != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->descricao : '-' ?></td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
                                                                 <?php endforeach; ?>
-                                                            <?php endforeach; ?>
+                                                            <?php endif; ?>
                                                         </thead>
                                                     </table>
                                                 </div>
@@ -434,12 +439,12 @@
                                                         <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($parametro->valor_unitario * $total_familias_com_criterio_sem_limitador, 2, ',', '.'); ?></td>
                                                     <?php endif; ?>
                                                 </tr>
-                                                <tr class="odd">
-                                                    <td valign="top" colspan="2" class="dataTables_wrapper" style="text-align: center;"></td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="font-weight: 900;">Total:</td>
-                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($total_com_criterio_sem_limitador, 2, ',', '.'); ?></td>
-                                                </tr>
                                             <?php endforeach; ?>
+                                            <tr class="odd">
+                                                <td valign="top" colspan="2" class="dataTables_wrapper" style="text-align: center;"></td>
+                                                <td valign="top" colspan="1" class="dataTables_wrapper" style="font-weight: 900;">Total:</td>
+                                                <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo 'R$&nbsp;' . number_format($total_com_criterio_sem_limitador, 2, ',', '.'); ?></td>
+                                            </tr>
                                         </thead>
                                     </table>
                                     <div class="panel-body">                            
@@ -471,13 +476,15 @@
                                                                     </div>
                                                                 </th>
                                                             </tr>
-                                                            <?php foreach ($array_resultado_sem_limite['familias'] as $familias): ?>
-                                                                <tr class="odd">
-                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $familias->codigo; ?></td>
-                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo count($cadastro_unico_model->get_integrantes_familia($familias->id)); ?></td>
-                                                                    <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa_from_id($cadastro_unico_model->get_responsavel_familia($familias->id)->id_pessoa)->nome; ?></td>
-                                                                </tr>
-                                                            <?php endforeach; ?>
+                                                            <?php if ($array_resultado_sem_limite != NULL && count($array_resultado_sem_limite) > 0 && array_key_exists('familias', $array_resultado_sem_limite)): ?>
+                                                                <?php foreach ($array_resultado_sem_limite['familias'] as $familias): ?>
+                                                                    <tr class="odd">
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $familias->codigo; ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo count($cadastro_unico_model->get_integrantes_familia($familias->id)); ?></td>
+                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa_from_id($cadastro_unico_model->get_responsavel_familia($familias->id)->id_pessoa)->nome; ?></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
                                                         </thead>
                                                     </table>
                                                 </div>
@@ -507,17 +514,19 @@
                                                                     </div>
                                                                 </th>
                                                             </tr>
-                                                            <?php foreach ($array_resultado_sem_limite['pessoas'] as $pessoas): ?>
-                                                                <?php foreach ($pessoas as $pessoa): ?>
-                                                                    <tr class="odd">
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_familia_from_id($cadastro_unico_model->get_pessoa($pessoa->id)->id_familia)->codigo; ?></td>
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa($pessoa->id)->nome; ?></td>
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->cpf != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->cpf : '-' ?></td>
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->rg != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->rg : '-' ?></td>
-                                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->descricao != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->descricao : '-' ?></td>
-                                                                    </tr>
+                                                            <?php if ($array_resultado_sem_limite != NULL && count($array_resultado_sem_limite) > 0 && array_key_exists('pessoas', $array_resultado_sem_limite)): ?>
+                                                                <?php foreach ($array_resultado_sem_limite['pessoas'] as $pessoas): ?>
+                                                                    <?php foreach ($pessoas as $pessoa): ?>
+                                                                        <tr class="odd">
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_familia_from_id($cadastro_unico_model->get_pessoa($pessoa->id)->id_familia)->codigo; ?></td>
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?php echo $cadastro_unico_model->get_pessoa($pessoa->id)->nome; ?></td>
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->cpf != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->cpf : '-' ?></td>
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->rg != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->rg : '-' ?></td>
+                                                                            <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><?= $cadastro_unico_model->get_pessoa($pessoa->id)->descricao != NULL ? $cadastro_unico_model->get_pessoa($pessoa->id)->descricao : '-' ?></td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
                                                                 <?php endforeach; ?>
-                                                            <?php endforeach; ?>
+                                                            <?php endif; ?>
                                                         </thead>
                                                     </table>
                                                 </div>

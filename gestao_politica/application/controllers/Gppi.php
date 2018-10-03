@@ -92,6 +92,16 @@ class Gppi extends CI_Controller {
         $this->load->view('gppi/beneficios', $data);
     }
 
+    public function excluir_beneficio() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('Beneficio_Model');
+
+        $this->Beneficio_Model->delete_beneficio_by_id($this->input->get('id_beneficio', TRUE));
+        redirect('Gppi/beneficios');
+    }
+
     public function simulacao() {
         ini_set("max_execution_time", 0);
         ini_set("memory_limit", "-1");

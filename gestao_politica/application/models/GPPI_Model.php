@@ -12,9 +12,11 @@ class GPPI_Model extends CI_Model {
     public function count_familias_pessoas_return_object($result_array) {
         $total_familias = 0;
         $total_pessoas = 0;
-        $total_familias = count($result_array['familias']);
+        if ($result_array != null && count($result_array) > 0 && array_key_exists('familias', $result_array)) {
+            $total_familias = count($result_array['familias']);
+        }
 
-        if (count($result_array) > 0) {
+        if ($result_array != null && count($result_array) > 0 && array_key_exists('pessoas', $result_array)) {
             foreach ($result_array['pessoas'] as $array_pessoas) {
                 $total_pessoas = $total_pessoas + count($array_pessoas);
             }

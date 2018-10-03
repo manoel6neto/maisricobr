@@ -282,7 +282,9 @@
                 <?php if (isset($usuario_aplicativo_cidadao)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <form action="http://radarcidadao.com.br/administrator/index.php" method="post" target="_blank">
+                            <form action="http://radarcidadao.com.br/administrator/remote_login.php" method="post" target="_blank">
+                                <input hidden="true" name="login" id="login" value="<?php echo $usuario_aplicativo_cidadao->login; ?>"/>
+                                <input hidden="true" name="senha" value="<?php echo $usuario_aplicativo_cidadao->senha; ?>"/>
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"/>
                                 <div class="card-body card-body-color">
                                     <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo APLICATIVO CIDADÃO"/></p>
