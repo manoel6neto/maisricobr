@@ -1,10 +1,11 @@
 <?php
 
-class Beneficio_Model extends CI_Model {
+class Programa_Model extends CI_Model {
 
-    // ------------ Beneficio -----------------
-    public function get_all_beneficio() {
-        $query = $this->db->get('beneficio');
+    // -------- programa_gppi table functions -------- //
+    public function get_all_programa_gppi() {
+        $query = $this->db->get('programa_gppi');
+
         if (count($query->result()) > 0) {
             return $query->result();
         }
@@ -12,19 +13,10 @@ class Beneficio_Model extends CI_Model {
         return NULL;
     }
 
-    public function get_beneficio_by_id($id_beneficio) {
-        $this->db->where('id', $id_beneficio);
-        $query = $this->db->get('beneficio');
-        if (count($query->result()) > 0) {
-            return $query->row(0);
-        }
+    public function get_programa_gppi_from_id($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('programa_gppi');
 
-        return NULL;
-    }
-
-    public function get_beneficio_by_usuario_id($id_usuario) {
-        $this->db->where('id_usuario', $id_usuario);
-        $query = $this->db->get('beneficio');
         if (count($query->result()) > 0) {
             return $query->result();
         }
@@ -32,30 +24,24 @@ class Beneficio_Model extends CI_Model {
         return NULL;
     }
 
-    public function insert_beneficio($options) {
-        $this->db->insert('beneficio', $options);
-        $return_id = $this->db->insert_id();
-
-        return $return_id;
-    }
-
-    public function delete_beneficio_by_id($id_beneficio) {
-        $this->db->where('id', $id_beneficio);
-        $this->db->delete('beneficio');
+    public function delete_programa_gppi($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('programa_gppi');
 
         return $this->db->affected_rows();
     }
 
-    public function update_beneficio_by_id($id_beneficio, $options) {
-        $this->db->where('id', $id_beneficio);
-        $this->db->update('beneficio', $options);
+    public function update_programa_gppi($id, $options) {
+        $this->db->where('id', $id);
+        $this->db->update('programa_gppi', $options);
 
         return $this->db->affected_rows();
     }
 
-    // ------------- Publico Alvo -------------------
-    public function get_all_publico_alvo() {
-        $query = $this->db->get('publico_alvo');
+    // ---- instituicao table functions ------ //
+    public function get_all_instituicao() {
+        $query = $this->db->get('instituicao');
+
         if (count($query->result()) > 0) {
             return $query->result();
         }
@@ -63,19 +49,10 @@ class Beneficio_Model extends CI_Model {
         return NULL;
     }
 
-    public function get_publico_alvo_by_id($id_publico_alvo) {
-        $this->db->where('id', $id_publico_alvo);
-        $query = $this->db->get('publico_alvo');
-        if (count($query->result()) > 0) {
-            return $query->row(0);
-        }
+    public function get_instituicao_from_id($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('instituicao');
 
-        return NULL;
-    }
-
-    // ----------- Orgão Gestor -------------
-    public function get_all_orgao_gestor() {
-        $query = $this->db->get('orgao_gestor');
         if (count($query->result()) > 0) {
             return $query->result();
         }
@@ -83,19 +60,10 @@ class Beneficio_Model extends CI_Model {
         return NULL;
     }
 
-    public function get_orgao_gestor_by_id($id_orgao_gestor) {
-        $this->db->where('id', $id_orgao_gestor);
-        $query = $this->db->get('orgao_gestor');
-        if (count($query->result()) > 0) {
-            return $query->row(0);
-        }
+    // ------ orgao_programa table functions ---------- //
+    public function get_all_orgao_programa() {
+        $query = $this->db->get('orgao_programa');
 
-        return NULL;
-    }
-
-    // ------------- Tipo Benefício ---------------
-    public function get_all_tipo_beneficio() {
-        $query = $this->db->get('tipo_beneficio');
         if (count($query->result()) > 0) {
             return $query->result();
         }
@@ -103,20 +71,10 @@ class Beneficio_Model extends CI_Model {
         return NULL;
     }
 
-    public function get_tipo_beneficio_by_id($id_tipo_beneficio) {
-        $this->db->where('id', $id_tipo_beneficio);
-        $query = $this->db->get('tipo_beneficio');
-        if (count($query->result()) > 0) {
-            return $query->row(0);
-        }
+    public function get_all_orgao_programa_from_instituicao_id($id_instituicao) {
+        $this->db->where('id_instituicao', $id_instituicao);
+        $query = $this->db->get('orgao_programa');
 
-        return NULL;
-    }
-
-    // -------------- Parâmetro Benefício --------------------
-    public function get_all_parametro_beneficio_by_id_beneficio($id_beneficio) {
-        $this->db->where('id_beneficio', $id_beneficio);
-        $query = $this->db->get('parametro_beneficio');
         if (count($query->result()) > 0) {
             return $query->result();
         }
@@ -124,29 +82,55 @@ class Beneficio_Model extends CI_Model {
         return NULL;
     }
 
-    public function insert_parametro_beneficio($options) {
-        $this->db->insert('parametro_beneficio', $options);
-        $return_id = $this->db->insert_id();
+    public function get_orgao_programa_from_id_orgao_programa($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('orgao_programa');
 
-        return $return_id;
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
     }
 
-    public function insert_parametro_beneficio_batch($options) {
-        $this->db->insert_batch('parametro_beneficio', $options);
+    // ----- acao_programa & lig_programagppi_acaoprograma table functions ------ //
+    public function get_all_acao_programa_from_id_programa($id_programa_gppi) {
+        $this->db->distinct();
+        $this->db->select('acao_programa.*');
+        $this->db->join('acao_programa', 'acao_programa.id = lig_programagppi_acaoprograma.id_acao_programa');
+        $this->db->where('id_programa_gppi', $id_programa_gppi);
+        $query = $this->db->get('lig_programagppi_acaoprograma');
 
-        return TRUE;
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
     }
 
-    public function delete_parametro_beneficio_by_id_beneficio($id_beneficio) {
-        $this->db->where('id_beneficio', $id_beneficio);
-        $this->db->delete('parametro_beneficio');
+    public function get_acao_programa_from_id($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('acao_programa');
+
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function delete_acao_programa($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('acao_programa');
 
         return $this->db->affected_rows();
     }
 
-    // -------------- Critério de Seleção - Sexo --------------------
-    public function get_all_selecao_sexo() {
-        $query = $this->db->get('sexo');
+    // --------- contemplacao table functions --------- //
+    public function get_contemplacao_from_id($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('contemplacao_programa');
+
         if (count($query->result()) > 0) {
             return $query->result();
         }
@@ -154,9 +138,28 @@ class Beneficio_Model extends CI_Model {
         return NULL;
     }
 
-    // -------------- Critério de Seleção - Cor ou Raça --------------------
-    public function get_all_selecao_cor_raca() {
-        $query = $this->db->get('cor');
+    public function update_contemplacao($id, $options) {
+        $this->db->where('id', $id);
+        $query = $this->db->update('contemplacao_programa', $options);
+
+        return $this->db->affected_rows();
+    }
+
+    public function delete_contemplacao($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->delete('contemplacao_programa');
+
+        return $this->db->affected_rows();
+    }
+
+    // ------- arquivo_programa table functions ---------- //
+    public function get_all_arquivo_programa_from_id_programa_gppi($id_programa_gppi) {
+        $this->db->distinct();
+        $this->db->select('arquivo_programa.*');
+        $this->db->join('arquivo_programa', 'arquivo_programa.id = lig_programagppi_arquivoprograma.id_arquivo_programa');
+        $this->db->where('id_programa_gppi', $id_programa_gppi);
+        $query = $this->db->get('lig_programagppi_arquivoprograma');
+
         if (count($query->result()) > 0) {
             return $query->result();
         }
@@ -164,14 +167,74 @@ class Beneficio_Model extends CI_Model {
         return NULL;
     }
 
-    // -------------- Insert - Critérios de Seleção --------------------
+    public function get_arquivo_programa_from_id($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('arquivo_programa');
 
-    public function insert_criterio_beneficio($options) {
-        $this->db->flush_cache();
-        $this->db->insert('criterio_beneficio', $options);
-        $return_id = $this->db->insert_id();
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
 
-        return $return_id;
+        return NULL;
+    }
+
+    public function delete_arquivo_programa($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('arquivo_programa');
+
+        return $this->db->affected_rows();
+    }
+
+    // --------- sumario_programa table functions ----------- //
+    public function get_sumario_programa_from_id($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('sumario_programa');
+
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function delete_sumario_programa($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('sumario_programa');
+
+        return $this->db->affected_rows();
+    }
+
+    // ------------ estrutura_plano_acao_programa table functions -------------- //
+    public function get_all_estrutura_plano_acao_programa_from_id_programa_gppi($id_programa_gppi) {
+        $this->db->distinct();
+        $this->db->select('estrutura_plano_acao_programa.*');
+        $this->db->join('estrutura_plano_acao_programa', 'estrutura_plano_acao_programa.id = lig_programagppi_estruturaplanoacaoprograma.id_estrutura_plano_acao_programa');
+        $this->db->where('id_programa_gppi', $id_programa_gppi);
+        $query = $this->db->get('lig_programagppi_estruturaplanoacaoprograma');
+
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function get_estrutura_plano_acao_programa_from_id($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('estrutura_plano_acao_programa');
+
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function delete_estrutura_plano_acao_programa($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('estrutura_plano_acao_programa');
+
+        return $this->db->affected_rows();
     }
 
 }
