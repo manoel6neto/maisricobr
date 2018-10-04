@@ -101,11 +101,11 @@
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <label for="nome">Nome *</label>
-                                            <input type="text" class="form-control" id="nome" name="nome">
+                                            <input type="text" class="form-control" id="nome" name="nome" required>
                                         </div>
                                         <div class="form-group col">
                                             <label for="endereco">Endereço *</label>
-                                            <input type="text" class="form-control" id="endereco" name="endereco">
+                                            <input type="text" class="form-control" id="endereco" name="endereco" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -121,34 +121,35 @@
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <label for="unidade">Unidade *</label>
-                                            <input type="text" class="form-control" id="unidade" name="unidade">
+                                            <input type="text" class="form-control" id="unidade" name="unidade" required>
                                         </div>
                                         <div class="form-group col">
                                             <label for="responsavel">Responsável *</label>
-                                            <input type="text" class="form-control" id="responsavel" name="responsavel">
+                                            <input type="text" class="form-control" id="responsavel" name="responsavel" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-sm-8">
                                             <label for="qdd">QDD *</label>
-                                            <textarea type="text" class="form-control noresize" id="qdd" name="qdd" rows="5"></textarea>
+                                            <textarea type="text" class="form-control noresize" id="qdd" name="qdd" rows="5" required></textarea>
                                         </div>
                                         <div class="form-group col" style="margin-left: 20px !important;">
                                             <label for="qdd">Vigência *</label>
                                             <div class="form-group" style="padding: 10px !important;">
                                                 <div class="form-group form-row col-sm-8">
                                                     <label for="data_inicio">Data inicial</label>
-                                                    <input type="text" class="form-control" id="data_inicio" name="data_inicio">
+                                                    <input type="text" class="form-control" id="data_inicio" name="data_inicio" required>
                                                 </div>
                                                 <div class="form-group form-row col-sm-8">
                                                     <label for="data_final">Data final</label>
-                                                    <input type="text" class="form-control" id="data_final" name="data_final">
+                                                    <input type="text" class="form-control" id="data_fim" name="data_fim" required>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group form-row mr-1 mt-5" style="margin-top: 20px !important;">
-                                        <button type="submit" id="avancar" class="btn btn-primary ml-auto">&nbsp;Avançar&nbsp;</button>                                            
+                                        <button type="button" id="novo_projeto" class="btn btn-secondary ml-auto">Anterior</button>
+                                        <button type="submit" id="avancar" class="btn btn-primary ml-2">Avançar</button>                                            
                                     </div>
                                 </form>
                             </div>
@@ -160,5 +161,23 @@
 
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+        <script src="<?php echo base_url("layout/vendor/jquery/jquery.inputmask.bundle.js"); ?>"></script>
+        <script>
+            $(document).ready(function () {
+                $('#novo_projeto').click(function () {
+                    parent.history.back();
+                    return false;
+                });
+            });
+
+            $(document).ready(function () {
+                $("#data_inicio").inputmask("99/99/9999", {"placeholder": "    "});
+                $("#data_fim").inputmask("99/99/9999", {"placeholder": "    "});
+            });
+
+//            $('#ant_novo_projeto').click(function () {
+//                window.location = 'novo_projeto.php';
+//            });
+        </script>
     </body>
 </html>

@@ -96,59 +96,31 @@
                                 </div>
 
                                 <!-- Formulário politicas de governo -->   
-                                <form id="form_projeto_politicas" name="form_projeto_politicas" action="politicas_governo" method="post">
-                                    <legend class="py-2">Dados do programa</legend>
+                                <form id="form_projeto_politicas_contemplacao" name="form_projeto_politicas_contemplacao" action="politicas_governo_contemplacao" method="post">
+                                    <legend class="py-2">Contemplação</legend>
                                     <div class="form-row">
-                                        <div class="form-group col">
-                                            <label for="nome">Nome *</label>
-                                            <input type="text" class="form-control" id="nome" name="nome">
+                                        <div class="form-group col-sm-6">
+                                            <label for="ldo">LDO *</label>
+                                            <textarea type="text" class="form-control noresize" id="ldo" name="ldo" rows="5"></textarea>
                                         </div>
-                                        <div class="form-group col">
-                                            <label for="endereco">Endereço *</label>
-                                            <input type="text" class="form-control" id="endereco" name="endereco">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            <label for="site">Site</label>
-                                            <input type="text" class="form-control" id="site" name="site">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="midia">Rede Social</label>
-                                            <input type="text" class="form-control" id="midia" name="midia">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            <label for="unidade">Unidade *</label>
-                                            <input type="text" class="form-control" id="unidade" name="unidade">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="responsavel">Responsável *</label>
-                                            <input type="text" class="form-control" id="responsavel" name="responsavel">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-sm-8">
-                                            <label for="qdd">QDD *</label>
-                                            <textarea type="text" class="form-control noresize" id="qdd" name="qdd" rows="5"></textarea>
+                                        <div class="form-group col-sm-6">
+                                            <label for="ppa">PPA *</label>
+                                            <textarea type="text" class="form-control noresize" id="ppa" name="ppa" rows="5"></textarea>
                                         </div>
                                         <div class="form-group col" style="margin-left: 20px !important;">
-                                            <label for="qdd">Vigência *</label>
-                                            <div class="form-group" style="padding: 10px !important;">
-                                                <div class="form-group form-row col-sm-8">
-                                                    <label for="data_inicio">Data inicial</label>
-                                                    <input type="text" class="form-control" id="data_inicio" name="data_inicio">
-                                                </div>
-                                                <div class="form-group form-row col-sm-8">
-                                                    <label for="data_final">Data final</label>
-                                                    <input type="text" class="form-control" id="data_final" name="data_final">
-                                                </div>
-                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-sm-12">
+                                            <label for="loa">LOA *</label>
+                                            <textarea type="text" class="form-control noresize" id="loa" name="loa" rows="5"></textarea>
+                                        </div>
+                                        <div class="form-group col" style="margin-left: 20px !important;">
                                         </div>
                                     </div>
                                     <div class="form-group form-row mr-1 mt-5" style="margin-top: 20px !important;">
-                                        <button type="submit" id="avancar" class="btn btn-primary ml-auto">&nbsp;Avançar&nbsp;</button>                                            
+                                        <button type="button" id="politicas_governo_contemplacao" class="btn btn-secondary ml-auto">Anterior</button>
+                                        <button type="submit" id="avancar" class="btn btn-primary ml-2">Avançar</button>                                            
                                     </div>
                                 </form>
                             </div>
@@ -160,5 +132,13 @@
 
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+        <script>
+            $(document).ready(function () {
+                $('#politicas_governo_contemplacao').click(function () {
+                    parent.history.back();
+                    return false;
+                });
+            });
+        </script>
     </body>
 </html>

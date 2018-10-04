@@ -118,15 +118,16 @@
                                         <div class="form-group col-md-3 ml-auto my-1" style="margin-left: 50px !important;">
                                             <label for="qualificacao">Qualificação *</label>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioFuncao" value="funcao" checked>
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioFuncao" value="funcao" onclick="funcao1();" checked>
                                                 <label class="form-check-label" for="inlineRadioFuncao">Função</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioSubFuncao" value="subfuncao">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadioSubFuncao" value="subfuncao" onclick="funcao2();">
                                                 <label class="form-check-label" for="inlineRadioSubFuncao">Sub. Função</label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="subfuncao_option" style="display:none;">
                                     <legend class="py-2">Sub. Função</legend>
                                     <div class="form-row">
                                         <div class="form-group col-sm-8">
@@ -136,8 +137,9 @@
                                             </select>
                                         </div>
                                     </div>
+                                </div>
                                     <div class="form-group form-row mr-1 mt-5">
-                                        <button type="submit" id="avancar" class="btn btn-primary ml-auto">&nbsp;Avançar&nbsp;</button>                                            
+                                        <button type="submit" id="avancar" class="btn btn-primary ml-auto">Avançar</button>                                            
                                     </div>
                                 </form>
                             </div>
@@ -149,5 +151,13 @@
 
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+        <script>
+            function funcao1() {
+                document.getElementById('subfuncao_option').style.display = 'none';
+            }
+            function funcao2() {
+                document.getElementById('subfuncao_option').style.display = 'block';
+            }
+        </script>
     </body>
 </html>

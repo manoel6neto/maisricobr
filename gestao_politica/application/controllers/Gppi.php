@@ -66,13 +66,97 @@ class Gppi extends CI_Controller {
         $this->load->model('Util_Model');
 
         if ($this->input->post() != false) {
-            redirect('Gppi/politicas_governo');
+            redirect('Gppi/politicas_governo_acoes');
         }
 
         $data['gppi_model'] = $this->GPPI_Model;
         $data['util_model'] = $this->Util_Model;
 
         $this->load->view('gppi/politicas_governo', $data);
+    }
+    
+    public function politicas_governo_acoes() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('GPPI_Model');
+        $this->load->model('Util_Model');
+
+        if ($this->input->post() != false) {
+            redirect('Gppi/politicas_governo_contemplacao');
+        }
+
+        $data['gppi_model'] = $this->GPPI_Model;
+        $data['util_model'] = $this->Util_Model;
+
+        $this->load->view('gppi/politicas_governo_acoes', $data);
+    }
+    
+    public function politicas_governo_contemplacao() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('GPPI_Model');
+        $this->load->model('Util_Model');
+
+        if ($this->input->post() != false) {
+            redirect('Gppi/politicas_governo_indicadores');
+        }
+
+        $data['gppi_model'] = $this->GPPI_Model;
+        $data['util_model'] = $this->Util_Model;
+
+        $this->load->view('gppi/politicas_governo_contemplacao', $data);
+    }
+    
+    public function politicas_governo_indicadores() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('GPPI_Model');
+        $this->load->model('Util_Model');
+
+        if ($this->input->post() != false) {
+            redirect('Gppi/politicas_governo_sumario');
+        }
+
+        $data['gppi_model'] = $this->GPPI_Model;
+        $data['util_model'] = $this->Util_Model;
+
+        $this->load->view('gppi/politicas_governo_indicadores', $data);
+    }
+    
+    public function politicas_governo_sumario() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('GPPI_Model');
+        $this->load->model('Util_Model');
+
+        if ($this->input->post() != false) {
+            redirect('Gppi/politicas_governo_estrutura');
+        }
+
+        $data['gppi_model'] = $this->GPPI_Model;
+        $data['util_model'] = $this->Util_Model;
+
+        $this->load->view('gppi/politicas_governo_sumario', $data);
+    }
+    public function politicas_governo_estrutura() {
+        ini_set("max_execution_time", 0);
+        ini_set("memory_limit", "-1");
+
+        $this->load->model('GPPI_Model');
+        $this->load->model('Util_Model');
+
+        if ($this->input->post() != false) {
+            redirect('Gppi/politicas_governo');
+        }
+
+        $data['gppi_model'] = $this->GPPI_Model;
+        $data['util_model'] = $this->Util_Model;
+
+        $this->load->view('gppi/politicas_governo_estrutura', $data);
     }
 
     public function beneficios() {

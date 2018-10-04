@@ -22,6 +22,7 @@
         <link href="<?php echo base_url("layout/css/login.css"); ?>" rel="stylesheet" type="text/css">
         <link href="<?php echo base_url("layout/css/administracao.css"); ?>" rel="stylesheet" type="text/css">
         <link href="<?php echo base_url("layout/css/gppi.css"); ?>" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url("layout/fonts/font-awesome-4.7.0/css/font-awesome.min.css"); ?>" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -96,59 +97,135 @@
                                 </div>
 
                                 <!-- Formulário politicas de governo -->   
-                                <form id="form_projeto_politicas" name="form_projeto_politicas" action="politicas_governo" method="post">
-                                    <legend class="py-2">Dados do programa</legend>
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            <label for="nome">Nome *</label>
-                                            <input type="text" class="form-control" id="nome" name="nome">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="endereco">Endereço *</label>
-                                            <input type="text" class="form-control" id="endereco" name="endereco">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            <label for="site">Site</label>
-                                            <input type="text" class="form-control" id="site" name="site">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="midia">Rede Social</label>
-                                            <input type="text" class="form-control" id="midia" name="midia">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col">
-                                            <label for="unidade">Unidade *</label>
-                                            <input type="text" class="form-control" id="unidade" name="unidade">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label for="responsavel">Responsável *</label>
-                                            <input type="text" class="form-control" id="responsavel" name="responsavel">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-sm-8">
-                                            <label for="qdd">QDD *</label>
-                                            <textarea type="text" class="form-control noresize" id="qdd" name="qdd" rows="5"></textarea>
-                                        </div>
-                                        <div class="form-group col" style="margin-left: 20px !important;">
-                                            <label for="qdd">Vigência *</label>
-                                            <div class="form-group" style="padding: 10px !important;">
-                                                <div class="form-group form-row col-sm-8">
-                                                    <label for="data_inicio">Data inicial</label>
-                                                    <input type="text" class="form-control" id="data_inicio" name="data_inicio">
-                                                </div>
-                                                <div class="form-group form-row col-sm-8">
-                                                    <label for="data_final">Data final</label>
-                                                    <input type="text" class="form-control" id="data_final" name="data_final">
+                                <form id="form_projeto_politicas_sumario" name="form_projeto_politicas_sumario" action="politicas_governo_sumario" method="post">
+                                    <legend class="py-2">Arquivos do Projeto</legend>
+
+                                    <!--Tabela Arquivos do Projeto-->
+
+                                    <div class="table-responsive">
+                                        <div class="dataTables_wrapper" id="tabelaDescricional_wrapper">
+                                            <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix">
+
+                                            </div>
+                                            <table id="tabelaDescricional" class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="ui-state-default" rowspan="1" colspan="1">
+                                                            <div class="DataTables_sort_wrapper">Nome<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="ui-state-default" rowspan="1" colspan="1">
+                                                            <div class="DataTables_sort_wrapper">Anexo<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th-wd-xs ui-state-default" rowspan="1" colspan="1">
+                                                            <div class="DataTables_sort_wrapper" style="text-align: center;">-<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <?php // if  ?>
+                                                    <?php // foreach ($beneficios as $beneficio): ?> 
+                                                    <tr class="odd">
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper col-md-2"><?php ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper col-md-8"><?php ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><a style="background: transparent !important; background-color: transparent !important; outline: none;" title="Remover" href="<?php ?>" target="_blank"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i><img src="<?php ?>" alt="" style="background-color: transparent;"></a></td>
+                                                    </tr>
+                                                    <?php // endforeach; ?>
+                                                    <?php // else: ?>
+                                                    <tr class="odd">
+                                                        <td valign="top" colspan="6" class="dataTables_empty">Registro não encontrado.</td>
+                                                    </tr>
+                                                    <?php // endif; ?>
+                                                </tbody>
+                                            </table>
+
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="dataTables_info p-0" id="tabelaDescricional">Mostrando de 1 até 10 de <?php ?> ações</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-row mt-3">
+                                        <div class="form-group col-sm">
+                                            <label for="titulo">Arquivos</label>
+                                            <input type="text" class="form-control" id="titulo" name="titulo">                                            
+                                        </div>
+                                        <div class="form-group col-sm">
+                                            <label for="selecionar">&nbsp;</label>
+                                            <button type="" id="selecionar" class="btn btn-primary ml-auto">&nbsp;Selecionar&nbsp;</button>
+                                            <button type="" id="" class="btn btn-primary ml-auto">&nbsp;Salvar&nbsp;</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <legend class="py-2">Sumário Executivo</legend>
+                                    
+                                    <!--Tabela de anexos Sumário Executivo-->                                    
+                                    <div class="table-responsive">
+                                        <div class="dataTables_wrapper" id="tabelaDescricional_wrapper">
+                                            <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix">
+
+                                            </div>
+                                            <table id="tabelaDescricional" class="table table-bordered table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="ui-state-default" rowspan="1" colspan="1">
+                                                            <div class="DataTables_sort_wrapper">Nome<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="ui-state-default" rowspan="1" colspan="1">
+                                                            <div class="DataTables_sort_wrapper">Anexo<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
+                                                            </div>
+                                                        </th>
+                                                        <th class="th-wd-xs ui-state-default" rowspan="1" colspan="1">
+                                                            <div class="DataTables_sort_wrapper" style="text-align: center;">-<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <?php // if  ?>
+                                                    <?php // foreach ($beneficios as $beneficio): ?> 
+                                                    <tr class="odd">
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper col-md-2"><?php ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper col-md-8"><?php ?></td>
+                                                        <td valign="top" colspan="1" class="dataTables_wrapper" style="text-align: center;"><a style="background: transparent !important; background-color: transparent !important; outline: none;" title="Remover" href="<?php ?>" target="_blank"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i><img src="<?php ?>" alt="" style="background-color: transparent;"></a></td>
+                                                    </tr>
+                                                    <?php // endforeach; ?>
+                                                    <?php // else: ?>
+                                                    <tr class="odd">
+                                                        <td valign="top" colspan="6" class="dataTables_empty">Registro não encontrado.</td>
+                                                    </tr>
+                                                    <?php // endif; ?>
+                                                </tbody>
+                                            </table>
+
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="dataTables_info p-0" id="tabelaDescricional">Mostrando de 1 até 10 de <?php ?> ações</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row mt-3">
+                                        <div class="form-group col-sm">
+                                            <label for="titulo">Arquivos</label>
+                                            <input type="text" class="form-control" id="titulo" name="titulo">                                            
+                                        </div>
+                                        <div class="form-group col-sm">
+                                            <label for="selecionar">&nbsp;</label>
+                                            <button type="" id="selecionar" class="btn btn-primary ml-auto">&nbsp;Selecionar&nbsp;</button>
+                                            <button type="" id="" class="btn btn-primary ml-auto">&nbsp;Salvar&nbsp;</button>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group form-row mr-1 mt-5" style="margin-top: 20px !important;">
-                                        <button type="submit" id="avancar" class="btn btn-primary ml-auto">&nbsp;Avançar&nbsp;</button>                                            
+                                        <button type="button" id="politicas_governo_sumario" class="btn btn-secondary ml-auto">Anterior</button>
+                                        <button type="submit" id="avancar" class="btn btn-primary ml-2">Avançar</button>                                            
                                     </div>
                                 </form>
                             </div>
@@ -160,5 +237,13 @@
 
         <script src="<?php echo base_url("layout/vendor/jquery/jquery.min.js"); ?>"></script>
         <script src="<?php echo base_url("layout/vendor/bootstrap/js/bootstrap.bundle.min.js"); ?>"></script>
+        <script>
+            $(document).ready(function () {
+                $('#politicas_governo_sumario').click(function () {
+                    parent.history.back();
+                    return false;
+                });
+            });
+        </script>
     </body>
 </html>
