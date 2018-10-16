@@ -97,13 +97,16 @@
 
 
                                 <!-- Formulário DADOS INICIAIS -->   
-                                <form id="form_projeto_inicial" name="form_projeto_inicial" action="novo_projeto" method="post">
+                                <form id="novo_projeto" name="novo_projeto" action="novo_projeto" method="post">
                                     <legend class="py-2">Dados da instituição</legend>
                                     <div class="form-row">
                                         <div class="form-group col-sm-8">
                                             <label for="instituicao">Instituição *</label>
                                             <select class="form-control" id="instituicao" name="instituicao">
                                                 <option value="">Selecione uma opção</option>
+                                                <?php foreach ($instituicao as $nome_instituicao): ?>
+                                                    <option value="<?php echo $nome_instituicao->id; ?>"><?php echo $nome_instituicao->nome; ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>
@@ -113,6 +116,9 @@
                                             <label for="orgao">Órgão *</label>
                                             <select class="form-control" id="orgao" name="orgao">
                                                 <option value="">Selecione uma opção</option>
+                                                <?php foreach ($orgao_programa as $orgao): ?>
+                                                    <option value="<?php echo $orgao->id; ?>"><?php echo $orgao->nome; ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-3 ml-auto my-1" style="margin-left: 50px !important;">
@@ -128,16 +134,19 @@
                                         </div>
                                     </div>
                                     <div id="subfuncao_option" style="display:none;">
-                                    <legend class="py-2">Sub. Função</legend>
-                                    <div class="form-row">
-                                        <div class="form-group col-sm-8">
-                                            <label for="subfunc">Sub. Função</label>
-                                            <select class="form-control" id="subfunc" name="subfunc">
-                                                <option value="">Selecione uma opção</option>
-                                            </select>
+                                        <legend class="py-2">Sub. Função</legend>
+                                        <div class="form-row">
+                                            <div class="form-group col-sm-8">
+                                                <label for="subfunc">Sub. Função</label>
+                                                <select class="form-control" id="subfunc" name="subfunc">
+                                                    <option value="">Selecione uma opção</option>
+                                                    <?php foreach ($instituicao as $nome_instituicao): ?>
+                                                        <option value="<?php echo $nome_instituicao->id; ?>"><?php echo $nome_instituicao->nome; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                     <div class="form-group form-row mr-1 mt-5">
                                         <button type="submit" id="avancar" class="btn btn-primary ml-auto">Avançar</button>                                            
                                     </div>

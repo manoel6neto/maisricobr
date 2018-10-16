@@ -96,7 +96,9 @@
                                 </div>
 
                                 <!-- Formulário politicas de governo -->   
-                                <form id="form_projeto_politicas_contemplacao" name="form_projeto_politicas_contemplacao" action="politicas_governo_contemplacao" method="post">
+                                <form id="politicas_governo_contemplacao" name="politicas_governo_contemplacao" action="politicas_governo_contemplacao" method="post">
+                                    <input type="text" hidden="true" name="titulo" id="titulo" value="<?php echo $titulo; ?>"/>
+                                    <input type="text" hidden="true" name="descricao" id="descricao" value="<?php echo $descricao; ?>"/>
                                     <legend class="py-2">Contemplação</legend>
                                     <div class="form-row">
                                         <div class="form-group col-sm-6">

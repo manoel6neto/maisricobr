@@ -37,6 +37,13 @@ class Programa_Model extends CI_Model {
 
         return $this->db->affected_rows();
     }
+    
+    public function insert_politicas_governo($options) {
+        $this->db->insert('programa_gppi', $options);
+        $return_id = $this->db->insert_id();
+
+        return $return_id;
+    }
 
     // ---- instituicao table functions ------ //
     public function get_all_instituicao() {

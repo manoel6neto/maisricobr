@@ -96,7 +96,10 @@
                                 </div>
 
                                 <!-- Formulário politicas de governo -->   
-                                <form id="form_projeto_politicas_indicadores" name="form_projeto_politicas_indicadores" action="politicas_governo_indicadores" method="post">
+                                <form id="politicas_governo_indicadores" name="politicas_governo_indicadores" action="politicas_governo_indicadores" method="post">
+                                    <input type="text" hidden="true" name="titulo" id="titulo" value="<?php echo $ldo; ?>"/>
+                                    <input type="text" hidden="true" name="descricao" id="descricao" value="<?php echo $ppa; ?>"/>
+                                    <input type="text" hidden="true" name="descricao" id="descricao" value="<?php echo $loa; ?>"/>
                                     <legend class="py-2">Indicadores</legend>
                                     <div id="accordion">
                                         <div class="card">

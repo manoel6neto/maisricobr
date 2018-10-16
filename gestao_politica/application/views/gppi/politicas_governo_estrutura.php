@@ -96,7 +96,7 @@
                                 </div>
 
                                 <!-- Formulário politicas de governo -->   
-                                <form id="form_projeto_politicas_estrutura" name="form_projeto_politicas_estrutura" action="politicas_governo_estrutura" method="post">
+                                <form id="politicas_governo_estrutura" name="politicas_governo_estrutura" action="politicas_governo_estrutura" method="post">                                    
                                     <legend class="py-2">Estrutura de Plano de Ação - (5W2H)</legend>
 
                                     <!--Tabela de anexos Sumário Executivo-->                                    

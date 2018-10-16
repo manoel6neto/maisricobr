@@ -96,7 +96,10 @@
                                 </div>
 
                                 <!-- Formulário politicas de governo -->   
-                                <form id="form_projeto_politicas" name="form_projeto_politicas" action="politicas_governo" method="post">
+                                <form id="politicas_governo" name="politicas_governo" action="politicas_governo" method="post">
+                                    <input type="text" hidden="true" name="instituicao" id="instituicao" value="<?php echo $id_instituicao; ?>"/>
+                                    <input type="text" hidden="true" name="orgao" id="orgao" value="<?php echo $id_orgao; ?>"/>
+                                    <input type="text" hidden="true" name="orgaosub" id="orgaosub" value="<?php echo $id_orgao_sub_funcao; ?>"/>
                                     <legend class="py-2">Dados do programa</legend>
                                     <div class="form-row">
                                         <div class="form-group col">
@@ -115,7 +118,7 @@
                                         </div>
                                         <div class="form-group col">
                                             <label for="midia">Rede Social</label>
-                                            <input type="text" class="form-control" id="midia" name="midia">
+                                            <input type="text" class="form-control" id="rede_social" name="rede_social">
                                         </div>
                                     </div>
                                     <div class="form-row">

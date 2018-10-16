@@ -97,6 +97,13 @@
 
                                 <!-- Formulário politicas de governo -->   
                                 <form id="form_projeto_politicas_acoes" name="form_projeto_politicas_acoes" action="politicas_governo_acoes" method="post">
+                                    <input type="text" hidden="true" name="nome" id="nome" value="<?php echo $nome; ?>"/>
+                                    <input type="text" hidden="true" name="endereco" id="endereco" value="<?php echo $endereco; ?>"/>
+                                    <input type="text" hidden="true" name="site" id="site" value="<?php echo $site; ?>"/>
+                                    <input type="text" hidden="true" name="rede_social" id="rede_social" value="<?php echo $rede_social; ?>"/>
+                                    <input type="text" hidden="true" name="unidade" id="unidade" value="<?php echo $unidade; ?>"/>
+                                    <input type="text" hidden="true" name="responsavel" id="responsavel" value="<?php echo $responsavel; ?>"/>
+                                    <input type="text" hidden="true" name="qdd" id="qdd" value="<?php echo $qdd; ?>"/>
                                     <legend class="py-2">Ações</legend>
                                     <div class="form-row">
                                         <div class="form-group col-sm-12">

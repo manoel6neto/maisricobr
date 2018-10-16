@@ -97,7 +97,7 @@
                                 </div>
 
                                 <!-- Formulário politicas de governo -->   
-                                <form id="form_projeto_politicas_sumario" name="form_projeto_politicas_sumario" action="politicas_governo_sumario" method="post">
+                                <form id="politicas_governo_sumario" name="politicas_governo_sumario" action="politicas_governo_sumario" method="post">
                                     <legend class="py-2">Arquivos do Projeto</legend>
 
                                     <!--Tabela Arquivos do Projeto-->
