@@ -643,6 +643,8 @@ class usuariomodel extends CI_Model {
         unset($options['estado_restrito']);
         unset($options['municipio_restrito']);
         unset($options['esfera_restrita']);
+        unset($options['senha_gp']);
+        unset($options['acesso_gp']);
 
         if (isset($options['id_nivel']) && $options['id_nivel'] === "")
             unset($options['id_nivel']);
