@@ -233,8 +233,8 @@
                         <div class="card h-100 card-body-color">
                             <form action="https://hyb.com.br/web/index.php" method="post" target="_blank">
                                 <input hidden="true" name="login" id="login" value="<?php echo $usuario_terceiro_setor->login; ?>"/>
-                                <input hidden="true" name="senha" value="<?php echo $usuario_terceiro_setor->senha; ?>"/>
-                                <input hidden="true" name="logar" value="Login"/>
+                                <input hidden="true" name="senha" id="senha" value="<?php echo $usuario_terceiro_setor->senha; ?>"/>
+                                <input hidden="true" name="logar" id="logar" value="Login"/>
 
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_terceiro_setor.png"); ?>" alt="Terceiro Setor e Projetos Sociais"/>
                                 <div class="card-body card-body-color">
