@@ -113,9 +113,11 @@
                 <?php if (isset($usuario_educacao)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <form action="http://186.216.174.121/login" method="post" target="_blank">
+                            <form action="http://18.231.96.141/login" method="post" target="_blank">
                                 <input hidden="true" name="email" id="email" value="<?php echo $usuario_educacao->login; ?>"/>
                                 <input hidden="true" name="password" id="password" value="<?php echo $usuario_educacao->senha; ?>"/>
+                                <input hidden="true" name="remember" id="remember" value="1"/>
+                                <input hidden="true" name="dispositivo_login" id="dispositivo_login" value="app"/>
 
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_educacao.png"); ?>" alt="Educação Pública"/>
                                 <div class="card-body card-body-color">
@@ -141,11 +143,12 @@
                 <?php if (isset($usuario_ass_social)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <form action="https://caceres.suas.com.br/login_check" method="post" target="_blank">
-                                <input hidden="true" name="_username" id="username" value="<?php echo $usuario_ass_social->login; ?>"/>
-                                <input hidden="true" name="_password" id="password" value="<?php echo $usuario_ass_social->senha; ?>"/>
-                                <input hidden="true" name="_csrf_token" id="csrf_token" value=""/>
-                                <input hidden="true" name="_remember_me" id="remember_me" value="on"/>
+                            <form action="https://gppi.suas.com.br/login" method="post" target="_blank">
+                                <input hidden="true" name="_username" id="_username" value="<?php echo $usuario_ass_social->login; ?>"/>
+                                <input hidden="true" name="_password" id="_password" value="<?php echo $usuario_ass_social->senha; ?>"/>
+                                <!--<input hidden="true" name="_csrf_token" id="_csrf_token" value="9LzOgyjNDP0BIDT_HdaC2MYNHG8ba7aYLmNFypMzXFE"/>-->
+                                <input hidden="true" name="_remember_me" id="_remember_me" value="on"/>
+                                <input hidden="true" name="_submit" id="_submit" value=""/>
 
                                 <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_ass_social.png"); ?>" alt="Assistência Social"/>
                                 <div class="card-body card-body-color">
@@ -260,7 +263,7 @@
                         <div class="card h-100 card-body-color">
                             <a href="https://start.teamviewer.com/device/1068428758/authorization/password/mode/control" title="Autland" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_comunicacao_social.png"); ?>" alt="Comunicação Social"></a>
                             <a href="https://start.teamviewer.com/device/1068428758/authorization/password/mode/control" title="Autland" target="_blank">
-<!--                            <a href="javascript:window.open('http://convenios.physisbrasil.com.br/gestao_politica/layout/images/autland_full.png','window','location=false, toolbar=no, menubar=no, resizable=yes');" title="Autland" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_comunicacao_social.png"); ?>" alt="Comunicação Social"></a>
+    <!--                            <a href="javascript:window.open('http://convenios.physisbrasil.com.br/gestao_politica/layout/images/autland_full.png','window','location=false, toolbar=no, menubar=no, resizable=yes');" title="Autland" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_comunicacao_social.png"); ?>" alt="Comunicação Social"></a>
                             <a href="javascript:window.open('http://convenios.physisbrasil.com.br/gestao_politica/layout/images/autland_full.png','window','location=false, toolbar=no, menubar=no, resizable=yes');" title="Autland" target="_blank">-->
                                 <div class="card-body card-body-color">
                                     <p class="card-text card-text-color">Módulo para GESTÃO DA COMUNICAÇÃO SOCIAL</p>
@@ -284,14 +287,20 @@
                 <?php if (isset($usuario_aplicativo_cidadao)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <form action="http://radarcidadao.com.br/administrator/remote_login.php" method="post" target="_blank">
-                                <input hidden="true" name="login" id="login" value="<?php echo $usuario_aplicativo_cidadao->login; ?>"/>
-                                <input hidden="true" name="senha" value="<?php echo $usuario_aplicativo_cidadao->senha; ?>"/>
-                                <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"/>
+                            <a href="http://radarcidadao.com.br/cascavel/PR" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"></a>
+                            <a href="http://radarcidadao.com.br/cascavel/PR" target="_blank">
                                 <div class="card-body card-body-color">
-                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo APLICATIVO CIDADÃO"/></p>
+                                    <p class="card-text card-text-color">Módulo APLICATIVO CIDADÃO</p>
                                 </div>
-                            </form>
+                            </a>
+                            <!--                            <form action="http://radarcidadao.com.br/administrator/remote_login.php" method="post" target="_blank">
+                                                            <input hidden="true" name="login" id="login" value="<?php echo $usuario_aplicativo_cidadao->login; ?>"/>
+                                                            <input hidden="true" name="senha" value="<?php echo $usuario_aplicativo_cidadao->senha; ?>"/>
+                                                            <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_aplicativo_cidadao.png"); ?>" alt="Aplicativo Cidadão"/>
+                                                            <div class="card-body card-body-color">
+                                                                <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo APLICATIVO CIDADÃO"/></p>
+                                                            </div>
+                                                        </form>-->
                         </div>
                     </div>
                 <?php else: ?>
@@ -309,6 +318,14 @@
                 <!-- INICIO MODULO POLITICAS PUBLICAS -->
                 <?php if (isset($usuario_politicas_publicas)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
+                        <!--                        <div class="card h-100 card-body-color">
+                                                    <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_politicas_publicas.png"); ?>" alt="GestÃ£o Integrada PolÃ­ticas PÃºblicas"></a>
+                                                    <a href="http://administracao-app.azurewebsites.net/Seguranca/RealizarLogin#" target="_blank">
+                                                        <div class="card-body card-body-color">
+                                                            <p class="card-text card-text-color">MÃ³dulo para GESTÃƒO INTEGRADA DAS POLÃ�TICAS PÃšBLICAS</p>
+                                                        </div>
+                                                    </a>
+                                                </div>-->
                         <div class="card h-100 card-body-color">
                             <a href="<?php echo base_url("index.php/Gppi"); ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_politicas_publicas.png"); ?>" alt="Gestão Integrada Políticas Públicas"></a>
                             <a href="<?php echo base_url("index.php/Gppi"); ?>" target="_blank">
