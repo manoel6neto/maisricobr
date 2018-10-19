@@ -252,7 +252,7 @@ th, td {
 
 .table100.ver1 th {
     font-family: Lato-Bold;
-    font-size: 18px;
+    font-size: 16px;
     color: #fff;
     line-height: 1.4;
 
@@ -261,7 +261,7 @@ th, td {
 
 .table100.ver1 td {
     font-family: Lato-Regular;
-    font-size: 15px;
+    font-size: 13px;
     color: #808080;
     line-height: 1.6;
 }
@@ -309,7 +309,7 @@ Tela: detalhar_familia*/
 
 .table100.ver2 th {
     font-family: Lato-Bold;
-    font-size: 18px;
+    font-size: 16px;
     color: #fa4251;
     line-height: 1.4;
 
@@ -318,7 +318,7 @@ Tela: detalhar_familia*/
 
 .table100.ver2 td {
     font-family: Lato-Regular;
-    font-size: 15px;
+    font-size: 13px;
     color: #808080;
     line-height: 1.4;
 }
@@ -360,7 +360,7 @@ Tela: detalhar_familia*/
 
 .table100.ver3 th {
     font-family: Lato-Bold;
-    font-size: 15px;
+    font-size: 13px;
     color: #00ad5f;
     line-height: 1.4;
     text-transform: uppercase;
@@ -369,7 +369,7 @@ Tela: detalhar_familia*/
 
 .table100.ver3 td {
     font-family: Lato-Regular;
-    font-size: 15px;
+    font-size: 13px;
     color: #808080;
     line-height: 1.4;
     background-color: #222222;
@@ -413,7 +413,7 @@ Tela: detalhar_familia*/
 
 .table100.ver4 th {
     font-family: Lato-Bold;
-    font-size: 18px;
+    font-size: 16px;
     color: #4272d7;
     line-height: 1.4;
 
@@ -427,7 +427,7 @@ Tela: detalhar_familia*/
 
 .table100.ver4 td {
     font-family: Lato-Regular;
-    font-size: 15px;
+    font-size: 13px;
     color: #808080;
     line-height: 1.4;
 }
@@ -471,7 +471,7 @@ Tela: detalhar_familia*/
 
 .table100.ver5 th {
     font-family: Lato-Bold;
-    font-size: 14px;
+    font-size: 10px;
     color: #555555;
     line-height: 1.4;
     text-transform: uppercase;
@@ -481,7 +481,7 @@ Tela: detalhar_familia*/
 
 .table100.ver5 td {
     font-family: Lato-Regular;
-    font-size: 15px;
+    font-size: 11px;
     color: #808080;
     line-height: 1.4;
 

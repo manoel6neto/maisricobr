@@ -134,7 +134,7 @@ class Cadastro_Unico_Model extends CI_Model {
         $query_sexo = $CADUNICO->get('sexo');
         return $query_sexo->row(0)->descricao;
     }
-    
+
     public function get_escolaridade_from_id_escolaridade($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
@@ -142,7 +142,7 @@ class Cadastro_Unico_Model extends CI_Model {
         $query_sexo = $CADUNICO->get('escolaridade');
         return $query_sexo->row(0)->descricao;
     }
-    
+
     public function get_profissao_from_id_profissao($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
@@ -150,7 +150,7 @@ class Cadastro_Unico_Model extends CI_Model {
         $query_sexo = $CADUNICO->get('profissao');
         return $query_sexo->row(0)->descricao;
     }
-    
+
     public function get_funcao_from_id_funcao($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
@@ -158,7 +158,7 @@ class Cadastro_Unico_Model extends CI_Model {
         $query_sexo = $CADUNICO->get('funcao_familiar');
         return $query_sexo->row(0)->descricao;
     }
-    
+
     public function get_raca_from_id_raca($id) {
         $CADUNICO = $this->load->database('cad_unico', TRUE);
 
@@ -173,6 +173,62 @@ class Cadastro_Unico_Model extends CI_Model {
         $CADUNICO->where('id', $id);
         $query_sexo = $CADUNICO->get('foto_pessoa');
         return $query_sexo->row(0)->data;
+    }
+
+    // --------------- TEMPORÁRIOS APRESENTAÇÃO CAMPO MAGRO ---------------------- //
+    public function get_dados_saude_from_id_pessoa($id_pessoa) {
+        $this->db->where('id_pessoa', $id_pessoa);
+        $query = $this->db->get('temp_dados_saude');
+
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function get_dados_educacao_from_id_pessoa($id_pessoa) {
+        $this->db->where('id_pessoa', $id_pessoa);
+        $query = $this->db->get('temp_dados_educacao');
+
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function get_dados_app_cidadao_from_id_pessoa($id_pessoa) {
+        $this->db->where('id_pessoa', $id_pessoa);
+        $query = $this->db->get('temp_dados_app_cidadao');
+
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function get_dados_suas_from_id_pessoa($id_pessoa) {
+        $this->db->where('id_pessoa', $id_pessoa);
+        $query = $this->db->get('temp_dados_suas');
+
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
+    }
+
+    public function get_dados_zoo_from_id_pessoa($id_pessoa) {
+        $this->db->where('id_pessoa', $id_pessoa);
+        $query = $this->db->get('temp_dados_zoo');
+
+        if (count($query->result()) > 0) {
+            return $query->result();
+        }
+
+        return NULL;
     }
 
 }

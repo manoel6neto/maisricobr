@@ -190,42 +190,47 @@
                         <table>
                             <tbody>
                                 <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Dados Gerais da Saúde</span></td>
+                                    <td colspan="8" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Dados Gerais da Saúde</span></td>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important;">
-                                    <td colspan="2" class="cell100 column1"><span class="titulo">Cartão Nacional de Saúde: </span><?php echo $pessoa_detalhar->cns; ?></td>
+                                    <td colspan="3" class="cell100 column1"><span class="titulo">Cartão Nacional de Saúde: </span><?php echo $pessoa_detalhar->cns; ?></td>
                                     <td colspan="2" class="cell100 column1"><span class="titulo">Cartão Municipal de Saúde: </span><?php ?></td>
                                     <?php //if ($pessoa_detalhar->vacinacao_em_dia == 1):   ?>
-                                    <td  colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span><?php ?></td>
+                                    <td  colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span><?php echo "Sim"; ?></td>
                                     <?//php else: ?>
                                         <!--<td colspan="2" class="cell100 column1"><span class="titulo">Vacinação em dia: </span>Não</td>-->
                                     <?//php endif; ?>
                                 </tr>
                                 <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Atendimentos na Saúde</span></td>
+                                    <td colspan="8" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Atendimentos na Saúde</span></td>
                                 </tr>
-                                <?php //foreach ($consultas_pessoa_detalhar as $consulta):    ?> 
-                                <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100 column2" style="padding-left: 20px !important;"><span class="titulo">Convenio: </span><?php //echo $consulta->convenio;                     ?></td>
-                                    <td class="cell100 column2"><span class="titulo">Data: </span><?php //echo $model_cad_unico->date_format($consulta->data);                    ?></td>
-                                    <td colspan="2" class="cell100 column2"><span class="titulo">Profissional: </span><?php //echo $consulta->profissional;                     ?></td>
-                                    <td class="cell100 column2"><span class="titulo">Status: </span><?php //echo $consulta->status;                     ?></td>
-                                    <td class="cell100 column2"><span class="titulo">Unidade: </span><?php //echo $consulta->unidade;                     ?></td>
-                                </tr>
-                                <?//php endforeach; ?>
+                                <?php if ($model_cad_unico->get_dados_saude_from_id_pessoa($pessoa_detalhar->id) != NULL): ?>
+                                    <?php foreach ($model_cad_unico->get_dados_saude_from_id_pessoa($pessoa_detalhar->id) as $dados_saude): ?> 
+                                        <tr class="row100 body" style="margin: 0 !important;">
+                                            <td class="cell100 column2" style="padding-left: 20px !important;"><span class="titulo">Atendimento: </span><?php echo $dados_saude->tipo_atendimento; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Convênio: </span><?php echo $dados_saude->convenio; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Data: </span><?php echo $model_cad_unico->date_format($dados_saude->data); ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Status: </span><?php echo $dados_saude->status; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Profissional: </span><?php echo $dados_saude->profissional; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Unidade: </span><?php echo $dados_saude->unidade; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                                 <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Controle de Zoonoses</span></td>
+                                    <td colspan="8" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Controle de Zoonoses</span></td>
                                 </tr>
-                                <?php //foreach ($zoonoses_pessoa_detalhar as $zoo):    ?> 
-                                <tr class="row100 body" style="margin: 0 !important;">
-                                    <td class="cell100 column3" style="padding-left: 20px !important;"><span class="titulo">Categoria: </span><?php //echo $zoo->categoria;                     ?></td>
-                                    <td class="cell100 column5"><span class="titulo">Nome: </span><?php //echo $zoo->nome;                     ?></td>
-                                    <td class="cell100 column3"><span class="titulo">Nascimento: </span><?php //echo $model_cad_unico->date_format($zoo->data_nascimento);                     ?></td>
-                                    <td class="cell100 column5"><span class="titulo">Raça: </span><?php //echo $zoo->raca;                     ?></td>
-                                    <td class="cell100 column5"><span class="titulo">Cor: </span><?php //echo $zoo->cor;                     ?></td>
-                                    <td class="cell100 column3"><span class="titulo">Sexo: </span><?php //echo $zoo->sexo;                     ?></td>
-                                </tr>
-                                <?//php endforeach; ?>
+                                <?php if ($model_cad_unico->get_dados_zoo_from_id_pessoa($pessoa_detalhar->id) != NULL): ?>
+                                    <?php foreach ($model_cad_unico->get_dados_zoo_from_id_pessoa($pessoa_detalhar->id) as $dados_zoo): ?> 
+                                        <tr class="row100 body" style="margin: 0 !important;">
+                                            <td class="cell100 column2" style="padding-left: 20px !important;"><span class="titulo">Categoria: </span><?php echo $dados_zoo->categoria; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Nome: </span><?php echo $dados_zoo->nome; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Nascimento: </span><?php echo $model_cad_unico->date_format($dados_zoo->data_nascimento); ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Raça: </span><?php echo $dados_zoo->raca; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Cor: </span><?php echo $dados_zoo->cor; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Sexo: </span><?php echo $dados_zoo->sexo; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -235,8 +240,19 @@
                         <table>
                             <tbody>
                                 <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Dados Aplicativo Cidadão</span></td>
+                                    <td colspan="8" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Dados Aplicativo Cidadão</span></td>
                                 </tr>
+                                <?php if ($model_cad_unico->get_dados_app_cidadao_from_id_pessoa($pessoa_detalhar->id) != NULL): ?>
+                                    <?php foreach ($model_cad_unico->get_dados_app_cidadao_from_id_pessoa($pessoa_detalhar->id) as $dados_app_cidadao): ?> 
+                                        <tr class="row100 body" style="margin: 0 !important;">
+                                            <td class="cell100 column2" style="padding-left: 20px !important;"><span class="titulo">Código: </span><?php echo $dados_app_cidadao->codigo; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Chamado: </span><?php echo $dados_app_cidadao->tipo_chamado; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Data: </span><?php echo $model_cad_unico->date_format($dados_app_cidadao->data); ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Endereço: </span><?php echo $dados_app_cidadao->endereco; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Situação: </span><?php echo $dados_app_cidadao->situacao; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -246,8 +262,19 @@
                         <table>
                             <tbody>
                                 <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Dados Educação</span></td>
+                                    <td colspan="8" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Dados Educação</span></td>
                                 </tr>
+                                <?php if ($model_cad_unico->get_dados_educacao_from_id_pessoa($pessoa_detalhar->id) != NULL): ?>
+                                    <?php foreach ($model_cad_unico->get_dados_educacao_from_id_pessoa($pessoa_detalhar->id) as $dados_educacao): ?> 
+                                        <tr class="row100 body" style="margin: 0 !important;">
+                                            <td class="cell100 column2" style="padding-left: 20px !important;"><span class="titulo">Exercício: </span><?php echo $dados_educacao->exercicio; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Unidade: </span><?php echo $dados_educacao->unidade; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Turma: </span><?php echo $dados_educacao->turma; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Curso: </span><?php echo $dados_educacao->curso; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Situação: </span><?php echo $dados_educacao->situacao; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
@@ -279,8 +306,19 @@
                         <table>
                             <tbody>
                                 <tr class="row100 body" style="margin: 0 !important; background-color: #8ca8bb;">
-                                    <td colspan="6" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Participação em Programas Sociais</span></td>
+                                    <td colspan="8" class="column1" style="align-content: center; text-align: center; vertical-align: central;"><span style="color: #fff; font-weight: 700;">Participação em Programas Sociais</span></td>
                                 </tr>
+                                <?php if ($model_cad_unico->get_dados_suas_from_id_pessoa($pessoa_detalhar->id) != NULL): ?>
+                                    <?php foreach ($model_cad_unico->get_dados_suas_from_id_pessoa($pessoa_detalhar->id) as $dados_suas): ?> 
+                                        <tr class="row100 body" style="margin: 0 !important;">
+                                            <td class="cell100 column2" style="padding-left: 20px !important;"><span class="titulo">Tipo atendimento: </span><?php echo $dados_suas->tipo; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Unidade: </span><?php echo $dados_suas->unidade; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Data: </span><?php echo $model_cad_unico->date_format($dados_suas->data); ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Status: </span><?php echo $dados_suas->status; ?></td>
+                                            <td class="cell100 column2"><span class="titulo">Responsável: </span><?php echo $dados_suas->cadastrador; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
