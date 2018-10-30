@@ -174,21 +174,17 @@
                 <?php if (isset($usuario_cad_imobiliario)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <?php if (!isset($usuario_cad_imobiliario->url_cliente) || $usuario_cad_imobiliario->url_cliente == ''): ?>
-                                <a href="http://geocascavel.cascavel.pr.gov.br/geo-view/index.ctm" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_imobiliario.png"); ?>" alt="Cadastro Imobiliário"></a>
-                                <a href="http://geocascavel.cascavel.pr.gov.br/geo-view/index.ctm" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DO CADASTRO IMOBILIÁRIO</p>
-                                    </div>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php echo $usuario_cad_imobiliario->url_cliente; ?>" target="_blank"><img class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_imobiliario.png"); ?>" alt="Cadastro Imobiliário"></a>
-                                <a href="<?php echo $usuario_cad_imobiliario->url_cliente; ?>" target="_blank">
-                                    <div class="card-body card-body-color">
-                                        <p class="card-text card-text-color">Módulo para GESTÃO DO CADASTRO IMOBILIÁRIO</p>
-                                    </div>
-                                </a>
-                            <?php endif; ?>
+                            <form action="https://homologa.geosimples.com.br" method="get" target="_blank">
+                                <input hidden="true" name="email" id="email" value="<?php echo $usuario_cad_imobiliario->login; ?>"/>
+                                <input hidden="true" name="password" id="password" value="<?php echo $usuario_cad_imobiliario->senha; ?>"/>
+                                <!--<input hidden="true" name="_token" id="_token" value="miGz1QKT3XmDPGx0cuWAicAX3slvNgyuuOyY0vzU"/>-->
+
+                                <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_imobiliario.png"); ?>" alt="Cadastro Imobiliário"/>
+                                <div class="card-body card-body-color">
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo para GESTÃO DO"/></p>
+                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="CADASTRO IMOBILIÁRIO"/></p>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 <?php else: ?>
