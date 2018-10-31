@@ -174,17 +174,11 @@
                 <?php if (isset($usuario_cad_imobiliario)): ?>
                     <div class="col-lg-3 col-sm-4 portfolio-item">
                         <div class="card h-100 card-body-color">
-                            <form action="https://homologa.geosimples.com.br" method="get" target="_blank">
-                                <input hidden="true" name="email" id="email" value="<?php echo $usuario_cad_imobiliario->login; ?>"/>
-                                <input hidden="true" name="password" id="password" value="<?php echo $usuario_cad_imobiliario->senha; ?>"/>
-                                <!--<input hidden="true" name="_token" id="_token" value="miGz1QKT3XmDPGx0cuWAicAX3slvNgyuuOyY0vzU"/>-->
-
-                                <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_imobiliario.png"); ?>" alt="Cadastro Imobiliário"/>
-                                <div class="card-body card-body-color">
-                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo para GESTÃO DO"/></p>
-                                    <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="CADASTRO IMOBILIÁRIO"/></p>
-                                </div>
-                            </form>
+                            <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_imobiliario.png"); ?>" alt="Cadastro Imobiliário" data-toggle="modal" data-target="#exampleModalCenter"/>
+                            <div class="card-body card-body-color">
+                                <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="Módulo para GESTÃO DO"/></p>
+                                <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="CADASTRO IMOBILIÁRIO"/></p>
+                            </div>
                         </div>
                     </div>
                 <?php else: ?>
@@ -366,6 +360,46 @@
                     </div>
                 <?php endif; ?>
                 <!-- FIM MODULO MONITORAMENTO SATISFAÇÃO E PESQUISA -->
+            </div>
+        </div>
+
+        <!-- Modal Modulo Cadastro Imobiliário -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Gestão Cadastro Imobiliário</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-auto portfolio-item">
+                            <div class="card h-100 card-body-color">
+                                <form action="https://homologa.geosimples.com.br" method="get" target="_blank">
+                                    <input hidden="true" name="email" id="email" value="<?php echo $usuario_cad_imobiliario->login; ?>"/>
+                                    <input hidden="true" name="password" id="password" value="<?php echo $usuario_cad_imobiliario->senha; ?>"/>
+                                    <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_imobiliario.png"); ?>" alt="Cadastro Imobiliário Administração"/>
+                                    <div class="card-body card-body-color">
+                                        <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="ADMINISTRAÇÃO"/></p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-auto portfolio-item">
+                            <div class="card h-100 card-body-color">
+                                <form action="http://geo.garopaba.sc.gov.br/publico/mapa_publico/0/0" method="get" target="_blank">
+                                    <input type="image" class="card-img-top" src="<?php echo base_url("layout/images/modulo_cad_imobiliario.png"); ?>" alt="Cadastro Imobiliário Visualização"/>
+                                    <div class="card-body card-body-color">
+                                        <p class="card-text card-text-color"><input style="background-color: #c4c4c4 !important;" class="card-text card-text-color" type="submit" value="VISUALIZAÇÃO"/></p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
             </div>
         </div>
 
